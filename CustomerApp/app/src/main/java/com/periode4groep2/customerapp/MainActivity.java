@@ -3,6 +3,8 @@ package com.periode4groep2.customerapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+// hallo Jumbo
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
