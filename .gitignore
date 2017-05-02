@@ -40,3 +40,5 @@ captures/
 *.jks
 CustomerApp/.idea/modules.xml
 EmployeeApp/.idea/modules.xml
+CustomerApp/.idea/vcs.xml
+EmployeeApp/.idea/vcs.xml
