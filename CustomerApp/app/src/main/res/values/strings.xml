@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CustomerApp</string>
+
+    <!-- Strings voor HomeScreen activity -->
+
+    <!-- Strings voor InlogScherm activity -->
 </resources>
