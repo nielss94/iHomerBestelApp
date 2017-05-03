@@ -17,11 +17,11 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:text="Bestelapp"
-        android:textAlignment="center"
+        android:gravity="center"
         android:textColor="@color/colorOrange"
-        android:textSize="100px"/>
+        android:textSize="50dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -29,14 +29,29 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E-mail:"
+            android:textSize="20dp"
+            android:paddingLeft="5dp"
+            android:textColor="@android:color/white"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="E-mail"/>
+            android:hint="example123@mail.com"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wachtwoord:"
+            android:textSize="20dp"
+            android:paddingLeft="5dp"
+            android:textColor="@android:color/white"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Wachtwoord"/>
+            android:hint="**********"/>
     </LinearLayout>
 
     <LinearLayout
