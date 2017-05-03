@@ -13,6 +13,17 @@
         android:background="#FF9600"
         android:elevation="4dp"
         android:theme="@style/BestelAppv2"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:layout_margin="7dp"
+        android:text="€ 2,50"
+        android:backgroundTint="#001734"
+        android:layout_gravity="right"/>
+
+    </android.support.v7.widget.Toolbar>
 
 </LinearLayout>
