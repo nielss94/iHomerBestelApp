@@ -8,9 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="BestelApp" parent="Theme.AppCompat" >
+    <style name="BestelApp" parent="Theme.AppCompat">
         <item name="android:colorBackground">#001734</item>
         <item name="colorAccent">#FF9600</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
+        <item name="android:statusBarColor">#d87f00</item>
         <item name="colorPrimary">#FF9600</item>
     </style>
 
