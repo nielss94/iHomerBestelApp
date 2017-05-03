@@ -18,11 +18,9 @@
         android:text="Bestelapp"
         android:textAlignment="center"
         android:textColor="@color/colorOrange"
-<<<<<<< HEAD
+        android:textSize="100px">
         android:textSize="100px"/>
-=======
-        android:textSize="100px"></TextView>
->>>>>>> origin/master
+    </TextView>
     </LinearLayout>
 </LinearLayout>
 
