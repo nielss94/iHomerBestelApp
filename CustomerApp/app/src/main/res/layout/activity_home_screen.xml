@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,7 +7,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.periode4groep2.customerapp.PresentationLayer.HomeScreen">
-
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"
+        ></include>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -91,13 +93,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/icon_informatie"
+            android:src="@drawable/icon_bestellingen"
             />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@android:color/white"
-            android:text="Informatie"
+            android:text="Mijn bestellingen"
             android:gravity="center_horizontal|center_vertical"
             android:textSize="20dp"
             android:layout_weight="4"
