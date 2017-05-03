@@ -64,8 +64,9 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Inloggen"
+            android:text="Storten"
             android:layout_alignParentBottom="true"
+            android:textAllCaps="false"
             android:background="@color/colorOrange"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="15dp"
