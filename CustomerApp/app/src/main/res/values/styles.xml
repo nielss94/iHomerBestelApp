@@ -16,4 +16,11 @@
         <item name="colorPrimary">#FF9600</item>
     </style>
 
+    <style name="BestelAppv2" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">#FF9600</item>
+        <item name="colorAccent">#FF9600</item>
+        <item name="android:colorBackground">#001734</item>
+        <item name="android:statusBarColor">#d87f00</item>
+    </style>
+
 </resources>
