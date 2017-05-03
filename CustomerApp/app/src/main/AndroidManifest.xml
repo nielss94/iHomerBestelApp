@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PresentationLayer.HomeScreen"></activity>
+        <activity android:name=".PresentationLayer.HomeScreen" />
+        <activity android:name=".PresentationLayer.add_saldo"></activity>
     </application>
 
 </manifest>
