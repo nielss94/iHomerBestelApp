@@ -18,7 +18,7 @@
         android:text="Bestelapp"
         android:textAlignment="center"
         android:textColor="@color/colorOrange"
-        android:textSize="100px">
+        android:textSize="100px"/>
     </LinearLayout>
 </LinearLayout>
 

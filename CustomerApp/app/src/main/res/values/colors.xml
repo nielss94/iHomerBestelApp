@@ -3,10 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-<<<<<<< HEAD
+
     <color name="NavigationBarDark">#1c1c1c</color>
-=======
+
     <color name="colorOrange">#FF9600</color>
     <color name="colorBackground">#001734</color>
->>>>>>> origin/master
+
 </resources>
