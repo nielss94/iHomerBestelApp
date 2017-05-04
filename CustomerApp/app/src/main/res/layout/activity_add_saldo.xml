@@ -62,6 +62,7 @@
             android:layout_height="wrap_content"
             android:text="Storten"
             android:layout_alignParentBottom="true"
+            android:id="@+id/stortButton"
             android:textAllCaps="false"
             android:background="@color/colorOrange"
             android:layout_marginBottom="20dp"
