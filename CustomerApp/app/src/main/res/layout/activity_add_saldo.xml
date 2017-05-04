@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     tools:context="com.periode4groep2.customerapp.PresentationLayer.MainActivity"
     android:orientation="vertical">
 
@@ -14,17 +13,6 @@
         layout="@layout/tool_bar_no_button">
 
     </include>
-=======
-    android:orientation="vertical"
-    tools:context="com.periode4groep2.customerapp.PresentationLayer.MainActivity">
-
-
-<include
-android:id="@+id/tool_bar_no_button"
-layout="@layout/tool_bar_no_button"
-    ></include>
->>>>>>> origin/master
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
