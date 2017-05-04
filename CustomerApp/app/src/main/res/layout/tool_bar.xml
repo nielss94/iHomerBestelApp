@@ -18,5 +18,5 @@
         android:layout_margin="7dp"
         android:text="€ 2,50"
         android:backgroundTint="#001734"
-        android:layout_gravity="right"/>
+        android:layout_gravity="right" />
 </android.support.v7.widget.Toolbar>
