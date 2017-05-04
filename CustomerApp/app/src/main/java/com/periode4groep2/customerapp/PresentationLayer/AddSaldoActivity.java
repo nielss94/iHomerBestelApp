@@ -41,11 +41,21 @@ public class AddSaldoActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         Toast.makeText(this, "Saldo opgewaardeerd met:" +  value, Toast.LENGTH_SHORT).show();
     }
-    public static int addone(int a)
-    {
-        int b = a+1;
-        return b;
-    }
+stortKnop.setOnClickListener(new OnClickListener() {
+        public void onClick(View v) {
+            stortKnop.setOnClickListener(new OnClickListener() {
+
+                public void onClick(View v) {
+                    num1 = Double.parseDouble(firstNumber.getText().toString());
+                    num2 = Double.parseDouble(secondNumber.getText().toString());
+                    sum = num1 + num2;
+                    addResult.setText(Double.toString(sum));
+                }
+            });
+
+        }
+    });
+
 }
 
 
