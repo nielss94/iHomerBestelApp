@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".PresentationLayer.HomeScreen" />
         <activity android:name=".PresentationLayer.AddSaldoActivity" />
-        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".TestActivity" />
+        <activity android:name=".PresentationLayer.WalletActivity"></activity>
     </application>
 
 </manifest>
