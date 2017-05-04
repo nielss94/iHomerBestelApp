@@ -3,10 +3,6 @@ package com.periode4groep2.customerapp.PresentationLayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
-
 import com.periode4groep2.customerapp.R;
 
 public class MyAccountActivity extends AppCompatActivity {
