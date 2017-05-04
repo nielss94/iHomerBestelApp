@@ -1,5 +1,6 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,11 +32,14 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         if(v.equals(orderLayoutButton)){
             Toast.makeText(this, "SLETJE ORDERS", Toast.LENGTH_SHORT).show();
         }else if(v.equals(myAcountLayoutButton)){
-            Toast.makeText(this, "SLETJE ACCOUNT", Toast.LENGTH_SHORT).show();
+            Intent myAccountIntent = new Intent(this, MyAccountActivity.class);
+            startActivity(myAccountIntent);
         } else if(v.equals(balanceLayoutButton)){
-            Toast.makeText(this, "SLETJE BALANCE", Toast.LENGTH_SHORT).show();
+            Intent walletIntent = new Intent(this, WalletActivity.class);
+            startActivity(walletIntent);
         } else if (v.equals(myOrdersLayoutButton)){
-            Toast.makeText(this, "SLETJE MY ORDERS", Toast.LENGTH_SHORT).show();
+            Intent myOrdersIntent = new Intent(this, MyOrdersActivity.class);
+            startActivity(myOrdersIntent);
         }
     }
 }
