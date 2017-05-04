@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PresentationLayer.HomeScreen" />
-        <activity android:name=".PresentationLayer.add_saldo" />
+        <activity android:name=".PresentationLayer.AddSaldoActivity" />
         <activity android:name=".TestActivity"></activity>
     </application>
 

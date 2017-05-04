@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.periode4groep2.customerapp.R;
 
-public class add_saldo extends AppCompatActivity {
+public class AddSaldoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
