@@ -22,17 +22,16 @@
         android:id="@+id/walletBottomDivLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
             android:layout_weight="45"
-            >
+            android:orientation="horizontal">
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/walletButtonContainLayout"
             android:layout_width="match_parent"
@@ -46,14 +45,14 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:background="#ff9600"/>
+                android:background="#ff9600" />
 
             <Button
                 android:id="@+id/refundSaldoBtn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#ff9600"/>
+                android:background="#ff9600" />
 
 
         </LinearLayout>
