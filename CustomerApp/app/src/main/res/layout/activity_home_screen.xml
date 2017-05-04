@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorOrange"
     tools:context="com.periode4groep2.customerapp.PresentationLayer.HomeScreen">
     <include
         android:id="@+id/tool_bar"
@@ -17,6 +18,7 @@
         android:clickable="true"
         android:orientation="vertical"
         android:layout_weight="1"
+        android:background="@color/colorBackground"
         >
         <ImageView
             android:layout_width="match_parent"
@@ -31,7 +33,7 @@
             android:text="Bestellen"
             android:gravity="center_horizontal|center_vertical"
             android:textSize="20dp"
-            android:layout_weight="4"
+            android:layout_weight="2"
             />
     </LinearLayout>
     <LinearLayout
@@ -40,12 +42,14 @@
         android:clickable="true"
         android:orientation="vertical"
         android:layout_weight="1"
+        android:paddingTop="7dp"
         >
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/icon_gebruiker"
+            android:background="@color/colorBackground"
             />
         <TextView
             android:layout_width="match_parent"
@@ -54,7 +58,8 @@
             android:text="Mijn account"
             android:gravity="center_horizontal|center_vertical"
             android:textSize="20dp"
-            android:layout_weight="4"
+            android:layout_weight="2"
+            android:background="@color/colorBackground"
             />
     </LinearLayout>
     <LinearLayout
@@ -63,6 +68,7 @@
         android:clickable="true"
         android:orientation="vertical"
         android:layout_weight="1"
+        android:paddingTop="7dp"
         >
 
         <ImageView
@@ -70,7 +76,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/icon_saldo" />
+            android:src="@drawable/icon_saldo"
+            android:background="@color/colorBackground"
+            />
 
         <TextView
             android:layout_width="match_parent"
@@ -79,7 +87,8 @@
             android:text="Saldo"
             android:gravity="center_horizontal|center_vertical"
             android:textSize="20dp"
-            android:layout_weight="4"
+            android:layout_weight="2"
+            android:background="@color/colorBackground"
             />
     </LinearLayout>
     <LinearLayout
@@ -88,12 +97,15 @@
         android:clickable="true"
         android:orientation="vertical"
         android:layout_weight="1"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
         >
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/ic_list"
+            android:background="@color/colorBackground"
             />
         <TextView
             android:layout_width="match_parent"
@@ -102,7 +114,8 @@
             android:text="Mijn bestellingen"
             android:gravity="center_horizontal|center_vertical"
             android:textSize="20dp"
-            android:layout_weight="4"
+            android:layout_weight="2"
+            android:background="@color/colorBackground"
             />
     </LinearLayout>
 </LinearLayout>
