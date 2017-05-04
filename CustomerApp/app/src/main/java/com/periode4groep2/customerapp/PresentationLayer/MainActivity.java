@@ -32,11 +32,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //Deze button moet nog veranderd worden wanneer de gegevens kloppen etc
     @Override
     public void onClick(View v) {
-<<<<<<< HEAD
         Intent intent = new Intent(this, HomeScreen.class);
         startActivity(intent);
         //Toast.makeText(this, "Succesvol ingelogd met:" + userName, Toast.LENGTH_SHORT).show();
-=======
         if(v.equals(loginButton)) {
             Intent intent = new Intent(this, HomeScreen.class);
             startActivity(intent);
@@ -44,8 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(this, add_saldo.class);
             startActivity(intent);
         }
-
->>>>>>> origin/master
     }
 
 }
