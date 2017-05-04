@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         loginButton.setOnClickListener(this);
     }
 
+    //Deze button moet nog veranderd worden wanneer de gegevens kloppen etc
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(this, HomeScreen.class);
