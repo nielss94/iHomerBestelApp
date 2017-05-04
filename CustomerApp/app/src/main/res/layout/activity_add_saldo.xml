@@ -47,31 +47,30 @@
         android:orientation="vertical">
 
 
-
         <EditText
             android:id="@+id/addsaldoId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="€0,00"
+            android:inputType="number"
             android:paddingLeft="150dp"
             android:paddingRight="5dp"
-            android:inputType="number"
-            android:hint="€0,00"
             android:textSize="40dp" />
+
         <Button
+            android:id="@+id/stortButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Storten"
             android:layout_alignParentBottom="true"
-            android:id="@+id/stortButton"
-            android:textAllCaps="false"
-            android:background="@color/colorOrange"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:textSize="18dp"/>
+            android:background="@color/colorOrange"
+            android:text="Storten"
+            android:textAllCaps="false"
+            android:textSize="18dp" />
 
     </LinearLayout>
-
 
 
 </LinearLayout>
