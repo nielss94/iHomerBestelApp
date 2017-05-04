@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(this, HomeScreen.class);
             startActivity(intent);
         } else if (v.equals(balanceButton)){
-            Intent intent = new Intent(this, add_saldo.class);
+            Intent intent = new Intent(this, AddSaldoActivity.class);
             startActivity(intent);
         }
 

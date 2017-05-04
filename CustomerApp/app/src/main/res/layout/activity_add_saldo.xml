@@ -5,18 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    tools:context="com.periode4groep2.customerapp.PresentationLayer.MainActivity"
-=======
-    tools:context="com.periode4groep2.customerapp.PresentationLayer.AddSaldoActivity"
->>>>>>> origin/master
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.periode4groep2.customerapp.PresentationLayer.MainActivity">
 
-    <include
-        android:id="@+id/tool_bar_no_button"
-        layout="@layout/tool_bar_no_button">
 
-    </include>
+<include
+android:id="@+id/tool_bar_no_button"
+layout="@layout/tool_bar_no_button"
+    ></include>
 
     <LinearLayout
         android:layout_width="match_parent"
