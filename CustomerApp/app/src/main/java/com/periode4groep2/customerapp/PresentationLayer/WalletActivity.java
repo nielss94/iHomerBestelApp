@@ -13,9 +13,9 @@ public class WalletActivity extends AppCompatActivity {
     private Button addSaldoBtn;
     private Button refundSaldoBtn;
 
-    private Saldo saldo;
-    private Transaction transaction;
-    private Order order;
+    //private Saldo saldo;
+    //private Transaction transaction;
+    //private Order order;
 
 
     @Override
