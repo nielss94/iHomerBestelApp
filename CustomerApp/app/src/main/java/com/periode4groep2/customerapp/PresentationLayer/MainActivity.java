@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.periode4groep2.customerapp.R;
 
@@ -32,8 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //Deze button moet nog veranderd worden wanneer de gegevens kloppen etc
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this, HomeScreen.class);
-        startActivity(intent);
         //Toast.makeText(this, "Succesvol ingelogd met:" + userName, Toast.LENGTH_SHORT).show();
         if(v.equals(loginButton)) {
             Intent intent = new Intent(this, HomeScreen.class);
