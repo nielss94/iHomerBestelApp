@@ -46,7 +46,8 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v){
         if(v.equals(addSaldoBtn)){
-            Intent intent = new Intent(this, AddSaldoActivity.class);
+            Intent intent = new Intent(this, AddBalanceActivity.class);
+            startActivity(intent);
             Toast.makeText(this, "OPWAARDEERTIME", Toast.LENGTH_SHORT).show();
         }
         else if(v.equals(refundSaldoBtn)){

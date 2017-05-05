@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.periode4groep2.customerapp.R;
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(this, HomeScreenActivity.class);
             startActivity(intent);
         } else if (v.equals(balanceButton)){
-            Intent intent = new Intent(this, AddSaldoActivity.class);
+            Intent intent = new Intent(this, AddBalanceActivity.class);
             startActivity(intent);
         }
     }

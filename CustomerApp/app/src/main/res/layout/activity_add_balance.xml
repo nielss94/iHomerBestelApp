@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.periode4groep2.customerapp.PresentationLayer.MainActivity"
+    tools:context="com.periode4groep2.customerapp.PresentationLayer.AddBalanceActivity"
     android:orientation="vertical"
     >
 
@@ -29,24 +29,21 @@
         <TextView
             android:id="@+id/huidigSaldoTextId"
             android:layout_width="match_parent"
-            android:layout_gravity="bottom"
             android:layout_height="30dp"
             android:gravity="center"
             android:text="Huidig saldo: "
             android:textColor="@color/colorOrange"
             android:textSize="18dp" />
             <TextView
-                android:id="@+id/huidigSaldoTextMoney"
+                android:id="@+id/currentBalance"
                 android:layout_width="match_parent"
-                android:layout_gravity="bottom"
                 android:layout_height="30dp"
                 android:gravity="center"
                 android:text="€0,00 "
                 android:textColor="@color/colorOrange"
                 android:textSize="18dp" />
         <TextView
-            android:id="@+id/saldoId"
-            android:layout_gravity="bottom"
+            android:id="@+id/balanceID"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:gravity="center"
@@ -54,28 +51,27 @@
             android:textColor="@color/colorOrange"
             android:textSize="18dp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <EditText
-            android:id="@+id/addsaldoId"
+            android:id="@+id/giveBalanceID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:hint="€0,00"
             android:inputType="number"
-            android:gravity="center"
-            android:textSize="40dp"
-            />
+            android:textSize="40dp" />
 
         <Button
-            android:id="@+id/stortButton"
+            android:id="@+id/addBalanceID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:background="@color/colorOrange"
