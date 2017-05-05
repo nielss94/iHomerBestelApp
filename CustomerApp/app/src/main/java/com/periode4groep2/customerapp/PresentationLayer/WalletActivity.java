@@ -18,8 +18,8 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
     private final String TAG = this.getClass().getSimpleName();
     //controller elements
     private ListView transactionListView;
-    private Button addSaldoBtn;
-    private Button refundSaldoBtn;
+    private Button addBalanceButton;
+    private Button refundBalanceButton;
 
     //Domain objects
     //private Saldo saldo;
@@ -31,27 +31,25 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wallet);
-
-
         transactionListView = (ListView)findViewById(R.id.transactionListView);
 
-        addSaldoBtn = (Button)findViewById(R.id.addSaldoBtn);
-        refundSaldoBtn = (Button)findViewById(R.id.refundSaldoBtn);
+        addBalanceButton = (Button)findViewById(R.id.addSaldoBtn);
+        refundBalanceButton = (Button)findViewById(R.id.refundSaldoBtn);
 
-        addSaldoBtn.setOnClickListener(this);
-        refundSaldoBtn.setOnClickListener(this);
+        addBalanceButton.setOnClickListener(this);
+        refundBalanceButton.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v){
-        if(v.equals(addSaldoBtn)){
+        if(v.equals(addBalanceButton)){
             Intent intent = new Intent(this, AddBalanceActivity.class);
             startActivity(intent);
-            Toast.makeText(this, "OPWAARDEERTIME", Toast.LENGTH_SHORT).show();
         }
-        else if(v.equals(refundSaldoBtn)){
+        else if(v.equals(refundBalanceButton)){
             //Intent intent = new Intent(this, RefundActivity.class);
+            //startActivity(intent);
             Toast.makeText(this, "REFUND TIME", Toast.LENGTH_SHORT).show();
         }
     }

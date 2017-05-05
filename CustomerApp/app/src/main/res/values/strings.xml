@@ -15,7 +15,7 @@
         Mijn bestellingen
     </string>
 
-    <!-- Strings voor InlogScherm activity -->
+    <!-- Strings voor MainActivity -->
     <string name="order_app_logo">
         Bestelapp
     </string>
@@ -33,6 +33,40 @@
     </string>
     <string name="log_in_button">
         Inloggen
+    </string>
+
+    <!-- Strings voor AddBalanceActivity-->
+    <string name="current_balance_textview">
+        Huidig saldo:
+    </string>
+    <string name="current_balance_view">
+        €0,00
+    </string>
+    <string name="add_balance">
+        Saldo toevoegen:
+    </string>
+    <string name="desired_balance">
+        €0,00
+    </string>
+    <string name="add_balance_button">
+        Toevoegen
+    </string>
+
+    <!-- Strings voor MyAccountActivity-->
+
+
+    <!-- Strings voor MyOrdersActivity-->
+
+
+    <!-- Strings voor OrderActivity-->
+
+
+    <!-- Strings voor WalletActivity-->
+    <string name="go_to_add_balance_button">
+        Saldo toevoegen
+    </string>
+    <string name="go_to_refun_balance_button">
+        Saldo terugstorten
     </string>
 
 </resources>

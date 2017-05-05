@@ -45,6 +45,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:text="@string/go_to_add_balance_button"
                 android:background="#ff9600" />
 
             <Button
@@ -52,20 +53,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:text="@string/go_to_refun_balance_button"
                 android:background="#ff9600" />
-
-
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>
-
-<!-- Aanpassen voor morgen:
-    De kleuren heb je nu nog in hex codes, die moeten naar een
-    android:@color/ en dan de kleur die wij in de values map hebben
-    zitten. Verder zou ik proberen te vermijden dat je met x aantal dp
-    werkt maar meer met match parent en wrap content omdat dat op iedere
-    telefoon hetzelfde is zegmaar als hoe jij het zien. En voor de rest kun
-    je er andere dingen aan toevoegen die vorr zich spreken
- -->
