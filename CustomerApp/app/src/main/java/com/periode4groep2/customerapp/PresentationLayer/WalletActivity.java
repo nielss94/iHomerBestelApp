@@ -22,7 +22,7 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
     private Button refundBalanceButton;
 
     //Domain objects
-    //private Saldo saldo;
+    //private Balance balance;
     //private Order order;
     //private Transaction transaction;
     //private ArrayList<Transaction> transactionsArray;

@@ -9,7 +9,10 @@
     android:padding="10dp"
     tools:context="com.periode4groep2.customerapp.PresentationLayer.WalletActivity">
 
-
+    <!--<include-->
+        <!--android:id="@+id/tool_bar"-->
+        <!--layout="@layout/tool_bar">-->
+    <!--</include>-->
     
     <ListView
         android:id="@+id/transactionListView"
