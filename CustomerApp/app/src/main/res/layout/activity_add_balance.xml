@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:gravity="center"
-                android:text="€0,00 "
+                android:text="0 "
                 android:textColor="@color/colorOrange"
                 android:textSize="18dp" />
         <TextView
@@ -76,7 +76,6 @@
             android:layout_marginRight="15dp"
             android:background="@color/colorOrange"
             android:text="Storten"
-            android:textAllCaps="false"
             android:textSize="18dp" />
     </LinearLayout>
 </LinearLayout>

@@ -2,6 +2,37 @@
     <string name="app_name">CustomerApp</string>
 
     <!-- Strings voor HomeScreenActivity activity -->
+    <string name="order_button">
+        Bestellen
+    </string>
+    <string name="my_account_button">
+        Mijn account
+    </string>
+    <string name="balance_button">
+        Saldo
+    </string>
+    <string name="my_orders_button">
+        Mijn bestellingen
+    </string>
 
     <!-- Strings voor InlogScherm activity -->
+    <string name="order_app_logo">
+        Bestelapp
+    </string>
+    <string name="email">
+        E-mail:
+    </string>
+    <string name="hint_enter_email">
+        example123@mail.com
+    </string>
+    <string name="password">
+        Wachtwoord:
+    </string>
+    <string name="hint_enter_password">
+        ***********
+    </string>
+    <string name="log_in_button">
+        Inloggen
+    </string>
+
 </resources>

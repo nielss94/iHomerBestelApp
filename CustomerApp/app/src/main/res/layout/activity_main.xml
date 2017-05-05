@@ -19,14 +19,15 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
-    <TextView
-        android:id="@+id/logo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Bestelapp"
-        android:gravity="center"
-        android:textColor="@color/colorOrange"
-        android:textSize="50dp"/>
+
+        <TextView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/order_app_logo"
+            android:textColor="@color/colorOrange"
+            android:textSize="50dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -34,38 +35,41 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/emailId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="E-mail:"
-            android:textSize="20dp"
             android:paddingLeft="5dp"
-            android:textColor="@android:color/white"/>
+            android:text="@string/email"
+            android:textColor="@android:color/white"
+            android:textSize="20dp" />
+
         <EditText
             android:id="@+id/emailInputId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:hint="example123@mail.com"
+            android:hint="@string/hint_enter_email"
             />
         <TextView
             android:id="@+id/passwordId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wachtwoord:"
+            android:text="@string/password"
             android:textSize="20dp"
             android:paddingLeft="5dp"
             android:textColor="@android:color/white"/>
+
         <EditText
             android:id="@+id/passwordInputId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/hint_enter_password"
+            android:inputType="textPassword"
             android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:hint="**********"
-            android:inputType="textPassword"/>
+            android:paddingRight="5dp" />
     </LinearLayout>
 
     <RelativeLayout
@@ -77,7 +81,7 @@
             android:id="@+id/inlogKnopId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Inloggen"
+            android:text="@string/log_in_button"
             android:layout_alignParentBottom="true"
             android:background="@color/colorOrange"
             android:layout_marginBottom="20dp"
@@ -86,5 +90,3 @@
             android:textSize="18dp"/>
     </RelativeLayout>
 </LinearLayout>
-
-
