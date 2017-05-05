@@ -58,6 +58,12 @@
     <!-- Strings voor MyOrdersActivity-->
 
 
+    <!--String voor OrderDetailActivity-->
+    <string name="total_tag_textview">Totaal: </string>
+    <string name="TEST_total_price_textview">€15,55</string>
+    <string name="cancel_order_button">Bestelling annuleren</string>
+    <string name="scan_order_button">Scannen</string>
+
     <!-- Strings voor OrderActivity-->
 
 
