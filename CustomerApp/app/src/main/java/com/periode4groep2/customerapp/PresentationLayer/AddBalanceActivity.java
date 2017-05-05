@@ -19,7 +19,7 @@ public class AddSaldoActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_saldo);
+        setContentView(R.layout.activity_add_balance);
         saldoToevoegen = (EditText) findViewById(R.id.addsaldoId);
 
         stortKnop = (Button) findViewById(R.id.stortButton);
@@ -44,8 +44,8 @@ public class AddSaldoActivity extends AppCompatActivity implements View.OnClickL
 
         //Hier komt de code voor de wallet die je in de title bar kan zien, deze wordt gelijk veranderd zodra je op de knop saldo
         //toevoegen klikt, De limieten van 150 euro en minstens 0 euro komen later.
+        }
     }
-}
 
     class CashCounter {
     private int subtotal;
@@ -56,8 +56,7 @@ public class AddSaldoActivity extends AppCompatActivity implements View.OnClickL
         public int getSubtotal() {
             return subtotal;
         }
-
-}
+    }
 
 
 
