@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.periode4groep2.customerapp.R;
 
-public class HomeScreen extends AppCompatActivity implements View.OnClickListener {
+public class HomeScreenActivity extends AppCompatActivity implements View.OnClickListener {
     LinearLayout orderLayoutButton, myAcountLayoutButton,
                   balanceLayoutButton, myOrdersLayoutButton;
     @Override

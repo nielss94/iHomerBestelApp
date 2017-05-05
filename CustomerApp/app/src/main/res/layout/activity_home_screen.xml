@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorOrange"
-    tools:context="com.periode4groep2.customerapp.PresentationLayer.HomeScreen">
+    tools:context="com.periode4groep2.customerapp.PresentationLayer.HomeScreenActivity">
 
     <include
         android:id="@+id/tool_bar"

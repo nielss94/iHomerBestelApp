@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         //Toast.makeText(this, "Succesvol ingelogd met:" + userName, Toast.LENGTH_SHORT).show();
         if(v.equals(loginButton)) {
-            Intent intent = new Intent(this, HomeScreen.class);
+            Intent intent = new Intent(this, HomeScreenActivity.class);
             startActivity(intent);
         } else if (v.equals(balanceButton)){
             Intent intent = new Intent(this, AddSaldoActivity.class);
