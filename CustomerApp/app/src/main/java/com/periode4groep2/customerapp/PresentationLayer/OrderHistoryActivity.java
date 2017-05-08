@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.periode4groep2.customerapp.R;
 
-public class MyOrdersActivity extends AppCompatActivity {
+public class OrderHistoryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_orders);
+        setContentView(R.layout.activity_order_history);
     }
 }

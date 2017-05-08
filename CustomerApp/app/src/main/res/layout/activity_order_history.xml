@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorBackground"
-    tools:context="com.periode4groep2.customerapp.PresentationLayer.OrderHistory">
+    tools:context="com.periode4groep2.customerapp.PresentationLayer.OrderHistoryActivity">
 
     <include
         android:id="@+id/tool_bar"
