@@ -17,7 +17,7 @@
         android:id="@+id/currentBalanceHeaderTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.48"
+        android:layout_weight="0.30"
         android:gravity="center"
         android:textSize="32sp"
         android:text="@string/current_balance_header"
@@ -27,23 +27,41 @@
         android:id="@+id/currentBalanceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.40"
+        android:layout_weight="0.11"
         android:gravity="top"
         android:textSize="38sp"
         android:text="@string/example_balance"
         />
+    <LinearLayout
+        android:id="@+id/refundTextFieldContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:gravity="top"
+        android:layout_weight="">
 
-    <EditText
-        android:id="@+id/refundBalanceEntryEditText"
+        <EditText
+            android:id="@+id/refundBalanceEntryEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text="@string/example_refund_text" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:text="@string/example_refund_text" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/refundBalanceButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.31"
-        />
+        <Button
+            android:id="@+id/refundBalanceButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.31"
+            android:text="@string/refund_button_text"
+            />
+
+    </LinearLayout>
+
 </LinearLayout>
