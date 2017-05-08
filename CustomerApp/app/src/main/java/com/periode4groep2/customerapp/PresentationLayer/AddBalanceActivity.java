@@ -41,10 +41,7 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
         //EditText leegmaken na gebruik
         putInBalance.setText("");
 
-
         //Hier komt de code voor de wallet die je in de title bar kan zien, deze wordt gelijk veranderd zodra je op de knop saldo
         //toevoegen klikt, De limieten van 150 euro en minstens 0 euro komen later.
-
-
         }
     }
