@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         factory = new MySQLDAOFactory();
         accountDAO = factory.createAccountDAO();
-        accountDAO.selectData(this);
+        //accountDAO.selectData(this);
 
         loginButton = (Button)findViewById(R.id.inlogKnopId);
         loginButton.setOnClickListener(this);
