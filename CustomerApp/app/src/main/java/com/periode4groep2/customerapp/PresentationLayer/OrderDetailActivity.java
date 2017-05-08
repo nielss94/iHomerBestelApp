@@ -46,7 +46,7 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
         else if(v.equals(scanOrderButton)){
             //Intent intent = new Intent(this, ScanActivity.class);
             //startActivity(intent);
-            Toast.makeText(this, "REFUND TIME", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "SCAN TIME", Toast.LENGTH_SHORT).show();
         }
     }
 
