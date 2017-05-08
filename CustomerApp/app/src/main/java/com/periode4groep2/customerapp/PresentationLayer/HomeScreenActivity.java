@@ -39,7 +39,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
             Intent walletIntent = new Intent(this, WalletActivity.class);
             startActivity(walletIntent);
         } else if (v.equals(myOrdersLayoutButton)){
-            Intent myOrdersIntent = new Intent(this, MyOrdersActivity.class);
+            Intent myOrdersIntent = new Intent(this, OrderHistoryActivity.class);
             startActivity(myOrdersIntent);
         }
     }
