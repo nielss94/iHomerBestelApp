@@ -63,6 +63,7 @@
     <!-- Strings voor MyOrdersActivity-->
 
 
+<<<<<<< HEAD
     <!--String voor OrderDetailActivity-->
     <string name="total_tag_textview">
         Totaal:
@@ -76,6 +77,13 @@
     <string name="scan_order_button">
         Scannen
     </string>
+=======
+    <!--Strings voor OrderDetailActivity-->
+    <string name="total_tag_textview">Totaal: </string>
+    <string name="TEST_total_price_textview">€15,55</string>
+    <string name="cancel_order_button">Bestelling annuleren</string>
+    <string name="scan_order_button">Scannen</string>
+>>>>>>> origin/master
 
     <!-- Strings voor OrderHistoryActivity-->
 
@@ -88,4 +96,7 @@
         Saldo terugstorten
     </string>
 
+    <!--Strings voor RefundActivity-->
+    <string name="current_balance_header">Huidig saldo:</string>
+    <string name="example_balance">€52,50</string>
 </resources>

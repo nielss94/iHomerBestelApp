@@ -22,6 +22,7 @@
         <activity android:name=".PresentationLayer.MyAccountActivity" />
         <activity android:name=".PresentationLayer.OrderActivity" />
         <activity android:name=".PresentationLayer.OrderDetailActivity" />
+        <activity android:name=".PresentationLayer.RefundActivity"></activity>
         <activity android:name=".PresentationLayer.OrderHistoryActivity" />
         <activity android:name=".PresentationLayer.CustomListItemOrderHistory"></activity>
     </application>
