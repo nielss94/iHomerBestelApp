@@ -14,6 +14,6 @@ public class CustomOrderListItem extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_custom_list_item_order_history);
+        setContentView(R.layout.activity_custom_order_list_item);
     }
 }
