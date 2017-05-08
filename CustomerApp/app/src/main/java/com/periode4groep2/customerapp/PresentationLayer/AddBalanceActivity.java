@@ -15,7 +15,11 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
     EditText putInBalance;
     Button addBalance;
     TextView currentBalance;
+<<<<<<< HEAD
     int subtotal = 0;
+=======
+    double subtotal = 0;
+>>>>>>> origin/master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +38,17 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
         String input = putInBalance.getText().toString();
         Toast.makeText(this, "U heeft " + input + " euro aan uw account toegevoegd", Toast.LENGTH_SHORT).show();
 
-        int currBalance = Integer.parseInt(input);
-        currentBalance.setText(currBalance);
+        double currBalance = Double.parseDouble(input);
+        subtotal += currBalance;
+        currentBalance.setText(String.format("%.2f", subtotal));
+
+        //EditText leegmaken na gebruik
+        putInBalance.setText("");
+
+
         //Hier komt de code voor de wallet die je in de title bar kan zien, deze wordt gelijk veranderd zodra je op de knop saldo
         //toevoegen klikt, De limieten van 150 euro en minstens 0 euro komen later.
+
+
         }
     }
-
-
-
