@@ -1,4 +1,5 @@
 package com.periode4groep2.customerapp.PresentationLayer;
+//http://stackoverflow.com/questions/9824074/android-expandablelistview-looking-for-a-tutorial
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

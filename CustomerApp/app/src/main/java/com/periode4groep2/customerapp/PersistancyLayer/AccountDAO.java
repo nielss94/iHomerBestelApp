@@ -1,5 +1,7 @@
 package com.periode4groep2.customerapp.PersistancyLayer;
 
+import android.content.Context;
+
 import com.periode4groep2.customerapp.DomainModel.Account;
 
 import java.util.ArrayList;
@@ -10,6 +12,6 @@ import java.util.ArrayList;
 
 public interface AccountDAO {
 
-    ArrayList<Account> selectData();
+    ArrayList<Account> selectData(AccountSetAvailable context);
     void updateData(Account account);
 }
