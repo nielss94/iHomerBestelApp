@@ -17,7 +17,7 @@
         android:id="@+id/currentBalanceHeaderTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0.48"
         android:gravity="center"
         android:textSize="32sp"
         android:text="@string/current_balance_header"
@@ -27,20 +27,23 @@
         android:id="@+id/currentBalanceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="5"
+        android:layout_weight="0.40"
         android:gravity="top"
-        android:textSize="24sp"
+        android:textSize="38sp"
         android:text="@string/example_balance"
         />
 
     <EditText
         android:id="@+id/refundBalanceEntryEditText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:text="@string/example_refund_text" />
 
     <Button
         android:id="@+id/refundBalanceButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="0.31"
         />
 </LinearLayout>
