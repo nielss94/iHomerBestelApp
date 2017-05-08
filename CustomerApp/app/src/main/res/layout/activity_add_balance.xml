@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="@string/desired_balance"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:textSize="40dp" />
         <Button
             android:id="@+id/addBalanceID"

@@ -16,7 +16,8 @@
         android:id="@+id/orderItemListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"></ListView>
+        android:layout_weight="1">
+    </ListView>
 
     <LinearLayout
         android:layout_width="match_parent"
