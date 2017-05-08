@@ -28,8 +28,8 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_order_detail);
 
         ListView orderItemListView = (ListView)findViewById(R.id.orderItemListView);
-        TextView totalTagPriceTextView = (TextView)findViewById(R.id.totalTagTextView);
-        TextView totalPricePriceTextView = (TextView)findViewById(R.id.totalPriceTagTextView);
+        //TextView totalTagPriceTextView = (TextView)findViewById(R.id.totalTagTextView);
+        //TextView totalPricePriceTextView = (TextView)findViewById(R.id.totalPriceTagTextView);
         Button cancelOrderButton = (Button)findViewById(R.id.cancelOrderButton);
         Button scanOrderButton = (Button)findViewById(R.id.scanOrderButton);
 
