@@ -30,7 +30,8 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         if(v.equals(orderLayoutButton)){
-            Toast.makeText(this, "Going to orders", Toast.LENGTH_SHORT).show();
+            Intent orderIntent = new Intent(this, OrderActivity.class);
+            startActivity(orderIntent);
         }else if(v.equals(myAcountLayoutButton)){
             Intent myAccountIntent = new Intent(this, MyAccountActivity.class);
             startActivity(myAccountIntent);
