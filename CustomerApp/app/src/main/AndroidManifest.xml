@@ -25,6 +25,7 @@
         <activity android:name=".PresentationLayer.RefundActivity"></activity>
         <activity android:name=".PresentationLayer.OrderHistoryActivity" />
         <activity android:name=".PresentationLayer.CustomListItemOrderHistory"></activity>
+        <activity android:name=".PresentationLayer.ScanActivity"/>
     </application>
 
 </manifest>
