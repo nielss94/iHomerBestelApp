@@ -18,13 +18,14 @@
         </activity>
         <activity android:name=".PresentationLayer.HomeScreenActivity" />
         <activity android:name=".PresentationLayer.AddBalanceActivity" />
-        <activity android:name=".TestActivity" />
         <activity android:name=".PresentationLayer.WalletActivity" />
         <activity android:name=".PresentationLayer.MyAccountActivity" />
         <activity android:name=".PresentationLayer.MyOrdersActivity" />
         <activity android:name=".PresentationLayer.OrderActivity" />
         <activity android:name=".PresentationLayer.OrderDetailActivity" />
         <activity android:name=".PresentationLayer.RefundActivity"></activity>
+        <activity android:name=".PresentationLayer.OrderHistory" />
+        <activity android:name=".PresentationLayer.CustomListItemOrderHistory"></activity>
     </application>
 
 </manifest>
