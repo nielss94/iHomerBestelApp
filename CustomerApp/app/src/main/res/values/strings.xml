@@ -58,7 +58,7 @@
     <!-- Strings voor MyOrdersActivity-->
 
 
-    <!--String voor OrderDetailActivity-->
+    <!--Strings voor OrderDetailActivity-->
     <string name="total_tag_textview">Totaal: </string>
     <string name="TEST_total_price_textview">€15,55</string>
     <string name="cancel_order_button">Bestelling annuleren</string>
@@ -75,4 +75,7 @@
         Saldo terugstorten
     </string>
 
+    <!--Strings voor RefundActivity-->
+    <string name="current_balance_header">Huidig saldo:</string>
+    <string name="example_balance">€52,50</string>
 </resources>

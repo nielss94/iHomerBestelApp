@@ -24,6 +24,7 @@
         <activity android:name=".PresentationLayer.MyOrdersActivity" />
         <activity android:name=".PresentationLayer.OrderActivity" />
         <activity android:name=".PresentationLayer.OrderDetailActivity" />
+        <activity android:name=".PresentationLayer.RefundActivity"></activity>
     </application>
 
 </manifest>

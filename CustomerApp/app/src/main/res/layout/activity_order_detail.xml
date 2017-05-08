@@ -63,15 +63,21 @@
                 android:id="@+id/cancelOrderButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:padding="8dp"
                 android:layout_weight="1"
+                android:background="#ff9600"
                 android:text="@string/cancel_order_button"/>
 
             <Button
                 android:id="@+id/scanOrderButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:padding="8dp"
+                android:layout_marginLeft="10dp"
+                android:background="#ff9600"
                 android:layout_weight="1"
                 android:text="@string/scan_order_button"/>
+
 
         </LinearLayout>
 
