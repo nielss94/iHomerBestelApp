@@ -15,7 +15,7 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
     EditText putInBalance;
     Button addBalance;
     TextView currentBalance;
-    int subtotal;
+    int subtotal = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
