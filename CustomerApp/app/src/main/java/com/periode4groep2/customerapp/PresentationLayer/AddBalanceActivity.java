@@ -37,7 +37,9 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
         } else {
             double currBalance = Double.parseDouble(input);
             //Een if else statement om ervoor te zorgen dat er geen bedrag boven de 150 euro komt
-            if (subtotal >= 150.00) {
+            if (currBalance <= 0.01) {
+                Toast.makeText(this, "U kunt niet €0.00 teoevoegen", Toast.LENGTH_SHORT).show();
+            } else if (subtotal >= 150.00) {
                 Toast.makeText(this, "U kunt niet meer dan €150,00 op uw account hebben", Toast.LENGTH_SHORT).show();
             } else if (subtotal + currBalance > 150.00) {
                 Toast.makeText(this, "U kunt niet meer dan €150,00 op uw account hebben", Toast.LENGTH_SHORT).show();
