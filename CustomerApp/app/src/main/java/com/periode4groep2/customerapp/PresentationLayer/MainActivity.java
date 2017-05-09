@@ -73,6 +73,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Intent intent = new Intent(this, HomeScreenActivity.class);
                         intent.putExtra("account",account);
                         startActivity(intent);
+                        Toast.makeText(this, "Succesvol ingelogd", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, "Fout tijdens het inloggen", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
