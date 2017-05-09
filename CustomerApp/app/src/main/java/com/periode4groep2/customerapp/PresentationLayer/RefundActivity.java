@@ -18,6 +18,7 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
     private TextView currentBalance;
     private EditText refundBalanceEntry;
     private Button refundBalanceButton;
+    double totalBalance = 0;
 
     //Domain objects
     //private Account account;
@@ -27,9 +28,10 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_refund);
 
-        TextView currentBalanceHeader = (TextView)findViewById(R.id.currentBalanceHeaderTextView);
-        TextView currentBalance = (TextView)findViewById(R.id.currentBalanceTextView);
-        EditText refundBalanceEntry = (EditText)findViewById(R.id.refundBalanceEntryEditText);
+        currentBalanceHeader = (TextView)findViewById(R.id.currentBalanceHeaderTextView);
+        currentBalance = (TextView)findViewById(R.id.currentBalanceTextView);
+        refundBalanceEntry = (EditText)findViewById(R.id.refundBalanceEntryEditText);
+
         Button refundBalanceButton = (Button)findViewById(R.id.refundBalanceButton);
             refundBalanceButton.setOnClickListener(this);
 
@@ -37,20 +39,30 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v){
-        if(v.equals(refundBalanceButton)){
-            Toast.makeText(this, "Refund balance clicked", Toast.LENGTH_SHORT).show();
-
-            double currentValue = Double.parseDouble(currentBalance.getText().toString());
-            double entryValue = Double.parseDouble(refundBalanceEntry.getText().toString());
-            double newValue =  currentValue - entryValue;
-
-            currentBalance.setText(Double.toString(newValue));
-            //Refund logic !<=0, refund value != 0, Refund cap.
-
-        }
-        else if(v.equals(refundBalanceButton)){
+        if(v.equals(refundBalanceButton)) {
 
             Toast.makeText(this, "Refund balance clicked", Toast.LENGTH_SHORT).show();
+
+
+            double inputValue = Double.parseDouble(refundBalanceEntry.getText().toString());
+            String input = refundBalanceEntry.getText().toString().trim();
+
+            if (input.isEmpty()) {
+                Toast.makeText(this, "U heeft geen bedrag ingevoerd", Toast.LENGTH_SHORT).show();
+            } else {
+                double currentValue = Double.parseDouble(currentBalance.getText().toString());
+
+                if (currentValue <= 0.01) {
+                    Toast.makeText(this, "U kunt niet €0.00 terugstorten op uw rekening.", Toast.LENGTH_SHORT).show();
+                } else if (currentValue < 5.00) {
+                    Toast.makeText(this, "U kunt niet minder dan 5 euro terugstorten.", Toast.LENGTH_SHORT).show();
+                } else if (currentValue < inputValue) {
+                    Toast.makeText(this, "U heeft een bedrag ingevuld dat hoger is dan wat er op uw account staat", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "U heeft " + input + " euro van uw account teruggestort.", Toast.LENGTH_SHORT).show();
+                    currentBalance.setText(0);
+                }
+            }
         }
     }
 }
