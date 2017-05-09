@@ -7,11 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-<<<<<<< HEAD
 import android.widget.EditText;
-=======
 import android.widget.ExpandableListView;
->>>>>>> origin/master
 import android.widget.Toast;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
@@ -69,13 +66,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Toast.makeText(this, "Succesvol ingelogd met:" + userName, Toast.LENGTH_SHORT).show();
         if(v.equals(loginButton)) {
 
-//            for (int i = 0; i < accounts.size(); i++){
-//                if(email.getText().equals(accounts.get(i).getEmail())){
-//                    if (password.getText().equals(accounts.get(i).getPassword())){
-//
-//                    }
-//                }
-//            }
+            for (int i = 0; i < accounts.size(); i++){
+                if(email.getText().equals(accounts.get(i).getEmail())){
+                    if (password.getText().equals(accounts.get(i).getPassword())){
+
+                    }
+                }
+            }
 
             Intent intent = new Intent(this, HomeScreenActivity.class);
             startActivity(intent);
