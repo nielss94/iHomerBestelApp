@@ -60,6 +60,21 @@
     <string name="add_balance_button">
         Toevoegen
     </string>
+    <string name="no_amount_entered_toast">
+        U heeft geen bedrag ingevoerd
+    </string>
+    <string name="zero_money_added_toast">
+        U kunt niet €0,00 invoeren
+    </string>
+    <string name="too_much_money_toast">
+        U kunt niet meer dan €150,00 op uw account hebben
+    </string>
+    <string name="amount_added_toast">
+         euro aan uw account toegevoegd
+    </string>
+    <string name="you_have_toast">
+        U heeft
+    </string>
 
     <!-- Strings voor MyAccountActivity-->
     <string name="date_textview">
