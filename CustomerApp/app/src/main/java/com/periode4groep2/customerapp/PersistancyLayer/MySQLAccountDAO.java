@@ -25,7 +25,7 @@ public class MySQLAccountDAO implements AccountDAO, MySQLAccountAPIConnector.Acc
     public void selectData(AccountSetAvailable c) {
         context = c;
         String[] urls = {
-                "http://ihomerapi.heroku.com/api/getAccounts"
+                "http://ihomerapi.herokuapp.com/api/getAccounts"
         };
 
         mySQLAccountAPIConnector.execute(urls);
