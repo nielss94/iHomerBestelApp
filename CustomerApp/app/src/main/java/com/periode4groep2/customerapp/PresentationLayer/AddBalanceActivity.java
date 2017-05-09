@@ -35,16 +35,18 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
         Toast.makeText(this, "U heeft " + input + " euro aan uw account toegevoegd", Toast.LENGTH_SHORT).show();
 
         double currBalance = Double.parseDouble(input);
-        subtotal += currBalance;
 
         //Een if else statement om ervoor te zorgen dat er geen bedrag boven de 150 euro komt
-        if(subtotal > 150.00){
+        if(subtotal >= 150.00){
             Toast.makeText(this, "U kunt niet meer dan €150,00 op uw account hebben", Toast.LENGTH_SHORT).show();
         }
-        else {
+        else if(subtotal + currBalance > 150.00){
+            Toast.makeText(this, "U kunt niet meer dan €150,00 op uw account hebben", Toast.LENGTH_SHORT).show();
+        } else {
+            subtotal += currBalance;
             currentBalance.setText(String.format("%.2f", subtotal));
         }
-
+        
         //EditText leegmaken na gebruik
         putInBalance.setText("");
 
