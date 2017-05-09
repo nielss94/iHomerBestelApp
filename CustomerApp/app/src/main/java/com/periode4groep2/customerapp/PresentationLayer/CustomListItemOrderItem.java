@@ -9,7 +9,7 @@ import com.periode4groep2.customerapp.R;
  * Created by Kayvon Rahimi on 8-5-2017.
  */
 
-public class CustomOrderListItem extends AppCompatActivity {
+public class CustomListItemOrderItem extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
