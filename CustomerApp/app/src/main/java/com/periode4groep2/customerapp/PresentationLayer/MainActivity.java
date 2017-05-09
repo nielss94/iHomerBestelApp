@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final String TAG = getClass().getSimpleName();
     private Button loginButton;
     private Toolbar toolbar;
-    private Button balanceButton;
     private DAOFactory factory;
     private AccountDAO accountDAO;
     private ArrayList<Account> accounts = new ArrayList<>();
@@ -52,23 +51,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         email = (EditText)findViewById(R.id.emailInputId);
         password = (EditText)findViewById(R.id.passwordInputId);
 
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
         setSupportActionBar(toolbar);
-
-        balanceButton = (Button) findViewById(R.id.buttonBalance);
-        balanceButton.setOnClickListener(this);
     }
 
 
     //Deze button moet nog veranderd worden wanneer de gegevens kloppen etc
     @Override
     public void onClick(View v) {
-        if(v.equals(loginButton)) {
             logIn();
-        } else if (v.equals(balanceButton)){
-            Intent intent = new Intent(this, AddBalanceActivity.class);
-            startActivity(intent);
-        }
     }
 
 
