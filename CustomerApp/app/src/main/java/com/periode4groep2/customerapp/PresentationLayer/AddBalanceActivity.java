@@ -36,7 +36,7 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
             Toast.makeText(this, "U heeft geen bedrag ingevoerd", Toast.LENGTH_SHORT).show();
         } else {
             double currBalance = Double.parseDouble(input);
-            //Een if else statement om ervoor te zorgen dat er geen bedrag boven de 150 euro komt
+            // Een if else statement om ervoor te zorgen dat er geen bedrag boven de 150 euro komt
             if (subtotal >= 150.00) {
                 Toast.makeText(this, "U kunt niet meer dan €150,00 op uw account hebben", Toast.LENGTH_SHORT).show();
             } else if (subtotal + currBalance > 150.00) {
@@ -47,8 +47,8 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
                 currentBalance.setText(String.format("%.2f", subtotal));
             }
         }
-        
-        //EditText leegmaken na gebruik
+
+        // EditText leegmaken na gebruik
         putInBalance.setText("");
 
         //Hier komt de code voor de wallet die je in de title bar kan zien, deze wordt gelijk veranderd zodra je op de knop saldo
