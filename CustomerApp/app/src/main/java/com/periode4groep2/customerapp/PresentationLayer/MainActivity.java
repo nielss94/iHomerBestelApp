@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
@@ -19,6 +20,8 @@ import com.periode4groep2.customerapp.R;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AccountSetAvailable {
 
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private AccountDAO accountDAO;
     private ArrayList<Account> accounts = new ArrayList<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         accountDAO = factory.createAccountDAO();
         //accountDAO.selectData(this);
 
-        loginButton = (Button)findViewById(R.id.inlogKnopId);
+        loginButton = (Button) findViewById(R.id.inlogKnopId);
         loginButton.setOnClickListener(this);
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
@@ -47,10 +51,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         balanceButton = (Button) findViewById(R.id.buttonBalance);
         balanceButton.setOnClickListener(this);
-
-
-
     }
+
 
     //Deze button moet nog veranderd worden wanneer de gegevens kloppen etc
     @Override
