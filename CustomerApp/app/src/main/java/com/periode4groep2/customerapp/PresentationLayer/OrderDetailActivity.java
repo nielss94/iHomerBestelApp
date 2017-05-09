@@ -28,10 +28,10 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_order_detail);
 
         ListView orderItemListView = (ListView)findViewById(R.id.orderItemListView);
-        //TextView totalTagPriceTextView = (TextView)findViewById(R.id.totalTagTextView);
-        //TextView totalPricePriceTextView = (TextView)findViewById(R.id.totalPriceTagTextView);
-        Button cancelOrderButton = (Button)findViewById(R.id.cancelOrderButton);
-        Button scanOrderButton = (Button)findViewById(R.id.scanOrderButton);
+        //totalTagPriceTextView = (TextView)findViewById(R.id.totalTagTextView);
+        //totalPricePriceTextView = (TextView)findViewById(R.id.totalPriceTagTextView);
+        cancelOrderButton = (Button)findViewById(R.id.cancelOrderButton);
+        scanOrderButton = (Button)findViewById(R.id.scanOrderButton);
 
 
         cancelOrderButton.setOnClickListener(this);
@@ -41,12 +41,12 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v){
         if(v.equals(cancelOrderButton)){
-            Toast.makeText(this, "Your order has been cancelled.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, HomeScreenActivity.class);
+            startActivity(intent);
         }
         else if(v.equals(scanOrderButton)){
-            //Intent intent = new Intent(this, ScanActivity.class);
-            //startActivity(intent);
-            Toast.makeText(this, "SCAN TIME", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, ScanActivity.class);
+            startActivity(intent);
         }
     }
 

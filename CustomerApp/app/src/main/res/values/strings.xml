@@ -94,10 +94,6 @@
     </string>
 
     <!--Strings voor RefundActivity-->
-
-    <string name="current_balance_header">Huidig saldo:</string>
-    <string name="example_balance">€52,50</string>
-
     <string name="current_balance_header">
         Huidig saldo:
     </string>\
