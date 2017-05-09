@@ -66,19 +66,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Toast.makeText(this, "Succesvol ingelogd met:" + userName, Toast.LENGTH_SHORT).show();
         if(v.equals(loginButton)) {
 
-            for (int i = 0; i < accounts.size(); i++){
-                if(email.getText().toString().equals(accounts.get(i).getEmail())){
-                    if (password.getText().toString().equals(accounts.get(i).getPassword())){
+                for (int i = 0; i < accounts.size(); i++){
+                    if(email.getText().toString().trim().equals(accounts.get(i).getEmail()) && password.getText().toString().equals(accounts.get(i).getPassword())){
                         account = accounts.get(i);
                         Intent intent = new Intent(this, HomeScreenActivity.class);
                         intent.putExtra("account",account);
                         startActivity(intent);
                         Toast.makeText(this, "Succesvol ingelogd", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(this, "Fout tijdens het inloggen", Toast.LENGTH_SHORT).show();
-                    }
-                }else if(!email.getText().toString().equals(accounts.get(i).getEmail())){
-                    Toast.makeText(this, "Onjuist email adres", Toast.LENGTH_SHORT).show();
+                    } else if(!email.getText().toString().trim().equals(accounts.get(i).getEmail()) && password.getText().toString().equals(accounts.get(i).getPassword())){
+                        Toast.makeText(this, "Email adress is niet goed", Toast.LENGTH_SHORT).show();
+                    } else if(email.getText().toString().trim().equals(accounts.get(i).getEmail()) && !password.getText().toString().equals(accounts.get(i).getPassword())){
+                        Toast.makeText(this, "Wachtwoord niet correct", Toast.LENGTH_SHORT).show();
                 }
             }
 
