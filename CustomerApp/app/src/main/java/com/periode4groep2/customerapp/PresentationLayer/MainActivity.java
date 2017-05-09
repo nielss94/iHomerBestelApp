@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(v.equals(loginButton)) {
 
             for (int i = 0; i < accounts.size(); i++){
-                if(email.getText().equals(accounts.get(i).getEmail())){
-                    if (password.getText().equals(accounts.get(i).getPassword())){
+                if(email.getText().toString().equals(accounts.get(i).getEmail())){
+                    if (password.getText().toString().equals(accounts.get(i).getPassword())){
                         account = accounts.get(i);
                         Intent intent = new Intent(this, HomeScreenActivity.class);
                         intent.putExtra("account",account);
@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     } else {
                         Toast.makeText(this, "Fout tijdens het inloggen", Toast.LENGTH_SHORT).show();
                     }
+                }else if(!email.getText().toString().equals(accounts.get(i).getEmail())){
+                    Toast.makeText(this, "Onjuist email adres", Toast.LENGTH_SHORT).show();
                 }
             }
 
