@@ -69,13 +69,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             for (int i = 0; i < accounts.size(); i++){
                 if(email.getText().equals(accounts.get(i).getEmail())){
                     if (password.getText().equals(accounts.get(i).getPassword())){
-
+                        account = accounts.get(i);
+                        Intent intent = new Intent(this, HomeScreenActivity.class);
+                        intent.putExtra("account",account);
+                        startActivity(intent);
                     }
                 }
             }
 
-            Intent intent = new Intent(this, HomeScreenActivity.class);
-            startActivity(intent);
         } else if (v.equals(balanceButton)){
             Intent intent = new Intent(this, AddBalanceActivity.class);
             startActivity(intent);

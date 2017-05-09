@@ -1,10 +1,12 @@
 package com.periode4groep2.customerapp.DomainModel;
 
+import java.io.Serializable;
+
 /**
  * Created by Niels on 5/5/2017.
  */
 
-public class Account {
+public class Account implements Serializable {
 
     private String email;
     private String IBAN;
