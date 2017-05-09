@@ -63,24 +63,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //Deze button moet nog veranderd worden wanneer de gegevens kloppen etc
     @Override
     public void onClick(View v) {
-        //Toast.makeText(this, "Succesvol ingelogd met:" + userName, Toast.LENGTH_SHORT).show();
         if(v.equals(loginButton)) {
-
-                for (int i = 0; i < accounts.size(); i++){
-                    if(email.getText().toString().trim().equals(accounts.get(i).getEmail()) && password.getText().toString().equals(accounts.get(i).getPassword())){
-                        account = accounts.get(i);
-                        Intent intent = new Intent(this, HomeScreenActivity.class);
-                        intent.putExtra("account", account);
-                        startActivity(intent);
-                        Toast.makeText(this, R.string.successful_log_in_toast, Toast.LENGTH_SHORT).show();
-                    } else if(!email.getText().toString().trim().equals(accounts.get(i).getEmail()) && password.getText().toString().equals(accounts.get(i).getPassword())){
-                        Toast.makeText(this, R.string.wrong_email_toast, Toast.LENGTH_SHORT).show();
-                    } else if(email.getText().toString().trim().equals(accounts.get(i).getEmail()) && !password.getText().toString().equals(accounts.get(i).getPassword())){
-                        password.setText("");
-                        Toast.makeText(this, R.string.wrong_password_toast, Toast.LENGTH_SHORT).show();
-                }
-            }
-
+            logIn();
         } else if (v.equals(balanceButton)){
             Intent intent = new Intent(this, AddBalanceActivity.class);
             startActivity(intent);
@@ -97,4 +81,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.i(TAG,accounts.get(i).toString());
         }
     }
+
+    public void logIn(){
+        for (int i = 0; i < accounts.size(); i++){
+            if(email.getText().toString().trim().equals(accounts.get(i).getEmail()) && password.getText().toString().equals(accounts.get(i).getPassword())){
+                account = accounts.get(i);
+                Intent intent = new Intent(this, HomeScreenActivity.class);
+                intent.putExtra("account", account);
+                startActivity(intent);
+                Toast.makeText(this, R.string.successful_log_in_toast, Toast.LENGTH_SHORT).show();
+            } else if(!email.getText().toString().trim().equals(accounts.get(i).getEmail()) && password.getText().toString().equals(accounts.get(i).getPassword())){
+                Toast.makeText(this, R.string.wrong_email_toast, Toast.LENGTH_SHORT).show();
+            } else if(email.getText().toString().trim().equals(accounts.get(i).getEmail()) && !password.getText().toString().equals(accounts.get(i).getPassword())){
+                password.setText("");
+                Toast.makeText(this, R.string.wrong_password_toast, Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
 }
