@@ -31,20 +31,21 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         currentBalance = (TextView) findViewById(R.id.currentBalance);
 
-        String input = putInBalance.getText().toString();
-        Toast.makeText(this, "U heeft " + input + " euro aan uw account toegevoegd", Toast.LENGTH_SHORT).show();
-
-        double currBalance = Double.parseDouble(input);
-
-        //Een if else statement om ervoor te zorgen dat er geen bedrag boven de 150 euro komt
-        if(subtotal >= 150.00){
-            Toast.makeText(this, "U kunt niet meer dan €150,00 op uw account hebben", Toast.LENGTH_SHORT).show();
-        }
-        else if(subtotal + currBalance > 150.00){
-            Toast.makeText(this, "U kunt niet meer dan €150,00 op uw account hebben", Toast.LENGTH_SHORT).show();
+        String input = putInBalance.getText().toString().trim();
+        if(input.isEmpty()){
+            Toast.makeText(this, "U heeft geen bedrag ingevoerd", Toast.LENGTH_SHORT).show();
         } else {
-            subtotal += currBalance;
-            currentBalance.setText(String.format("%.2f", subtotal));
+            double currBalance = Double.parseDouble(input);
+            //Een if else statement om ervoor te zorgen dat er geen bedrag boven de 150 euro komt
+            if (subtotal >= 150.00) {
+                Toast.makeText(this, "U kunt niet meer dan €150,00 op uw account hebben", Toast.LENGTH_SHORT).show();
+            } else if (subtotal + currBalance > 150.00) {
+                Toast.makeText(this, "U kunt niet meer dan €150,00 op uw account hebben", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "U heeft " + input + " euro aan uw account toegevoegd", Toast.LENGTH_SHORT).show();
+                subtotal += currBalance;
+                currentBalance.setText(String.format("%.2f", subtotal));
+            }
         }
         
         //EditText leegmaken na gebruik
