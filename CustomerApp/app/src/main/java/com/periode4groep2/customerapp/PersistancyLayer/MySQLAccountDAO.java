@@ -22,15 +22,14 @@ public class MySQLAccountDAO implements AccountDAO, MySQLAccountAPIConnector.Acc
     private AccountSetAvailable context;
 
     @Override
-    public ArrayList<Account> selectData(AccountSetAvailable c) {
+    public void selectData(AccountSetAvailable c) {
         context = c;
         String[] urls = {
-                "http://10.0.2.2:8080/api/accounts"
+                "http://ihomerapi.heroku.com/api/getAccounts"
         };
 
         mySQLAccountAPIConnector.execute(urls);
 
-        return accounts;
     }
 
     @Override

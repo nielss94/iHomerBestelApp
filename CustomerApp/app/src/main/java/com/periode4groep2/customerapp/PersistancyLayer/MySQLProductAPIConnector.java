@@ -1,13 +1,10 @@
 package com.periode4groep2.customerapp.PersistancyLayer;
 
-/**
- * Created by Niels on 5/8/2017.
- */
-
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
+import com.periode4groep2.customerapp.DomainModel.Product;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,13 +19,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
+/**
+ * Created by Niels on 5/9/2017.
+ */
 
+public class MySQLProductAPIConnector extends AsyncTask<String, Void, String> {
 
     private final String TAG = getClass().getSimpleName();
-    private AccountAvailable listener;
+    private ProductAvailable listener;
 
-    public MySQLAccountAPIConnector(AccountAvailable listener) {
+    public MySQLProductAPIConnector(ProductAvailable listener) {
         this.listener = listener;
     }
 
@@ -39,13 +39,13 @@ public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
         int responseCode = -1;
 
         //URL we get from .execute()
-        String accountUrl = params[0];
+        String productsUrl = params[0];
 
         String result = "";
 
         try {
             //Make URL object
-            URL url = new URL(accountUrl);
+            URL url = new URL(productsUrl);
             //Open connection on URL
             URLConnection urlConnection = url.openConnection();
 
@@ -90,21 +90,19 @@ public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
 
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                Account acc = new Account(
-                    jsonObject.optString("Email"),
-                    jsonObject.optString("IBAN"),
-                    jsonObject.optDouble("Balance"),
-                    jsonObject.optString("FirstName"),
-                    jsonObject.optString("LastName"),
-                        jsonObject.optString("Password"),
-                    jsonObject.optString("DateOfBirth"),
-                    jsonObject.optBoolean("isEmployee")
+                Product p = new Product
+                (
+                    jsonObject.optInt("ProductID"),
+                    jsonObject.optString("Category"),
+                    jsonObject.optString("Name"),
+                    jsonObject.optBoolean("InStock"),
+                    (jsonObject.optDouble("Price") / 100)
                 );
                 if(i == jsonArray.length() - 1){
-                    listener.accountAvailable(acc,true);
+                    listener.productAvailable(p,true);
                 }
                 else{
-                    listener.accountAvailable(acc, false);
+                    listener.productAvailable(p, false);
                 }
             }
 
@@ -143,8 +141,8 @@ public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
     }
 
     //Callback interface
-    public interface AccountAvailable {
+    public interface ProductAvailable {
 
-        void accountAvailable(Account account, boolean done);
+        void productAvailable(Product product, boolean done);
     }
 }

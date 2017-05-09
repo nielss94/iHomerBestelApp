@@ -7,7 +7,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.EditText;
+=======
+import android.widget.ExpandableListView;
+>>>>>>> origin/master
 import android.widget.Toast;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
@@ -20,6 +24,8 @@ import com.periode4groep2.customerapp.R;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AccountSetAvailable {
 
@@ -33,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText email, password;
     private Account account;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         accountDAO = factory.createAccountDAO();
         accountDAO.selectData(this);
 
-        loginButton = (Button)findViewById(R.id.inlogKnopId);
+        loginButton = (Button) findViewById(R.id.inlogKnopId);
         loginButton.setOnClickListener(this);
 
         email = (EditText)findViewById(R.id.emailInputId);
@@ -53,10 +60,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         balanceButton = (Button) findViewById(R.id.buttonBalance);
         balanceButton.setOnClickListener(this);
-
-
-
     }
+
 
     //Deze button moet nog veranderd worden wanneer de gegevens kloppen etc
     @Override
