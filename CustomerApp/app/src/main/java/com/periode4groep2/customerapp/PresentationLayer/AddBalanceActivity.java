@@ -8,6 +8,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.periode4groep2.customerapp.DomainModel.Account;
+import com.periode4groep2.customerapp.PersistancyLayer.AccountDAO;
+import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
+import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
 import com.periode4groep2.customerapp.R;
 
 
@@ -16,12 +20,18 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
     Button addBalance;
     TextView currentBalance;
     double subtotal = 0;
+//    private DAOFactory factory;
+//    private AccountDAO accountDAO;
+//    private Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_balance);
         putInBalance = (EditText) findViewById(R.id.giveBalanceID);
+
+//        factory = new MySQLDAOFactory();
+//        accountDAO = factory.createAccountDAO();
 
         addBalance = (Button) findViewById(R.id.addBalanceID);
         addBalance.setOnClickListener(this);

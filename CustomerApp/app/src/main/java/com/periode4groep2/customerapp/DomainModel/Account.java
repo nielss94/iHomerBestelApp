@@ -12,18 +12,20 @@ public class Account {
     private String firstName;
     private String lastName;
     private String address;
+    private String password;
     private String zipCode;
     private String city;
     private String dateOfBirth;
     private boolean isEmployee;
     private String phoneNumber;
 
-    public Account(String email, String IBAN, Double balance, String firstName, String lastName, String dateOfBirth, boolean isEmployee) {
+    public Account(String email, String IBAN, Double balance, String firstName, String lastName, String password, String dateOfBirth, boolean isEmployee) {
         this.email = email;
         this.IBAN = IBAN;
         this.balance = balance;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.password = password;
         this.dateOfBirth = dateOfBirth;
         this.isEmployee = isEmployee;
     }
@@ -66,6 +68,10 @@ public class Account {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public void getPassword(String password){
+        this.password = password;
     }
 
     public String getAddress() {

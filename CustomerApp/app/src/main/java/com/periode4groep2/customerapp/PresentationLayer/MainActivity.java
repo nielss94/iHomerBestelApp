@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DAOFactory factory;
     private AccountDAO accountDAO;
     private ArrayList<Account> accounts = new ArrayList<>();
+    private EditText email, password;
+    private Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +40,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         factory = new MySQLDAOFactory();
         accountDAO = factory.createAccountDAO();
-        //accountDAO.selectData(this);
+        accountDAO.selectData(this);
 
         loginButton = (Button)findViewById(R.id.inlogKnopId);
         loginButton.setOnClickListener(this);
+
+        email = (EditText)findViewById(R.id.emailInputId);
+        password = (EditText)findViewById(R.id.passwordInputId);
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
@@ -57,6 +63,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         //Toast.makeText(this, "Succesvol ingelogd met:" + userName, Toast.LENGTH_SHORT).show();
         if(v.equals(loginButton)) {
+
+//            for (int i = 0; i < accounts.size(); i++){
+//                if(email.getText().equals(accounts.get(i).getEmail())){
+//                    if (password.getText().equals(accounts.get(i).getPassword())){
+//
+//                    }
+//                }
+//            }
+
             Intent intent = new Intent(this, HomeScreenActivity.class);
             startActivity(intent);
         } else if (v.equals(balanceButton)){
