@@ -12,6 +12,6 @@ import java.util.ArrayList;
 
 public interface AccountDAO {
 
-    ArrayList<Account> selectData(AccountSetAvailable context);
+    void selectData(AccountSetAvailable context);
     void updateData(Account account);
 }
