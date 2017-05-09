@@ -70,7 +70,11 @@ public class Account {
         this.lastName = lastName;
     }
 
-    public void getPassword(String password){
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
     }
 
