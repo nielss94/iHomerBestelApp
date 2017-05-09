@@ -70,13 +70,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if(email.getText().toString().trim().equals(accounts.get(i).getEmail()) && password.getText().toString().equals(accounts.get(i).getPassword())){
                         account = accounts.get(i);
                         Intent intent = new Intent(this, HomeScreenActivity.class);
-                        intent.putExtra("account",account);
+                        intent.putExtra("account", account);
                         startActivity(intent);
-                        Toast.makeText(this, "Succesvol ingelogd", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, R.string.successful_log_in_toast, Toast.LENGTH_SHORT).show();
                     } else if(!email.getText().toString().trim().equals(accounts.get(i).getEmail()) && password.getText().toString().equals(accounts.get(i).getPassword())){
-                        Toast.makeText(this, "Email adress is niet goed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, R.string.wrong_email_toast, Toast.LENGTH_SHORT).show();
                     } else if(email.getText().toString().trim().equals(accounts.get(i).getEmail()) && !password.getText().toString().equals(accounts.get(i).getPassword())){
-                        Toast.makeText(this, "Wachtwoord niet correct", Toast.LENGTH_SHORT).show();
+                        password.setText("");
+                        Toast.makeText(this, R.string.wrong_password_toast, Toast.LENGTH_SHORT).show();
                 }
             }
 

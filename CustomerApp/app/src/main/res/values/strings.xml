@@ -34,6 +34,15 @@
     <string name="log_in_button">
         Inloggen
     </string>
+    <string name="successful_log_in_toast">
+        Succesvol ingelogd
+    </string>
+    <string name="wrong_email_toast">
+        Email adres incorrect, probeer opnieuw
+    </string>
+    <string name="wrong_password_toast">
+        Wachtwoord incorrect, probeer opnieuw
+    </string>
 
     <!-- Strings voor AddBalanceActivity-->
     <string name="current_balance_textview">
@@ -77,7 +86,9 @@
         Scannen
     </string>
 
-    <string name="test_product">Testproduct</string>
+    <string name="test_product">
+        Testproduct
+    </string>
 
     <!-- Strings voor OrderHistoryActivity-->
     <string name="date_of_the_order_textview">
