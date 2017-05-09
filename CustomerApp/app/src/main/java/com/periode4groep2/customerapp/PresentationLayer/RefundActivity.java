@@ -38,7 +38,7 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v){
         if(v.equals(refundBalanceButton)){
-            Toast.makeText(this, "Refund balance clicked", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.refund_button_clicked_toast, Toast.LENGTH_SHORT).show();
 
             double currentValue = Double.parseDouble(currentBalance.getText().toString());
             double entryValue = Double.parseDouble(refundBalanceEntry.getText().toString());
@@ -50,7 +50,7 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
         }
         else if(v.equals(refundBalanceButton)){
 
-            Toast.makeText(this, "Refund balance clicked", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.refund_button_clicked_toast, Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //Deze button moet nog veranderd worden wanneer de gegevens kloppen etc
     @Override
     public void onClick(View v) {
-            logIn();
+            logIn(email.getText().toString(), password.getText().toString());
     }
 
 
@@ -73,19 +73,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void logIn(){
+    public void logIn(String userName, String pass){
         for (int i = 0; i < accounts.size(); i++){
-            if(email.getText().toString().trim().equals(accounts.get(i).getEmail()) && password.getText().toString().equals(accounts.get(i).getPassword())){
+            Account acc = accounts.get(i);
+            if(userName.trim().equals(acc.getEmail()) && pass.equals(acc.getPassword())){
                 account = accounts.get(i);
                 Intent intent = new Intent(this, HomeScreenActivity.class);
                 intent.putExtra("account", account);
                 startActivity(intent);
                 Toast.makeText(this, R.string.successful_log_in_toast, Toast.LENGTH_SHORT).show();
-            } else if(!email.getText().toString().trim().equals(accounts.get(i).getEmail()) && password.getText().toString().equals(accounts.get(i).getPassword())){
+            } else if(userName.trim().equals(acc.getEmail()) && pass.equals(acc.getPassword())){
                 Toast.makeText(this, R.string.wrong_email_toast, Toast.LENGTH_SHORT).show();
-            } else if(email.getText().toString().trim().equals(accounts.get(i).getEmail()) && !password.getText().toString().equals(accounts.get(i).getPassword())){
+            } else if(userName.trim().equals(acc.getEmail()) && !pass.equals(acc.getPassword())){
                 password.setText("");
                 Toast.makeText(this, R.string.wrong_password_toast, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, R.string.wrong_password_or_email_toast, Toast.LENGTH_SHORT).show();
             }
         }
     }

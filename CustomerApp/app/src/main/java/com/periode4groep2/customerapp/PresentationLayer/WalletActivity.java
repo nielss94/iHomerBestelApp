@@ -50,7 +50,7 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
         else if(v.equals(refundBalanceButton)){
             Intent intent = new Intent(this, RefundActivity.class);
             startActivity(intent);
-            Toast.makeText(this, "REFUND TIME", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.refund_time_toast, Toast.LENGTH_SHORT).show();
         }
     }
 

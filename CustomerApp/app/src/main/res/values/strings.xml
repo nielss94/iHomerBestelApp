@@ -43,6 +43,9 @@
     <string name="wrong_password_toast">
         Wachtwoord incorrect, probeer opnieuw
     </string>
+    <string name="wrong_password_or_email_toast">
+        Onjuist email adres en/of wachtwoord
+    </string>
 
     <!-- Strings voor AddBalanceActivity-->
     <string name="current_balance_textview">
@@ -120,6 +123,9 @@
     <string name="go_to_refun_balance_button">
         Saldo terugstorten
     </string>
+    <string name="refund_time_toast">
+        REFUND TIME
+    </string>
 
     <!--Strings voor RefundActivity-->
     <string name="current_balance_header">
@@ -128,7 +134,9 @@
     <string name="refund_button_text">
         Terugstorten
     </string>
-
+    <string name="refund_button_clicked_toast">
+        Refund balance clicked
+    </string>
     <string name="example_balance">
         €52,50
     </string>
