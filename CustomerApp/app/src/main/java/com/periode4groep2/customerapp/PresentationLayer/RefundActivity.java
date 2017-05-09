@@ -45,6 +45,7 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
             double newValue =  currentValue - entryValue;
 
             currentBalance.setText(Double.toString(newValue));
+            //Refund logic !<=0, refund value != 0, Refund cap.
 
         }
         else if(v.equals(refundBalanceButton)){
