@@ -40,7 +40,11 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
         if(v.equals(refundBalanceButton)){
             Toast.makeText(this, "Refund balance clicked", Toast.LENGTH_SHORT).show();
 
+            double currentValue = Double.parseDouble(currentBalance.getText().toString());
             double entryValue = Double.parseDouble(refundBalanceEntry.getText().toString());
+            double newValue =  currentValue - entryValue;
+
+            currentBalance.setText(Double.toString(newValue));
 
         }
         else if(v.equals(refundBalanceButton)){
