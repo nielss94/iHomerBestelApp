@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final String TAG = getClass().getSimpleName();
     private Button loginButton;
     private Toolbar toolbar;
-    private Button balanceButton;
     private DAOFactory factory;
     private AccountDAO accountDAO;
     private ArrayList<Account> accounts = new ArrayList<>();
@@ -52,38 +51,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         email = (EditText)findViewById(R.id.emailInputId);
         password = (EditText)findViewById(R.id.passwordInputId);
 
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
         setSupportActionBar(toolbar);
-
-        balanceButton = (Button) findViewById(R.id.buttonBalance);
-        balanceButton.setOnClickListener(this);
     }
 
 
     //Deze button moet nog veranderd worden wanneer de gegevens kloppen etc
     @Override
     public void onClick(View v) {
-        //Toast.makeText(this, "Succesvol ingelogd met:" + userName, Toast.LENGTH_SHORT).show();
-        if(v.equals(loginButton)) {
-
-            for (int i = 0; i < accounts.size(); i++){
-                if(email.getText().equals(accounts.get(i).getEmail())){
-                    if (password.getText().equals(accounts.get(i).getPassword())){
-                        account = accounts.get(i);
-                        Intent intent = new Intent(this, HomeScreenActivity.class);
-                        intent.putExtra("account",account);
-                        startActivity(intent);
-                        Toast.makeText(this, "Succesvol ingelogd", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(this, "Fout tijdens het inloggen", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-        } else if (v.equals(balanceButton)){
-            Intent intent = new Intent(this, AddBalanceActivity.class);
-            startActivity(intent);
-        }
+            logIn();
     }
 
 
@@ -94,6 +70,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < accounts.size(); i++) {
 
             Log.i(TAG,accounts.get(i).toString());
+        }
+    }
+
+    public void logIn(){
+        for (int i = 0; i < accounts.size(); i++){
+            if(email.getText().toString().trim().equals(accounts.get(i).getEmail()) && password.getText().toString().equals(accounts.get(i).getPassword())){
+                account = accounts.get(i);
+                Intent intent = new Intent(this, HomeScreenActivity.class);
+                intent.putExtra("account", account);
+                startActivity(intent);
+                Toast.makeText(this, R.string.successful_log_in_toast, Toast.LENGTH_SHORT).show();
+            } else if(!email.getText().toString().trim().equals(accounts.get(i).getEmail()) && password.getText().toString().equals(accounts.get(i).getPassword())){
+                Toast.makeText(this, R.string.wrong_email_toast, Toast.LENGTH_SHORT).show();
+            } else if(email.getText().toString().trim().equals(accounts.get(i).getEmail()) && !password.getText().toString().equals(accounts.get(i).getPassword())){
+                password.setText("");
+                Toast.makeText(this, R.string.wrong_password_toast, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

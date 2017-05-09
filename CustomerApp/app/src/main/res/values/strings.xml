@@ -34,6 +34,15 @@
     <string name="log_in_button">
         Inloggen
     </string>
+    <string name="successful_log_in_toast">
+        Succesvol ingelogd
+    </string>
+    <string name="wrong_email_toast">
+        Email adres incorrect, probeer opnieuw
+    </string>
+    <string name="wrong_password_toast">
+        Wachtwoord incorrect, probeer opnieuw
+    </string>
 
     <!-- Strings voor AddBalanceActivity-->
     <string name="current_balance_textview">
@@ -50,6 +59,21 @@
     </string>
     <string name="add_balance_button">
         Toevoegen
+    </string>
+    <string name="no_amount_entered_toast">
+        U heeft geen bedrag ingevoerd
+    </string>
+    <string name="zero_money_added_toast">
+        U kunt niet €0,00 invoeren
+    </string>
+    <string name="too_much_money_toast">
+        U kunt niet meer dan €150,00 op uw account hebben
+    </string>
+    <string name="amount_added_toast">
+         euro aan uw account toegevoegd
+    </string>
+    <string name="you_have_toast">
+        U heeft
     </string>
 
     <!-- Strings voor MyAccountActivity-->
@@ -77,7 +101,9 @@
         Scannen
     </string>
 
-    <string name="test_product">Testproduct</string>
+    <string name="test_product">
+        Testproduct
+    </string>
 
     <!-- Strings voor OrderHistoryActivity-->
     <string name="date_of_the_order_textview">

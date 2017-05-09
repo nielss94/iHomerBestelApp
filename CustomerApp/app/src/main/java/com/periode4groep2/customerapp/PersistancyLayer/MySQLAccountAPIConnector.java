@@ -80,8 +80,6 @@ public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
 
-        Log.i(TAG,result);
-
         try {
             //Top level object
             JSONArray jsonArray = new JSONArray(result);
@@ -96,7 +94,7 @@ public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
                     jsonObject.optDouble("Balance"),
                     jsonObject.optString("FirstName"),
                     jsonObject.optString("LastName"),
-                        jsonObject.optString("Password"),
+                    jsonObject.optString("Password"),
                     jsonObject.optString("DateOfBirth"),
                     jsonObject.optBoolean("isEmployee")
                 );

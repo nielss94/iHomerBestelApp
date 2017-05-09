@@ -9,8 +9,8 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/tool_bar"
-        layout="@layout/tool_bar"
+        android:id="@+id/tool_bar_no_button"
+        layout="@layout/tool_bar_no_button"
         ></include>
 
     <LinearLayout
@@ -50,7 +50,9 @@
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
+            android:inputType="textEmailAddress"
             android:hint="@string/hint_enter_email"
+            android:maxLines="1"
             />
         <TextView
             android:id="@+id/passwordId"
@@ -66,6 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_enter_password"
+            android:maxLines="1"
             android:inputType="textPassword"
             android:paddingLeft="5dp"
             android:paddingRight="5dp" />
