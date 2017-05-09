@@ -77,6 +77,8 @@
         Scannen
     </string>
 
+    <string name="test_product">Testproduct</string>
+
     <!-- Strings voor OrderHistoryActivity-->
     <string name="date_of_the_order_textview">
         Datum:
