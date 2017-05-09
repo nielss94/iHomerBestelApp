@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText email, password;
     private Account account;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,20 +54,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
     }
 
-
-    //Deze button moet nog veranderd worden wanneer de gegevens kloppen etc
     @Override
     public void onClick(View v) {
             logIn(email.getText().toString(), password.getText().toString());
     }
 
-
     @Override
     public void accountSetAvailable(ArrayList<Account> accs) {
-
         accounts = accs;
         for (int i = 0; i < accounts.size(); i++) {
-
             Log.i(TAG,accounts.get(i).toString());
         }
     }
@@ -87,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             } else if(userName.trim().equals(acc.getEmail()) && !pass.equals(acc.getPassword())){
                 password.setText("");
                 Toast.makeText(this, R.string.wrong_password_toast, Toast.LENGTH_SHORT).show();
-            } else {
+            } else if(!userName.trim().equals(acc.getEmail()) && !pass.equals(acc.getPassword())) {
                 Toast.makeText(this, R.string.wrong_password_or_email_toast, Toast.LENGTH_SHORT).show();
             }
         }

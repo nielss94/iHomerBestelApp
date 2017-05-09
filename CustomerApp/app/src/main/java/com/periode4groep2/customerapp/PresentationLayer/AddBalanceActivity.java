@@ -55,7 +55,12 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
                 } else if (subtotal + currBalance > 150.00) {
                     Toast.makeText(this, R.string.too_much_money_toast, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, R.string.you_have_toast + " " + input + " " + R.string.amount_added_toast, Toast.LENGTH_SHORT).show();
+                    //Strings gemaakt zodat er maar 1 string in de toast hoeft te staan
+                    String youHave = getString(R.string.you_have_toast);
+                    String amountAdded = getString(R.string.amount_added_toast);
+                    String toastText = youHave + " " + input + " " + amountAdded;
+
+                    Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
                     subtotal += currBalance;
                     currentBalance.setText(String.format("%.2f", subtotal));
                 }
