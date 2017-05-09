@@ -32,11 +32,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2">
-
-        <!--Er moet nog een ander icoon gekozen worden-->
+        
         <ImageView
             android:id="@+id/scan_icon"
-            android:src="@drawable/icon_gebruiker"
+            android:src="@drawable/ic_action_tick"
+            android:tint="@color/colorOrange"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"/>
