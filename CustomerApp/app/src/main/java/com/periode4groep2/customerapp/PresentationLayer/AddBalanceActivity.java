@@ -34,7 +34,7 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
         currentBalance = (TextView) findViewById(R.id.currentBalance);
 
         account = (Account)getIntent().getSerializableExtra("account");
-        currentBalance.setText(String.format("%.2f", account.getBalance()/100) + "");
+        currentBalance.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
 
         addBalance = (Button) findViewById(R.id.addBalanceID);
         addBalance.setOnClickListener(this);
