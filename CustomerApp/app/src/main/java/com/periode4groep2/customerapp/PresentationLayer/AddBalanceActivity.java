@@ -90,7 +90,7 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
         for (int i = 0; i < accounts.size(); i++){
             Account acc = accounts.get(i);
             if (account.getEmail().equals(acc.getEmail())){
-                currentBalance.setText(account.getBalance() + "");
+                currentBalance.setText(account.getBalance()/100 + "");
             }
         }
     }
