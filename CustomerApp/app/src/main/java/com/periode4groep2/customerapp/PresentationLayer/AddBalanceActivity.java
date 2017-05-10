@@ -24,10 +24,6 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
     private Button addBalance;
     private TextView currentBalance;
     double subtotal = 0;
-    private DAOFactory factory;
-    private ArrayList<Account> accounts = new ArrayList<>();
-    private final String TAG = getClass().getSimpleName();
-    private AccountDAO accountDAO;
     private Account account;
 
     @Override
@@ -64,7 +60,7 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
 
                     Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
                     subtotal += currBalance;
-                    currentBalance.setText(String.format("%.2f", subtotal));
+                    currentBalance.setText("€" + String.format("%.2f", subtotal));
                 }
             putInBalance.setText("");
         }
