@@ -111,7 +111,7 @@
         Totaal:
     </string>
     <string name="TEST_total_price_textview">
-        €15,55
+        €0,00
     </string>
     <string name="cancel_order_button">
         Bestelling annuleren
@@ -119,9 +119,14 @@
     <string name="scan_order_button">
         Scannen
     </string>
-
-    <string name="test_product">
-        Testproduct
+    <string name="price_textview">
+        Prijs:
+    </string>
+    <string name="quantity_textview">
+        Aantal:
+    </string>
+    <string name="product_textview">
+        Product:
     </string>
 
     <!-- Strings voor OrderHistoryActivity-->
