@@ -44,27 +44,22 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
 
         addBalance = (Button) findViewById(R.id.addBalanceID);
         addBalance.setOnClickListener(this);
-
     }
 
     @Override
     public void onClick(View v) {
-
-        String input = putInBalance.getText().toString().trim();
-        if (input.isEmpty()) {
-            Toast.makeText(this, R.string.no_amount_entered_toast, Toast.LENGTH_SHORT).show();
-        } else {
-            double currBalance = Double.parseDouble(input);
-
-            //Een if else statement om ervoor te zorgen dat er geen bedrag boven de 150 euro komt
-            if (currBalance <= 0.01) {
+            String input = putInBalance.getText().toString().trim();
+            if (input.isEmpty()) {
                 Toast.makeText(this, R.string.no_amount_entered_toast, Toast.LENGTH_SHORT).show();
+            } else {
+                double currBalance = Double.parseDouble(input);
+                if (currBalance <= 0.01) {
+                    Toast.makeText(this, R.string.no_amount_entered_toast, Toast.LENGTH_SHORT).show();
                 } else if (subtotal >= 150.00) {
                     Toast.makeText(this, R.string.too_much_money_toast, Toast.LENGTH_SHORT).show();
                 } else if (subtotal + currBalance > 150.00) {
                     Toast.makeText(this, R.string.too_much_money_toast, Toast.LENGTH_SHORT).show();
                 } else {
-                    //Strings gemaakt zodat er maar 1 string in de toast hoeft te staan
                     String youHave = getString(R.string.you_have_toast);
                     String amountAdded = getString(R.string.amount_added_toast);
                     String toastText = youHave + " " + input + " " + amountAdded;
@@ -73,9 +68,9 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
                     subtotal += currBalance;
                     currentBalance.setText(String.format("%.2f", subtotal));
                 }
-            putInBalance.setText("");
+                putInBalance.setText("");
+            }
         }
-    }
 
     @Override
     public void accountSetAvailable(ArrayList<Account> accs) {
