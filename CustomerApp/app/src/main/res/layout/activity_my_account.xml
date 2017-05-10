@@ -16,7 +16,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_weight="9"
+        android:orientation="vertical"
+        android:layout_margin="7dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -24,9 +26,32 @@
             android:id="@+id/myAccountTitleId"
             android:text="Persoonlijke gegevens"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_margin="10dp"/>
+            android:textStyle="bold"/>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:layout_weight="0">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/myAccountBalanceInfoId"
+            android:backgroundTint="@color/colorOrange"
+            android:text="Saldo-informatie"
+            android:textSize="18sp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/myAccountHistoryId"
+            android:backgroundTint="@color/colorOrange"
+            android:text="Bestelgeschiedenis"
+            android:textSize="18sp"/>
     </LinearLayout>
 
 </LinearLayout>
