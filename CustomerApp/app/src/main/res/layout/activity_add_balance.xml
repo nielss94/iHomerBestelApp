@@ -34,9 +34,9 @@
 
             <TextView
                 android:id="@+id/currentBalance"
-                android:layout_width="275dp"
-                android:layout_height="30dp"
-                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="€@string/current_balance_view"
                 android:textColor="@color/colorOrange"
                 android:textSize="18dp" />
