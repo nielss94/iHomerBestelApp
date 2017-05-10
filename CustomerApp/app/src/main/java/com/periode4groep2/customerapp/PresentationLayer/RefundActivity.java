@@ -39,39 +39,34 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v){
-<<<<<<< HEAD
-        if(v.equals(refundBalanceButton)){
-            Toast.makeText(this, R.string.refund_button_clicked_toast, Toast.LENGTH_SHORT).show();
-=======
         if(v.equals(refundBalanceButton)) {
-
-            Toast.makeText(this, "Refund balance clicked", Toast.LENGTH_SHORT).show();
->>>>>>> origin/master
-
-
-            double inputValue = Double.parseDouble(refundBalanceEntry.getText().toString());
-            String input = refundBalanceEntry.getText().toString().trim();
-
-            if (input.isEmpty()) {
-                Toast.makeText(this, "U heeft geen bedrag ingevoerd", Toast.LENGTH_SHORT).show();
-            } else {
-                double currentValue = Double.parseDouble(currentBalance.getText().toString());
-
-<<<<<<< HEAD
             Toast.makeText(this, R.string.refund_button_clicked_toast, Toast.LENGTH_SHORT).show();
-=======
-                if (currentValue <= 0.01) {
-                    Toast.makeText(this, "U kunt niet €0.00 terugstorten op uw rekening.", Toast.LENGTH_SHORT).show();
-                } else if (currentValue < 5.00) {
-                    Toast.makeText(this, "U kunt niet minder dan 5 euro terugstorten.", Toast.LENGTH_SHORT).show();
-                } else if (currentValue < inputValue) {
-                    Toast.makeText(this, "U heeft een bedrag ingevuld dat hoger is dan wat er op uw account staat.", Toast.LENGTH_SHORT).show();
+            if (v.equals(refundBalanceButton)) {
+
+                Toast.makeText(this, "Refund balance clicked", Toast.LENGTH_SHORT).show();
+
+
+                double inputValue = Double.parseDouble(refundBalanceEntry.getText().toString());
+                String input = refundBalanceEntry.getText().toString().trim();
+
+                if (input.isEmpty()) {
+                    Toast.makeText(this, "U heeft geen bedrag ingevoerd", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, "U heeft " + input + " euro van uw account teruggestort.", Toast.LENGTH_SHORT).show();
-                    currentBalance.setText(0);
+                    double currentValue = Double.parseDouble(currentBalance.getText().toString());
+
+                    Toast.makeText(this, R.string.refund_button_clicked_toast, Toast.LENGTH_SHORT).show();
+                    if (currentValue <= 0.01) {
+                        Toast.makeText(this, "U kunt niet €0.00 terugstorten op uw rekening.", Toast.LENGTH_SHORT).show();
+                    } else if (currentValue < 5.00) {
+                        Toast.makeText(this, "U kunt niet minder dan 5 euro terugstorten.", Toast.LENGTH_SHORT).show();
+                    } else if (currentValue < inputValue) {
+                        Toast.makeText(this, "U heeft een bedrag ingevuld dat hoger is dan wat er op uw account staat.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, "U heeft " + input + " euro van uw account teruggestort.", Toast.LENGTH_SHORT).show();
+                        currentBalance.setText(0);
+                    }
                 }
             }
->>>>>>> origin/master
         }
     }
 }
