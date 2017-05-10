@@ -28,5 +28,13 @@ public class MyAccountActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        balanceInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), AddBalanceActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }
