@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/colorBackground"
     tools:context="com.periode4groep2.customerapp.PresentationLayer.MyAccountActivity">
 
@@ -11,5 +12,21 @@
         android:id="@+id/tool_bar"
         layout="@layout/tool_bar">
     </include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/myAccountTitleId"
+            android:text="Persoonlijke gegevens"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_margin="10dp"/>
+
+    </LinearLayout>
 
 </LinearLayout>
