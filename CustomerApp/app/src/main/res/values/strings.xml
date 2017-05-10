@@ -173,6 +173,14 @@
     <string name="scan_activity_button">
         Menu
     </string>
+
+    <!-- Strings voor OrderActivity -->
+    <string name="total_textview">
+        Totaal:
+    </string>
+    <string name="total_price_textview">
+        €0,00
+    </string>
 </resources>
 
 
