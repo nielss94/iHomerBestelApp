@@ -65,7 +65,7 @@ public class RefundActivity extends AppCompatActivity implements View.OnClickLis
                 } else if (currentValue < 5.00) {
                     Toast.makeText(this, "U kunt niet minder dan 5 euro terugstorten.", Toast.LENGTH_SHORT).show();
                 } else if (currentValue < inputValue) {
-                    Toast.makeText(this, "U heeft een bedrag ingevuld dat hoger is dan wat er op uw account staat", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "U heeft een bedrag ingevuld dat hoger is dan wat er op uw account staat.", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, "U heeft " + input + " euro van uw account teruggestort.", Toast.LENGTH_SHORT).show();
                     currentBalance.setText(0);
