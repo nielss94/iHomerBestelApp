@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
     tools:context="com.periode4groep2.customerapp.PresentationLayer.RefundActivity">
 
 
@@ -15,52 +14,67 @@
         layout="@layout/tool_bar">
     </include>
 
-    <TextView
-        android:id="@+id/currentBalanceHeaderTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.30"
-        android:gravity="center"
-        android:textSize="32sp"
-        android:text="@string/current_balance_header"
-        />
-
-    <TextView
-        android:id="@+id/currentBalanceTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.11"
-        android:gravity="top"
-        android:textSize="38sp"
-        android:text="@string/example_balance"
-        />
     <LinearLayout
-        android:id="@+id/refundTextFieldContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical"
-        android:gravity="top"
+        android:gravity="bottom"
         >
+
+        <TextView
+            android:id="@+id/currentBalanceHeaderTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/colorOrange"
+            android:textSize="18sp"
+            android:text="@string/current_balance_textview"
+            />
+
+        <TextView
+            android:id="@+id/currentBalanceTextView"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="@string/current_balance_view"
+            android:textColor="@color/colorOrange"
+            android:textSize="30sp"/>
+
+    </LinearLayout>
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/refundTextFieldContainer"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--android:gravity="top"-->
+        <!--&gt;-->
+
+
+
+    <!--</LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_weight="1">
 
         <EditText
             android:id="@+id/refundBalanceEntryEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="top"
+            android:textSize="32sp"
             android:hint="@string/example_refund_text" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
         <Button
             android:id="@+id/refundBalanceButton"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.31"
             android:text="@string/refund_button_text"
             />
 
