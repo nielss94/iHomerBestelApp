@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -14,20 +15,26 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
     LinearLayout orderLayoutButton, myAcountLayoutButton,
                   balanceLayoutButton, myOrdersLayoutButton;
     Account account;
+    private Button balanceButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
-        account = (Account)getIntent().getSerializableExtra("account");
         orderLayoutButton = (LinearLayout)findViewById(R.id.OrderID);
         myAcountLayoutButton = (LinearLayout)findViewById(R.id.AccountID);
         balanceLayoutButton = (LinearLayout)findViewById(R.id.BalanceID);
         myOrdersLayoutButton = (LinearLayout)findViewById(R.id.MyOrdersID);
+        balanceButton = (Button)findViewById(R.id.buttonBalance);
         orderLayoutButton.setOnClickListener(this);
         myAcountLayoutButton.setOnClickListener(this);
         balanceLayoutButton.setOnClickListener(this);
         myOrdersLayoutButton.setOnClickListener(this);
+        balanceButton.setOnClickListener(this);
+
+        account = (Account)getIntent().getSerializableExtra("account");
+        balanceButton.setText(String.format("%.2f", account.getBalance()/100) + "");
     }
 
     @Override
@@ -45,6 +52,10 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         } else if (v.equals(myOrdersLayoutButton)){
             Intent myOrdersIntent = new Intent(this, OrderHistoryActivity.class);
             startActivity(myOrdersIntent);
+        } else if (v.equals(balanceButton)){
+            Intent addBalanceIntent = new Intent(this, AddBalanceActivity.class);
+            addBalanceIntent.putExtra("account", account);
+            startActivity(addBalanceIntent);
         }
     }
 }
