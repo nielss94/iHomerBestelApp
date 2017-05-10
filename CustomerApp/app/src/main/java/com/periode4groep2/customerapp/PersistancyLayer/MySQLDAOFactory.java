@@ -21,11 +21,6 @@ public class MySQLDAOFactory implements DAOFactory {
     }
 
     @Override
-    public OrderItemDAO createOrderItemDAO() {
-        return new MySQLOrderItemDAO();
-    }
-
-    @Override
     public ProductDAO createProductDAO() {
         return new MySQLProductDAO();
     }

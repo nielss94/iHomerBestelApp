@@ -3,7 +3,8 @@ package com.periode4groep2.customerapp.PersistancyLayer;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.periode4groep2.customerapp.DomainModel.Product;
+import com.periode4groep2.customerapp.DomainModel.Order;
+import com.periode4groep2.customerapp.DomainModel.OrderItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,15 +20,15 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
- * Created by Niels on 5/9/2017.
+ * Created by jesse on 10/05/17.
  */
 
-public class MySQLProductAPIConnector extends AsyncTask<String, Void, String> {
+public class MySQLOrderAPIConnector extends AsyncTask<String, Void, String> {
 
     private final String TAG = getClass().getSimpleName();
-    private ProductAvailable listener;
+    private OrderAvailable listener;
 
-    public MySQLProductAPIConnector(ProductAvailable listener) {
+    public MySQLOrderAPIConnector(OrderAvailable listener) {
         this.listener = listener;
     }
 
@@ -38,13 +39,13 @@ public class MySQLProductAPIConnector extends AsyncTask<String, Void, String> {
         int responseCode = -1;
 
         //URL we get from .execute()
-        String productsUrl = params[0];
+        String ordersUrl = params[0];
 
         String result = "";
 
         try {
             //Make URL object
-            URL url = new URL(productsUrl);
+            URL url = new URL(ordersUrl);
             //Open connection on URL
             URLConnection urlConnection = url.openConnection();
 
@@ -86,19 +87,30 @@ public class MySQLProductAPIConnector extends AsyncTask<String, Void, String> {
 
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                Product p = new Product
-                (
-                    jsonObject.optInt("ProductID"),
-                    jsonObject.optString("Category"),
-                    jsonObject.optString("Name"),
-                    jsonObject.optBoolean("InStock"),
-                    (jsonObject.optDouble("Price") / 100)
+                Order o = new Order (
+                    jsonObject.optInt("OrderID"),
+                    jsonObject.optString("Email"),
+                    jsonObject.optBoolean("Handled"),
+                    (jsonObject.optDouble("TotalPrice") / 100),
+                    jsonObject.optString("Date")
                 );
+
+                JSONArray orderItems = jsonObject.getJSONArray("OrderItems");
+
+                for (int j = 0; j < orderItems.length() ; j++) {
+                    JSONObject orderItem = orderItems.getJSONObject(j);
+                    OrderItem oi = new OrderItem(
+                        orderItem.optInt("ProductID"),
+                        orderItem.optInt("Quantity")
+                    );
+                    o.addOrderItem(oi);
+                }
+
                 if(i == jsonArray.length() - 1){
-                    listener.productAvailable(p,true);
+                    listener.orderAvailable(o,true);
                 }
                 else{
-                    listener.productAvailable(p, false);
+                    listener.orderAvailable(o, false);
                 }
             }
 
@@ -137,8 +149,8 @@ public class MySQLProductAPIConnector extends AsyncTask<String, Void, String> {
     }
 
     //Callback interface
-    public interface ProductAvailable {
+    public interface OrderAvailable {
 
-        void productAvailable(Product product, boolean done);
+        void orderAvailable(Order order, boolean done);
     }
 }

@@ -9,6 +9,5 @@ public interface DAOFactory {
     AccountDAO createAccountDAO();
     DeviceInfoDAO createDeviceInfoDAO();
     OrderDAO createOrderDAO();
-    OrderItemDAO createOrderItemDAO();
     ProductDAO createProductDAO();
 }

@@ -13,7 +13,7 @@ public class Order {
     private boolean handled;
     private Double totalPrice;
     private String date;
-    private ArrayList<OrderItem> orderItems;
+    private ArrayList<OrderItem> orderItems = new ArrayList<>();
 
     public Order(int orderID, String email, boolean handled, Double totalPrice, String date) {
         this.orderID = orderID;
@@ -21,6 +21,14 @@ public class Order {
         this.handled = handled;
         this.totalPrice = totalPrice;
         this.date = date;
+    }
+
+    public ArrayList<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
     }
 
     public int getOrderID() {

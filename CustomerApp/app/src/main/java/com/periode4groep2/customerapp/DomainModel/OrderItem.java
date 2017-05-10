@@ -6,40 +6,20 @@ package com.periode4groep2.customerapp.DomainModel;
 
 public class OrderItem {
 
-    private int orderItemID;
-    private int orderID;
-    private Product product;
+    private int productID;
     private int quantity;
 
-    public OrderItem(int orderItemID, int orderID, Product product, int quantity) {
-        this.orderItemID = orderItemID;
-        this.orderID = orderID;
-        this.product = product;
+    public OrderItem(int productID, int quantity) {
+        this.productID = productID;
         this.quantity = quantity;
     }
 
-    public int getOrderItemID() {
-        return orderItemID;
+    public int getProductID() {
+        return productID;
     }
 
-    public void setOrderItemID(int orderItemID) {
-        this.orderItemID = orderItemID;
-    }
-
-    public int getOrderID() {
-        return orderID;
-    }
-
-    public void setOrderID(int orderID) {
-        this.orderID = orderID;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
     public int getQuantity() {
@@ -53,9 +33,7 @@ public class OrderItem {
     @Override
     public String toString() {
         return "OrderItem{" +
-                "orderItemID=" + orderItemID +
-                ", orderID=" + orderID +
-                ", product=" + product +
+                "productID=" + productID +
                 ", quantity=" + quantity +
                 '}';
     }
