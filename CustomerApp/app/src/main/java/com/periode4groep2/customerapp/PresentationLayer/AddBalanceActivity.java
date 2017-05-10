@@ -36,8 +36,8 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_add_balance);
         putInBalance = (EditText) findViewById(R.id.giveBalanceID);
         currentBalance = (TextView) findViewById(R.id.currentBalance);
-        currentBalance.setText("");
 
+        account = (Account)getIntent().getSerializableExtra("account");
         factory = new MySQLDAOFactory();
         accountDAO = factory.createAccountDAO();
         accountDAO.selectData(this);
@@ -88,9 +88,10 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
 
     public void setBalanceText(){
         for (int i = 0; i < accounts.size(); i++){
-//            if (){
-//
-//            }
+            Account acc = accounts.get(i);
+            if (account.getEmail().equals(acc.getEmail())){
+                currentBalance.setText(account.getBalance() + "");
+            }
         }
     }
 }

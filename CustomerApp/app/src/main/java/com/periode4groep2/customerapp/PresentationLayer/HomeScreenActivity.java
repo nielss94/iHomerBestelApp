@@ -7,16 +7,19 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.R;
 
 public class HomeScreenActivity extends AppCompatActivity implements View.OnClickListener {
     LinearLayout orderLayoutButton, myAcountLayoutButton,
                   balanceLayoutButton, myOrdersLayoutButton;
+    Account account;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
+        account = (Account)getIntent().getSerializableExtra("account");
         orderLayoutButton = (LinearLayout)findViewById(R.id.OrderID);
         myAcountLayoutButton = (LinearLayout)findViewById(R.id.AccountID);
         balanceLayoutButton = (LinearLayout)findViewById(R.id.BalanceID);
@@ -37,6 +40,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
             startActivity(myAccountIntent);
         } else if(v.equals(balanceLayoutButton)){
             Intent walletIntent = new Intent(this, WalletActivity.class);
+            walletIntent.putExtra("account", account);
             startActivity(walletIntent);
         } else if (v.equals(myOrdersLayoutButton)){
             Intent myOrdersIntent = new Intent(this, OrderHistoryActivity.class);

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.R;
 
 import java.util.ArrayList;
@@ -20,12 +21,7 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
     private ListView transactionListView;
     private Button addBalanceButton;
     private Button refundBalanceButton;
-
-    //Domain objects
-    //private Balance balance;
-    //private Order order;
-    //private Transaction transaction;
-    //private ArrayList<Transaction> transactionsArray;
+    Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +35,14 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
         addBalanceButton.setOnClickListener(this);
         refundBalanceButton.setOnClickListener(this);
 
+        account = (Account)getIntent().getSerializableExtra("account");
     }
 
     @Override
     public void onClick(View v){
         if(v.equals(addBalanceButton)){
             Intent intent = new Intent(this, AddBalanceActivity.class);
+            intent.putExtra("account", account);
             startActivity(intent);
         }
         else if(v.equals(refundBalanceButton)){
