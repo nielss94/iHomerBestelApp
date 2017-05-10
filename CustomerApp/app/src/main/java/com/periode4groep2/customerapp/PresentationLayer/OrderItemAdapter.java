@@ -32,7 +32,7 @@ public class OrderItemAdapter extends ArrayAdapter<OrderItem> {
         View customView = productInflater.inflate(R.layout.activity_custom_order_list_item, parent, false);
 
         OrderItem orderItem = getItem(position);
-        Order order = new Order();
+       // Order order = new Order();
 
         TextView productName = (TextView)customView.findViewById(R.id.productNameTextView);
         TextView productQuantity = (TextView)customView.findViewById(R.id.productQuantityTextView);
@@ -40,7 +40,7 @@ public class OrderItemAdapter extends ArrayAdapter<OrderItem> {
 
         productName.setText(orderItem.getProductID());
         productQuantity.setText(orderItem.getQuantity());
-        productTotalPrice.setText(order.getTotalPrice());
+      //  productTotalPrice.setText(order.getTotalPrice());
 
         return customView;
     }
