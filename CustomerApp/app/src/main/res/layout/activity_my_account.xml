@@ -7,29 +7,90 @@
     android:orientation="vertical"
     android:background="@color/colorBackground"
     tools:context="com.periode4groep2.customerapp.PresentationLayer.MyAccountActivity">
-
     <include
         android:id="@+id/tool_bar"
         layout="@layout/tool_bar">
     </include>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="7dp"
         android:layout_weight="9"
-        android:orientation="vertical"
-        android:layout_margin="7dp">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/myAccountTitleId"
-            android:text="Persoonlijke gegevens"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:text="Persoonlijke gegevens: "
+            android:textColor="@android:color/white"
+            android:textSize="23sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="E-mail: "
+            android:textColor="@android:color/white"
+            android:paddingLeft="10dp"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dummy data test text"
+            android:textSize="18sp"
+            android:id="@+id/my_account_email"
+            android:paddingLeft="10dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Voornaam: "
+            android:textColor="@android:color/white"
+            android:textSize="21sp"
+            android:paddingLeft="10dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/my_account_firstname"
+            android:text="Dummy data test text "
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Achternaam: "
+            android:textColor="@android:color/white"
+            android:textSize="21sp"
+            android:paddingLeft="10dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dummy data test text "
+            android:textSize="18sp"
+            android:id="@+id/my_account_lastname"
+            android:paddingLeft="10dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Leeftijd: "
+            android:textColor="@android:color/white"
+            android:textSize="21sp"
+            android:paddingLeft="10dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dummy data test text "
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:id="@+id/my_account_age"
+            android:textStyle="bold" />
 
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
