@@ -19,7 +19,7 @@ import com.periode4groep2.customerapp.R;
 import java.util.ArrayList;
 
 
-public class AddBalanceActivity extends AppCompatActivity implements View.OnClickListener, AccountSetAvailable {
+public class AddBalanceActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText putInBalance;
     private Button addBalance;
     private TextView currentBalance;
@@ -38,9 +38,7 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
         currentBalance = (TextView) findViewById(R.id.currentBalance);
 
         account = (Account)getIntent().getSerializableExtra("account");
-        factory = new MySQLDAOFactory();
-        accountDAO = factory.createAccountDAO();
-        accountDAO.selectData(this);
+        currentBalance.setText(String.format("%.2f", account.getBalance()/100) + "");
 
         addBalance = (Button) findViewById(R.id.addBalanceID);
         addBalance.setOnClickListener(this);
@@ -68,25 +66,7 @@ public class AddBalanceActivity extends AppCompatActivity implements View.OnClic
                     subtotal += currBalance;
                     currentBalance.setText(String.format("%.2f", subtotal));
                 }
-                putInBalance.setText("");
-            }
-        }
-
-    @Override
-    public void accountSetAvailable(ArrayList<Account> accs) {
-        accounts = accs;
-        for (int i = 0; i < accounts.size(); i++) {
-            Log.i(TAG,accounts.get(i).toString());
-        }
-        setBalanceText();
-    }
-
-    public void setBalanceText(){
-        for (int i = 0; i < accounts.size(); i++){
-            Account acc = accounts.get(i);
-            if (account.getEmail().equals(acc.getEmail())){
-                currentBalance.setText(String.format("%.2f", account.getBalance()/100) + "");
-            }
+            putInBalance.setText("");
         }
     }
 }

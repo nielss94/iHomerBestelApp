@@ -34,7 +34,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         balanceButton.setOnClickListener(this);
 
         account = (Account)getIntent().getSerializableExtra("account");
-        balanceButton.setText(String.format("%.2f", account.getBalance()/100) + "");
+        balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
     }
 
     @Override
