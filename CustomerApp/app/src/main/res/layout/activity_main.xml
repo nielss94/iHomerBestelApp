@@ -52,6 +52,7 @@
             android:paddingRight="5dp"
             android:inputType="textEmailAddress"
             android:hint="@string/hint_enter_email"
+            android:text="guido@guido.com"
             android:maxLines="1"
             />
         <TextView
@@ -69,6 +70,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/hint_enter_password"
             android:maxLines="1"
+            android:text="guidopassword"
             android:inputType="textPassword"
             android:paddingLeft="5dp"
             android:paddingRight="5dp" />
