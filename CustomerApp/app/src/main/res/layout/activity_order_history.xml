@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Datum"
+                android:text="@string/date_of_the_order_textview"
                 android:textStyle="bold"
                 android:textSize="16dp"
                 android:layout_weight="8" />
@@ -35,7 +35,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Prijs"
+                android:text="@string/price_of_the_order_textview"
                 android:textStyle="bold"
                 android:textSize="16dp"
                 android:textAlignment="center"

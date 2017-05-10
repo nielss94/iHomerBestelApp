@@ -80,12 +80,28 @@
     </string>
 
     <!-- Strings voor MyAccountActivity-->
-    <string name="date_textview">
-        Datum:
+    <string name="personal_data_textview">
+        Persoonlijke gegevens
     </string>
-    <string name="price_textview">
-        Prijs:
+    <string name="email_textview">
+        Email:
     </string>
+    <string name="firstname_textview">
+        Voornaam:
+    </string>
+    <string name="lastname_textview">
+        Achternaam:
+    </string>
+    <string name="age_textview">
+        Leeftijd:
+    </string>
+    <string name="balance_information_button">
+        Saldo-informatie
+    </string>
+    <string name="order_history_button">
+        Bestelgeschiedenis
+    </string>
+
 
     <!-- Strings voor MyOrdersActivity-->
 
