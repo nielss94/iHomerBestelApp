@@ -76,13 +76,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("account", account);
                 startActivity(intent);
                 Toast.makeText(this, R.string.successful_log_in_toast, Toast.LENGTH_SHORT).show();
-            } else if(userName.trim().equals(acc.getEmail()) && pass.equals(acc.getPassword())){
-                Toast.makeText(this, R.string.wrong_email_toast, Toast.LENGTH_SHORT).show();
-            } else if(userName.trim().equals(acc.getEmail()) && !pass.equals(acc.getPassword())){
-                password.setText("");
-                Toast.makeText(this, R.string.wrong_password_toast, Toast.LENGTH_SHORT).show();
-            } else if(!userName.trim().equals(acc.getEmail()) && !pass.equals(acc.getPassword())) {
-                Toast.makeText(this, R.string.wrong_password_or_email_toast, Toast.LENGTH_SHORT).show();
+                break;
+            }
+                else if(!userName.trim().equals(acc.getEmail()) && pass.equals(acc.getPassword())){
+                    Toast.makeText(this, R.string.wrong_email_toast, Toast.LENGTH_SHORT).show();
+                    break;
+            }
+                else if(userName.trim().equals(acc.getEmail()) && !pass.equals(acc.getPassword())){
+                    password.setText("");
+                    Toast.makeText(this, R.string.wrong_password_toast, Toast.LENGTH_SHORT).show();
+                    break;
+            }
+                else {
+                    Toast.makeText(this, R.string.wrong_password_or_email_toast, Toast.LENGTH_SHORT).show();
+                    password.setText("");
             }
         }
     }
