@@ -72,7 +72,7 @@ public class MyAccountActivity extends AppCompatActivity implements View.OnClick
         int age = currentYear - birthYear;
 
         //logica om te kijken of je binnen de maand zit
-        if (currentMonth < birthMonth){
+        if (currentMonth == birthMonth && currentDay < birthDay){
             textviewBirthDate.setText((age - 1) + "");
         } else {
             textviewBirthDate.setText(age + "");
