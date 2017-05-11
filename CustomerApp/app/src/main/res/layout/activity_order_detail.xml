@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Product"
+            android:text="@string/product_textview"
             android:textStyle="bold"
             android:textSize="16sp"
             android:layout_weight="8" />
@@ -29,14 +29,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kwant."
+            android:text="@string/quantity_textview"
             android:textSize="16sp"
             android:layout_weight="3"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Prijs"
+            android:text="@string/price_textview"
             android:textStyle="bold"
             android:textSize="16sp"
             android:layout_weight="2"/>

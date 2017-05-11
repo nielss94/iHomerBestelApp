@@ -3,6 +3,7 @@ package com.periode4groep2.customerapp.PresentationLayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ListView;
 
 import com.periode4groep2.customerapp.DomainModel.Order;
 import com.periode4groep2.customerapp.DomainModel.Product;
@@ -24,6 +25,8 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
     private DAOFactory factory;
     private ProductDAO productDAO;
     private OrderDAO orderDAO;
+    private ListView orderHistoryListView;
+    private OrderHistoryAdapter historyAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,5 +55,9 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
                 Log.i(TAG, this.orders.get(i).getOrderItems().get(j).toString());
             }
         }
+        orderHistoryListView = (ListView) findViewById(R.id.orderHistoryListViewId);
+
+        historyAdapter = new OrderHistoryAdapter(this, orders);
+        orderHistoryListView.setAdapter(historyAdapter);
     }
 }

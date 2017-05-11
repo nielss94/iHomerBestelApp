@@ -21,14 +21,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Persoonlijke gegevens: "
+            android:text="@string/personal_data_textview"
             android:textColor="@android:color/white"
             android:textSize="23sp"
             android:textStyle="bold" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="E-mail: "
+            android:text="@string/email_textview"
             android:textColor="@android:color/white"
             android:paddingLeft="10dp"
             android:textSize="21sp"
@@ -44,7 +44,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Voornaam: "
+            android:text="@string/firstname_textview"
             android:textColor="@android:color/white"
             android:textSize="21sp"
             android:paddingLeft="10dp"
@@ -60,7 +60,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Achternaam: "
+            android:text="@string/lastname_textview"
             android:textColor="@android:color/white"
             android:textSize="21sp"
             android:paddingLeft="10dp"
@@ -76,7 +76,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Leeftijd: "
+            android:text="@string/age_textview"
             android:textColor="@android:color/white"
             android:textSize="21sp"
             android:paddingLeft="10dp"
@@ -103,7 +103,7 @@
             android:layout_height="60dp"
             android:id="@+id/myAccountBalanceInfoId"
             android:backgroundTint="@color/colorOrange"
-            android:text="Saldo-informatie"
+            android:text="@string/balance_information_button"
             android:textSize="18sp"/>
 
         <Button
@@ -111,8 +111,7 @@
             android:layout_height="60dp"
             android:id="@+id/myAccountHistoryId"
             android:backgroundTint="@color/colorOrange"
-            android:text="Bestelgeschiedenis"
+            android:text="@string/order_history_button"
             android:textSize="18sp"/>
     </LinearLayout>
-
 </LinearLayout>
