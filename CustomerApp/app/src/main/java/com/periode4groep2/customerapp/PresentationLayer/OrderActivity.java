@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.DomainModel.Product;
@@ -21,14 +22,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static android.R.attr.data;
+import static android.R.id.list;
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
+
 public class OrderActivity extends AppCompatActivity implements View.OnClickListener, ProductSetAvailable{
 
     private final String TAG = getClass().getSimpleName();
     private ImageView basket;
     private ExpandableListView listView;
     private ExpandableListAdapter listAdapter;
-    private List<String> listDataHeader;
-    private HashMap<String,List<String>> listHash;
+    private ArrayList<String> listDataHeader = new ArrayList<>();
+    private HashMap<String,ArrayList<String>> listHash = new HashMap<>();;
     private DAOFactory factory;
     private ProductDAO productDAO;
     private ArrayList<Product> products = new ArrayList<>();
@@ -43,7 +48,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         basket.setOnClickListener(this);
 
         listView = (ExpandableListView)findViewById(R.id.expandableListId);
-        initData();
+
         listAdapter = new ExpandableListAdapter(this,listDataHeader,listHash);
         listView.setAdapter(listAdapter);
 
@@ -58,47 +63,33 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         for (int i = 0; i < products.size(); i++) {
             Log.i(TAG,products.get(i).toString());
         }
+        initData();
     }
+
 
     private void initData() {
-
-        for (int i = 0; i < products.size(); i++){
+        for (int i = 0; i < products.size(); i++) {
             product = products.get(i);
+
+            if (!listDataHeader.contains(product.getCategory())) {
+                listDataHeader.add(product.getCategory());
+                Log.i(TAG, product.getCategory() + " added to categories");
+            }
         }
+        for (int j = 0; j < listDataHeader.size(); j++) {
+            ArrayList<String> list = new ArrayList<>();
+            for (int i = 0; i < products.size(); i++) {
+                if(listDataHeader.get(j).equalsIgnoreCase(products.get(i).getCategory())){
+                    list.add(products.get(i).getName());
+                    listHash.put(listDataHeader.get(j), list);
+                }
 
+            }
 
-
-
-
-
-        listDataHeader = new ArrayList<>();
-        listHash = new HashMap<>();
-
-        listDataHeader.add("Frisdranken");
-        listDataHeader.add("Alchoholisch");
-        listDataHeader.add("Bier");
-        listDataHeader.add("Wijn");
-
-        List<String> Frisdranken = new ArrayList<>();
-        Frisdranken.add("Hier komt shit uit de DB");
-
-        List<String> Alchoholisch = new ArrayList<>();
-        Alchoholisch.add("Hier komt shit uit de DB");
-        Alchoholisch.add("Hier komt shit uit de DB");
-
-        List<String> Bier = new ArrayList<>();
-        Bier.add("Hier komt shit uit de DB");
-
-        List<String> Wijn = new ArrayList<>();
-        Wijn.add("Hier komt shit uit de DB");
-        Wijn.add("Hier komt shit uit de DB");
-        Wijn.add("Hier komt shit uit de DB");
-
-        listHash.put(listDataHeader.get(0),Frisdranken);
-        listHash.put(listDataHeader.get(1),Alchoholisch);
-        listHash.put(listDataHeader.get(2),Bier);
-        listHash.put(listDataHeader.get(3),Wijn);
+        }
+        listAdapter.notifyDataSetChanged();
     }
+
 
     public void onClick(View v){
         Intent intent = new Intent(this, OrderDetailActivity.class);

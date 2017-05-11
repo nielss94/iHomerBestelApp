@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.periode4groep2.customerapp.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,10 +22,10 @@ import java.util.List;
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
-    private List<String> ListDataHeader;
-    private HashMap<String,List<String>> listHashMap;
+    private ArrayList<String> ListDataHeader;
+    private HashMap<String,ArrayList<String>> listHashMap;
 
-    public ExpandableListAdapter(Context context, List<String> listDataHeader, HashMap<String, List<String>> listHashMap) {
+    public ExpandableListAdapter(Context context, ArrayList<String> listDataHeader, HashMap<String, ArrayList<String>> listHashMap) {
         this.context = context;
         ListDataHeader = listDataHeader;
         this.listHashMap = listHashMap;
