@@ -1,6 +1,5 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
@@ -15,7 +14,7 @@ import android.widget.Toast;
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.R;
 
-public class MyAccountActivity extends AppCompatActivity implements View.OnClickListener{
+public class SettingsActivity extends AppCompatActivity implements View.OnClickListener{
     Account account;
     private Button saveSettings, balanceButton;
     private TextView textviewEmail, textviewFirstName, textviewLastName, textviewBirthDate;
@@ -24,7 +23,7 @@ public class MyAccountActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_account);
+        setContentView(R.layout.activity_settings);
 
         saveSettings = (Button) findViewById(R.id.saveSettingsID);
         balanceButton = (Button) findViewById(R.id.buttonBalance);

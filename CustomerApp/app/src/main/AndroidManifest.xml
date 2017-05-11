@@ -20,7 +20,7 @@
         <activity android:name=".PresentationLayer.HomeScreenActivity" />
         <activity android:name=".PresentationLayer.AddBalanceActivity" />
         <activity android:name=".PresentationLayer.WalletActivity" />
-        <activity android:name=".PresentationLayer.MyAccountActivity" />
+        <activity android:name=".PresentationLayer.SettingsActivity" />
         <activity android:name=".PresentationLayer.OrderActivity" />
         <activity android:name=".PresentationLayer.OrderDetailActivity" />
         <activity android:name=".PresentationLayer.RefundActivity"></activity>
