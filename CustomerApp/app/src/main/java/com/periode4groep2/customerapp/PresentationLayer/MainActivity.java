@@ -18,8 +18,6 @@ import com.periode4groep2.customerapp.R;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, MyAccountAvailable {
-
-    private final String TAG = getClass().getSimpleName();
     private Button loginButton;
     private Toolbar toolbar;
     private DAOFactory factory;
@@ -47,10 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-
         //Check if email/password is empty
         accountDAO.selectData(this,email.getText().toString(),password.getText().toString());
-
     }
 
     @Override
@@ -61,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void myAccountNotAvailable() {
-        Toast.makeText(this, "Account not found!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.account_not_found_toast, Toast.LENGTH_SHORT).show();
     }
 
     public void logIn(){
