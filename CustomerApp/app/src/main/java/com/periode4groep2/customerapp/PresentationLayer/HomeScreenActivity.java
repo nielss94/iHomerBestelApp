@@ -26,6 +26,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         balanceLayoutButton = (LinearLayout)findViewById(R.id.BalanceID);
         myOrdersLayoutButton = (LinearLayout)findViewById(R.id.MyOrdersID);
         balanceButton = (Button)findViewById(R.id.buttonBalance);
+
         orderLayoutButton.setOnClickListener(this);
         myAcountLayoutButton.setOnClickListener(this);
         balanceLayoutButton.setOnClickListener(this);

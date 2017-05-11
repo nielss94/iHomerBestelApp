@@ -1,5 +1,6 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
@@ -9,13 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.R;
 
 public class MyAccountActivity extends AppCompatActivity implements View.OnClickListener{
     Account account;
-    private Button balanceInfoButton, orderHistoryButton;
+    private Button saveSettings, balanceButton;
     private TextView textviewEmail, textviewFirstName, textviewLastName, textviewBirthDate;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -24,13 +26,15 @@ public class MyAccountActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account);
 
-        balanceInfoButton = (Button) findViewById(R.id.myAccountBalanceInfoId);
-        orderHistoryButton = (Button) findViewById(R.id.myAccountHistoryId);
+        saveSettings = (Button) findViewById(R.id.saveSettingsID);
+        balanceButton = (Button) findViewById(R.id.buttonBalance);
 
-        orderHistoryButton.setOnClickListener(this);
-        balanceInfoButton.setOnClickListener(this);
+        saveSettings.setOnClickListener(this);
+        balanceButton.setOnClickListener(this);
 
         account = (Account)getIntent().getSerializableExtra("account");
+        balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
+
         textviewEmail = (TextView)findViewById(R.id.my_account_email);
         textviewEmail.setText(account.getEmail());
         textviewFirstName = (TextView)findViewById(R.id.my_account_firstname);
@@ -44,12 +48,13 @@ public class MyAccountActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        if (v.equals(orderHistoryButton)){
-            Intent i = new Intent(getApplicationContext(), OrderHistoryActivity.class);
-            startActivity(i);
-        } else if (v.equals(balanceInfoButton)){
-            Intent i = new Intent(getApplicationContext(), AddBalanceActivity.class);
-            startActivity(i);
+        if(v.equals(saveSettings)) {
+            this.finish();
+            Toast.makeText(this, R.string.save_settings_toast, Toast.LENGTH_SHORT).show();
+        } else if(v.equals(balanceButton)){
+            Intent addBalanceIntent = new Intent(this, AddBalanceActivity.class);
+            addBalanceIntent.putExtra("account", account);
+            startActivity(addBalanceIntent);
         }
     }
 

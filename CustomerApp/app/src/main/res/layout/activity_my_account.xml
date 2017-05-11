@@ -89,29 +89,48 @@
             android:paddingLeft="10dp"
             android:id="@+id/my_account_age"
             android:textStyle="bold" />
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/language_textview"
+            android:textColor="@android:color/white"
+            android:textSize="21sp"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:textStyle="bold" />
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:entries="@array/language_array_spinner_entries"
+            >
+        </Spinner>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_margin="10dp"
         android:layout_weight="0">
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/myAccountBalanceInfoId"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/saveSettingsID"
             android:backgroundTint="@color/colorOrange"
-            android:text="@string/balance_information_button"
-            android:textSize="18sp"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/myAccountHistoryId"
-            android:backgroundTint="@color/colorOrange"
-            android:text="@string/order_history_button"
-            android:textSize="18sp"/>
+            android:text="@string/save_settings_button"
+            android:layout_weight="1"
+            android:textSize="14sp"/>
     </LinearLayout>
 </LinearLayout>

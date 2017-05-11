@@ -9,8 +9,8 @@
     <string name="order_button">
         Bestellen
     </string>
-    <string name="my_account_button">
-        Mijn account
+    <string name="settings_button">
+        Instellingen
     </string>
     <string name="balance_button">
         Saldo
@@ -77,7 +77,14 @@
         U heeft
     </string>
 
-    <!-- Strings voor MyAccountActivity-->
+    <!-- Strings voor SettingsActivity-->
+    <string-array name="language_array_spinner_entries">
+        <item>Nederlands</item>
+        <item>English</item>
+        <item>Deutsch</item>
+        <item>Français</item>
+        <item>Fries</item>
+    </string-array>
     <string name="personal_data_textview">
         Persoonlijke gegevens
     </string>
@@ -93,11 +100,14 @@
     <string name="age_textview">
         Leeftijd:
     </string>
-    <string name="balance_information_button">
-        Saldo-informatie
+    <string name="language_textview">
+        Taal:
     </string>
-    <string name="order_history_button">
-        Bestelgeschiedenis
+    <string name="save_settings_button">
+        Wijzigingen opslaan
+    </string>
+    <string name="save_settings_toast">
+        Wijzigingen succesvol opgeslagen
     </string>
 
     <!--Strings voor OrderDetailActivity-->
