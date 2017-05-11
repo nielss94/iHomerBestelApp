@@ -2,7 +2,6 @@ package com.periode4groep2.customerapp.PresentationLayer;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,13 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
-import com.periode4groep2.customerapp.PersistancyLayer.AccountDAO;
-import com.periode4groep2.customerapp.PersistancyLayer.AccountSetAvailable;
-import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
-import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
 import com.periode4groep2.customerapp.R;
 
-import java.util.ArrayList;
 
 
 public class AddBalanceActivity extends AppCompatActivity implements View.OnClickListener {

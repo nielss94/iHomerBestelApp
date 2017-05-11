@@ -8,7 +8,8 @@ import java.util.ArrayList;
  * Created by Niels on 5/8/2017.
  */
 
-public interface AccountSetAvailable
+public interface MyAccountAvailable
 {
-    void accountSetAvailable(ArrayList<Account> accs);
+    void myAccountAvailable(Account acc);
+    void myAccountNotAvailable();
 }

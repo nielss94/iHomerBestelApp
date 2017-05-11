@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
+import com.periode4groep2.customerapp.PresentationLayer.MainActivity;
 
 import java.util.ArrayList;
 
@@ -17,18 +18,15 @@ public class MySQLAccountDAO implements AccountDAO, MySQLAccountAPIConnector.Acc
 
     private final String TAG = getClass().getSimpleName();
 
-    private ArrayList<Account> accounts = new ArrayList<>();
-    private MySQLAccountAPIConnector mySQLAccountAPIConnector = new MySQLAccountAPIConnector(this);
-    private AccountSetAvailable context;
+    private MyAccountAvailable context;
 
     @Override
-    public void selectData(AccountSetAvailable c) {
+    public void selectData(MyAccountAvailable c, String email, String password) {
         context = c;
         String[] urls = {
-                "http://ihomerapi.herokuapp.com/api/getAccounts"
+                "https://ihomerapi.herokuapp.com/API/getAccount?email="+email+"&password="+password
         };
-
-        mySQLAccountAPIConnector.execute(urls);
+        new MySQLAccountAPIConnector(this).execute(urls);
 
     }
 
@@ -38,11 +36,13 @@ public class MySQLAccountDAO implements AccountDAO, MySQLAccountAPIConnector.Acc
     }
 
     @Override
-    public void accountAvailable(Account account, boolean done) {
-        accounts.add(account);
-        if(done)
-        {
-            context.accountSetAvailable(accounts);
-        }
+    public void accountAvailable(Account account) {
+
+        context.myAccountAvailable(account);
+    }
+
+    @Override
+    public void accountNotAvailable() {
+        context.myAccountNotAvailable();
     }
 }

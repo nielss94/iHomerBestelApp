@@ -6,8 +6,10 @@ package com.periode4groep2.customerapp.PersistancyLayer;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
+import com.periode4groep2.customerapp.PresentationLayer.MainActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,10 +66,12 @@ public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
 
             // Check if connection is made using a response code
             responseCode = httpConnection.getResponseCode();
+            Log.i(TAG,responseCode + "");
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 inputStream = httpConnection.getInputStream();
                 result = getStringFromInputStream(inputStream);
-            } else {
+            } else if(responseCode == 404 || responseCode == 403){
+                result = "Account not found";
             }
         } catch (MalformedURLException e) {
             return null;
@@ -80,37 +84,35 @@ public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
 
-        try {
-            //Top level object
-            JSONArray jsonArray = new JSONArray(result);
 
-            for (int i = 0; i < jsonArray.length(); i++) {
+        if(result.equalsIgnoreCase("Account not found"))
+        {
+            Log.i(TAG,"ACCOUNT NOT FOUND!");
+            listener.accountNotAvailable();
+        }
+        else {
+            try {
+                //Top level object
+                JSONObject jsonObject = new JSONObject(result);
 
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                 Account acc = new Account(
-                    jsonObject.optString("Email"),
-                    jsonObject.optString("IBAN"),
-                    jsonObject.optDouble("Balance"),
-                    jsonObject.optString("FirstName"),
-                    jsonObject.optString("LastName"),
-                    jsonObject.optString("Password"),
-                    jsonObject.optString("DateOfBirth"),
-                    jsonObject.optBoolean("isEmployee")
+                        jsonObject.optString("Email"),
+                        jsonObject.optString("IBAN"),
+                        jsonObject.optDouble("Balance"),
+                        jsonObject.optString("FirstName"),
+                        jsonObject.optString("LastName"),
+                        jsonObject.optString("Password"),
+                        jsonObject.optString("DateOfBirth"),
+                        jsonObject.optBoolean("isEmployee")
                 );
-                if(i == jsonArray.length() - 1){
-                    listener.accountAvailable(acc,true);
-                }
-                else{
-                    listener.accountAvailable(acc, false);
-                }
+                listener.accountAvailable(acc);
+
+            } catch (JSONException ex) {
+                Log.e(TAG, "onPostExecute JSONException " + ex.getLocalizedMessage());
+
             }
-
-        } catch (JSONException ex) {
-            Log.e(TAG, "onPostExecute JSONException " + ex.getLocalizedMessage());
-
         }
-
     }
     //Convert InputStream to String
     private String getStringFromInputStream(InputStream inputStream) {
@@ -143,6 +145,7 @@ public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
     //Callback interface
     public interface AccountAvailable {
 
-        void accountAvailable(Account account, boolean done);
+        void accountAvailable(Account account);
+        void accountNotAvailable();
     }
 }
