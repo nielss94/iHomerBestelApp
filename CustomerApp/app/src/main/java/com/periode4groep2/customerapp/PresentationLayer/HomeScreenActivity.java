@@ -1,12 +1,11 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.R;
@@ -52,6 +51,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
             startActivity(walletIntent);
         } else if (v.equals(myOrdersLayoutButton)){
             Intent myOrdersIntent = new Intent(this, OrderHistoryActivity.class);
+            myOrdersIntent.putExtra("account", account);
             startActivity(myOrdersIntent);
         } else if (v.equals(balanceButton)){
             Intent addBalanceIntent = new Intent(this, AddBalanceActivity.class);

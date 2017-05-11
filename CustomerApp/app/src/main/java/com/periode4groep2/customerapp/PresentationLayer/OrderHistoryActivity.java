@@ -2,9 +2,9 @@ package com.periode4groep2.customerapp.PresentationLayer;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ListView;
 
+import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.DomainModel.Order;
 import com.periode4groep2.customerapp.DomainModel.Product;
 import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
@@ -27,6 +27,7 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
     private OrderDAO orderDAO;
     private ListView orderHistoryListView;
     private OrderHistoryAdapter historyAdapter;
+    private Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,8 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();
         orderDAO = factory.createOrderDAO();
+
+        account = (Account) getIntent().getSerializableExtra("account");
 
         orderDAO.selectData(this);
         productDAO.selectData(this);
@@ -48,16 +51,20 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
 
     @Override
     public void orderSetAvailable(ArrayList<Order> orders) {
-        this.orders = orders;
-        for (int i = 0; i < this.orders.size(); i++) {
-            Log.i(TAG, this.orders.get(i).toString());
+
+        for (int i = 0; i < orders.size(); i++) {
+            if(orders.get(i).getEmail().equalsIgnoreCase(account.getEmail())) {
+                this.orders.add(orders.get(i));
+            }
+
+            /*Log.i(TAG, this.orders.get(i).toString());
             for (int j = 0; j < this.orders.get(i).getOrderItems().size() ; j++) {
                 Log.i(TAG, this.orders.get(i).getOrderItems().get(j).toString());
-            }
+            }*/
         }
         orderHistoryListView = (ListView) findViewById(R.id.orderHistoryListViewId);
 
-        historyAdapter = new OrderHistoryAdapter(this, orders);
+        historyAdapter = new OrderHistoryAdapter(this, this.orders);
         orderHistoryListView.setAdapter(historyAdapter);
     }
 }

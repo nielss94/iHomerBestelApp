@@ -32,9 +32,24 @@ public class OrderHistoryAdapter extends ArrayAdapter<Order> {
 
         TextView orderDate = (TextView) customView.findViewById(R.id.orderHistoryDateId);
         TextView orderPrice = (TextView) customView.findViewById(R.id.orderHistoryPriceId);
+        TextView isHandled = (TextView) customView.findViewById(R.id.handledId);
 
-        orderDate.setText(singleOrder.getDate());
-        orderPrice.setText(Double.toString(singleOrder.getTotalPrice()));
+        String date = singleOrder.getDate();
+        String fullDate = date.substring(0,10);
+
+        orderDate.setText(fullDate);
+
+        Double price = singleOrder.getTotalPrice();
+        String goodPrice = String.format("€%10.2f", price);
+
+        orderPrice.setText(goodPrice);
+
+        boolean handled = singleOrder.isHandled();
+        if (handled == true) {
+            isHandled.setText("✓");
+        } else {
+            isHandled.setText("×");
+        }
 
         return customView;
     }
