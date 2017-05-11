@@ -11,7 +11,7 @@ import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.R;
 
 public class HomeScreenActivity extends AppCompatActivity implements View.OnClickListener {
-    LinearLayout orderLayoutButton, myAcountLayoutButton,
+    LinearLayout orderLayoutButton, settingsLayoutButton,
                   balanceLayoutButton, myOrdersLayoutButton;
     Account account;
     private Button balanceButton;
@@ -22,13 +22,13 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_home_screen);
 
         orderLayoutButton = (LinearLayout)findViewById(R.id.OrderID);
-        myAcountLayoutButton = (LinearLayout)findViewById(R.id.AccountID);
+        settingsLayoutButton = (LinearLayout)findViewById(R.id.AccountID);
         balanceLayoutButton = (LinearLayout)findViewById(R.id.BalanceID);
         myOrdersLayoutButton = (LinearLayout)findViewById(R.id.MyOrdersID);
         balanceButton = (Button)findViewById(R.id.buttonBalance);
 
         orderLayoutButton.setOnClickListener(this);
-        myAcountLayoutButton.setOnClickListener(this);
+        settingsLayoutButton.setOnClickListener(this);
         balanceLayoutButton.setOnClickListener(this);
         myOrdersLayoutButton.setOnClickListener(this);
         balanceButton.setOnClickListener(this);
@@ -42,10 +42,10 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         if(v.equals(orderLayoutButton)){
             Intent orderIntent = new Intent(this, OrderActivity.class);
             startActivity(orderIntent);
-        }else if(v.equals(myAcountLayoutButton)){
-            Intent myAccountIntent = new Intent(this, SettingsActivity.class);
-            myAccountIntent.putExtra("account", account);
-            startActivity(myAccountIntent);
+        }else if(v.equals(settingsLayoutButton)){
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            settingsIntent.putExtra("account", account);
+            startActivity(settingsIntent);
         } else if(v.equals(balanceLayoutButton)){
             Intent walletIntent = new Intent(this, WalletActivity.class);
             walletIntent.putExtra("account", account);
