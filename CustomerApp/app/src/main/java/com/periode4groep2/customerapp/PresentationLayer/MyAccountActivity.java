@@ -40,22 +40,29 @@ public class MyAccountActivity extends AppCompatActivity implements View.OnClick
         textviewLastName.setText(account.getLastName());
         textviewBirthDate = (TextView)findViewById(R.id.my_account_age);
 
-        // FF TESTEN WSS ALLEMAAL BULLSHIT
+        calculateAge();
+    }
 
-        //String maken die de geboortedatum opvraagt
+    @Override
+    public void onClick(View v) {
+        if (v.equals(orderHistoryButton)){
+            Intent i = new Intent(getApplicationContext(), OrderHistoryActivity.class);
+            startActivity(i);
+        } else if (v.equals(balanceInfoButton)){
+            Intent i = new Intent(getApplicationContext(), AddBalanceActivity.class);
+            startActivity(i);
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void calculateAge(){
         String fullBirthDate = account.getDateOfBirth();
-        //String maken die van de geboorte datum het jaartal pakt
         String yearsOfBirthDate = fullBirthDate.substring(0, 4);
-        //String maken die van de geboorte datum de maand pakt
         String monthOfBirthDate = fullBirthDate.substring(5,7);
-        //String maken die van de geboorte datum de dag pakt
         String dayOfBirthDate = fullBirthDate.substring(8, 10);
-
-        //recent jaartal
+        
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        //recente maand
         int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
-        //recente dag
         int currentDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 
         int birthYear = Integer.parseInt(yearsOfBirthDate);
@@ -69,17 +76,6 @@ public class MyAccountActivity extends AppCompatActivity implements View.OnClick
             textviewBirthDate.setText((age - 1) + "");
         } else {
             textviewBirthDate.setText(age + "");
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v.equals(orderHistoryButton)){
-            Intent i = new Intent(getApplicationContext(), OrderHistoryActivity.class);
-            startActivity(i);
-        } else if (v.equals(balanceInfoButton)){
-            Intent i = new Intent(getApplicationContext(), AddBalanceActivity.class);
-            startActivity(i);
         }
     }
 }
