@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
@@ -30,6 +31,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
     private final String TAG = getClass().getSimpleName();
     private ImageView basket;
+    private Account account;
     private ExpandableListView listView;
     private ExpandableListAdapter listAdapter;
     private ArrayList<String> listDataHeader = new ArrayList<>();
@@ -38,6 +40,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     private ProductDAO productDAO;
     private ArrayList<Product> products = new ArrayList<>();
     private Product product;
+    private Button balanceButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
         basket = (ImageView)findViewById(R.id.order_basket);
         basket.setOnClickListener(this);
+        balanceButton = (Button)findViewById(R.id.buttonBalance);
+        balanceButton.setOnClickListener(this);
 
         listView = (ExpandableListView)findViewById(R.id.expandableListId);
 
@@ -56,6 +61,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         productDAO = factory.createProductDAO();
         productDAO.selectData(this);
 
+        account = (Account)getIntent().getSerializableExtra("account");
     }
 
     public void productSetAvailable(ArrayList<Product> prod){
@@ -92,7 +98,13 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
 
     public void onClick(View v){
-        Intent intent = new Intent(this, OrderDetailActivity.class);
-        startActivity(intent);
+        if(v.equals(balanceButton)){
+            Intent addBalanceIntent = new Intent(this, AddBalanceActivity.class);
+            addBalanceIntent.putExtra("account", account);
+            startActivity(addBalanceIntent);
+        } else {
+            Intent intent = new Intent(this, OrderDetailActivity.class);
+            startActivity(intent);
+        }
     }
 }

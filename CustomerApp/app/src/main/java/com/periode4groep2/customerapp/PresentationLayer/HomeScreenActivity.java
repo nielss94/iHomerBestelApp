@@ -41,6 +41,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         if(v.equals(orderLayoutButton)){
             Intent orderIntent = new Intent(this, OrderActivity.class);
+            orderIntent.putExtra("account", account);
             startActivity(orderIntent);
         }else if(v.equals(settingsLayoutButton)){
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
