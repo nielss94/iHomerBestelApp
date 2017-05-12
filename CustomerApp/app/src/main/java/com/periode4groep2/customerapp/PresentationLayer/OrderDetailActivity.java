@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.R;
 
 public class OrderDetailActivity extends AppCompatActivity implements View.OnClickListener  {
@@ -21,21 +22,27 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
     private TextView totalPriceTextView;
     private Button cancelOrderButton;
     private Button scanOrderButton;
+    private Button balanceButton;
+    private Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
 
+        account = (Account)getIntent().getSerializableExtra("account");
+
         ListView orderItemListView = (ListView)findViewById(R.id.orderItemListView);
-        //totalTagPriceTextView = (TextView)findViewById(R.id.totalTagTextView);
-        //totalPricePriceTextView = (TextView)findViewById(R.id.totalPriceTagTextView);
+        totalTagTextView = (TextView)findViewById(R.id.totalTagTextView);
+        totalPriceTextView = (TextView)findViewById(R.id.totalPriceTagTextView);
         cancelOrderButton = (Button)findViewById(R.id.cancelOrderButton);
         scanOrderButton = (Button)findViewById(R.id.scanOrderButton);
-
+        balanceButton = (Button)findViewById(R.id.buttonBalance);
 
         cancelOrderButton.setOnClickListener(this);
         scanOrderButton.setOnClickListener(this);
+        balanceButton.setOnClickListener(this);
+        balanceButton.setText("€" + String.format("%.2f" ,account.getBalance()/100));
     }
 
     @Override
@@ -43,10 +50,13 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
         if(v.equals(cancelOrderButton)){
             Intent intent = new Intent(this, HomeScreenActivity.class);
             startActivity(intent);
-        }
-        else if(v.equals(scanOrderButton)){
+        } else if(v.equals(scanOrderButton)){
             Intent intent = new Intent(this, ScanActivity.class);
             startActivity(intent);
+        } else if (v.equals(balanceButton)){
+            Intent addBalanceIntent = new Intent(this, AddBalanceActivity.class);
+            addBalanceIntent.putExtra("account", account);
+            startActivity(addBalanceIntent);
         }
     }
 

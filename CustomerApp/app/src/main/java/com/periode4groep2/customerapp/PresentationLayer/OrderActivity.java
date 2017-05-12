@@ -21,11 +21,6 @@ import com.periode4groep2.customerapp.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
-import static android.R.attr.data;
-import static android.R.id.list;
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 public class OrderActivity extends AppCompatActivity implements View.OnClickListener, ProductSetAvailable{
 
@@ -51,6 +46,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         basket.setOnClickListener(this);
         balanceButton = (Button)findViewById(R.id.buttonBalance);
         balanceButton.setOnClickListener(this);
+        account = (Account)getIntent().getSerializableExtra("account");
+        balanceButton.setText("€" + String.format("%.2f" ,account.getBalance()/100) + "");
 
         listView = (ExpandableListView)findViewById(R.id.expandableListId);
 
@@ -60,8 +57,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();
         productDAO.selectData(this);
-
-        account = (Account)getIntent().getSerializableExtra("account");
     }
 
     public void productSetAvailable(ArrayList<Product> prod){
@@ -89,21 +84,19 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                     list.add(products.get(i).getName());
                     listHash.put(listDataHeader.get(j), list);
                 }
-
             }
-
         }
         listAdapter.notifyDataSetChanged();
     }
-
 
     public void onClick(View v){
         if(v.equals(balanceButton)){
             Intent addBalanceIntent = new Intent(this, AddBalanceActivity.class);
             addBalanceIntent.putExtra("account", account);
             startActivity(addBalanceIntent);
-        } else {
+        } else if (v.equals(basket)) {
             Intent intent = new Intent(this, OrderDetailActivity.class);
+            intent.putExtra("account", account);
             startActivity(intent);
         }
     }
