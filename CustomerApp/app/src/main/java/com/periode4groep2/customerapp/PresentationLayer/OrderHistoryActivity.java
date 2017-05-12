@@ -2,6 +2,7 @@ package com.periode4groep2.customerapp.PresentationLayer;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
@@ -33,6 +34,10 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_history);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
+        myToolbar.setTitle("Mijn bestellingen");
+        setSupportActionBar(myToolbar);
 
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();
