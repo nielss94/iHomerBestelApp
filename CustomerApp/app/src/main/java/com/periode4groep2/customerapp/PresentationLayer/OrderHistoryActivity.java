@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -21,7 +22,7 @@ import com.periode4groep2.customerapp.R;
 
 import java.util.ArrayList;
 
-public class OrderHistoryActivity extends AppCompatActivity implements ProductSetAvailable, OrderSetAvailable, View.OnClickListener {
+public class OrderHistoryActivity extends AppCompatActivity implements ProductSetAvailable, OrderSetAvailable, AdapterView.OnItemClickListener, View.OnClickListener {
 
     private final String TAG = getClass().getSimpleName();
     private ArrayList<Product> products = new ArrayList<>();
@@ -78,12 +79,22 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
         orderHistoryListView = (ListView) findViewById(R.id.orderHistoryListViewId);
         historyAdapter = new OrderHistoryAdapter(this, this.orders);
         orderHistoryListView.setAdapter(historyAdapter);
+        orderHistoryListView.setOnItemClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        Intent addBalanceIntent = new Intent(this, AddBalanceActivity.class);
-        addBalanceIntent.putExtra("account", account);
-        startActivity(addBalanceIntent);
+        if(v == balanceButton){
+            Intent addBalanceIntent = new Intent(this, AddBalanceActivity.class);
+            addBalanceIntent.putExtra("account", account);
+            startActivity(addBalanceIntent);
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent balanceHistoryDetail = new Intent(this, OrderHistoryDetailActivity.class);
+
+        startActivity(balanceHistoryDetail);
     }
 }

@@ -1,12 +1,13 @@
 package com.periode4groep2.customerapp.DomainModel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Niels on 5/5/2017.
  */
 
-public class Order {
+public class Order implements Serializable{
 
     private int orderID;
     private String email;
