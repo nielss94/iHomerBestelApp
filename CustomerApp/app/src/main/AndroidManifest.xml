@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.periode4groep2.customerapp">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,10 +24,11 @@
         <activity android:name=".PresentationLayer.SettingsActivity" />
         <activity android:name=".PresentationLayer.OrderActivity" />
         <activity android:name=".PresentationLayer.OrderDetailActivity" />
-        <activity android:name=".PresentationLayer.RefundActivity"></activity>
+        <activity android:name=".PresentationLayer.RefundActivity" />
         <activity android:name=".PresentationLayer.OrderHistoryActivity" />
-        <activity android:name=".PresentationLayer.CustomListItemOrderHistory"></activity>
-        <activity android:name=".PresentationLayer.ScanActivity"/>
+        <activity android:name=".PresentationLayer.CustomListItemOrderHistory" />
+        <activity android:name=".PresentationLayer.ScanActivity" />
+        <activity android:name=".PresentationLayer.OrderHistoryDetailActivity"></activity>
     </application>
 
 </manifest>
