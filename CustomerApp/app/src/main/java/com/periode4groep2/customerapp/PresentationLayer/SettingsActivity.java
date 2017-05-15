@@ -17,7 +17,7 @@ import com.periode4groep2.customerapp.R;
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener{
     Account account;
     private Button saveSettings, balanceButton;
-    private TextView textviewEmail, textviewFirstName, textviewLastName, textviewBirthDate;
+    private TextView textviewEmail, textviewFirstName, textviewLastName, textviewBirthDate, textviewIBAN;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -41,6 +41,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         textviewLastName = (TextView)findViewById(R.id.my_account_lastname);
         textviewLastName.setText(account.getLastName());
         textviewBirthDate = (TextView)findViewById(R.id.my_account_age);
+        textviewIBAN = (TextView)findViewById(R.id.my_account_iban);
+        textviewIBAN.setText(account.getIBAN());
 
         calculateAge();
     }
