@@ -53,7 +53,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
             this.finish();
             Toast.makeText(this, R.string.save_settings_toast, Toast.LENGTH_SHORT).show();
         } else if(v.equals(balanceButton)){
-            Intent addBalanceIntent = new Intent(this, AddBalanceActivity.class);
+            Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
             addBalanceIntent.putExtra("account", account);
             startActivity(addBalanceIntent);
         }

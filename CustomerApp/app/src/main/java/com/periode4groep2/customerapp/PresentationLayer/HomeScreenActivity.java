@@ -53,15 +53,15 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
             settingsIntent.putExtra("account", account);
             startActivity(settingsIntent);
         } else if(v.equals(balanceLayoutButton)){
-            Intent walletIntent = new Intent(this, WalletActivity.class);
-            walletIntent.putExtra("account", account);
-            startActivity(walletIntent);
+            Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
+            addBalanceIntent.putExtra("account", account);
+            startActivity(addBalanceIntent);
         } else if (v.equals(myOrdersLayoutButton)){
             Intent myOrdersIntent = new Intent(this, OrderHistoryActivity.class);
             myOrdersIntent.putExtra("account", account);
             startActivity(myOrdersIntent);
         } else if (v.equals(balanceButton)){
-            Intent addBalanceIntent = new Intent(this, AddBalanceActivity.class);
+            Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
             addBalanceIntent.putExtra("account", account);
             startActivity(addBalanceIntent);
         }

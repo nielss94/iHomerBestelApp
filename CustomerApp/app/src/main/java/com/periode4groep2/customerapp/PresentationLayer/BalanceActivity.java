@@ -13,7 +13,7 @@ import com.periode4groep2.customerapp.R;
 
 
 
-public class AddBalanceActivity extends AppCompatActivity implements View.OnClickListener {
+public class BalanceActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText putInBalance;
     private Button addBalance;
     private TextView currentBalance;

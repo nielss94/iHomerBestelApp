@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PresentationLayer.HomeScreenActivity" />
-        <activity android:name=".PresentationLayer.AddBalanceActivity" />
+        <activity android:name=".PresentationLayer.BalanceActivity" />
         <activity android:name=".PresentationLayer.WalletActivity" />
         <activity android:name=".PresentationLayer.SettingsActivity" />
         <activity android:name=".PresentationLayer.OrderActivity" />

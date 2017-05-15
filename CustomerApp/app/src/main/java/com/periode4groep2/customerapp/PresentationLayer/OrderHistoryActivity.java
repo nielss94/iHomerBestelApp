@@ -85,7 +85,7 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
     @Override
     public void onClick(View v) {
         if(v == balanceButton){
-            Intent addBalanceIntent = new Intent(this, AddBalanceActivity.class);
+            Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
             addBalanceIntent.putExtra("account", account);
             startActivity(addBalanceIntent);
         }

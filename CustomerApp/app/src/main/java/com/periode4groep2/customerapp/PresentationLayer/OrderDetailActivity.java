@@ -3,12 +3,10 @@ package com.periode4groep2.customerapp.PresentationLayer;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.R;
@@ -54,7 +52,7 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
             Intent intent = new Intent(this, ScanActivity.class);
             startActivity(intent);
         } else if (v.equals(balanceButton)){
-            Intent addBalanceIntent = new Intent(this, AddBalanceActivity.class);
+            Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
             addBalanceIntent.putExtra("account", account);
             startActivity(addBalanceIntent);
         }

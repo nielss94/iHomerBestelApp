@@ -45,7 +45,7 @@
         Account niet gevonden
     </string>
 
-    <!-- Strings voor AddBalanceActivity-->
+    <!-- Strings voor BalanceActivity-->
     <string name="current_balance_textview">
         Huidig saldo:
     </string>

@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.DomainModel.Product;
@@ -91,7 +90,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
     public void onClick(View v){
         if(v.equals(balanceButton)){
-            Intent addBalanceIntent = new Intent(this, AddBalanceActivity.class);
+            Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
             addBalanceIntent.putExtra("account", account);
             startActivity(addBalanceIntent);
         } else if (v.equals(basket)) {

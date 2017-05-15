@@ -3,7 +3,6 @@ package com.periode4groep2.customerapp.PresentationLayer;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -11,8 +10,6 @@ import android.widget.Toast;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.R;
-
-import java.util.ArrayList;
 
 public class WalletActivity extends AppCompatActivity implements View.OnClickListener{
     //Logging tag
@@ -41,7 +38,7 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v){
         if(v.equals(addBalanceButton)){
-            Intent intent = new Intent(this, AddBalanceActivity.class);
+            Intent intent = new Intent(this, BalanceActivity.class);
             intent.putExtra("account", account);
             startActivity(intent);
         }
