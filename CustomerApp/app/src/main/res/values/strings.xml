@@ -39,10 +39,10 @@
         Inloggen
     </string>
     <string name="successful_log_in_toast">
-        Succesvol ingelogd
+        Succesvol ingelogd.
     </string>
     <string name="account_not_found_toast">
-        Account niet gevonden
+        Account niet gevonden.
     </string>
 
     <!-- Strings voor BalanceActivity-->
@@ -59,16 +59,16 @@
         €0,00
     </string>
     <string name="add_balance_button">
-        Toevoegen
+        Toevoegen.
     </string>
     <string name="no_amount_entered_toast">
-        U heeft geen bedrag ingevoerd
+        U heeft geen bedrag ingevoerd.
     </string>
     <string name="zero_money_added_toast">
-        U kunt niet €0,00 invoeren
+        U kunt niet €0,00 invoeren.
     </string>
     <string name="too_much_money_toast">
-        U kunt niet meer dan €150,00 op uw account hebben
+        U kunt niet meer dan €150,00 op uw account hebben.
     </string>
     <string name="amount_added_toast">
          euro aan uw account toegevoegd
@@ -177,10 +177,10 @@
 
     <!-- Strings voor ScanActivity -->
     <string name="scan_device">
-        Plaats uw apparaat bij de scanner
+        Plaats uw apparaat bij de scanner.
     </string>
     <string name="scan_device_done">
-        Uw bestelling is succesvol afgerond
+        Uw bestelling is succesvol afgerond.
     </string>
     <string name="scan_activity_button">
         Menu
