@@ -30,8 +30,6 @@
             android:textSize="28dp" />
 
 
-
-
             <TextView
                 android:id="@+id/currentBalance"
                 android:layout_width="match_parent"

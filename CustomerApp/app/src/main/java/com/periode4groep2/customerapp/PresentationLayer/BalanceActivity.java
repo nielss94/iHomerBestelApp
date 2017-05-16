@@ -11,14 +11,11 @@ import android.widget.Toast;
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.R;
 
-
-
 public class BalanceActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText mutateBalance;
     private Button addBalance;
     private Button refundBalance;
     private TextView currentBalanceTextView;
-//    double subtotal = 0;
     private Account account;
 
     @Override
@@ -41,12 +38,12 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
 
-        double currentBalanceValue = Double.parseDouble(currentBalanceTextView.getText().toString());
-        String input = mutateBalance.getText().toString().trim();
-        double currentEntryValue = Double.parseDouble(input);
+
 
         if ( v.equals(addBalance) ) {
-
+            double currentBalanceValue = Double.parseDouble(currentBalanceTextView.getText().toString());
+            String input = mutateBalance.getText().toString().trim();
+            double currentEntryValue = Double.parseDouble(input);
             if ( input.isEmpty() ) {
                 Toast.makeText(this, R.string.no_amount_entered_toast, Toast.LENGTH_SHORT).show();
             } else {
@@ -68,8 +65,11 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
 
                 mutateBalance.setText("");
             }
-        } else if ( v.equals(refundBalance) ) {
 
+        } else if ( v.equals(refundBalance) ) {
+            double currentBalanceValue = Double.parseDouble(currentBalanceTextView.getText().toString());
+            String input = mutateBalance.getText().toString().trim();
+            double currentEntryValue = Double.parseDouble(input);
             if ( input.isEmpty() ) {
                 Toast.makeText(this, "U heeft geen bedrag ingevoerd.", Toast.LENGTH_SHORT).show();
             } else {
