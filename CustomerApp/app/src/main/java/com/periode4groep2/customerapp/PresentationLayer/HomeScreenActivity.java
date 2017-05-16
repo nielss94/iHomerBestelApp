@@ -12,9 +12,9 @@ import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.R;
 
 public class HomeScreenActivity extends AppCompatActivity implements View.OnClickListener {
-    LinearLayout orderLayoutButton, settingsLayoutButton,
+    private LinearLayout orderLayoutButton, settingsLayoutButton,
                   balanceLayoutButton, myOrdersLayoutButton;
-    Account account;
+    private Account account;
     private Button balanceButton;
 
     @Override
