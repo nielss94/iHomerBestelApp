@@ -18,7 +18,7 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
     private Button addBalance;
     private Button refundBalance;
     private TextView currentBalanceTextView;
-    double subtotal = 0;
+//    double subtotal = 0;
     private Account account;
 
     @Override
@@ -40,18 +40,20 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+        double currentBalanceValue = Double.parseDouble(currentBalanceTextView.getText().toString());
+        String input = mutateBalance.getText().toString().trim();
+        double currentEntryValue = Double.parseDouble(input);
+
         if (v.equals(addBalance)) {
-            String input = mutateBalance.getText().toString().trim();
 
             if (input.isEmpty()) {
                 Toast.makeText(this, R.string.no_amount_entered_toast, Toast.LENGTH_SHORT).show();
             } else {
-                double currBalance = Double.parseDouble(input);
-                if (currBalance <= 0.01) {
+                if (currentEntryValue <= 0.01) {
                     Toast.makeText(this, R.string.no_amount_entered_toast, Toast.LENGTH_SHORT).show();
-                } else if (subtotal >= 150.00) {
+                } else if (currentEntryValue>= 150.00) {
                     Toast.makeText(this, R.string.too_much_money_toast, Toast.LENGTH_SHORT).show();
-                } else if (subtotal + currBalance > 150.00) {
+                } else if (currentBalanceValue + currentBalanceValue > 150.00) {
                     Toast.makeText(this, R.string.too_much_money_toast, Toast.LENGTH_SHORT).show();
                 } else {
                     String youHave = getString(R.string.you_have_toast);
@@ -59,20 +61,20 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
                     String toastText = youHave + " " + input + " " + amountAdded;
 
                     Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
-                    subtotal += currBalance;
-                    currentBalanceTextView.setText("€" + String.format("%.2f", subtotal));
+                    double newBalanceValue = currentBalanceValue + currentEntryValue;
+                    currentBalanceTextView.setText("€" + String.format("%.2f", newBalanceValue));
                 }
                 mutateBalance.setText("");
             }
         }
         else if (v.equals(refundBalance)) {
-            String input = mutateBalance.getText().toString().trim();
-            double currentBalanceValue = Double.parseDouble(currentBalanceTextView.getText().toString());
+//            String input = mutateBalance.getText().toString().trim();
+//            double currentBalanceValue = Double.parseDouble(currentBalanceTextView.getText().toString());
 
             if (input.isEmpty()) {
                 Toast.makeText(this, "U heeft geen bedrag ingevoerd.", Toast.LENGTH_SHORT).show();
             } else {
-                double currentEntryValue = Double.parseDouble(input);
+//                double currentEntryValue = Double.parseDouble(input);
 
                 if (currentEntryValue <= 0.01) {
                     Toast.makeText(this, "U kunt niet €0.00 terugstorten op uw rekening.", Toast.LENGTH_SHORT).show();
