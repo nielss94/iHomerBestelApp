@@ -2,11 +2,14 @@ package com.periode4groep2.customerapp.PresentationLayer;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.periode4groep2.customerapp.R;
@@ -75,6 +78,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = inflater.inflate(R.layout.list_group,null);
         }
 
+
         TextView listGroupId = (TextView)convertView.findViewById(R.id.listGroupId);
         listGroupId.setTypeface(null, Typeface.BOLD);
         listGroupId.setText(headerTitle);
@@ -90,7 +94,33 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = inflater.inflate(R.layout.list_item,null);
         }
 
-        TextView txtListChild = (TextView)convertView.findViewById(R.id.listItemId);
+        final TextView txtListChild = (TextView)convertView.findViewById(R.id.listItemId);
+        ImageView plusButton = (ImageView)convertView.findViewById(R.id.list_plusser);
+        final TextView orderedAmount = (TextView)convertView.findViewById(R.id.ordered_amount);
+        plusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int i = Integer.parseInt(orderedAmount.getText().toString());
+                i++;
+                orderedAmount.setText(i+"");
+                Log.i("List", "Plus bij " + txtListChild.getText().toString());
+            }
+        });
+        ImageView minButton = (ImageView)convertView.findViewById(R.id.list_minner);
+        minButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int i = Integer.parseInt(orderedAmount.getText().toString());
+                if(i > 0){
+                    i--;
+                    orderedAmount.setText(i+"");
+                    Log.i("List", "Min bij " + txtListChild.getText().toString());
+                }
+
+
+            }
+        });
         txtListChild.setText(childText);
         return convertView;
     }

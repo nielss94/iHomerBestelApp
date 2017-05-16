@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.DomainModel.Product;
@@ -21,7 +22,7 @@ import com.periode4groep2.customerapp.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class OrderActivity extends AppCompatActivity implements View.OnClickListener, ProductSetAvailable{
+public class OrderActivity extends AppCompatActivity implements View.OnClickListener, ProductSetAvailable {
 
     private final String TAG = getClass().getSimpleName();
     private ImageView basket;
@@ -29,7 +30,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     private ExpandableListView listView;
     private ExpandableListAdapter listAdapter;
     private ArrayList<String> listDataHeader = new ArrayList<>();
-    private HashMap<String,ArrayList<String>> listHash = new HashMap<>();;
+    private HashMap<String, ArrayList<String>> listHash = new HashMap<>();
+    ;
     private DAOFactory factory;
     private ProductDAO productDAO;
     private ArrayList<Product> products = new ArrayList<>();
@@ -41,16 +43,17 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
 
-        basket = (ImageView)findViewById(R.id.order_basket);
+        basket = (ImageView) findViewById(R.id.order_basket);
         basket.setOnClickListener(this);
-        balanceButton = (Button)findViewById(R.id.buttonBalance);
+
+        balanceButton = (Button) findViewById(R.id.buttonBalance);
         balanceButton.setOnClickListener(this);
-        account = (Account)getIntent().getSerializableExtra("account");
-        balanceButton.setText("€" + String.format("%.2f" ,account.getBalance()/100) + "");
+        account = (Account) getIntent().getSerializableExtra("account");
+        balanceButton.setText("€" + String.format("%.2f", account.getBalance() / 100) + "");
 
-        listView = (ExpandableListView)findViewById(R.id.expandableListId);
+        listView = (ExpandableListView) findViewById(R.id.expandableListId);
 
-        listAdapter = new ExpandableListAdapter(this,listDataHeader,listHash);
+        listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash);
         listView.setAdapter(listAdapter);
 
         factory = new MySQLDAOFactory();
@@ -58,10 +61,10 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         productDAO.selectData(this);
     }
 
-    public void productSetAvailable(ArrayList<Product> prod){
+    public void productSetAvailable(ArrayList<Product> prod) {
         products = prod;
         for (int i = 0; i < products.size(); i++) {
-            Log.i(TAG,products.get(i).toString());
+            Log.i(TAG, products.get(i).toString());
         }
         initData();
     }
@@ -79,7 +82,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         for (int j = 0; j < listDataHeader.size(); j++) {
             ArrayList<String> list = new ArrayList<>();
             for (int i = 0; i < products.size(); i++) {
-                if(listDataHeader.get(j).equalsIgnoreCase(products.get(i).getCategory())){
+                if (listDataHeader.get(j).equalsIgnoreCase(products.get(i).getCategory())) {
                     list.add(products.get(i).getName());
                     listHash.put(listDataHeader.get(j), list);
                 }
@@ -88,8 +91,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         listAdapter.notifyDataSetChanged();
     }
 
-    public void onClick(View v){
-        if(v.equals(balanceButton)){
+    public void onClick(View v) {
+        if (v.equals(balanceButton)) {
             Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
             addBalanceIntent.putExtra("account", account);
             startActivity(addBalanceIntent);
