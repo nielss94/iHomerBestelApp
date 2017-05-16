@@ -1,5 +1,6 @@
 package com.periode4groep2.customerapp.PersistancyLayer;
 
+import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.DomainModel.Order;
 
 import java.util.ArrayList;
@@ -26,8 +27,8 @@ public class MySQLOrderDAO implements OrderDAO, MySQLOrderAPIConnector.OrderAvai
     }
 
     @Override
-    public void updateData(Order order) {
-
+    public void insertData(Account account, Order order) {
+        new OrderInsertConnector(account,order).execute();
     }
 
     @Override
