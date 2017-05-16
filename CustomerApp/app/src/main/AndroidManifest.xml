@@ -26,7 +26,8 @@
         <activity android:name=".PresentationLayer.CustomListItemOrderHistory" />
         <activity android:name=".PresentationLayer.ScanActivity" />
         <activity android:name=".PresentationLayer.OrderHistoryDetailActivity" />
-        <activity android:name=".PresentationLayer.CustomListItemOrderHistoryDetail"></activity>
+        <activity android:name=".PresentationLayer.CustomListItemOrderHistoryDetail" />
+        <activity android:name=".PresentationLayer.OrderDetailActivity"></activity>
     </application>
 
 </manifest>
