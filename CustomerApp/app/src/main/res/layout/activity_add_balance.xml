@@ -15,19 +15,19 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="244dp"
-        android:gravity="bottom"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="1">
+        android:layout_weight="1">
 
         <TextView
             android:id="@+id/huidigSaldoTextId"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="24dp"
             android:text="@string/current_balance_textview"
             android:textColor="@color/colorOrange"
-            android:textSize="18dp" />
+            android:textSize="28dp" />
 
 
 
@@ -37,25 +37,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="€@string/current_balance_view"
-                android:textColor="@color/colorOrange"
-                android:textSize="18dp" />
+                android:layout_marginTop="3dp"
+                android:text="@string/current_balance_view"
+                android:textColor="@color/colorGrayWhite"
+                android:textSize="48dp" />
+
 
 
         </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
         <TextView
             android:id="@+id/balanceID"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginBottom="3dp"
             android:text="@string/add_balance"
             android:textColor="@color/colorOrange"
-            android:textSize="18dp" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="vertical"
-        android:layout_weight="0.43">
+            android:textSize="26dp" />
+
         <EditText
             android:id="@+id/giveBalanceID"
             android:layout_width="match_parent"
@@ -64,17 +70,48 @@
             android:hint="@string/desired_balance"
             android:inputType="numberDecimal"
             android:textSize="40dp" />
-        <Button
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <Button
             android:id="@+id/addBalanceID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_marginTop="40dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
             android:background="@color/colorOrange"
             android:text="@string/add_balance_button"
             android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/refundBalanceButton"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorOrange"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="@string/refund_button_text"
+            android:textSize="18sp"
+            />
     </LinearLayout>
+</LinearLayout>
 </LinearLayout>
 
 
