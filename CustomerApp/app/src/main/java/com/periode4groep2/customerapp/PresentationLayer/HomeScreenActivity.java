@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
@@ -16,6 +17,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
                   balanceLayoutButton, myOrdersLayoutButton;
     private Account account;
     private Button balanceButton;
+    private ImageButton unhandledOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,17 +28,19 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         myToolbar.setTitle("Home");
         setSupportActionBar(myToolbar);
 
-        orderLayoutButton = (LinearLayout)findViewById(R.id.OrderID);
-        settingsLayoutButton = (LinearLayout)findViewById(R.id.AccountID);
-        balanceLayoutButton = (LinearLayout)findViewById(R.id.BalanceID);
-        myOrdersLayoutButton = (LinearLayout)findViewById(R.id.MyOrdersID);
-        balanceButton = (Button)findViewById(R.id.buttonBalance);
+        orderLayoutButton = (LinearLayout) findViewById(R.id.OrderID);
+        settingsLayoutButton = (LinearLayout) findViewById(R.id.AccountID);
+        balanceLayoutButton = (LinearLayout) findViewById(R.id.BalanceID);
+        myOrdersLayoutButton = (LinearLayout) findViewById(R.id.MyOrdersID);
+        balanceButton = (Button) findViewById(R.id.buttonBalance);
+        unhandledOrder = (ImageButton) findViewById(R.id.unhandledOrderButton);
 
         orderLayoutButton.setOnClickListener(this);
         settingsLayoutButton.setOnClickListener(this);
         balanceLayoutButton.setOnClickListener(this);
         myOrdersLayoutButton.setOnClickListener(this);
         balanceButton.setOnClickListener(this);
+        unhandledOrder.setVisibility(View.INVISIBLE);
 
         account = (Account)getIntent().getSerializableExtra("account");
         balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
