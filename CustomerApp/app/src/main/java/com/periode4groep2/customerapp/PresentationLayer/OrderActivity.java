@@ -97,9 +97,9 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             addBalanceIntent.putExtra("account", account);
             startActivity(addBalanceIntent);
         } else if (v.equals(basket)) {
-            /*Intent intent = new Intent(this, OrderDetailActivity.class);
+            Intent intent = new Intent(this, OrderDetailActivity.class);
             intent.putExtra("account", account);
-            startActivity(intent);*/
+            startActivity(intent);
         }
     }
 }
