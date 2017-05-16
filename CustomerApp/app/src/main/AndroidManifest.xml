@@ -20,10 +20,8 @@
         </activity>
         <activity android:name=".PresentationLayer.HomeScreenActivity" />
         <activity android:name=".PresentationLayer.BalanceActivity" />
-        <activity android:name=".PresentationLayer.WalletActivity" />
         <activity android:name=".PresentationLayer.SettingsActivity" />
         <activity android:name=".PresentationLayer.OrderActivity" />
-        <activity android:name=".PresentationLayer.OrderDetailActivity" />
         <activity android:name=".PresentationLayer.RefundActivity" />
         <activity android:name=".PresentationLayer.OrderHistoryActivity" />
         <activity android:name=".PresentationLayer.CustomListItemOrderHistory" />
