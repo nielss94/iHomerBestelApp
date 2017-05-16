@@ -22,7 +22,6 @@
         <activity android:name=".PresentationLayer.BalanceActivity" />
         <activity android:name=".PresentationLayer.SettingsActivity" />
         <activity android:name=".PresentationLayer.OrderActivity" />
-        <activity android:name=".PresentationLayer.RefundActivity" />
         <activity android:name=".PresentationLayer.OrderHistoryActivity" />
         <activity android:name=".PresentationLayer.CustomListItemOrderHistory" />
         <activity android:name=".PresentationLayer.ScanActivity" />
