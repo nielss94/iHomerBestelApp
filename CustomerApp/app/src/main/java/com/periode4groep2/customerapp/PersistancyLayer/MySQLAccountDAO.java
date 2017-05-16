@@ -8,6 +8,21 @@ import android.util.Log;
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.PresentationLayer.MainActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 /**
@@ -31,9 +46,10 @@ public class MySQLAccountDAO implements AccountDAO, MySQLAccountAPIConnector.Acc
     }
 
     @Override
-    public void updateData(Account account) {
-
+    public void updateBalance(Account account, double amount) {
+        new BalanceUpdateConnector(account,amount).execute();
     }
+
 
     @Override
     public void accountAvailable(Account account) {

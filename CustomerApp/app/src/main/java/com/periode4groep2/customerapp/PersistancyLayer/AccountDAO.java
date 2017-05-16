@@ -13,5 +13,5 @@ import java.util.ArrayList;
 public interface AccountDAO {
 
     void selectData(MyAccountAvailable context, String email, String password);
-    void updateData(Account account);
+    void updateBalance(Account account, double amount);
 }
