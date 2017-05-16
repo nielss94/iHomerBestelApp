@@ -37,16 +37,15 @@ public class WalletActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v){
-        if(v.equals(addBalanceButton)){
             Intent intent = new Intent(this, BalanceActivity.class);
             intent.putExtra("account", account);
             startActivity(intent);
-        }
-        else if(v.equals(refundBalanceButton)){
-            Intent intent = new Intent(this, RefundActivity.class);
-            startActivity(intent);
-            Toast.makeText(this, R.string.refund_time_toast, Toast.LENGTH_SHORT).show();
-        }
+
+//        else if(v.equals(refundBalanceButton)){
+//            Intent intent = new Intent(this, RefundActivity.class);
+//            startActivity(intent);
+//            Toast.makeText(this, R.string.refund_time_toast, Toast.LENGTH_SHORT).show();
+//        }
     }
 
 //    @Override
