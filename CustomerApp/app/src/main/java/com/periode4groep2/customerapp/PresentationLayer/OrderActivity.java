@@ -1,9 +1,8 @@
 package com.periode4groep2.customerapp.PresentationLayer;
-//http://stackoverflow.com/questions/9824074/android-expandablelistview-looking-for-a-tutorial
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +30,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     private ExpandableListAdapter listAdapter;
     private ArrayList<String> listDataHeader = new ArrayList<>();
     private HashMap<String, ArrayList<String>> listHash = new HashMap<>();
-    ;
     private DAOFactory factory;
     private ProductDAO productDAO;
     private ArrayList<Product> products = new ArrayList<>();
