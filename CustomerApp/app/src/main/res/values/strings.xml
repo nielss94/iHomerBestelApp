@@ -193,6 +193,14 @@
     <string name="total_price_textview">
         €0,00
     </string>
+
+    <!-- Strings voor de aid_list -->
+    <string name="service_name">
+        CardEmulation
+    </string>
+    <string name="card_title">
+        Sample card
+    </string>
 </resources>
 
 

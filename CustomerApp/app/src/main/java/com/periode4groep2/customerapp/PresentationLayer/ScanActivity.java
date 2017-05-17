@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.periode4groep2.customerapp.CardEmulation.CardService;
+import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.R;
 
 
@@ -22,6 +24,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
     private Button button;
     private ImageView checkicon;
     private TextView text;
+    private Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,32 +35,19 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         button.setOnClickListener(this);
         button.setClickable(false);
 
+        account = (Account)getIntent().getSerializableExtra("account");
+
         checkicon = (ImageView)findViewById(R.id.scan_icon);
         checkicon.setVisibility(View.INVISIBLE);
 
         text = (TextView)findViewById(R.id.scan_textview);
         text.setText(R.string.scan_device);
-
-        waitExample();
     }
 
-    public void waitExample() {
-
-        // Dit is een tijdelijke oplossing om het scannen te simuleren. De text wordt niet vervangen maar
-        // dat komt door deze methode.
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                checkicon.setVisibility(View.VISIBLE);
-                button.setClickable(true);
-                text.setText(R.string.scan_device_done);
-            }
-        }, 4000);
-    }
 
     public void onClick(View v){
-        Intent intent = new Intent(this, HomeScreenActivity.class);
-        startActivity(intent);
+        Intent intent = new Intent(this, CardService.class);
+        intent.putExtra("account", account);
+        startService(intent);
     }
 }
