@@ -13,7 +13,6 @@ public class MySQLOrderDAO implements OrderDAO, MySQLOrderAPIConnector.OrderAvai
     private final String TAG = getClass().getSimpleName();
 
     private ArrayList<Order> orders = new ArrayList<>();
-    private MySQLOrderAPIConnector mySQLOrderAPIConnector = new MySQLOrderAPIConnector(this);
     private OrderSetAvailable context;
 
     @Override
@@ -23,12 +22,17 @@ public class MySQLOrderDAO implements OrderDAO, MySQLOrderAPIConnector.OrderAvai
                 "http://ihomerapi.herokuapp.com/api/getOrders"
         };
 
-        mySQLOrderAPIConnector.execute(urls);
+        new MySQLOrderAPIConnector(this).execute(urls);
     }
 
     @Override
     public void insertData(Account account, Order order) {
         new OrderInsertConnector(account,order).execute();
+    }
+
+    @Override
+    public void handleOrder(Account account, Order order) {
+        new OrderHandleConnector(account, order).execute();
     }
 
     @Override

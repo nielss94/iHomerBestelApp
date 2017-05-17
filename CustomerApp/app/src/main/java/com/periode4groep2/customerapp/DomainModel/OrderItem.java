@@ -1,10 +1,12 @@
 package com.periode4groep2.customerapp.DomainModel;
 
+import java.io.Serializable;
+
 /**
  * Created by Niels on 5/5/2017.
  */
 
-public class OrderItem {
+public class OrderItem implements Serializable{
 
     private int productID;
     private int quantity;
