@@ -1,6 +1,9 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -35,6 +38,8 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
     private Order unhandledOrder;
     private Button balanceButton;
     private ImageButton unhandledOrderButton;
+
+    private AnimationDrawable unhandledOrderAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +127,11 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
                     startActivity(i);
                 }
             });
+            unhandledOrderButton.setBackgroundResource(R.drawable.popup_unhandled_order);
+            unhandledOrderAnimation = (AnimationDrawable) unhandledOrderButton.getBackground();
+            int color = Color.parseColor("#FF9600");
+            unhandledOrderAnimation.setColorFilter( color, PorterDuff.Mode.MULTIPLY );
+            unhandledOrderAnimation.start();
         } else {
             unhandledOrderButton.setVisibility(View.INVISIBLE);
         }

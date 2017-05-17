@@ -140,8 +140,8 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:background="@drawable/circle"
-        android:src="@drawable/ic_toc"
         android:id="@+id/unhandledOrderButton"
-        android:layout_gravity="right|bottom" />
+        android:layout_gravity="right|bottom"
+        android:translationY="-265dp"/>
 
 </FrameLayout>
