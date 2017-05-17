@@ -30,9 +30,9 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
     private DAOFactory factory;
     private ProductDAO productDAO;
     private OrderDAO orderDAO;
+    private Account account;
     private ListView orderHistoryListView;
     private OrderHistoryAdapter historyAdapter;
-    private Account account;
     private Button balanceButton;
 
     @Override

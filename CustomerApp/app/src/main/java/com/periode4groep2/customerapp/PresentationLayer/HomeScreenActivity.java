@@ -10,14 +10,31 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
+import com.periode4groep2.customerapp.DomainModel.Order;
+import com.periode4groep2.customerapp.DomainModel.Product;
+import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
+import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
+import com.periode4groep2.customerapp.PersistancyLayer.OrderDAO;
+import com.periode4groep2.customerapp.PersistancyLayer.OrderSetAvailable;
+import com.periode4groep2.customerapp.PersistancyLayer.ProductDAO;
+import com.periode4groep2.customerapp.PersistancyLayer.ProductSetAvailable;
 import com.periode4groep2.customerapp.R;
 
-public class HomeScreenActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.ArrayList;
+
+public class HomeScreenActivity extends AppCompatActivity implements View.OnClickListener, ProductSetAvailable, OrderSetAvailable {
     private LinearLayout orderLayoutButton, settingsLayoutButton,
                   balanceLayoutButton, myOrdersLayoutButton;
+
+    private ArrayList<Product> products = new ArrayList<>();
+    private ArrayList<Order> orders = new ArrayList<>();
+    private DAOFactory factory;
+    private ProductDAO productDAO;
+    private OrderDAO orderDAO;
     private Account account;
+    private Order unhandledOrder;
     private Button balanceButton;
-    private ImageButton unhandledOrder;
+    private ImageButton unhandledOrderButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,19 +45,25 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         myToolbar.setTitle("Home");
         setSupportActionBar(myToolbar);
 
+        factory = new MySQLDAOFactory();
+        productDAO = factory.createProductDAO();
+        orderDAO = factory.createOrderDAO();
+
+        orderDAO.selectData(this);
+        productDAO.selectData(this);
+
         orderLayoutButton = (LinearLayout) findViewById(R.id.OrderID);
         settingsLayoutButton = (LinearLayout) findViewById(R.id.AccountID);
         balanceLayoutButton = (LinearLayout) findViewById(R.id.BalanceID);
         myOrdersLayoutButton = (LinearLayout) findViewById(R.id.MyOrdersID);
         balanceButton = (Button) findViewById(R.id.buttonBalance);
-        unhandledOrder = (ImageButton) findViewById(R.id.unhandledOrderButton);
+        unhandledOrderButton = (ImageButton) findViewById(R.id.unhandledOrderButton);
 
         orderLayoutButton.setOnClickListener(this);
         settingsLayoutButton.setOnClickListener(this);
         balanceLayoutButton.setOnClickListener(this);
         myOrdersLayoutButton.setOnClickListener(this);
         balanceButton.setOnClickListener(this);
-        unhandledOrder.setVisibility(View.INVISIBLE);
 
         account = (Account)getIntent().getSerializableExtra("account");
         balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
@@ -69,5 +92,43 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
             addBalanceIntent.putExtra("account", account);
             startActivity(addBalanceIntent);
         }
+    }
+
+    @Override
+    public void orderSetAvailable(ArrayList<Order> orders) {
+        for (int i = 0; i < orders.size(); i++) {
+            if(orders.get(i).getEmail().equalsIgnoreCase(account.getEmail())) {
+                this.orders.add(orders.get(i));
+            }
+        }
+        checkUnhandledOrder();
+    }
+
+    public void checkUnhandledOrder() {
+        for (int i = 0; i < orders.size() ; i++) {
+            if(orders.get(i).isHandled() == false) {
+                unhandledOrder = orders.get(i);
+            }
+        }
+
+        if(unhandledOrder != null){
+            unhandledOrderButton.setVisibility(View.VISIBLE);
+            unhandledOrderButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(HomeScreenActivity.this, OrderHistoryDetailActivity.class);
+                    i.putExtra("account", account);
+                    i.putExtra("order", unhandledOrder);
+                    startActivity(i);
+                }
+            });
+        } else {
+            unhandledOrderButton.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    @Override
+    public void productSetAvailable(ArrayList<Product> products) {
+        this.products = products;
     }
 }
