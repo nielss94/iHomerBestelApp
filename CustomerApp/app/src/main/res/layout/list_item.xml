@@ -20,7 +20,16 @@
                 android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.6"/>
+                android:layout_weight="1.5"/>
+
+            <TextView
+                android:id="@+id/listItemPrice"
+                android:layout_gravity="center_vertical"
+                android:textSize="18dp"
+                android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
 
             <ImageView
                 android:id="@+id/list_minner"
