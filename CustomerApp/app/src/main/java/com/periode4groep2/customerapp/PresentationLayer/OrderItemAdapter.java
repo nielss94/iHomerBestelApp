@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.periode4groep2.customerapp.DomainModel.Account;
+import com.periode4groep2.customerapp.DomainModel.Order;
 import com.periode4groep2.customerapp.DomainModel.OrderItem;
 import com.periode4groep2.customerapp.R;
 
@@ -18,6 +20,9 @@ import java.util.ArrayList;
 
 
 public class OrderItemAdapter extends ArrayAdapter<OrderItem> {
+
+    private Account account;
+    private Order order;
 
     public OrderItemAdapter(Context context, ArrayList<OrderItem> orderItemList){
         super(context, R.layout.activity_custom_order_list_item, orderItemList);
@@ -29,17 +34,11 @@ public class OrderItemAdapter extends ArrayAdapter<OrderItem> {
         LayoutInflater productInflater = LayoutInflater.from(getContext());
         View customView = productInflater.inflate(R.layout.activity_custom_order_list_item, parent, false);
 
-        OrderItem orderItem = getItem(position);
-        //Order order = getItem();
-        //Product product = getItem(position);
+        OrderItem singleOrderItem = getItem(position);
 
         TextView productName = (TextView)customView.findViewById(R.id.productNameTextView);
         TextView productQuantity = (TextView)customView.findViewById(R.id.productQuantityTextView);
         TextView productTotalPrice = (TextView)customView.findViewById(R.id.productTotalPriceTextView);
-
-        productName.setText(orderItem.getProductID());
-        productQuantity.setText(orderItem.getQuantity());
-        // productTotalPrice.setText(product.getTotalPrice());
 
         return customView;
     }
