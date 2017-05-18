@@ -12,6 +12,8 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.periode4groep2.customerapp.DomainModel.OrderItem;
+import com.periode4groep2.customerapp.DomainModel.Product;
 import com.periode4groep2.customerapp.R;
 
 import java.util.ArrayList;
@@ -26,12 +28,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private ArrayList<String> ListDataHeader;
-    private HashMap<String,ArrayList<String>> listHashMap;
+    private HashMap<String,ArrayList<Product>> listHashMap;
+    private OnOrderChanged listener;
 
-    public ExpandableListAdapter(Context context, ArrayList<String> listDataHeader, HashMap<String, ArrayList<String>> listHashMap) {
+    public ExpandableListAdapter(Context context, ArrayList<String> listDataHeader, HashMap<String, ArrayList<Product>> listHashMap, OnOrderChanged listener) {
         this.context = context;
         ListDataHeader = listDataHeader;
         this.listHashMap = listHashMap;
+        this.listener = listener;
     }
 
     @Override
@@ -87,7 +91,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        final String childText = (String)getChild(groupPosition,childPosition);
+        final Product childProduct = (Product)getChild(groupPosition,childPosition);
         if (convertView == null)
         {
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -95,6 +99,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         final TextView txtListChild = (TextView)convertView.findViewById(R.id.listItemId);
+        final TextView txtListPrice = (TextView)convertView.findViewById(R.id.listItemPrice);
         ImageView plusButton = (ImageView)convertView.findViewById(R.id.list_plusser);
         final TextView orderedAmount = (TextView)convertView.findViewById(R.id.ordered_amount);
         plusButton.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +108,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
                 int i = Integer.parseInt(orderedAmount.getText().toString());
                 i++;
+                OrderItem oi = new OrderItem(childProduct.getProductID(),i);
+                listener.onOrderChanged(childProduct.getPrice(),oi);
                 orderedAmount.setText(i+"");
                 Log.i("List", "Plus bij " + txtListChild.getText().toString());
             }
@@ -115,13 +122,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 if(i > 0){
                     i--;
                     orderedAmount.setText(i+"");
+                    OrderItem oi = new OrderItem(childProduct.getProductID(),1);
+                    listener.onOrderChanged(-childProduct.getPrice(), oi);
                     Log.i("List", "Min bij " + txtListChild.getText().toString());
+
                 }
-
-
             }
         });
-        txtListChild.setText(childText);
+        txtListChild.setText(childProduct.getName());
+        txtListPrice.setText("€" + childProduct.getPrice());
         return convertView;
     }
 
@@ -129,4 +138,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
+
+    public interface OnOrderChanged{
+        void onOrderChanged(double newPrice, OrderItem orderItem);
+    }
+
 }

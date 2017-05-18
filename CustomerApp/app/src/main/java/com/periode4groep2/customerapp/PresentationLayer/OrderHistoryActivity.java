@@ -30,9 +30,9 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
     private DAOFactory factory;
     private ProductDAO productDAO;
     private OrderDAO orderDAO;
+    private Account account;
     private ListView orderHistoryListView;
     private OrderHistoryAdapter historyAdapter;
-    private Account account;
     private Button balanceButton;
 
     @Override
@@ -69,12 +69,6 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
             if(orders.get(i).getEmail().equalsIgnoreCase(account.getEmail())) {
                 this.orders.add(orders.get(i));
             }
-            /*
-            Log.i(TAG, this.orders.get(i).toString());
-            for (int j = 0; j < this.orders.get(i).getOrderItems().size() ; j++) {
-                Log.i(TAG, this.orders.get(i).getOrderItems().get(j).toString());
-            }
-            */
         }
         orderHistoryListView = (ListView) findViewById(R.id.orderHistoryListViewId);
         historyAdapter = new OrderHistoryAdapter(this, this.orders);
@@ -94,6 +88,8 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent balanceHistoryDetail = new Intent(this, OrderHistoryDetailActivity.class);
+        balanceHistoryDetail.putExtra("order", (Order)orderHistoryListView.getItemAtPosition(position));
+        balanceHistoryDetail.putExtra("account", account);
 
         startActivity(balanceHistoryDetail);
     }

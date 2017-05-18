@@ -47,7 +47,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View v){
         Intent intent = new Intent(this, CardService.class);
-        intent.putExtra("account", account);
+        intent.putExtra("account", account.getFirstName());
         startService(intent);
     }
 }

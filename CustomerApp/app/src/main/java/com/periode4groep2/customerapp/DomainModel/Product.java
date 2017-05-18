@@ -1,10 +1,12 @@
 package com.periode4groep2.customerapp.DomainModel;
 
+import java.io.Serializable;
+
 /**
  * Created by Niels on 5/5/2017.
  */
 
-public class Product {
+public class Product implements Serializable {
 
     private int productID;
     private String category;
