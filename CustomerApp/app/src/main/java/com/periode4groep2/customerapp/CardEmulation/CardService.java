@@ -4,6 +4,7 @@ package com.periode4groep2.customerapp.CardEmulation;
  * Created by ricky on 17-5-2017.
  */
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.nfc.cardemulation.HostApduService;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,7 +28,7 @@ public class CardService extends HostApduService {
     private static final byte[] SELECT_APDU = BuildSelectApdu(SAMPLE_LOYALTY_CARD_AID);
 
     private Account account;
-
+    SharedPreferences sharedPreferences;
 
 
     public void onCommandStart(Intent intent, int startId){
@@ -47,9 +48,10 @@ public class CardService extends HostApduService {
         // send the loyalty card account number, followed by a SELECT_OK status trailer (0x9000).
         if (Arrays.equals(SELECT_APDU, commandApdu)) {
 
-            String name = account.getFirstName();
+            String name = sharedPreferences.getString("Email", "Default");
+            Log.i("Name", name);
 
-//            String account = AccountStorage.GetAccount(this);
+
             byte[] nameBytes = name.getBytes();
             Log.i(TAG, "Sending account number: " + name);
             return ConcatArrays(nameBytes, SELECT_OK_SW);

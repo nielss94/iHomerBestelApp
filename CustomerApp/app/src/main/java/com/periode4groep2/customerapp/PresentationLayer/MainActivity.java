@@ -1,9 +1,11 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,11 +27,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText email, password;
     private Account account;
 
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
         factory = new MySQLDAOFactory();
         accountDAO = factory.createAccountDAO();
 
@@ -41,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
         setSupportActionBar(toolbar);
+
+        editor.clear();
+
     }
 
     @Override
@@ -62,10 +73,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void logIn(){
 
+        editor.putString("Email", account.getEmail());
+        editor.commit();
+        Log.i("", sharedPreferences.getString("Email","emaliltjw"));
         Intent intent = new Intent(this, HomeScreenActivity.class);
         intent.putExtra("account", account);
         startActivity(intent);
         Toast.makeText(this, R.string.successful_log_in_toast, Toast.LENGTH_SHORT).show();
+
 
     }
 }
