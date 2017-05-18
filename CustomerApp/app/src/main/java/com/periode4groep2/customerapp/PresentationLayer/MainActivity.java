@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void myAccountNotAvailable() {
         Toast.makeText(this, R.string.account_not_found_toast, Toast.LENGTH_SHORT).show();
-    }
+    }  .
 
     public void logIn(){
 

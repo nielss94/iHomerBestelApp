@@ -3,6 +3,7 @@ package com.periode4groep2.customerapp.CardEmulation;
 /**
  * Created by ricky on 17-5-2017.
  */
+
 import android.content.Intent;
 import android.nfc.cardemulation.HostApduService;
 import android.os.Bundle;
@@ -10,7 +11,6 @@ import android.util.Log;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.R;
-
 import java.util.Arrays;
 
 public class CardService extends HostApduService {
@@ -28,13 +28,18 @@ public class CardService extends HostApduService {
 
     private Account account;
 
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
 
+        // Check if intent has extras
+        if(intent.getExtras() != null){
 
-    public void onCommandStart(Intent intent, int startId){
-        account = (Account)intent.getSerializableExtra("account");
-        Log.i(TAG, account.getFirstName());
+            // Get message
+            account = (Account)intent.getSerializableExtra("account");
+            Log.i(TAG, "Deze account swa:" + account.getEmail());
+        }
+        return START_NOT_STICKY;
     }
-
 
     @Override
     public void onDeactivated(int reason) { }
