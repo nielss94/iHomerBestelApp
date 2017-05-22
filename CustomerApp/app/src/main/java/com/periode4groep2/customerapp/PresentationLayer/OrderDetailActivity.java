@@ -30,7 +30,7 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
 
         account = (Account)getIntent().getSerializableExtra("account");
 
-        ListView orderItemListView = (ListView)findViewById(R.id.orderItemListView);
+        orderItemListView = (ListView)findViewById(R.id.orderItemListView);
         totalTagTextView = (TextView)findViewById(R.id.totalTagTextView);
         totalPriceTextView = (TextView)findViewById(R.id.totalPriceTagTextView);
         cancelOrderButton = (Button)findViewById(R.id.cancelOrderButton);
