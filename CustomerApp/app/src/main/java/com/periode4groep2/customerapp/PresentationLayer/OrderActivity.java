@@ -61,7 +61,16 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         listView = (ExpandableListView) findViewById(R.id.expandableListId);
 
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash, this);
+
         listView.setAdapter(listAdapter);
+
+        listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                // Doing nothing
+                return true;
+            }
+        });
         newOrder = new Order(1, account.getEmail(), false, 0.00, "2017-05-17");
     }
 
