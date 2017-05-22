@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
+import com.periode4groep2.customerapp.DomainModel.Order;
 import com.periode4groep2.customerapp.R;
 
 public class OrderDetailActivity extends AppCompatActivity implements View.OnClickListener  {
@@ -22,6 +23,7 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
     private Button scanOrderButton;
     private Button balanceButton;
     private Account account;
+    private Order order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,7 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_order_detail);
 
         account = (Account)getIntent().getSerializableExtra("account");
-
+        order = (Order)getIntent().getSerializableExtra("order");
         orderItemListView = (ListView)findViewById(R.id.orderItemListView);
         totalTagTextView = (TextView)findViewById(R.id.totalTagTextView);
         totalPriceTextView = (TextView)findViewById(R.id.totalPriceTagTextView);
