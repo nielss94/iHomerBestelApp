@@ -121,7 +121,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
             unhandledOrderButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(HomeScreenActivity.this, OrderHistoryDetailActivity.class);
+                    Intent i = new Intent(HomeScreenActivity.this, UnhandledOrderHistoryDetailActivity.class);
                     i.putExtra("account", account);
                     i.putExtra("order", unhandledOrder);
                     startActivity(i);

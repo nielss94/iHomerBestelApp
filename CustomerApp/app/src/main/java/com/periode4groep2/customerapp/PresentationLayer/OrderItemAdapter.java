@@ -11,9 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.periode4groep2.customerapp.DomainModel.Account;
-import com.periode4groep2.customerapp.DomainModel.Order;
 import com.periode4groep2.customerapp.DomainModel.OrderItem;
+import com.periode4groep2.customerapp.DomainModel.Product;
 import com.periode4groep2.customerapp.R;
 
 import java.util.ArrayList;
@@ -21,26 +20,34 @@ import java.util.ArrayList;
 
 public class OrderItemAdapter extends ArrayAdapter<OrderItem> {
 
-    private Account account;
-    private Order order;
+    private ArrayList<Product> productList;
 
-    public OrderItemAdapter(Context context, ArrayList<OrderItem> orderItemList){
-        super(context, R.layout.activity_custom_order_list_item, orderItemList);
+    public OrderItemAdapter(Context context, ArrayList<OrderItem> orderItemList, ArrayList<Product> productList){
+        super(context, R.layout.activity_custom_list_item_order_history_detail, orderItemList);
+        this.productList = productList;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
 
         LayoutInflater productInflater = LayoutInflater.from(getContext());
-        View customView = productInflater.inflate(R.layout.activity_custom_order_list_item, parent, false);
+        View customView = productInflater.inflate(R.layout.activity_custom_list_item_order_history_detail, parent, false);
 
         OrderItem singleOrderItem = getItem(position);
-
         TextView productName = (TextView)customView.findViewById(R.id.productNameTextView);
         TextView productQuantity = (TextView)customView.findViewById(R.id.productQuantityTextView);
-        TextView productTotalPrice = (TextView)customView.findViewById(R.id.productTotalPriceTextView);
+
+
+        for (int i = 0; i < productList.size(); i++) {
+            if(productList.get(i).getProductID() == singleOrderItem.getProductID())
+            {
+                productName.setText(productList.get(i).getName());
+                break;
+            }
+        }
+
+        productQuantity.setText(singleOrderItem.getQuantity()+"");
 
         return customView;
     }
-
 }

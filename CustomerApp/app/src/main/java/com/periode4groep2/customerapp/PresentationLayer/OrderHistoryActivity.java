@@ -87,7 +87,7 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent balanceHistoryDetail = new Intent(this, OrderHistoryDetailActivity.class);
+        Intent balanceHistoryDetail = new Intent(this, UnhandledOrderHistoryDetailActivity.class);
         balanceHistoryDetail.putExtra("order", (Order)orderHistoryListView.getItemAtPosition(position));
         balanceHistoryDetail.putExtra("account", account);
 

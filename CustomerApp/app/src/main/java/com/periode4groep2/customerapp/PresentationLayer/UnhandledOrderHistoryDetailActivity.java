@@ -1,25 +1,36 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.DomainModel.Order;
+import com.periode4groep2.customerapp.DomainModel.Product;
 import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
 import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
-import com.periode4groep2.customerapp.PersistancyLayer.OrderDAO;
+import com.periode4groep2.customerapp.PersistancyLayer.ProductDAO;
+import com.periode4groep2.customerapp.PersistancyLayer.ProductSetAvailable;
 import com.periode4groep2.customerapp.R;
 
-public class OrderHistoryDetailActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity implements ProductSetAvailable {
 
     private final String TAG = getClass().getSimpleName();
     private Button orderButton;
     private Order order;
     private Account account;
+    private DAOFactory factory;
+    private ProductDAO productDAO;
+    private ArrayList<Product> productList = new ArrayList<>();
+    private ListView orderListView;
+    private OrderItemAdapter orderItemAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +41,31 @@ public class OrderHistoryDetailActivity extends AppCompatActivity {
         myToolbar.setTitle("Bestelling");
         setSupportActionBar(myToolbar);
 
+        factory = new MySQLDAOFactory();
+        productDAO = factory.createProductDAO();
+        productDAO.selectData(this);
+
+
         order = (Order)getIntent().getSerializableExtra("order");
         account = (Account)getIntent().getSerializableExtra("account");
 
         orderButton = (Button)findViewById(R.id.payButton);
+
+        TextView totalPrice = (TextView) findViewById(R.id.totalPrice);
+        totalPrice.setText("€" + order.getTotalPrice());
 
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             }
         });
+    }
+
+    @Override
+    public void productSetAvailable(ArrayList<Product> products) {
+        productList = products;
+        orderListView = (ListView) findViewById(R.id.orderItemListView);
+        orderItemAdapter = new OrderItemAdapter(this, order.getOrderItems(), productList);
+        orderListView.setAdapter(orderItemAdapter);
     }
 }

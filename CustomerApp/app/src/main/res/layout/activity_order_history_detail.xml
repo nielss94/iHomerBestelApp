@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorBackground"
-    tools:context="com.periode4groep2.customerapp.PresentationLayer.OrderHistoryDetailActivity">
+    tools:context="com.periode4groep2.customerapp.PresentationLayer.UnhandledOrderHistoryDetailActivity">
 
     <include
         android:id="@+id/tool_bar"
@@ -98,17 +98,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="0.5"
                 android:text="@string/quantity_textview"
                 android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="@string/price_textview"
-                android:textSize="16sp"
-                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -157,25 +149,6 @@
             android:text="Nu betalen"
             android:textSize="18dp" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/backtoOrderHistory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@color/colorOrange"
-                android:text="Terug naar bestelhistorie"
-                android:textSize="18dp" />
-
-        </RelativeLayout>
     </LinearLayout>
 
 
