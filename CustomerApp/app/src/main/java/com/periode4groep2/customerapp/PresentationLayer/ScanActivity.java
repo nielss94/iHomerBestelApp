@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.periode4groep2.customerapp.CardEmulation.AccountStorage;
 import com.periode4groep2.customerapp.CardEmulation.CardService;
 import com.periode4groep2.customerapp.DomainModel.Account;
+import com.periode4groep2.customerapp.DomainModel.Order;
 import com.periode4groep2.customerapp.R;
 
 
@@ -28,9 +29,8 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button button;
     private ImageView checkicon;
-    private TextView text;
+    private Order order;
     private Account account;
-    private AccountStorage as;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +41,9 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         button.setOnClickListener(this);
         button.setClickable(false);
 
+        order = (Order)getIntent().getSerializableExtra("order");
         account = (Account)getIntent().getSerializableExtra("account");
-        //EditText accountje = (EditText)findViewById(R.id.scan_edittext_view);
-        //accountje.setText(AccountStorage.GetAccount(this));
-        AccountStorage.SetAccount(this, account.getEmail());
+        AccountStorage.SetAccount(this, order.getOrderID() + "");
 
         checkicon = (ImageView)findViewById(R.id.scan_icon);
         checkicon.setVisibility(View.INVISIBLE);
