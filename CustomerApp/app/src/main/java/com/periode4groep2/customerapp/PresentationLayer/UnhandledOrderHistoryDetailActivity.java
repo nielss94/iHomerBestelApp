@@ -1,5 +1,6 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -30,6 +31,7 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
     private ArrayList<Product> productList = new ArrayList<>();
     private ListView orderListView;
     private OrderItemAdapter orderItemAdapter;
+    private Button balanceButton;
 
 
     @Override
@@ -44,12 +46,24 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();
         productDAO.selectData(this);
+        balanceButton = (Button) findViewById(R.id.buttonBalance);
 
 
         order = (Order)getIntent().getSerializableExtra("order");
         account = (Account)getIntent().getSerializableExtra("account");
+        balanceButton.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                Intent addBalanceIntent = new Intent(getApplicationContext(), BalanceActivity.class);
+                addBalanceIntent.putExtra("account", account);
+                startActivity(addBalanceIntent);
+            }
+        });
         orderButton = (Button)findViewById(R.id.payButton);
+
+        account = (Account)getIntent().getSerializableExtra("account");
+        balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
 
         TextView totalPrice = (TextView) findViewById(R.id.totalPrice);
         totalPrice.setText("€" + order.getTotalPrice());
@@ -57,6 +71,11 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                    Intent addBalanceIntent = new Intent(getApplicationContext(), BalanceActivity.class);
+                    addBalanceIntent.putExtra("account", account);
+                    startActivity(addBalanceIntent);
+
             }
         });
     }
