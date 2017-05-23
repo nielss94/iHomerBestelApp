@@ -1,15 +1,20 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.periode4groep2.customerapp.CardEmulation.AccountStorage;
 import com.periode4groep2.customerapp.CardEmulation.CardService;
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.R;
@@ -25,6 +30,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView checkicon;
     private TextView text;
     private Account account;
+    private AccountStorage as;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,18 +42,21 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         button.setClickable(false);
 
         account = (Account)getIntent().getSerializableExtra("account");
+        //EditText accountje = (EditText)findViewById(R.id.scan_edittext_view);
+        //accountje.setText(AccountStorage.GetAccount(this));
+        AccountStorage.SetAccount(this, account.getEmail());
 
         checkicon = (ImageView)findViewById(R.id.scan_icon);
         checkicon.setVisibility(View.INVISIBLE);
-
-        text = (TextView)findViewById(R.id.scan_textview);
-        text.setText(R.string.scan_device);
     }
-
 
     public void onClick(View v){
         Intent intent = new Intent(this, CardService.class);
         intent.putExtra("account", account.getFirstName());
         startService(intent);
+    }
+
+    public void onResume(){
+        super.onResume();
     }
 }
