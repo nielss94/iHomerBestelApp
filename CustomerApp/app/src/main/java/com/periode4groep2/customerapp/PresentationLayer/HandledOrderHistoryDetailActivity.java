@@ -19,9 +19,8 @@ import com.periode4groep2.customerapp.R;
 
 import java.util.ArrayList;
 
-public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity implements ProductSetAvailable {
+public class HandledOrderHistoryDetailActivity extends AppCompatActivity implements ProductSetAvailable {
 
-    private final String TAG = getClass().getSimpleName();
     private Button orderButton;
     private Order order;
     private Account account;
@@ -29,16 +28,15 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
     private ProductDAO productDAO;
     private ArrayList<Product> productList = new ArrayList<>();
     private ListView orderListView;
-    private UnhandledOrderItemAdapter unhandledOrderItemAdapter;
-
+    private HandledOrderItemAdapter handledOrderItemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_unhandled_order_history_detail);
+        setContentView(R.layout.activity_handled_order_history_detail);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
-        myToolbar.setTitle("Unhandled Bestelling");
+        myToolbar.setTitle("Handled Bestelling");
         setSupportActionBar(myToolbar);
 
         factory = new MySQLDAOFactory();
@@ -46,10 +44,10 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
         productDAO.selectData(this);
 
 
-        order = (Order)getIntent().getSerializableExtra("order");
-        account = (Account)getIntent().getSerializableExtra("account");
+        order = (Order) getIntent().getSerializableExtra("order");
+        account = (Account) getIntent().getSerializableExtra("account");
 
-        orderButton = (Button)findViewById(R.id.payButton);
+        orderButton = (Button) findViewById(R.id.orderAgainButton);
 
         TextView totalPrice = (TextView) findViewById(R.id.totalPrice);
         totalPrice.setText("€" + order.getTotalPrice());
@@ -65,7 +63,7 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
     public void productSetAvailable(ArrayList<Product> products) {
         productList = products;
         orderListView = (ListView) findViewById(R.id.orderItemListView);
-        unhandledOrderItemAdapter = new UnhandledOrderItemAdapter(this, order.getOrderItems(), productList);
-        orderListView.setAdapter(unhandledOrderItemAdapter);
+        handledOrderItemAdapter = new HandledOrderItemAdapter(this, order.getOrderItems(), productList);
+        orderListView.setAdapter(handledOrderItemAdapter);
     }
 }
