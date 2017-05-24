@@ -30,13 +30,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private ArrayList<String> ListDataHeader;
     private HashMap<String,ArrayList<Product>> listHashMap;
-    private OnOrderChanged listener;
 
-    public ExpandableListAdapter(Context context, ArrayList<String> listDataHeader, HashMap<String, ArrayList<Product>> listHashMap, OnOrderChanged listener) {
+    public ExpandableListAdapter(Context context, ArrayList<String> listDataHeader, HashMap<String, ArrayList<Product>> listHashMap ) {
         this.context = context;
         ListDataHeader = listDataHeader;
         this.listHashMap = listHashMap;
-        this.listener = listener;
     }
 
     @Override
@@ -82,8 +80,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.list_group,null);
         }
-        ExpandableListView mExpandableListView = (ExpandableListView) parent;
-        mExpandableListView.expandGroup(groupPosition);
         TextView listGroupId = (TextView)convertView.findViewById(R.id.listGroupId);
         listGroupId.setTypeface(null, Typeface.BOLD);
         listGroupId.setText(headerTitle);
@@ -101,35 +97,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         final TextView txtListChild = (TextView)convertView.findViewById(R.id.listItemId);
         final TextView txtListPrice = (TextView)convertView.findViewById(R.id.listItemPrice);
-        ImageView plusButton = (ImageView)convertView.findViewById(R.id.list_plusser);
-        final TextView orderedAmount = (TextView)convertView.findViewById(R.id.ordered_amount);
-        plusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                int i = Integer.parseInt(orderedAmount.getText().toString());
-                i++;
-                OrderItem oi = new OrderItem(childProduct.getProductID(),i);
-                listener.onOrderChanged(childProduct.getPrice(),oi);
-                orderedAmount.setText(i+"");
-                Log.i("List", "Plus bij " + txtListChild.getText().toString());
-            }
-        });
-        ImageView minButton = (ImageView)convertView.findViewById(R.id.list_minner);
-        minButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int i = Integer.parseInt(orderedAmount.getText().toString());
-                if(i > 0){
-                    i--;
-                    orderedAmount.setText(i+"");
-                    OrderItem oi = new OrderItem(childProduct.getProductID(),1);
-                    listener.onOrderChanged(-childProduct.getPrice(), oi);
-                    Log.i("List", "Min bij " + txtListChild.getText().toString());
-
-                }
-            }
-        });
         txtListChild.setText(childProduct.getName());
         txtListPrice.setText("€" + childProduct.getPrice());
         return convertView;
@@ -138,10 +105,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
-    }
-
-    public interface OnOrderChanged{
-        void onOrderChanged(double newPrice, OrderItem orderItem);
     }
 
 }

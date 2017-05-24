@@ -1,13 +1,20 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.util.Log;
+import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
@@ -23,10 +30,10 @@ import com.periode4groep2.customerapp.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class OrderActivity extends AppCompatActivity implements View.OnClickListener, ProductSetAvailable, ExpandableListAdapter.OnOrderChanged {
+public class OrderActivity extends AppCompatActivity implements View.OnClickListener, ProductSetAvailable{
 
     private final String TAG = getClass().getSimpleName();
-    private ImageView basket;
+    private TextView basket;
     private Account account;
     private ExpandableListView listView;
     private ExpandableListAdapter listAdapter;
@@ -39,6 +46,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     private Button balanceButton;
     private TextView totalOrderPrice;
     private Order newOrder;
+    private ImageButton popUpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +58,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         productDAO.selectData(this);
 
         totalOrderPrice = (TextView)findViewById(R.id.totalOrderPrice);
-        basket = (ImageView) findViewById(R.id.order_basket);
+        basket = (TextView) findViewById(R.id.orderButton);
         basket.setOnClickListener(this);
 
         balanceButton = (Button) findViewById(R.id.buttonBalance);
@@ -58,16 +66,40 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         account = (Account) getIntent().getSerializableExtra("account");
         balanceButton.setText("€" + String.format("%.2f", account.getBalance() / 100) + "");
 
+        popUpButton = (ImageButton) findViewById(R.id.popUpButton);
+        popUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu menu = new PopupMenu(OrderActivity.this, v);
+
+                for (int i = 0; i < products.size(); i++) {
+                    for (int j = 0; j < newOrder.getOrderItems().size(); j++) {
+                        if (products.get(i).getProductID() == newOrder.getOrderItems().get(j).getProductID()) {
+
+                            Log.i(TAG, "New menu item pls");
+                            menu.getMenu().add(products.get(i).getName() + " " + newOrder.getOrderItems().get(j).getQuantity());
+                        }
+                    }
+                }
+                menu.show();
+            }
+        });
         listView = (ExpandableListView) findViewById(R.id.expandableListId);
 
-        listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash, this);
+        listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash);
 
         listView.setAdapter(listAdapter);
-
-        listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                // Doing nothing
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+
+                Product product = (Product)listView.getExpandableListAdapter().getChild(groupPosition,childPosition);
+
+                Log.i(TAG,"Click on item " + product.getName());
+                OrderItem oi = new OrderItem(product.getProductID(),1);
+
+                addOrderitem(product.getPrice(), oi);
+
                 return true;
             }
         });
@@ -117,8 +149,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    @Override
-    public void onOrderChanged(double newPrice, OrderItem orderItem) {
+    public void addOrderitem(double newPrice, OrderItem orderItem) {
         newOrder.setTotalPrice(newOrder.getTotalPrice() + newPrice);
         totalOrderPrice.setText("€" + String.format("%.2f", newOrder.getTotalPrice()));
         ArrayList<Integer> productIDsInOrderItems = new ArrayList<>();
@@ -139,6 +170,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             }
         }
 
-        Log.i(TAG,newOrder.toString());
+        Log.i(TAG,newOrder.getOrderItems().toString());
     }
 }

@@ -193,6 +193,9 @@
     <string name="total_price_textview">
         €0,00
     </string>
+    <string name="pay">
+        Betalen
+    </string>
 
     <!-- Strings voor de aid_list -->
     <string name="service_name">

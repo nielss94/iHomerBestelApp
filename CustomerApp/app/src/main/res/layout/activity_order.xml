@@ -11,7 +11,7 @@
         android:id="@+id/tool_bar"
         layout="@layout/tool_bar">
     </include>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
@@ -24,7 +24,17 @@
             android:layout_height="match_parent">
         </ExpandableListView>
 
-    </LinearLayout>
+        <ImageButton
+            android:layout_margin="15dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/circle"
+            android:src="@drawable/icon_bestellen"
+            android:id="@+id/popUpButton"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,12 +67,14 @@
                 />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/order_basket"
+        <TextView
+            android:id="@+id/orderButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:src="@drawable/icon_bestellen"
+            android:layout_weight="2"
+            android:text="@string/pay"
+            android:gravity="center"
+            android:textSize="25dp"
             />
 
     </LinearLayout>

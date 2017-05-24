@@ -61,11 +61,4 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
             startActivity(addBalanceIntent);
         }
     }
-
-//    @Override
-//    public void onOrderItemAvailable(OrderItem orderItem) {
-//        orderItemArray.add(orderItem);
-//        Log.i(TAG, "Order items added to list: " + orderItem.toString() + ")");
-//        myOrderItemAdapter.notifyDataSetChanged();
-//    }
 }
