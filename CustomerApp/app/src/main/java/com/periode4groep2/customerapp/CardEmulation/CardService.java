@@ -1,18 +1,13 @@
 package com.periode4groep2.customerapp.CardEmulation;
 
-/**
- * Created by ricky on 17-5-2017.
- */
-
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.nfc.cardemulation.HostApduService;
 import android.os.Bundle;
 import android.util.Log;
-
-import com.periode4groep2.customerapp.DomainModel.Account;
-import com.periode4groep2.customerapp.R;
 import java.util.Arrays;
+
+/**
+ * Created by ricky on 17-5-2017.
+ */
 
 public class CardService extends HostApduService {
     private static final String TAG = "CardService";
@@ -27,56 +22,71 @@ public class CardService extends HostApduService {
     private static final byte[] UNKNOWN_CMD_SW = HexStringToByteArray("0000");
     private static final byte[] SELECT_APDU = BuildSelectApdu(SAMPLE_LOYALTY_CARD_AID);
 
-    private Account account;
-
-    SharedPreferences sharedPreferences;
-
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-
-
-        // Check if intent has extras
-        if(intent.getExtras() != null){
-
-            // Get message
-            account = (Account)intent.getSerializableExtra("account");
-            Log.i(TAG, "Deze account swa:" + account.getEmail());
-        }
-        return START_NOT_STICKY;
-    }
-
+    /**
+     * Called if the connection to the NFC card is lost, in order to let the application know the
+     * cause for the disconnection (either a lost link, or another AID being selected by the
+     * reader).
+     *
+     * @param reason Either DEACTIVATION_LINK_LOSS or DEACTIVATION_DESELECTED
+     */
     @Override
     public void onDeactivated(int reason) { }
 
-
+    /**
+     * This method will be called when a command APDU has been received from a remote device. A
+     * response APDU can be provided directly by returning a byte-array in this method. In general
+     * response APDUs must be sent as quickly as possible, given the fact that the user is likely
+     * holding his device over an NFC reader when this method is called.
+     *
+     * <p class="note">If there are multiple services that have registered for the same AIDs in
+     * their meta-data entry, you will only get called if the user has explicitly selected your
+     * service, either as a default or just for the next tap.
+     *
+     * <p class="note">This method is running on the main thread of your application. If you
+     * cannot return a response APDU immediately, return null and use the {@link
+     * #sendResponseApdu(byte[])} method later.
+     *
+     * @param commandApdu The APDU that received from the remote device
+     * @param extras A bundle containing extra data. May be null.
+     * @return a byte-array containing the response APDU, or null if no response APDU can be sent
+     * at this point.
+     */
+    // BEGIN_INCLUDE(processCommandApdu)
     @Override
     public byte[] processCommandApdu(byte[] commandApdu, Bundle extras) {
         Log.i(TAG, "Received APDU: " + ByteArrayToHexString(commandApdu));
         // If the APDU matches the SELECT AID command for this service,
         // send the loyalty card account number, followed by a SELECT_OK status trailer (0x9000).
         if (Arrays.equals(SELECT_APDU, commandApdu)) {
-
-            String name = sharedPreferences.getString("Email", "Default");
-            Log.i("Name", name);
-
-
-            byte[] nameBytes = name.getBytes();
-            Log.i(TAG, "Sending account number: " + name);
-            return ConcatArrays(nameBytes, SELECT_OK_SW);
+            String account = AccountStorage.GetAccount(this);
+            byte[] accountBytes = account.getBytes();
+            Log.i(TAG, "Sending account number: " + account);
+            return ConcatArrays(accountBytes, SELECT_OK_SW);
         } else {
             return UNKNOWN_CMD_SW;
         }
     }
     // END_INCLUDE(processCommandApdu)
 
+    /**
+     * Build APDU for SELECT AID command. This command indicates which service a reader is
+     * interested in communicating with. See ISO 7816-4.
+     *
+     * @param aid Application ID (AID) to select
+     * @return APDU for SELECT AID command
+     */
     public static byte[] BuildSelectApdu(String aid) {
         // Format: [CLASS | INSTRUCTION | PARAMETER 1 | PARAMETER 2 | LENGTH | DATA]
         return HexStringToByteArray(SELECT_APDU_HEADER + String.format("%02X",
                 aid.length() / 2) + aid);
     }
 
-
+    /**
+     * Utility method to convert a byte array to a hexadecimal string.
+     *
+     * @param bytes Bytes to convert
+     * @return String, containing hexadecimal representation.
+     */
     public static String ByteArrayToHexString(byte[] bytes) {
         final char[] hexArray = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
         char[] hexChars = new char[bytes.length * 2]; // Each byte has two hex characters (nibbles)
@@ -89,7 +99,15 @@ public class CardService extends HostApduService {
         return new String(hexChars);
     }
 
-
+    /**
+     * Utility method to convert a hexadecimal string to a byte string.
+     *
+     * <p>Behavior with input strings containing non-hexadecimal characters is undefined.
+     *
+     * @param s String containing hexadecimal characters to convert
+     * @return Byte array generated from input
+     * @throws java.lang.IllegalArgumentException if input length is incorrect
+     */
     public static byte[] HexStringToByteArray(String s) throws IllegalArgumentException {
         int len = s.length();
         if (len % 2 == 1) {
@@ -104,7 +122,12 @@ public class CardService extends HostApduService {
         return data;
     }
 
-
+    /**
+     * Utility method to concatenate two byte arrays.
+     * @param first First array
+     * @param rest Any remaining arrays
+     * @return Concatenated copy of input arrays
+     */
     public static byte[] ConcatArrays(byte[] first, byte[]... rest) {
         int totalLength = first.length;
         for (byte[] array : rest) {
@@ -119,4 +142,3 @@ public class CardService extends HostApduService {
         return result;
     }
 }
-

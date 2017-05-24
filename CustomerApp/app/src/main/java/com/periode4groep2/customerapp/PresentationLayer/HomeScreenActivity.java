@@ -38,7 +38,6 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
     private Order unhandledOrder;
     private Button balanceButton;
     private ImageButton unhandledOrderButton;
-
     private AnimationDrawable unhandledOrderAnimation;
 
     @Override
