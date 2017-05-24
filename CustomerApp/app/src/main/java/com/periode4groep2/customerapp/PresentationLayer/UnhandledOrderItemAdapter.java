@@ -43,7 +43,7 @@ public class UnhandledOrderItemAdapter extends ArrayAdapter<OrderItem> {
             if(productList.get(i).getProductID() == singleOrderItem.getProductID())
             {
                 productName.setText(productList.get(i).getName());
-                Double price = productList.get(i).getPrice();
+                Double price = productList.get(i).getPrice() * singleOrderItem.getQuantity();
                 String goodPrice = String.format("€%10.2f", price);
                 productPrice.setText(goodPrice);
                 break;

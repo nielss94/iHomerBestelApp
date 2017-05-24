@@ -75,10 +75,10 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent addBalanceIntent = new Intent(getApplicationContext(), BalanceActivity.class);
-                    addBalanceIntent.putExtra("account", account);
-                    startActivity(addBalanceIntent);
-
+                Intent scanIntent = new Intent(getApplicationContext(), ScanActivity.class);
+                scanIntent.putExtra("account", account);
+                scanIntent.putExtra("order", order);
+                startActivity(scanIntent);
             }
         });
     }

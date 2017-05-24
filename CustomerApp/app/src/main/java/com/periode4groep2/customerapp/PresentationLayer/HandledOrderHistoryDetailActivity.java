@@ -1,5 +1,6 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -48,6 +49,7 @@ public class HandledOrderHistoryDetailActivity extends AppCompatActivity impleme
         account = (Account) getIntent().getSerializableExtra("account");
 
         orderButton = (Button) findViewById(R.id.orderAgainButton);
+        orderButton.setText("Bestel opnieuw");
 
         TextView totalPrice = (TextView) findViewById(R.id.totalPrice);
 
@@ -57,8 +59,13 @@ public class HandledOrderHistoryDetailActivity extends AppCompatActivity impleme
         totalPrice.setText(goodPrice);
 
         orderButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                Intent scanIntent = new Intent(getApplicationContext(), ScanActivity.class);
+                scanIntent.putExtra("account", account);
+                scanIntent.putExtra("order", order);
+                startActivity(scanIntent);
             }
         });
     }
