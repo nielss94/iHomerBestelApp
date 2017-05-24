@@ -23,7 +23,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <service android:name=".CardEmulation.CardService"
+=======
+
+        <service
+            android:name=".CardEmulation.CardService"
+            android:enabled="false"
+>>>>>>> origin/master
             android:exported="true"
             android:permission="android.permission.BIND_NFC_SERVICE">
             <!-- Intent filter indicating that we support card emulation. -->

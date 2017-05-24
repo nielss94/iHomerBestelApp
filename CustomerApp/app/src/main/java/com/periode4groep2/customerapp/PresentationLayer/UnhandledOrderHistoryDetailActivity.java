@@ -30,12 +30,8 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
     private ProductDAO productDAO;
     private ArrayList<Product> productList = new ArrayList<>();
     private ListView orderListView;
-<<<<<<< HEAD
     private UnhandledOrderItemAdapter unhandledOrderItemAdapter;
-=======
-    private OrderItemAdapter orderItemAdapter;
     private Button balanceButton;
->>>>>>> origin/master
 
 
     @Override
@@ -70,12 +66,15 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
         balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
 
         TextView totalPrice = (TextView) findViewById(R.id.totalPrice);
-        totalPrice.setText("€" + order.getTotalPrice());
+
+        Double price = order.getTotalPrice();
+        String goodPrice = String.format("€%10.2f", price);
+
+        totalPrice.setText(goodPrice);
 
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                     Intent addBalanceIntent = new Intent(getApplicationContext(), BalanceActivity.class);
                     addBalanceIntent.putExtra("account", account);
                     startActivity(addBalanceIntent);

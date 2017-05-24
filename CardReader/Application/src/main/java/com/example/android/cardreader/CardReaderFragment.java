@@ -61,7 +61,6 @@ public class CardReaderFragment extends Fragment implements LoyaltyCardReader.Ac
             // Disable Android Beam and register our card reader callback
             enableReaderMode();
         }
-
         return v;
     }
 

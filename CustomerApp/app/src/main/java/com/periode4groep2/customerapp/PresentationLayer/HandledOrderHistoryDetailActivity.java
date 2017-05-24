@@ -50,7 +50,11 @@ public class HandledOrderHistoryDetailActivity extends AppCompatActivity impleme
         orderButton = (Button) findViewById(R.id.orderAgainButton);
 
         TextView totalPrice = (TextView) findViewById(R.id.totalPrice);
-        totalPrice.setText("€" + order.getTotalPrice());
+
+        Double price = order.getTotalPrice();
+        String goodPrice = String.format("€%10.2f", price);
+
+        totalPrice.setText(goodPrice);
 
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
