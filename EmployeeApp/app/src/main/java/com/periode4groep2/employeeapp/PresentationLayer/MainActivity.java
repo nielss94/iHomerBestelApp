@@ -47,10 +47,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         email = (EditText)findViewById(R.id.emailInputId);
         password = (EditText)findViewById(R.id.passwordInputId);
 
-//        toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
-//        setSupportActionBar(toolbar);
+        toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
+        setSupportActionBar(toolbar);
 
-       // editor.clear();
+        editor.clear();
 
     }
 

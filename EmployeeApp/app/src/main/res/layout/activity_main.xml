@@ -76,21 +76,23 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp" />
     </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
+
         <Button
             android:id="@+id/inlogKnopId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/log_in_button"
             android:layout_alignParentBottom="true"
-            android:background="@color/colorOrange"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:textSize="18dp"/>
+            android:background="@color/colorOrange"
+            android:text="@string/log_in_button"
+            android:textSize="18dp" />
     </RelativeLayout>
 </LinearLayout>
