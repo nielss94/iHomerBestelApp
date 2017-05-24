@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">EmployeeApp</string>
+
+    <!-- Strings voor MainActivity -->
+    <string name="order_app_logo">
+        Bestelapp
+    </string>
+    <string name="email">
+        E-mail:
+    </string>
+    <string name="hint_enter_email">
+        example123@mail.com
+    </string>
+    <string name="password">
+        Wachtwoord:
+    </string>
+    <string name="hint_enter_password">
+        ***********
+    </string>
+    <string name="log_in_button">
+        Inloggen
+    </string>
+    <string name="successful_log_in_toast">
+        Succesvol ingelogd.
+    </string>
+    <string name="account_not_found_toast">
+        Account niet gevonden.
+    </string>
 </resources>
