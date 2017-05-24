@@ -12,27 +12,10 @@
         layout="@layout/tool_bar">
     </include>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_gravity="center">
-
-        <TextView
-            android:id="@+id/scan_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textSize="20dp"
-            android:textColor="@android:color/white"/>
-
-    </LinearLayout>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2">
-        
         <ImageView
             android:id="@+id/scan_icon"
             android:src="@drawable/ic_action_tick"
@@ -47,18 +30,26 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:orientation="vertical"
         android:layout_gravity="center_horizontal">
 
         <Button
             android:id="@+id/scan_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/scan_activity_button"
+            android:layout_weight="1"
             android:background="@color/colorOrange"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="20dp"
             android:textSize="18dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="TEST"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            />
     </LinearLayout>
 
 </LinearLayout>

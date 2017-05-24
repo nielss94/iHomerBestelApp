@@ -53,6 +53,7 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
         } else if(v.equals(scanOrderButton)){
             Intent intent = new Intent(this, ScanActivity.class);
             intent.putExtra("account", account);
+            intent.putExtra("order", order);
             startActivity(intent);
         } else if (v.equals(balanceButton)){
             Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
