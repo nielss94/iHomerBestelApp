@@ -84,7 +84,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:orientation="horizontal">
 
             <TextView
@@ -99,6 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textStyle="bold"
                 android:text="@string/quantity_textview"
                 android:textSize="16sp" />
 
@@ -107,6 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Prijs:"
+                android:textStyle="bold"
                 android:textSize="16sp" />
 
         </LinearLayout>
@@ -115,7 +118,8 @@
             android:id="@+id/orderItemListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"></ListView>
+            android:layout_weight="1"
+            android:layout_marginBottom="15dp"></ListView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -137,11 +141,12 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/totalPrice"
                 android:text="€ 11.50"
-                android:textAlignment="viewEnd"
+                android:gravity="right"
                 android:textColor="@color/colorOrange"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:layout_marginRight="15dp"/>
+
         </LinearLayout>
 
         <Button

@@ -25,14 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
 
         <service
             android:name=".CardEmulation.CardService"
             android:enabled="false"
-=======
-        <service android:name=".CardEmulation.CardService"
->>>>>>> origin/master
             android:exported="true"
             android:permission="android.permission.BIND_NFC_SERVICE">
 
