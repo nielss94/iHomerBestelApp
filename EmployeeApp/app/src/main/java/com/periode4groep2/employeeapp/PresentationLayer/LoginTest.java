@@ -7,9 +7,7 @@ import android.support.v7.widget.Toolbar;
 import com.periode4groep2.employeeapp.R;
 
 public class LoginTest extends AppCompatActivity {
-
     private Toolbar toolbar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

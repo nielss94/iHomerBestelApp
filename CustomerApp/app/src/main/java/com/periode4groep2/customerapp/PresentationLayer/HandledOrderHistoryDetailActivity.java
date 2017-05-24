@@ -1,6 +1,5 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,9 +19,8 @@ import com.periode4groep2.customerapp.R;
 
 import java.util.ArrayList;
 
-public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity implements ProductSetAvailable {
+public class HandledOrderHistoryDetailActivity extends AppCompatActivity implements ProductSetAvailable {
 
-    private final String TAG = getClass().getSimpleName();
     private Button orderButton;
     private Order order;
     private Account account;
@@ -30,44 +28,26 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
     private ProductDAO productDAO;
     private ArrayList<Product> productList = new ArrayList<>();
     private ListView orderListView;
-<<<<<<< HEAD
-    private UnhandledOrderItemAdapter unhandledOrderItemAdapter;
-=======
-    private OrderItemAdapter orderItemAdapter;
-    private Button balanceButton;
->>>>>>> origin/master
-
+    private HandledOrderItemAdapter handledOrderItemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_unhandled_order_history_detail);
+        setContentView(R.layout.activity_handled_order_history_detail);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
-        myToolbar.setTitle("Unhandled Bestelling");
+        myToolbar.setTitle("Handled Bestelling");
         setSupportActionBar(myToolbar);
 
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();
         productDAO.selectData(this);
-        balanceButton = (Button) findViewById(R.id.buttonBalance);
 
 
-        order = (Order)getIntent().getSerializableExtra("order");
-        account = (Account)getIntent().getSerializableExtra("account");
-        balanceButton.setOnClickListener(new View.OnClickListener() {
+        order = (Order) getIntent().getSerializableExtra("order");
+        account = (Account) getIntent().getSerializableExtra("account");
 
-            @Override
-            public void onClick(View v) {
-                Intent addBalanceIntent = new Intent(getApplicationContext(), BalanceActivity.class);
-                addBalanceIntent.putExtra("account", account);
-                startActivity(addBalanceIntent);
-            }
-        });
-        orderButton = (Button)findViewById(R.id.payButton);
-
-        account = (Account)getIntent().getSerializableExtra("account");
-        balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
+        orderButton = (Button) findViewById(R.id.orderAgainButton);
 
         TextView totalPrice = (TextView) findViewById(R.id.totalPrice);
         totalPrice.setText("€" + order.getTotalPrice());
@@ -75,11 +55,6 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                    Intent addBalanceIntent = new Intent(getApplicationContext(), BalanceActivity.class);
-                    addBalanceIntent.putExtra("account", account);
-                    startActivity(addBalanceIntent);
-
             }
         });
     }
@@ -88,7 +63,7 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
     public void productSetAvailable(ArrayList<Product> products) {
         productList = products;
         orderListView = (ListView) findViewById(R.id.orderItemListView);
-        unhandledOrderItemAdapter = new UnhandledOrderItemAdapter(this, order.getOrderItems(), productList);
-        orderListView.setAdapter(unhandledOrderItemAdapter);
+        handledOrderItemAdapter = new HandledOrderItemAdapter(this, order.getOrderItems(), productList);
+        orderListView.setAdapter(handledOrderItemAdapter);
     }
 }
