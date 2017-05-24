@@ -1,7 +1,6 @@
 package com.periode4groep2.employeeapp.PresentationLayer;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -28,16 +27,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Account account;
 
 
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        editor = sharedPreferences.edit();
         factory = new MySQLDAOFactory();
         accountDAO = factory.createAccountDAO();
 
@@ -50,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
         setSupportActionBar(toolbar);
 
-        editor.clear();
 
     }
 
@@ -73,9 +67,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void logIn(){
 
-        editor.putString("Email", account.getEmail());
-        editor.commit();
-        Log.i("", sharedPreferences.getString("Email","emaliltjw"));
         Intent intent = new Intent(this, LoginTest.class);
         intent.putExtra("account", account);
         startActivity(intent);
