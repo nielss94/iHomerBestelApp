@@ -10,6 +10,6 @@ public class CustomListItemOrderHistoryDetail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_custom_list_item_order_history_detail);
+        setContentView(R.layout.activity_custom_list_item_handled_order_history_detail);
     }
 }

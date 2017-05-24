@@ -95,7 +95,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
                 Product product = (Product)listView.getExpandableListAdapter().getChild(groupPosition,childPosition);
 
-                Log.i(TAG,"Click on item " + product.getName());
+                Log.i(TAG,"Click on item " + product.getName() + " " + product.getPrice());
                 OrderItem oi = new OrderItem(product.getProductID(),1);
 
                 addOrderitem(product.getPrice(), oi);
@@ -145,6 +145,9 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             Intent intent = new Intent(this, OrderDetailActivity.class);
             intent.putExtra("account", account);
             intent.putExtra("order",newOrder);
+            Bundle b = new Bundle();
+            b.putParcelableArrayList("products",products);
+            intent.putExtras(b);
             startActivity(intent);
         }
     }

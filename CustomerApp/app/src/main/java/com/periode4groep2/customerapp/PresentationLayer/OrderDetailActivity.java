@@ -3,6 +3,7 @@ package com.periode4groep2.customerapp.PresentationLayer;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -10,13 +11,20 @@ import android.widget.TextView;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.DomainModel.Order;
+import com.periode4groep2.customerapp.DomainModel.Product;
+import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
+import com.periode4groep2.customerapp.PersistancyLayer.ProductSetAvailable;
 import com.periode4groep2.customerapp.R;
 
-public class OrderDetailActivity extends AppCompatActivity implements View.OnClickListener  {
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+public class OrderDetailActivity extends AppCompatActivity implements View.OnClickListener {
     //Logging tag
     private final String TAG = this.getClass().getSimpleName();
     //controller elements
     private ListView orderItemListView;
+    private UnhandledOrderItemAdapter unhandledOrderItemAdapter;
     private TextView totalTagTextView;
     private TextView totalPriceTextView;
     private Button cancelOrderButton;
@@ -24,15 +32,20 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
     private Button balanceButton;
     private Account account;
     private Order order;
+    private ArrayList<Product> products = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
-
+        Bundle b = this.getIntent().getExtras();
+        products = b.getParcelableArrayList("products");
+        Log.i(TAG,products.get(0).getName() +"");
         account = (Account)getIntent().getSerializableExtra("account");
         order = (Order)getIntent().getSerializableExtra("order");
         orderItemListView = (ListView)findViewById(R.id.orderItemListView);
+        unhandledOrderItemAdapter = new UnhandledOrderItemAdapter(this, order.getOrderItems(), products);
+        orderItemListView.setAdapter(unhandledOrderItemAdapter);
         totalTagTextView = (TextView)findViewById(R.id.totalTagTextView);
         totalPriceTextView = (TextView)findViewById(R.id.totalPriceTagTextView);
         cancelOrderButton = (Button)findViewById(R.id.cancelOrderButton);
