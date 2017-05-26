@@ -1,6 +1,6 @@
 <resources>
     <!-- Global strings -->
-    <string name="app_name">CustomerApp</string>
+    <string name="app_name">BestelApp</string>
     <string name="test_product">
         Dummy data test
     </string>
@@ -204,6 +204,14 @@
     <string name="card_title">
         Sample card
     </string>
+
+    <!-- Strings voor de toolbar -->
+    <string name="Home_Screen_toolbar">Menu</string>
+    <string name="Order_toolbar">Bestellen</string>
+    <string name="Order_Detail_toolbar">Huidige Bestelling</string>
+    <string name="Scan_toolbar">Betalen</string>
+    <string name="Order_History_toolbar">Mijn Bestellingen</string>
+    <string name="Settings_toolbar">Instellingen</string>
 </resources>
 
 

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -36,6 +37,10 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
+        myToolbar.setTitle(R.string.Scan_toolbar);
+        setSupportActionBar(myToolbar);
 
         button = (Button)findViewById(R.id.scan_button);
         button.setOnClickListener(this);

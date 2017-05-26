@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,6 +25,10 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
+        myToolbar.setTitle(R.string.Settings_toolbar);
+        setSupportActionBar(myToolbar);
 
         saveSettings = (Button) findViewById(R.id.saveSettingsID);
         balanceButton = (Button) findViewById(R.id.buttonBalance);

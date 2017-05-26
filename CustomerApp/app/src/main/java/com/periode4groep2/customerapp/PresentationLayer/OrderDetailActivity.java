@@ -3,6 +3,7 @@ package com.periode4groep2.customerapp.PresentationLayer;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,16 +39,23 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
+        myToolbar.setTitle(R.string.Order_Detail_toolbar);
+        setSupportActionBar(myToolbar);
+
         Bundle b = this.getIntent().getExtras();
         products = b.getParcelableArrayList("products");
         Log.i(TAG,products.get(0).getName() +"");
         account = (Account)getIntent().getSerializableExtra("account");
         order = (Order)getIntent().getSerializableExtra("order");
+
         orderItemListView = (ListView)findViewById(R.id.orderItemListView);
         unhandledOrderItemAdapter = new UnhandledOrderItemAdapter(this, order.getOrderItems(), products);
         orderItemListView.setAdapter(unhandledOrderItemAdapter);
         totalTagTextView = (TextView)findViewById(R.id.totalTagTextView);
         totalPriceTextView = (TextView)findViewById(R.id.totalPriceTagTextView);
+
         cancelOrderButton = (Button)findViewById(R.id.cancelOrderButton);
         scanOrderButton = (Button)findViewById(R.id.scanOrderButton);
         balanceButton = (Button)findViewById(R.id.buttonBalance);
