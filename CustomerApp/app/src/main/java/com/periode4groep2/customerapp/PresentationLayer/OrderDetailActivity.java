@@ -55,6 +55,7 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
         orderItemListView.setAdapter(unhandledOrderItemAdapter);
         totalTagTextView = (TextView)findViewById(R.id.totalTagTextView);
         totalPriceTextView = (TextView)findViewById(R.id.totalPriceTagTextView);
+        totalPriceTextView.setText("€"+String.format("%.2f" ,order.getTotalPrice()));
 
         cancelOrderButton = (Button)findViewById(R.id.cancelOrderButton);
         scanOrderButton = (Button)findViewById(R.id.scanOrderButton);

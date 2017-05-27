@@ -14,6 +14,7 @@ import com.periode4groep2.customerapp.DomainModel.Order;
 import com.periode4groep2.customerapp.DomainModel.Product;
 import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
 import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
+import com.periode4groep2.customerapp.PersistancyLayer.OrderDAO;
 import com.periode4groep2.customerapp.PersistancyLayer.ProductDAO;
 import com.periode4groep2.customerapp.PersistancyLayer.ProductSetAvailable;
 import com.periode4groep2.customerapp.R;
@@ -27,6 +28,7 @@ public class HandledOrderHistoryDetailActivity extends AppCompatActivity impleme
     private Account account;
     private DAOFactory factory;
     private ProductDAO productDAO;
+    private OrderDAO orderDAO;
     private ArrayList<Product> productList = new ArrayList<>();
     private ListView orderListView;
     private HandledOrderItemAdapter handledOrderItemAdapter;
@@ -43,8 +45,7 @@ public class HandledOrderHistoryDetailActivity extends AppCompatActivity impleme
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();
         productDAO.selectData(this);
-
-
+        orderDAO = factory.createOrderDAO();
         order = (Order) getIntent().getSerializableExtra("order");
         account = (Account) getIntent().getSerializableExtra("account");
 
@@ -62,6 +63,7 @@ public class HandledOrderHistoryDetailActivity extends AppCompatActivity impleme
 
             @Override
             public void onClick(View v) {
+                orderDAO.insertData(account,order);
                 Intent scanIntent = new Intent(getApplicationContext(), ScanActivity.class);
                 scanIntent.putExtra("account", account);
                 scanIntent.putExtra("order", order);

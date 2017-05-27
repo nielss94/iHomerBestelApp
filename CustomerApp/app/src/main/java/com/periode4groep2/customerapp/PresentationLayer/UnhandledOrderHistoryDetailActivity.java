@@ -14,6 +14,7 @@ import com.periode4groep2.customerapp.DomainModel.Order;
 import com.periode4groep2.customerapp.DomainModel.Product;
 import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
 import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
+import com.periode4groep2.customerapp.PersistancyLayer.OrderDAO;
 import com.periode4groep2.customerapp.PersistancyLayer.ProductDAO;
 import com.periode4groep2.customerapp.PersistancyLayer.ProductSetAvailable;
 import com.periode4groep2.customerapp.R;

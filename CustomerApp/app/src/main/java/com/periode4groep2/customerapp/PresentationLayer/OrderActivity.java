@@ -24,6 +24,7 @@ import com.periode4groep2.customerapp.DomainModel.OrderItem;
 import com.periode4groep2.customerapp.DomainModel.Product;
 import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
 import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
+import com.periode4groep2.customerapp.PersistancyLayer.OrderDAO;
 import com.periode4groep2.customerapp.PersistancyLayer.ProductDAO;
 import com.periode4groep2.customerapp.PersistancyLayer.ProductSetAvailable;
 import com.periode4groep2.customerapp.R;
@@ -42,6 +43,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     private HashMap<String, ArrayList<Product>> listHash = new HashMap<>();
     private DAOFactory factory;
     private ProductDAO productDAO;
+    private OrderDAO orderDAO;
     private ArrayList<Product> products = new ArrayList<>();
     private Product product;
     private Button balanceButton;
@@ -61,6 +63,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();
         productDAO.selectData(this);
+        orderDAO = factory.createOrderDAO();
 
         totalOrderPrice = (TextView)findViewById(R.id.totalOrderPrice);
         basket = (TextView) findViewById(R.id.orderButton);
@@ -147,6 +150,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             addBalanceIntent.putExtra("account", account);
             startActivity(addBalanceIntent);
         } else if (v.equals(basket)) {
+            orderDAO.insertData(account,newOrder);
             Intent intent = new Intent(this, OrderDetailActivity.class);
             intent.putExtra("account", account);
             intent.putExtra("order",newOrder);
