@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
@@ -52,6 +53,10 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
+        myToolbar.setTitle(R.string.Order_toolbar);
+        setSupportActionBar(myToolbar);
 
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();

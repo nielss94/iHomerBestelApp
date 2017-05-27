@@ -46,7 +46,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_home_screen);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
-        myToolbar.setTitle("Home");
+        myToolbar.setTitle(R.string.Home_Screen_toolbar);
         setSupportActionBar(myToolbar);
 
         factory = new MySQLDAOFactory();

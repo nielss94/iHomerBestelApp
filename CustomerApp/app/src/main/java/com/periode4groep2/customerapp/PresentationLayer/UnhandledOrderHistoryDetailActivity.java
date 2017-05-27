@@ -40,7 +40,7 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
         setContentView(R.layout.activity_unhandled_order_history_detail);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
-        myToolbar.setTitle("Unhandled Bestelling");
+        myToolbar.setTitle(R.string.Unhandled_Order_toolbar);
         setSupportActionBar(myToolbar);
 
         factory = new MySQLDAOFactory();

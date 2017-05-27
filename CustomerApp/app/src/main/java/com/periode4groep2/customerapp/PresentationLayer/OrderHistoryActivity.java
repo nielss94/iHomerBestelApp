@@ -41,7 +41,7 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
         setContentView(R.layout.activity_order_history);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
-        myToolbar.setTitle("Mijn bestellingen");
+        myToolbar.setTitle(R.string.Order_History_toolbar);
         setSupportActionBar(myToolbar);
 
         factory = new MySQLDAOFactory();
