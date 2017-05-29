@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class HandledOrderHistoryDetailActivity extends AppCompatActivity implements ProductSetAvailable {
 
-    private Button orderButton;
+    private Button orderButton, balanceButton;
     private Order order;
     private Account account;
     private DAOFactory factory;
@@ -50,6 +50,7 @@ public class HandledOrderHistoryDetailActivity extends AppCompatActivity impleme
         account = (Account) getIntent().getSerializableExtra("account");
 
         orderButton = (Button) findViewById(R.id.orderAgainButton);
+        balanceButton = (Button)findViewById(R.id.buttonBalance);
         orderButton.setText("Bestel opnieuw");
 
         TextView totalPrice = (TextView) findViewById(R.id.totalPrice);
@@ -58,6 +59,18 @@ public class HandledOrderHistoryDetailActivity extends AppCompatActivity impleme
         String goodPrice = String.format("€%10.2f", price);
 
         totalPrice.setText(goodPrice);
+
+        balanceButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent addBalanceIntent = new Intent(getApplicationContext(), BalanceActivity.class);
+                addBalanceIntent.putExtra("account", account);
+                startActivity(addBalanceIntent);
+            }
+        });
+
+        balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
 
         orderButton.setOnClickListener(new View.OnClickListener() {
 
