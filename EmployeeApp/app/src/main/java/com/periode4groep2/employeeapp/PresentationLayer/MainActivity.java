@@ -57,7 +57,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void myAccountAvailable(Account acc) {
         account = acc;
-        logIn();
+        if(account.isEmployee()) {
+            logIn();
+        }else{
+            Toast.makeText(this, R.string.failed_log_in_no_employee_toast, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -66,12 +70,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void logIn(){
-
         Intent intent = new Intent(this, LoginTest.class);
         intent.putExtra("account", account);
         startActivity(intent);
         Toast.makeText(this, R.string.successful_log_in_toast, Toast.LENGTH_SHORT).show();
-
-
     }
 }

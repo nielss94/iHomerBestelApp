@@ -23,6 +23,9 @@
     <string name="successful_log_in_toast">
         Succesvol ingelogd.
     </string>
+    <string name="failed_log_in_no_employee_toast">
+        Dit is geen medewerkers account. Kan niet inloggen.
+    </string>
     <string name="account_not_found_toast">
         Account niet gevonden.
     </string>
