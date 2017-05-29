@@ -1,8 +1,14 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +29,7 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
     private Account account;
     private DAOFactory factory;
     private AccountDAO accountDAO;
+    private final double maxBalance = 150;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,19 +56,18 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         if ( v.equals(addBalance) ) {
 
-            double currentBalanceValue = Double.parseDouble(currentBalanceTextView.getText().toString().replaceAll("€", "0"));
+            final double currentBalanceValue = Double.parseDouble(currentBalanceTextView.getText().toString().replaceAll("€", "0"));
             String input = mutateBalance.getText().toString().trim().replaceAll("€", "0");
-            double currentEntryValue = Double.parseDouble(input);
+            final double currentEntryValue = Double.parseDouble(input);
+
 
             if ( input.isEmpty() ) {
                 Toast.makeText(this, R.string.no_amount_entered_toast, Toast.LENGTH_SHORT).show();
             } else {
                 if ( currentEntryValue <= 0.01 ) {
                     Toast.makeText(this, R.string.no_amount_entered_toast, Toast.LENGTH_SHORT).show();
-                } else if ( currentEntryValue >= 150.00 ) {
-                    Toast.makeText(this, R.string.too_much_money_toast, Toast.LENGTH_SHORT).show();
-                } else if ( currentBalanceValue + currentEntryValue > 150.00 ) {
-                    Toast.makeText(this, R.string.too_much_money_toast, Toast.LENGTH_SHORT).show();
+                } else if ( currentBalanceValue + currentEntryValue > 150.00 || currentEntryValue >= 150.00 ) {
+                    createDialog();
                 } else {
                     String youHave = getString(R.string.you_have_toast);
                     String amountAdded = getString(R.string.amount_added_toast);
@@ -102,4 +108,32 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
             }
         }
     }
+
+    public void createDialog(){
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setMessage(getResources().getString(R.string.balance_dialog_message));
+        builder.setPositiveButton(getResources().getString(R.string.balance_dialog_positive_button), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        account.setBalance(maxBalance);
+                        accountDAO.updateBalance(account, (maxBalance * 100));
+                        dialogInterface.dismiss();
+                    }
+                });
+
+        builder.setNegativeButton(getResources().getString(R.string.balance_dialog_negative_button), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 }
+
+

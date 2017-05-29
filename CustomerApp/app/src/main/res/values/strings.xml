@@ -213,6 +213,12 @@
     <string name="Order_History_toolbar">Mijn Bestellingen</string>
     <string name="Settings_toolbar">Instellingen</string>
     <string name="Unhandled_Order_toolbar">Open Bestelling</string>
+    
+    <!-- Strings BalanceDialogFragment -->
+    <string name="balance_dialog_message">Het is niet mogelijk om meer dan €150 op uw account te hebben.
+    Saldo aanvullen tot €150?</string>
+    <string name="balance_dialog_positive_button">Ja</string>
+    <string name="balance_dialog_negative_button">Nee</string>
 </resources>
 
 
