@@ -28,7 +28,7 @@ import com.periode4groep2.customerapp.R;
 
 public class ScanActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Button button;
+    private Button balanceButton, menuButton;
     private ImageView checkicon;
     private Order order;
     private Account account;
@@ -42,25 +42,33 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         myToolbar.setTitle(R.string.Scan_toolbar);
         setSupportActionBar(myToolbar);
 
-        button = (Button)findViewById(R.id.scan_button);
-        button.setOnClickListener(this);
-        button.setClickable(false);
+        balanceButton = (Button)findViewById(R.id.buttonBalance);
+        menuButton = (Button)findViewById(R.id.scan_button);
+        balanceButton.setOnClickListener(this);
+        menuButton.setOnClickListener(this);
 
         order = (Order)getIntent().getSerializableExtra("order");
         account = (Account)getIntent().getSerializableExtra("account");
         AccountStorage.SetAccount(this, order.getOrderID() + "");
 
         checkicon = (ImageView)findViewById(R.id.scan_icon);
-        checkicon.setVisibility(View.INVISIBLE);
-    }
 
-    public void onClick(View v){
-        Intent intent = new Intent(this, CardService.class);
-        intent.putExtra("account", account.getFirstName());
-        startService(intent);
+        balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
     }
 
     public void onResume(){
         super.onResume();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.equals(balanceButton)){
+            Intent addBalanceIntent = new Intent(getApplicationContext(), BalanceActivity.class);
+            addBalanceIntent.putExtra("account", account);
+            startActivity(addBalanceIntent);
+        } else if(v.equals(menuButton)){
+            Intent menu = new Intent(this, HomeScreenActivity.class);
+            startActivity(menu);
+        }
     }
 }
