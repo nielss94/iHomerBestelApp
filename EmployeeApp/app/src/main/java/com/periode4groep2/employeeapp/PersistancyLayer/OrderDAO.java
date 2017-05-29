@@ -15,5 +15,6 @@ public interface OrderDAO {
     void selectData(OrderSetAvailable c);
     void addToOrder(Account account, Order order, ArrayList<OrderItem> orderItems);
     void removeFromOrder(Account account,Order order, ArrayList<OrderItem> orderItems);
+    void deleteOrder(Account account, Order order);
     void handleOrder(Account account, Order order);
 }

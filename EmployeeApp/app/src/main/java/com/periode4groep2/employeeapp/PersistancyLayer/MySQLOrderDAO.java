@@ -37,6 +37,11 @@ public class MySQLOrderDAO implements OrderDAO, MySQLOrderAPIConnector.OrderAvai
     }
 
     @Override
+    public void deleteOrder(Account account, Order order) {
+        new OrderDeleteConnector(account,order);
+    }
+
+    @Override
     public void handleOrder(Account account, Order order) {
         new OrderHandleConnector(account, order).execute();
     }
