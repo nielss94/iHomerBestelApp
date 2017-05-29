@@ -31,6 +31,10 @@ public class MySQLOrderDAO implements OrderDAO, MySQLOrderAPIConnector.OrderAvai
         new AddToOrderConnector(account,order,orderItems).execute();
     }
 
+    @Override
+    public void removeFromOrder(Account account, Order order, ArrayList<OrderItem> orderItems) {
+        new RemoveFromOrderConnector(account,order,orderItems).execute();
+    }
 
     @Override
     public void handleOrder(Account account, Order order) {

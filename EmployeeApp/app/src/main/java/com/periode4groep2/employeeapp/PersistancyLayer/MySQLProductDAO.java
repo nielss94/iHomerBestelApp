@@ -1,5 +1,6 @@
 package com.periode4groep2.employeeapp.PersistancyLayer;
 
+import com.periode4groep2.employeeapp.DomainModel.Account;
 import com.periode4groep2.employeeapp.DomainModel.Product;
 
 import java.util.ArrayList;
@@ -26,8 +27,8 @@ public class MySQLProductDAO implements ProductDAO, MySQLProductAPIConnector.Pro
     }
 
     @Override
-    public void updateData(Product product) {
-
+    public void changeStock(Account account, Product product) {
+        new ProductStockConnector(account,product).execute();
     }
 
     @Override

@@ -10,18 +10,18 @@ public class MySQLDAOFactory implements DAOFactory {
         return new MySQLAccountDAO();
     }
 
-//    @Override
-//    public DeviceInfoDAO createDeviceInfoDAO() {
-//        return new MySQLDeviceInfoDAO();
-//    }
-//
-//    @Override
-//    public OrderDAO createOrderDAO() {
-//        return new MySQLOrderDAO();
-//    }
-//
-//    @Override
-//    public ProductDAO createProductDAO() {
-//        return new MySQLProductDAO();
-//    }
+    /*@Override
+    public DeviceInfoDAO createDeviceInfoDAO() {
+        return new MySQLDeviceInfoDAO();
+    }*/
+
+    @Override
+    public OrderDAO createOrderDAO() {
+        return new MySQLOrderDAO();
+    }
+
+    @Override
+    public ProductDAO createProductDAO() {
+        return new MySQLProductDAO();
+    }
 }

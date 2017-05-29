@@ -7,7 +7,7 @@ package com.periode4groep2.employeeapp.PersistancyLayer;
 public interface DAOFactory {
 
     AccountDAO createAccountDAO();
-//    DeviceInfoDAO createDeviceInfoDAO();
-//    OrderDAO createOrderDAO();
-//    ProductDAO createProductDAO();
+    //DeviceInfoDAO createDeviceInfoDAO();
+    OrderDAO createOrderDAO();
+    ProductDAO createProductDAO();
 }

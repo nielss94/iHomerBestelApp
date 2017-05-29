@@ -1,5 +1,6 @@
 package com.periode4groep2.employeeapp.PersistancyLayer;
 
+import com.periode4groep2.employeeapp.DomainModel.Account;
 import com.periode4groep2.employeeapp.DomainModel.Product;
 
 /**
@@ -9,5 +10,5 @@ import com.periode4groep2.employeeapp.DomainModel.Product;
 public interface ProductDAO {
 
     void selectData(ProductSetAvailable c);
-    void updateData(Product product);
+    void changeStock(Account account, Product product);
 }
