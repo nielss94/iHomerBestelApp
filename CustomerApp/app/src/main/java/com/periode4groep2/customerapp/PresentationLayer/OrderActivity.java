@@ -28,7 +28,7 @@ import com.periode4groep2.customerapp.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class OrderActivity extends AppCompatActivity implements View.OnClickListener, ProductSetAvailable, OrderSetAvailable{
+public class OrderActivity extends AppCompatActivity implements View.OnClickListener, ProductSetAvailable, OrderSetAvailable, ExpandableListAdapter.OnOrderChanged{
 
     private final String TAG = getClass().getSimpleName();
     private TextView basket;
@@ -93,23 +93,11 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         });
         listView = (ExpandableListView) findViewById(R.id.expandableListId);
 
-        listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash);
+        listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash, this);
 
         listView.setAdapter(listAdapter);
-        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
-                Product product = (Product)listView.getExpandableListAdapter().getChild(groupPosition,childPosition);
 
-                Log.i(TAG,"Click on item " + product.getName() + " " + product.getPrice());
-                OrderItem oi = new OrderItem(product.getProductID(),1);
-
-                addOrderitem(product.getPrice(), oi);
-
-                return true;
-            }
-        });
         newOrder = new Order(1, account.getEmail(), false, 0.00, "2017-05-17");
     }
 
@@ -198,5 +186,16 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void orderSetAvailable(ArrayList<Order> orders) {
         this.orders = orders;
+    }
+
+    @Override
+    public void onOrderChanged(OrderItem oi) {
+        if(oi.getQuantity() > 0){
+            addOrderitem(product.getPrice(), oi);
+        }else if(oi.getQuantity() < 0){
+            //Remove item from order
+        }else {
+            return;
+        }
     }
 }

@@ -2,15 +2,11 @@ package com.periode4groep2.customerapp.PresentationLayer;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.media.Image;
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.ExpandableListView;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.periode4groep2.customerapp.DomainModel.OrderItem;
@@ -19,7 +15,6 @@ import com.periode4groep2.customerapp.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by J.h2os on 9-5-2017.
@@ -30,11 +25,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private ArrayList<String> ListDataHeader;
     private HashMap<String,ArrayList<Product>> listHashMap;
+    private OnOrderChanged listener;
 
-    public ExpandableListAdapter(Context context, ArrayList<String> listDataHeader, HashMap<String, ArrayList<Product>> listHashMap ) {
+    public ExpandableListAdapter(Context context, ArrayList<String> listDataHeader, HashMap<String, ArrayList<Product>> listHashMap, OnOrderChanged listener) {
         this.context = context;
         ListDataHeader = listDataHeader;
         this.listHashMap = listHashMap;
+        this.listener = listener;
     }
 
     @Override
@@ -97,14 +94,44 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         final TextView txtListChild = (TextView)convertView.findViewById(R.id.listItemId);
         final TextView txtListPrice = (TextView)convertView.findViewById(R.id.listItemPrice);
+
+        Button imgDecrease = (Button)convertView.findViewById(R.id.listItemDecrease);
+        final TextView txtListQuantity = (TextView)convertView.findViewById(R.id.listItemQuantity);
+
+
+
         txtListChild.setText(childProduct.getName());
         txtListPrice.setText("€" + childProduct.getPrice());
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int amount = Integer.parseInt(txtListQuantity.getText().toString());
+                txtListQuantity.setText((amount + 1) + "");
+                OrderItem oi = new OrderItem(childProduct.getProductID(), 1);
+                listener.onOrderChanged(oi);
+            }
+        });
+
+        imgDecrease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int amount = Integer.parseInt(txtListQuantity.getText().toString());
+                txtListQuantity.setText((amount - 1) + "");
+                OrderItem oi = new OrderItem(childProduct.getProductID(), -1);
+                listener.onOrderChanged(oi);
+            }
+        });
         return convertView;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
+    }
+
+    public interface OnOrderChanged{
+        void onOrderChanged(OrderItem oi);
     }
 
 }
