@@ -64,6 +64,9 @@
     <string name="no_amount_entered_toast">
         U heeft geen bedrag ingevoerd.
     </string>
+    <string name="not_possible_to_add_nothing_toast">
+        Het is niet mogelijk om €0,00 terug te storten op uw rekening.
+    </string>
     <string name="zero_money_added_toast">
         U kunt niet €0,00 invoeren.
     </string>
@@ -215,8 +218,9 @@
     <string name="Unhandled_Order_toolbar">Open Bestelling</string>
     
     <!-- Strings BalanceDialogFragment -->
-    <string name="balance_dialog_message">Het is niet mogelijk om meer dan €150 op uw account te hebben.
+    <string name="max_balance_dialog_message">Het is niet mogelijk om meer dan €150 op uw account te hebben.
     Saldo aanvullen tot €150?</string>
+    <string name="refund_balance_dialog_message">Wilt u het gehele bedrag terug storten?</string>
     <string name="balance_dialog_positive_button">Ja</string>
     <string name="balance_dialog_negative_button">Nee</string>
 </resources>

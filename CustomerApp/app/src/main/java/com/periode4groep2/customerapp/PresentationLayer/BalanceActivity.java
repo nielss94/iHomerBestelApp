@@ -21,6 +21,8 @@ import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
 import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
 import com.periode4groep2.customerapp.R;
 
+import static android.R.id.input;
+
 public class BalanceActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText mutateBalance;
     private Button addBalance;
@@ -30,6 +32,8 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
     private DAOFactory factory;
     private AccountDAO accountDAO;
     private final double maxBalance = 150;
+    private double currentBalanceValue;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,75 +54,72 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
 
         refundBalance = (Button) findViewById(R.id.refundBalanceButton);
         refundBalance.setOnClickListener(this);
+
+        currentBalanceValue = Double.parseDouble(currentBalanceTextView.getText().toString().replaceAll("€", "0"));
+
     }
 
     @Override
     public void onClick(View v) {
         if ( v.equals(addBalance) ) {
 
-            final double currentBalanceValue = Double.parseDouble(currentBalanceTextView.getText().toString().replaceAll("€", "0"));
             String input = mutateBalance.getText().toString().trim().replaceAll("€", "0");
-            final double currentEntryValue = Double.parseDouble(input);
+            double currentEntryValue = 0;
 
+            if(!input.isEmpty()){
+                currentEntryValue = Double.parseDouble(input);
+            }
 
-            if ( input.isEmpty() ) {
+            if ( input.isEmpty() || currentEntryValue == 0) {
                 Toast.makeText(this, R.string.no_amount_entered_toast, Toast.LENGTH_SHORT).show();
             } else {
-                if ( currentEntryValue <= 0.01 ) {
-                    Toast.makeText(this, R.string.no_amount_entered_toast, Toast.LENGTH_SHORT).show();
-                } else if ( currentBalanceValue + currentEntryValue > 150.00 || currentEntryValue >= 150.00 ) {
-                    createDialog();
+                if ( currentBalanceValue + currentEntryValue > 150.00 || currentEntryValue >= 150.00 ) {
+                    createMaxDialog();
                 } else {
-                    String youHave = getString(R.string.you_have_toast);
-                    String amountAdded = getString(R.string.amount_added_toast);
-                    String toastText = youHave + " " + input + " " + amountAdded;
-
-                    Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
-                    double newBalanceValue = currentBalanceValue + currentEntryValue;
-                    currentBalanceTextView.setText("€" + String.format("%.2f", newBalanceValue));
-                    account.setBalance(newBalanceValue);
-                    accountDAO.updateBalance(account,currentEntryValue * 100);
+                    createAcceptationDialog();
                 }
                 mutateBalance.setText("");
             }
 
         } else if ( v.equals(refundBalance) ) {
 
-            double currentBalanceValue = Double.parseDouble(currentBalanceTextView.getText().toString().replaceAll("€", "0"));
             String input = mutateBalance.getText().toString().trim().replaceAll("€", "0");
-            double currentEntryValue = Double.parseDouble(input);
+            double currentEntryValue = 0;
+
+            if (!input.isEmpty()){
+                currentEntryValue = Double.parseDouble(input);
+            }
 
             if ( input.isEmpty() ) {
-                Toast.makeText(this, "U heeft geen bedrag ingevoerd.", Toast.LENGTH_SHORT).show();
+                createRefundAllDialog();
+
             } else {
-                if ( currentEntryValue <= 0.01 ) {
-                    Toast.makeText(this, "U kunt niet €0.00 terugstorten op uw rekening.", Toast.LENGTH_SHORT).show();
+                if ( currentEntryValue == 0 ) {
+                    Toast.makeText(this, R.string.not_possible_to_add_nothing_toast, Toast.LENGTH_SHORT).show();
                 }
                 else if ( currentEntryValue > currentBalanceValue ) {
-                    Toast.makeText(this, "U heeft een bedrag ingevuld dat hoger is dan wat er op uw account staat.", Toast.LENGTH_SHORT).show();
+                    createRefundAllDialog();
                 } else {
-                    double newBalanceValue = currentBalanceValue - currentEntryValue;
-
-                    Toast.makeText(this, "U heeft " + input + " euro van uw account teruggestort.", Toast.LENGTH_SHORT).show();
-                    currentBalanceTextView.setText("€"+String.format("%.2f", newBalanceValue));
-                    account.setBalance(newBalanceValue);
-                    accountDAO.updateBalance(account,-(currentEntryValue* 100));
-                    mutateBalance.setText("");
+                    createRefundDialog();
                 }
+                mutateBalance.setText("");
             }
         }
     }
 
-    public void createDialog(){
+    public void createMaxDialog(){
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
-        builder.setMessage(getResources().getString(R.string.balance_dialog_message));
+        builder.setMessage(getResources().getString(R.string.max_balance_dialog_message));
         builder.setPositiveButton(getResources().getString(R.string.balance_dialog_positive_button), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
+
+                        double amountToMax = maxBalance - currentBalanceValue;
                         account.setBalance(maxBalance);
-                        accountDAO.updateBalance(account, (maxBalance * 100));
+                        accountDAO.updateBalance(account, (amountToMax * 100));
+                        currentBalanceTextView.setText("€" + String.format("%.2f", maxBalance));
                         dialogInterface.dismiss();
                     }
                 });
@@ -133,6 +134,97 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         final AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+    public void createRefundAllDialog(){
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setMessage(getResources().getString(R.string.refund_balance_dialog_message));
+        builder.setPositiveButton(getResources().getString(R.string.balance_dialog_positive_button), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+
+                double refundAll = currentBalanceValue - currentBalanceValue;
+                account.setBalance(refundAll);
+                accountDAO.updateBalance(account, -(currentBalanceValue * 100));
+                currentBalanceTextView.setText("€" + String.format("%.2f", refundAll));
+                dialogInterface.dismiss();
+            }
+        });
+
+        builder.setNegativeButton(getResources().getString(R.string.balance_dialog_negative_button), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public void createAcceptationDialog(){
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        final String getBalance = mutateBalance.getText().toString();
+        builder.setMessage("Weet u zeker dat u " + getBalance.trim() + " euro wil toevoegen?");
+        builder.setPositiveButton(getResources().getString(R.string.balance_dialog_positive_button), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+
+                double currentEntryValue = Double.parseDouble(getBalance.trim().replaceAll("€", "0"));
+                double newBalanceValue = currentBalanceValue + currentEntryValue;
+
+                currentBalanceTextView.setText("€" + String.format("%.2f", newBalanceValue));
+                account.setBalance(newBalanceValue);
+                accountDAO.updateBalance(account,currentEntryValue * 100);
+                dialogInterface.dismiss();
+            }
+        });
+
+        builder.setNegativeButton(getResources().getString(R.string.balance_dialog_negative_button), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public void createRefundDialog(){
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        final String getBalance = mutateBalance.getText().toString();
+        builder.setMessage("Weet u zeker dat u " + getBalance + " euro van uw account wil terugstorten?");
+        builder.setPositiveButton(getResources().getString(R.string.balance_dialog_positive_button), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+
+                double currentEntryValue = Double.parseDouble(getBalance.trim().replaceAll("€", "0"));
+                double newBalanceValue = currentBalanceValue - currentEntryValue;
+
+                currentBalanceTextView.setText("€"+String.format("%.2f", newBalanceValue));
+                account.setBalance(newBalanceValue);
+                accountDAO.updateBalance(account,-(currentEntryValue* 100));
+                dialogInterface.dismiss();
+            }
+        });
+
+        builder.setNegativeButton(getResources().getString(R.string.balance_dialog_negative_button), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 
 }
 
