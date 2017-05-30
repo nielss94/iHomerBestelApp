@@ -1,22 +1,17 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.DomainModel.Order;
@@ -25,6 +20,7 @@ import com.periode4groep2.customerapp.DomainModel.Product;
 import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
 import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
 import com.periode4groep2.customerapp.PersistancyLayer.OrderDAO;
+import com.periode4groep2.customerapp.PersistancyLayer.OrderSetAvailable;
 import com.periode4groep2.customerapp.PersistancyLayer.ProductDAO;
 import com.periode4groep2.customerapp.PersistancyLayer.ProductSetAvailable;
 import com.periode4groep2.customerapp.R;
@@ -32,7 +28,7 @@ import com.periode4groep2.customerapp.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class OrderActivity extends AppCompatActivity implements View.OnClickListener, ProductSetAvailable{
+public class OrderActivity extends AppCompatActivity implements View.OnClickListener, ProductSetAvailable, OrderSetAvailable{
 
     private final String TAG = getClass().getSimpleName();
     private TextView basket;
@@ -43,6 +39,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     private HashMap<String, ArrayList<Product>> listHash = new HashMap<>();
     private DAOFactory factory;
     private ProductDAO productDAO;
+    private ArrayList<Order> orders = new ArrayList<>();
     private OrderDAO orderDAO;
     private ArrayList<Product> products = new ArrayList<>();
     private Product product;
@@ -64,6 +61,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         productDAO = factory.createProductDAO();
         productDAO.selectData(this);
         orderDAO = factory.createOrderDAO();
+
+        orderDAO.selectData(this);
 
         totalOrderPrice = (TextView)findViewById(R.id.totalOrderPrice);
         basket = (TextView) findViewById(R.id.orderButton);
@@ -150,14 +149,25 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             addBalanceIntent.putExtra("account", account);
             startActivity(addBalanceIntent);
         } else if (v.equals(basket)) {
-            orderDAO.insertData(account,newOrder);
-            Intent intent = new Intent(this, OrderDetailActivity.class);
-            intent.putExtra("account", account);
-            intent.putExtra("order",newOrder);
-            Bundle b = new Bundle();
-            b.putParcelableArrayList("products",products);
-            intent.putExtras(b);
-            startActivity(intent);
+            Boolean canCreateOrder = true;
+            for (int i = 0; i < orders.size(); i++) {
+                if (orders.get(i).isHandled() == false) {
+                    canCreateOrder = false;
+                    break;
+                }
+            }
+            if (canCreateOrder) {
+                orderDAO.insertData(account, newOrder);
+                Intent intent = new Intent(this, OrderDetailActivity.class);
+                intent.putExtra("account", account);
+                intent.putExtra("order", newOrder);
+                Bundle b = new Bundle();
+                b.putParcelableArrayList("products", products);
+                intent.putExtras(b);
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "U heeft al een openstaande bestelling.", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -183,5 +193,10 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         }
 
         Log.i(TAG,newOrder.getOrderItems().toString());
+    }
+
+    @Override
+    public void orderSetAvailable(ArrayList<Order> orders) {
+        this.orders = orders;
     }
 }

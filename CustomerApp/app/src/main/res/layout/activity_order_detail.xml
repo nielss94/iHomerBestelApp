@@ -89,8 +89,7 @@
             android:id="@+id/buttonContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/cancelOrderButton"
