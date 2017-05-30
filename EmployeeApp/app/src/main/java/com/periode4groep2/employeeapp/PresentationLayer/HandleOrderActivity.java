@@ -55,7 +55,6 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
         setSupportActionBar(toolbar);
 
         mAccountField = (TextView) findViewById(R.id.test);
-
         mLoyaltyCardReader = new LoyaltyCardReader(this);
 
         // Disable Android Beam and register our card reader callback
@@ -75,6 +74,8 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
                 }
             }
         });
+
+
     }
 
     @Override
