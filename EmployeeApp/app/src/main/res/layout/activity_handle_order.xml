@@ -15,25 +15,93 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10sp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_weight="8" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aantal:"
+                android:textSize="16sp"
+                android:layout_weight="3"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prijs"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_weight="2"/>
+
+        </LinearLayout>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listview_show_orders"
+            >
+        </ListView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
         <TextView
-            android:id="@+id/test"
+            android:id="@+id/totalTagTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="GOEDZO JONGEN"
-            android:textColor="@color/colorWhite"
+            android:layout_weight="1"
             android:gravity="center"
-            android:textSize="80dp"/>
+            android:text="Totaal:" />
 
-        <!-- Moet aangepast worden-->
+        <TextView
+            android:id="@+id/totalPriceTagTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="€0,00" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/addProductsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/colorOrange"
+            android:text="@string/add_products_button" />
+
         <Button
             android:id="@+id/acceptOrderButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:background="@color/colorOrange"
-            android:text="@string/accept_button"
-            android:layout_gravity="bottom"/>
+            android:text="@string/accept_button" />
     </LinearLayout>
 
 </LinearLayout>

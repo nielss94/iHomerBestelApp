@@ -48,7 +48,6 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
         setSupportActionBar(toolbar);
 
         mAccountField = (TextView) findViewById(R.id.test);
-        mAccountField.setText("Waiting...");
 
         mLoyaltyCardReader = new LoyaltyCardReader(this);
 

@@ -34,4 +34,7 @@
     <string name="accept_button">
         Accepteer bestelling
     </string>
+    <string name="add_products_button">
+        Voeg producten toe
+    </string>
 </resources>
