@@ -30,8 +30,19 @@
         Account niet gevonden.
     </string>
 
-    <!-- String voor HandleOrderActivity -->
+    <!-- Strings voor HandleOrderActivity -->
     <string name="accept_button">
         Accepteer bestelling
+    </string>
+    
+    <!-- Strings voor HomeScreenActivity -->
+    <string name="stock_button">
+        Assortiment aanpassen
+    </string>
+    <string name="search_order_button">
+        Bestellingen zoeken
+    </string>
+    <string name="scan_button">
+        Scannen
     </string>
 </resources>

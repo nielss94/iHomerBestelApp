@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import com.periode4groep2.employeeapp.R;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, MyAccountAvailable {
+    private final String TAG = getClass().getSimpleName();
     private Button loginButton;
     private Toolbar toolbar;
     private DAOFactory factory;
@@ -43,14 +45,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
         setSupportActionBar(toolbar);
-
-
     }
 
     @Override
     public void onClick(View v) {
-        //Check if email/password is empty
-        accountDAO.selectData(this,email.getText().toString(),password.getText().toString());
+        if(v.equals(loginButton)){
+            accountDAO.selectData(this,email.getText().toString(),password.getText().toString());
+        }
     }
 
     @Override
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void logIn(){
-        Intent intent = new Intent(this, HandleOrderActivity.class);
+        Intent intent = new Intent(this, HomeScreenActivity.class);
         intent.putExtra("account", account);
         startActivity(intent);
         Toast.makeText(this, R.string.successful_log_in_toast, Toast.LENGTH_SHORT).show();
