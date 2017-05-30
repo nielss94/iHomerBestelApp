@@ -116,6 +116,7 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
             @Override
             public void run() {
                 mAccountField.setText(account);
+                String input = (String) mAccountField.getText();
             }
         });
 
