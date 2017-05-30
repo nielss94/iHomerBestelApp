@@ -6,12 +6,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.periode4groep2.employeeapp.CardReader.LoyaltyCardReader;
+import com.periode4groep2.employeeapp.DomainModel.Account;
+import com.periode4groep2.employeeapp.DomainModel.Order;
+import com.periode4groep2.employeeapp.PersistancyLayer.DAOFactory;
+import com.periode4groep2.employeeapp.PersistancyLayer.MySQLDAOFactory;
+import com.periode4groep2.employeeapp.PersistancyLayer.OrderDAO;
+import com.periode4groep2.employeeapp.PersistancyLayer.OrderSetAvailable;
 import com.periode4groep2.employeeapp.R;
 
-public class LoginTest extends AppCompatActivity implements LoyaltyCardReader.AccountCallback {
+import java.util.ArrayList;
+
+public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCardReader.AccountCallback, OrderSetAvailable {
     private Toolbar toolbar;
     public static final String TAG = "CardReaderFragment";
     // Recommend NfcAdapter flags for reading from other Android devices. Indicates that this
@@ -21,11 +31,18 @@ public class LoginTest extends AppCompatActivity implements LoyaltyCardReader.Ac
             NfcAdapter.FLAG_READER_NFC_A | NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK;
     public LoyaltyCardReader mLoyaltyCardReader;
     private TextView mAccountField;
+    private Button acceptOrderButton;
+    private DAOFactory factory;
+    private OrderDAO orderDAO;
+    private Order order;
+    private ArrayList<Order> orders = new ArrayList<>();
+    private Account account;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_test);
+        setContentView(R.layout.activity_handle_order);
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
         setSupportActionBar(toolbar);
@@ -38,6 +55,20 @@ public class LoginTest extends AppCompatActivity implements LoyaltyCardReader.Ac
         // Disable Android Beam and register our card reader callback
         //enableReaderMode();
 
+        account = (Account)getIntent().getSerializableExtra("account");
+        acceptOrderButton = (Button)findViewById(R.id.acceptOrderButton);
+        factory = new MySQLDAOFactory();
+        orderDAO = factory.createOrderDAO();
+        orderDAO.selectData(this);
+        acceptOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(order != null){
+                    orderDAO.handleOrder(account, order);
+                    order = null;
+                }
+            }
+        });
     }
 
     @Override
@@ -80,5 +111,22 @@ public class LoginTest extends AppCompatActivity implements LoyaltyCardReader.Ac
                 mAccountField.setText(account);
             }
         });
+
+        try{
+            int orderID = Integer.parseInt(account);
+            for (int i = 0; i < orders.size(); i++) {
+                if(orders.get(i).getOrderID() == orderID){
+                    order = orders.get(i);
+                }
+            }
+        } catch (NumberFormatException e){
+            Log.i(TAG, e.getMessage());
+        }
+
+    }
+
+    @Override
+    public void orderSetAvailable(ArrayList<Order> orders) {
+        this.orders = orders;
     }
 }

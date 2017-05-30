@@ -35,6 +35,7 @@ public class OrderHandleConnector extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... params) {
         StringBuilder sb = new StringBuilder();
+        new MySQLAccountDAO().updateBalance(account, -order.getTotalPrice());
         String http = "https://ihomerapi.herokuapp.com/API/handleOrder";
         HttpURLConnection urlConnection=null;
         try {

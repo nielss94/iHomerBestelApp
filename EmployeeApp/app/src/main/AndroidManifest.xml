@@ -30,8 +30,8 @@
                 android:name="android.nfc.action.TECH_DISCOVERED"
                 android:resource="@xml/nfc_tech_filter" />
         </activity>
-        <activity android:name=".PresentationLayer.LoginTest" />
-        <activity android:name=".PresentationLayer.HomeScreenActivity"></activity>
+        <activity android:name=".PresentationLayer.HandleOrderActivity" />
+        <activity android:name=".PresentationLayer.HomeScreenActivity" />
     </application>
 
 </manifest>

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void logIn(){
-        Intent intent = new Intent(this, LoginTest.class);
+        Intent intent = new Intent(this, HandleOrderActivity.class);
         intent.putExtra("account", account);
         startActivity(intent);
         Toast.makeText(this, R.string.successful_log_in_toast, Toast.LENGTH_SHORT).show();

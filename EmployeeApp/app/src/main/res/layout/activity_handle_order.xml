@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context="com.periode4groep2.employeeapp.PresentationLayer.LoginTest"
+    tools:context="com.periode4groep2.employeeapp.PresentationLayer.HandleOrderActivity"
     android:orientation="vertical">
 
     <include
@@ -26,6 +26,14 @@
             android:gravity="center"
             android:textSize="80dp"/>
 
+        <!-- Moet aangepast worden-->
+        <Button
+            android:id="@+id/acceptOrderButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorOrange"
+            android:text="@string/accept_button"
+            android:layout_gravity="bottom"/>
     </LinearLayout>
 
 </LinearLayout>

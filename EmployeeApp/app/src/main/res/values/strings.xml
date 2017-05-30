@@ -29,4 +29,9 @@
     <string name="account_not_found_toast">
         Account niet gevonden.
     </string>
+
+    <!-- String voor HandleOrderActivity -->
+    <string name="accept_button">
+        Accepteer bestelling
+    </string>
 </resources>
