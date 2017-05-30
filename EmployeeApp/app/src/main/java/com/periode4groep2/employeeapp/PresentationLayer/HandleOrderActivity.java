@@ -8,11 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.periode4groep2.employeeapp.CardReader.LoyaltyCardReader;
 import com.periode4groep2.employeeapp.DomainModel.Account;
 import com.periode4groep2.employeeapp.DomainModel.Order;
+import com.periode4groep2.employeeapp.DomainModel.Product;
 import com.periode4groep2.employeeapp.PersistancyLayer.DAOFactory;
 import com.periode4groep2.employeeapp.PersistancyLayer.MySQLDAOFactory;
 import com.periode4groep2.employeeapp.PersistancyLayer.OrderDAO;
@@ -38,6 +40,11 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
     private ArrayList<Order> orders = new ArrayList<>();
     private Account account;
 
+    //orders ophalen voor jordanus
+    private ListView orderListView;
+    private ArrayList<Product> productlist = new ArrayList<>();
+    private ReceivedOrderAdapter receivedOrderAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +55,6 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
         setSupportActionBar(toolbar);
 
         mAccountField = (TextView) findViewById(R.id.test);
-        mAccountField.setText("Waiting...");
 
         mLoyaltyCardReader = new LoyaltyCardReader(this);
 
