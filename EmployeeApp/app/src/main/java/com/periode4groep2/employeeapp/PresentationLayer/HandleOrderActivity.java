@@ -57,6 +57,7 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
         toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
         setSupportActionBar(toolbar);
 
+        orderListView = (ListView) findViewById(R.id.listview_show_orders);
         test = (TextView) findViewById(R.id.totalTagTextView);
         test2 = (TextView) findViewById(R.id.totalPriceTagTextView);
         mLoyaltyCardReader = new LoyaltyCardReader(this);
@@ -130,6 +131,7 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
             for (int i = 0; i < orders.size(); i++) {
                 if(orders.get(i).getOrderID() == orderID){
                     order = orders.get(i);
+                    populateOrder(order);
                 }
             }
         } catch (NumberFormatException e){
@@ -145,11 +147,15 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
 
     @Override
     public void productSetAvailable(ArrayList<Product> products) {
-        //productlist.clear();
         productlist = products;
-        orderListView = (ListView) findViewById(R.id.listview_show_orders);
+    }
+
+    public void populateOrder(Order order){
+        if(receivedOrderAdapter != null){
+            receivedOrderAdapter.clear();
+        }
         receivedOrderAdapter = new ReceivedOrderAdapter(this, order.getOrderItems(), productlist);
         orderListView.setAdapter(receivedOrderAdapter);
-        //receivedOrderAdapter.notifyDataSetChanged();
+        receivedOrderAdapter.notifyDataSetChanged();
     }
 }

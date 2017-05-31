@@ -40,8 +40,6 @@ public abstract class StockActivity extends AppCompatActivity implements View.On
     private Product product;
     private Button balanceButton;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
