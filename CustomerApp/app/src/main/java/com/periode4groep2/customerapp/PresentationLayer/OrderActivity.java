@@ -141,7 +141,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         } else if (v.equals(basket)) {
             Boolean canCreateOrder = true;
             for (int i = 0; i < orders.size(); i++) {
-                if (orders.get(i).isHandled() == false) {
+                if (orders.get(i).isHandled() == false && orders.get(i).getEmail().equals(account.getEmail())) {
                     canCreateOrder = false;
                     break;
                 }

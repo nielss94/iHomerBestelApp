@@ -43,11 +43,13 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
     private Order order;
     private ArrayList<Order> orders = new ArrayList<>();
     private Account account;
+    private int currentOrderID;
 
     //orders ophalen voor jordanus
     private ListView orderListView;
     private ArrayList<Product> productlist = new ArrayList<>();
     private ReceivedOrderAdapter receivedOrderAdapter;
+    private ArrayList<OrderItem> orderItemList = new ArrayList<>();
 
 
     @Override
@@ -60,7 +62,7 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
 
         orderListView = (ListView) findViewById(R.id.listview_show_orders);
         order = new Order(1, "rick", false, 0.00, "2017-4-4");
-        order.addOrderItem(new OrderItem(1,4));
+        orderItemList = order.getOrderItems();
 
         test = (TextView) findViewById(R.id.totalTagTextView);
         test2 = (TextView) findViewById(R.id.totalPriceTagTextView);
@@ -75,13 +77,13 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
         productDAO = factory.createProductDAO();
         productDAO.selectData(this);
         orderDAO = factory.createOrderDAO();
-        orderDAO.selectData(this);
         acceptOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(order != null){
                     orderDAO.handleOrder(account, order);
                     order = null;
+                    receivedOrderAdapter.clear();
                 }
             }
         });
@@ -127,20 +129,8 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
             @Override
             public void run() {
                 test.setText(account);
-                try{
-                    int orderID = Integer.parseInt(account);
-                    for (int i = 0; i < orders.size(); i++) {
-                        if(orders.get(i).getOrderID() == orderID){
-                            order = orders.get(i);
-
-                            receivedOrderAdapter.clear();
-                            receivedOrderAdapter.notifyDataSetChanged();
-                            Log.i(TAG, order.getOrderItems().toString());
-                        }
-                    }
-                } catch (NumberFormatException e){
-                    Log.i(TAG, e.getMessage());
-                }
+                currentOrderID = Integer.parseInt(account);
+                getOrderData();
             }
         });
 
@@ -150,15 +140,40 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
     @Override
     public void orderSetAvailable(ArrayList<Order> orders) {
         this.orders = orders;
-
+        populateOrderList(currentOrderID);
     }
 
     @Override
     public void productSetAvailable(ArrayList<Product> products) {
         productlist = products;
-        receivedOrderAdapter = new ReceivedOrderAdapter(this, order.getOrderItems(), productlist);
+        receivedOrderAdapter = new ReceivedOrderAdapter(this, orderItemList, productlist);
         orderListView.setAdapter(receivedOrderAdapter);
 
     }
+    public void getOrderData(){
+        orderDAO.selectData(this);
 
+    }
+    public void populateOrderList(int orderID){
+
+        try{
+            for (int i = 0; i < orders.size(); i++) {
+                if(orders.get(i).getOrderID() == orderID){
+                    order = orders.get(i);
+                    for (int j = 0; j < orderItemList.size(); j++) {
+                        orderItemList.remove(j);
+                    }
+                    for (int j = 0; j < orders.get(i).getOrderItems().size(); j++) {
+                        orderItemList.add(orders.get(i).getOrderItems().get(j));
+                    }
+                    Log.i(TAG, orders.get(i).toString());
+                    //.clear();
+                    receivedOrderAdapter.notifyDataSetChanged();
+                    Log.i(TAG, "pipo: " + order.getOrderItems().toString());
+                }
+            }
+        } catch (NumberFormatException e){
+            Log.i(TAG, e.getMessage());
+        }
+    }
 }
