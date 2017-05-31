@@ -47,6 +47,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     private TextView totalOrderPrice;
     private Order newOrder;
     private ImageButton popUpButton;
+    private TextView orderItemCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         orderDAO.selectData(this);
 
         totalOrderPrice = (TextView)findViewById(R.id.totalOrderPrice);
+        orderItemCount = (TextView)findViewById(R.id.itemCount);
+        orderItemCount.setText("0");
         basket = (TextView) findViewById(R.id.orderButton);
         basket.setOnClickListener(this);
 
@@ -94,7 +97,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         listView = (ExpandableListView) findViewById(R.id.expandableListId);
 
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash, this);
-
         listView.setAdapter(listAdapter);
 
 
@@ -182,18 +184,50 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
         Log.i(TAG,newOrder.getOrderItems().toString());
     }
+    public void removeOrderitem(double newPrice, OrderItem orderItem) {
+        newOrder.setTotalPrice(newOrder.getTotalPrice() - newPrice);
+        totalOrderPrice.setText("€" + String.format("%.2f", newOrder.getTotalPrice()));
+        ArrayList<Integer> productIDsInOrderItems = new ArrayList<>();
 
+        for (int i = 0; i < newOrder.getOrderItems().size(); i++) {
+            productIDsInOrderItems.add(newOrder.getOrderItems().get(i).getProductID());
+        }
+
+        if(!productIDsInOrderItems.contains(orderItem.getProductID())){
+            newOrder.getOrderItems().add(orderItem);
+        }
+        else{
+            for (int i = 0; i < newOrder.getOrderItems().size(); i++) {
+                if(newOrder.getOrderItems().get(i).getProductID() == orderItem.getProductID()){
+                    newOrder.getOrderItems().get(i).setQuantity(newOrder.getOrderItems().get(i).getQuantity() + orderItem.getQuantity());
+                    break;
+                }
+            }
+        }
+
+        Log.i(TAG,newOrder.getOrderItems().toString());
+    }
     @Override
     public void orderSetAvailable(ArrayList<Order> orders) {
         this.orders = orders;
     }
 
     @Override
-    public void onOrderChanged(OrderItem oi) {
-        if(oi.getQuantity() > 0){
-            addOrderitem(product.getPrice(), oi);
-        }else if(oi.getQuantity() < 0){
-            //Remove item from order
+    public void onOrderChanged(Product product, int quantity) {
+        if(quantity > 0){
+            addOrderitem(product.getPrice(), new OrderItem(product.getProductID(), quantity));
+            int i = 0;
+            for (int j = 0; j < newOrder.getOrderItems().size(); j++) {
+                i += newOrder.getOrderItems().get(i).getQuantity();
+            }
+            orderItemCount.setText(i + "");
+        }else if(quantity < 0){
+            removeOrderitem(product.getPrice(), new OrderItem(product.getProductID(), quantity));
+            int i = 0;
+            for (int j = 0; j < newOrder.getOrderItems().size(); j++) {
+                i += newOrder.getOrderItems().get(i).getQuantity();
+            }
+            orderItemCount.setText(i + "");
         }else {
             return;
         }

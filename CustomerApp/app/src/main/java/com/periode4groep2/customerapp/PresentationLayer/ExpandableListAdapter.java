@@ -2,6 +2,7 @@ package com.periode4groep2.customerapp.PresentationLayer;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import com.periode4groep2.customerapp.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by J.h2os on 9-5-2017.
  */
@@ -26,6 +29,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private ArrayList<String> ListDataHeader;
     private HashMap<String,ArrayList<Product>> listHashMap;
     private OnOrderChanged listener;
+    private ArrayList<OrderItem> orderItems = new ArrayList<>();
 
     public ExpandableListAdapter(Context context, ArrayList<String> listDataHeader, HashMap<String, ArrayList<Product>> listHashMap, OnOrderChanged listener) {
         this.context = context;
@@ -86,6 +90,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         final Product childProduct = (Product)getChild(groupPosition,childPosition);
+        Log.i("ExpandableListAdapter", groupPosition + "");
         if (convertView == null)
         {
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -98,10 +103,21 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         Button imgDecrease = (Button)convertView.findViewById(R.id.listItemDecrease);
         final TextView txtListQuantity = (TextView)convertView.findViewById(R.id.listItemQuantity);
 
-
-
         txtListChild.setText(childProduct.getName());
         txtListPrice.setText("€" + childProduct.getPrice());
+        Boolean notInOrderItems = true;
+        for (int i = 0; i < orderItems.size(); i++) {
+            if(childProduct.getProductID() == orderItems.get(i).getProductID()){
+                Log.i(TAG, String.valueOf(orderItems.get(i).getQuantity()));
+                txtListQuantity.setText(String.valueOf(orderItems.get(i).getQuantity()));
+                notInOrderItems = false;
+                break;
+            }
+        }
+
+        if(notInOrderItems){
+            txtListQuantity.setText("0");
+        }
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +125,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 int amount = Integer.parseInt(txtListQuantity.getText().toString());
                 txtListQuantity.setText((amount + 1) + "");
                 OrderItem oi = new OrderItem(childProduct.getProductID(), 1);
-                listener.onOrderChanged(oi);
+                addOrderitem(oi);
+                listener.onOrderChanged(childProduct, 1);
             }
         });
 
@@ -117,9 +134,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View v) {
                 int amount = Integer.parseInt(txtListQuantity.getText().toString());
-                txtListQuantity.setText((amount - 1) + "");
-                OrderItem oi = new OrderItem(childProduct.getProductID(), -1);
-                listener.onOrderChanged(oi);
+                if(amount > 0){
+                    txtListQuantity.setText((amount - 1) + "");
+                    OrderItem oi = new OrderItem(childProduct.getProductID(), -1);
+                    addOrderitem(oi);
+                    listener.onOrderChanged(childProduct, -1);
+                }
             }
         });
         return convertView;
@@ -131,7 +151,27 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     public interface OnOrderChanged{
-        void onOrderChanged(OrderItem oi);
+        void onOrderChanged(Product product, int quantity);
     }
 
+    public void addOrderitem(OrderItem orderItem) {
+        ArrayList<Integer> productIDsInOrderItems = new ArrayList<>();
+
+        for (int i = 0; i < orderItems.size(); i++) {
+            productIDsInOrderItems.add(orderItems.get(i).getProductID());
+        }
+
+        if(!productIDsInOrderItems.contains(orderItem.getProductID())){
+            orderItems.add(orderItem);
+        }
+        else{
+            for (int i = 0; i < orderItems.size(); i++) {
+                if(orderItems.get(i).getProductID() == orderItem.getProductID()){
+                    orderItems.get(i).setQuantity(orderItems.get(i).getQuantity() + orderItem.getQuantity());
+                    break;
+                }
+            }
+        }
+
+    }
 }

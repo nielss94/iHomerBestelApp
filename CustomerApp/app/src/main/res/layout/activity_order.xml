@@ -23,16 +23,39 @@
             android:groupIndicator="@null"
             android:layout_height="match_parent">
         </ExpandableListView>
-
-        <ImageButton
-            android:layout_margin="15dp"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:background="@drawable/circle"
-            android:src="@drawable/icon_bestellen"
-            android:id="@+id/popUpButton"
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true">
+
+            <ImageButton
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/circle"
+                android:src="@drawable/icon_bestellen"
+                android:id="@+id/popUpButton"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"/>
+
+            <RelativeLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/colorOrderRed"/>
+                <TextView
+                    android:id="@+id/itemCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/colorWhite"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
+
 
     </RelativeLayout>
 
