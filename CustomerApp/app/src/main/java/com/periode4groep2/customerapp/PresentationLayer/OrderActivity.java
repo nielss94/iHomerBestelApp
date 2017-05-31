@@ -218,14 +218,14 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             addOrderitem(product.getPrice(), new OrderItem(product.getProductID(), quantity));
             int i = 0;
             for (int j = 0; j < newOrder.getOrderItems().size(); j++) {
-                i += newOrder.getOrderItems().get(i).getQuantity();
+                i += newOrder.getOrderItems().get(j).getQuantity();
             }
             orderItemCount.setText(i + "");
         }else if(quantity < 0){
             removeOrderitem(product.getPrice(), new OrderItem(product.getProductID(), quantity));
             int i = 0;
             for (int j = 0; j < newOrder.getOrderItems().size(); j++) {
-                i += newOrder.getOrderItems().get(i).getQuantity();
+                i += newOrder.getOrderItems().get(j).getQuantity();
             }
             orderItemCount.setText(i + "");
         }else {
