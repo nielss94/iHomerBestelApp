@@ -27,7 +27,7 @@ import com.periode4groep2.employeeapp.R;
 
 import java.util.ArrayList;
 
-public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCardReader.AccountCallback, OrderSetAvailable, ProductSetAvailable {
+public class HandleOrderActivity extends AppCompatActivity implements View.OnClickListener, LoyaltyCardReader.AccountCallback, OrderSetAvailable, ProductSetAvailable {
     private Toolbar toolbar;
     public static final String TAG = "CardReaderFragment";
     // Recommend NfcAdapter flags for reading from other Android devices. Indicates that this
@@ -72,33 +72,18 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
         // Disable Android Beam and register our card reader callback
         //enableReaderMode();
 
-        account = (Account)getIntent().getSerializableExtra("account");
-        acceptOrderButton = (Button)findViewById(R.id.acceptOrderButton);
-        addProducts = (Button)findViewById(R.id.addProductsButton);
+        account = (Account) getIntent().getSerializableExtra("account");
+        acceptOrderButton = (Button) findViewById(R.id.acceptOrderButton);
+        addProducts = (Button) findViewById(R.id.addProductsButton);
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();
         productDAO.selectData(this);
         orderDAO = factory.createOrderDAO();
-        acceptOrderButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(order != null){
-                    orderDAO.handleOrder(account, order);
-                    order = null;
-                    receivedOrderAdapter.clear();
-                }
-            }
-        });
-        addProducts.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AddExtraProducts.class);
-                startActivity(intent);
-            }
-        });
+        acceptOrderButton.setOnClickListener(this);
+        addProducts.setOnClickListener(this);
 
     }
-
+    
     @Override
     public void onPause() {
         super.onPause();
@@ -182,6 +167,20 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
             }
         } catch (NumberFormatException e){
             Log.i(TAG, e.getMessage());
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.equals(acceptOrderButton)){
+            if(order != null){
+                orderDAO.handleOrder(account, order);
+                order = null;
+                receivedOrderAdapter.clear();
+            }
+        } else if(v.equals(addProducts)){
+            Intent intent = new Intent(this, AddExtraProducts.class);
+            startActivity(intent);
         }
     }
 }
