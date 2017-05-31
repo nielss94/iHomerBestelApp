@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.periode4groep2.employeeapp.PresentationLayer.SearchOrderActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include
+        android:id="@+id/tool_bar_no_button"
+        layout="@layout/tool_bar_no_button">
+    </include>
+
+</LinearLayout>

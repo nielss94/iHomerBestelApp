@@ -9,8 +9,8 @@
     tools:context="com.periode4groep2.employeeapp.PresentationLayer.HomeScreenActivity">
 
     <include
-        android:id="@+id/tool_bar"
-        layout="@layout/tool_bar">
+        android:id="@+id/tool_bar_no_button"
+        layout="@layout/tool_bar_no_button">
     </include>
 
     <LinearLayout

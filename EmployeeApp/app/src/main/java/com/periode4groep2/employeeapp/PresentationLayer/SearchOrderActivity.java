@@ -6,13 +6,17 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.periode4groep2.employeeapp.DomainModel.Account;
+import com.periode4groep2.employeeapp.DomainModel.Order;
 import com.periode4groep2.employeeapp.PersistancyLayer.OrderSetAvailable;
 import com.periode4groep2.employeeapp.R;
+
+import java.util.ArrayList;
 
 public class SearchOrderActivity extends AppCompatActivity {
     //implements View.OnClickListener, OrderSetAvailable
     private final String TAG = getClass().getSimpleName();
 
+    private ArrayList<Order> orderArrayList;
     private ListView orderListView;
     private Account account;
 
@@ -20,5 +24,9 @@ public class SearchOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_order);
+
+        account = (Account)getIntent().getSerializableExtra("account");
+
+
     }
 }
