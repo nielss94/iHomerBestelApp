@@ -92,7 +92,7 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
         addProducts.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(this, AddExtraProducts.class);
+                Intent intent = new Intent(getApplicationContext(), AddExtraProducts.class);
                 startActivity(intent);
             }
         });
