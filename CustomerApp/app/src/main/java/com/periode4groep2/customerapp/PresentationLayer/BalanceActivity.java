@@ -68,42 +68,44 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
 
             if(!input.isEmpty()){
                 currentEntryValue = Double.parseDouble(input);
+                if (currentBalanceValue == 150){
+                    Toast.makeText(this, "U heeft het maximale bedrag", Toast.LENGTH_SHORT).show();
+                }
+                else if ( currentBalanceValue + currentEntryValue > 150.00 || currentEntryValue >= 150.00 ) {
+                    createMaxDialog();
+                }
+                else {
+                    createAcceptationDialog();
+                }
+                mutateBalance.setText("");
             }
-            if ( input.isEmpty() || currentEntryValue == 0) {
+            else if ( input.isEmpty() || currentEntryValue == 0) {
                 Toast.makeText(this, R.string.no_amount_entered_toast, Toast.LENGTH_SHORT).show();
             }
-            if (currentBalanceValue == 150){
-                Toast.makeText(this, "U heeft het maximale bedrag", Toast.LENGTH_SHORT).show();
-            }
-            else if ( currentBalanceValue + currentEntryValue > 150.00 || currentEntryValue >= 150.00 ) {
-                createMaxDialog();
-            }
-            else {
-                createAcceptationDialog();
-            }
-            mutateBalance.setText("");
+
 
         } else if ( v.equals(refundBalance) ) {
 
             String input = mutateBalance.getText().toString().trim().replaceAll("€", "0");
             double currentEntryValue = 0;
 
-            if (!input.isEmpty()){
+            if (!input.isEmpty()) {
                 currentEntryValue = Double.parseDouble(input);
-            }
-            if ( input.isEmpty() ) {
-                createRefundAllDialog();
-            }
-            if ( currentEntryValue == 0 ) {
-                Toast.makeText(this, R.string.not_possible_to_add_nothing_toast, Toast.LENGTH_SHORT).show();
-            }if ( currentEntryValue > currentBalanceValue ) {
-                createRefundAllDialog();
+                if (currentEntryValue == 0) {
+                    Toast.makeText(this, R.string.not_possible_to_add_nothing_toast, Toast.LENGTH_SHORT).show();
+                }
+                if (currentEntryValue > currentBalanceValue) {
+                    createRefundAllDialog();
                 } else {
-                createRefundDialog();
+                    createRefundDialog();
                 }
                 mutateBalance.setText("");
             }
+            else {
+                createRefundAllDialog();
+            }
         }
+    }
 
     public void createMaxDialog(){
 
