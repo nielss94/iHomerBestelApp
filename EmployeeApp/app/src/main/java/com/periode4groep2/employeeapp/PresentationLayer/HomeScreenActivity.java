@@ -29,6 +29,8 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
 
 
         scanOrderView.setOnClickListener(this);
+        searchOrdersView.setOnClickListener(this);
+        stockView.setOnClickListener(this);
     }
 
     @Override

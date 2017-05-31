@@ -12,4 +12,34 @@
         layout="@layout/tool_bar_no_button">
     </include>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <EditText
+            android:id="@+id/searchOrderEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/search_order_edit_text_hint"
+            />
+
+        <Button
+            android:id="@+id/searchOrderButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+        <ListView
+            android:id="@+id/searchedOrdersListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </ListView>
+
+
+
 </LinearLayout>
