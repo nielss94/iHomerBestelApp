@@ -9,8 +9,8 @@ import com.periode4groep2.employeeapp.DomainModel.Account;
 import com.periode4groep2.employeeapp.PersistancyLayer.OrderSetAvailable;
 import com.periode4groep2.employeeapp.R;
 
-public class SearchOrderActivity extends AppCompatActivity implements View.OnClickListener, OrderSetAvailable {
-
+public class SearchOrderActivity extends AppCompatActivity {
+    //implements View.OnClickListener, OrderSetAvailable
     private final String TAG = getClass().getSimpleName();
 
     private ListView orderListView;
