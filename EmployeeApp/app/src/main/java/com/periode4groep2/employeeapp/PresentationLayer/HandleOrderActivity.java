@@ -83,7 +83,7 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
         addProducts.setOnClickListener(this);
 
     }
-    
+
     @Override
     public void onPause() {
         super.onPause();
