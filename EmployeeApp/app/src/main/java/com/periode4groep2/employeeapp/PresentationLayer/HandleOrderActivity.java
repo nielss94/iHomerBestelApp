@@ -1,6 +1,7 @@
 package com.periode4groep2.employeeapp.PresentationLayer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.nfc.NfcAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,7 +37,7 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
             NfcAdapter.FLAG_READER_NFC_A | NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK;
     public LoyaltyCardReader mLoyaltyCardReader;
     private TextView test, test2;
-    private Button acceptOrderButton;
+    private Button acceptOrderButton, addProducts;
     private DAOFactory factory;
     private OrderDAO orderDAO;
     private ProductDAO productDAO;
@@ -73,6 +74,7 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
 
         account = (Account)getIntent().getSerializableExtra("account");
         acceptOrderButton = (Button)findViewById(R.id.acceptOrderButton);
+        addProducts = (Button)findViewById(R.id.addProductsButton);
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();
         productDAO.selectData(this);
@@ -87,7 +89,13 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
                 }
             }
         });
-
+        addProducts.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(this, AddExtraProducts.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
