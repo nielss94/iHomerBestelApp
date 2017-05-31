@@ -69,17 +69,19 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
             if(!input.isEmpty()){
                 currentEntryValue = Double.parseDouble(input);
             }
-
             if ( input.isEmpty() || currentEntryValue == 0) {
                 Toast.makeText(this, R.string.no_amount_entered_toast, Toast.LENGTH_SHORT).show();
-            } else {
-                if ( currentBalanceValue + currentEntryValue > 150.00 || currentEntryValue >= 150.00 ) {
-                    createMaxDialog();
-                } else {
-                    createAcceptationDialog();
-                }
-                mutateBalance.setText("");
             }
+            if (currentBalanceValue == 150){
+                Toast.makeText(this, "U heeft het maximale bedrag", Toast.LENGTH_SHORT).show();
+            }
+            else if ( currentBalanceValue + currentEntryValue > 150.00 || currentEntryValue >= 150.00 ) {
+                createMaxDialog();
+            }
+            else {
+                createAcceptationDialog();
+            }
+            mutateBalance.setText("");
 
         } else if ( v.equals(refundBalance) ) {
 
@@ -89,23 +91,19 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
             if (!input.isEmpty()){
                 currentEntryValue = Double.parseDouble(input);
             }
-
             if ( input.isEmpty() ) {
                 createRefundAllDialog();
-
-            } else {
-                if ( currentEntryValue == 0 ) {
-                    Toast.makeText(this, R.string.not_possible_to_add_nothing_toast, Toast.LENGTH_SHORT).show();
-                }
-                else if ( currentEntryValue > currentBalanceValue ) {
-                    createRefundAllDialog();
+            }
+            if ( currentEntryValue == 0 ) {
+                Toast.makeText(this, R.string.not_possible_to_add_nothing_toast, Toast.LENGTH_SHORT).show();
+            }if ( currentEntryValue > currentBalanceValue ) {
+                createRefundAllDialog();
                 } else {
-                    createRefundDialog();
+                createRefundDialog();
                 }
                 mutateBalance.setText("");
             }
         }
-    }
 
     public void createMaxDialog(){
 
@@ -117,9 +115,10 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
                     public void onClick(DialogInterface dialogInterface, int which) {
 
                         double amountToMax = maxBalance - currentBalanceValue;
-                        account.setBalance(maxBalance);
+                        currentBalanceValue += amountToMax;
+                        account.setBalance(currentBalanceValue);
                         accountDAO.updateBalance(account, (amountToMax * 100));
-                        currentBalanceTextView.setText("€" + String.format("%.2f", maxBalance));
+                        currentBalanceTextView.setText("€" + String.format("%.2f", currentBalanceValue));
                         dialogInterface.dismiss();
                     }
                 });
@@ -144,10 +143,10 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
 
-                double refundAll = currentBalanceValue - currentBalanceValue;
-                account.setBalance(refundAll);
+                currentBalanceValue = 0;
+                account.setBalance(currentBalanceValue);
                 accountDAO.updateBalance(account, -(currentBalanceValue * 100));
-                currentBalanceTextView.setText("€" + String.format("%.2f", refundAll));
+                currentBalanceTextView.setText("€" + String.format("%.2f", currentBalanceValue));
                 dialogInterface.dismiss();
             }
         });
@@ -168,16 +167,17 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
         final String getBalance = mutateBalance.getText().toString();
+
         builder.setMessage("Weet u zeker dat u " + getBalance.trim() + " euro wil toevoegen?");
         builder.setPositiveButton(getResources().getString(R.string.balance_dialog_positive_button), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
 
                 double currentEntryValue = Double.parseDouble(getBalance.trim().replaceAll("€", "0"));
-                double newBalanceValue = currentBalanceValue + currentEntryValue;
+                currentBalanceValue = currentBalanceValue + currentEntryValue;
 
-                currentBalanceTextView.setText("€" + String.format("%.2f", newBalanceValue));
-                account.setBalance(newBalanceValue);
+                currentBalanceTextView.setText("€" + String.format("%.2f", currentBalanceValue));
+                account.setBalance(currentBalanceValue);
                 accountDAO.updateBalance(account,currentEntryValue * 100);
                 dialogInterface.dismiss();
             }
@@ -205,10 +205,10 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
             public void onClick(DialogInterface dialogInterface, int which) {
 
                 double currentEntryValue = Double.parseDouble(getBalance.trim().replaceAll("€", "0"));
-                double newBalanceValue = currentBalanceValue - currentEntryValue;
+                currentBalanceValue = currentBalanceValue - currentEntryValue;
 
-                currentBalanceTextView.setText("€"+String.format("%.2f", newBalanceValue));
-                account.setBalance(newBalanceValue);
+                currentBalanceTextView.setText("€"+String.format("%.2f", currentBalanceValue));
+                account.setBalance(currentBalanceValue);
                 accountDAO.updateBalance(account,-(currentEntryValue* 100));
                 dialogInterface.dismiss();
             }
