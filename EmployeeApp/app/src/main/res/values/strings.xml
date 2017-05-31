@@ -53,4 +53,25 @@
     <string name="search_order_edit_text_hint">
         Voer emailadres van klant in...
     </string>
+
+    <!-- Strings voor OrderActivity -->
+    <string name="total_textview">
+        Totaal:
+    </string>
+    <string name="total_price_textview">
+        €0,00
+    </string>
+    <string name="order_activity_orderButton">
+        Bestellen
+    </string>
+
+    <!-- Strings voor de toolbar -->
+    <string name="Home_Screen_toolbar">Menu</string>
+    <string name="order_toolbar">Bestellen</string>
+    <string name="Order_Detail_toolbar">Huidige Bestelling</string>
+    <string name="Scan_toolbar">Betalen</string>
+    <string name="Order_History_toolbar">Mijn Bestellingen</string>
+    <string name="Settings_toolbar">Instellingen</string>
+    <string name="Unhandled_Order_toolbar">Open Bestelling</string>
+
 </resources>
