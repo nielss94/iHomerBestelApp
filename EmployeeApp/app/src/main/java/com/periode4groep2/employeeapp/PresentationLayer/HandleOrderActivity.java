@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.periode4groep2.employeeapp.CardReader.LoyaltyCardReader;
 import com.periode4groep2.employeeapp.DomainModel.Account;
 import com.periode4groep2.employeeapp.DomainModel.Order;
+import com.periode4groep2.employeeapp.DomainModel.OrderItem;
 import com.periode4groep2.employeeapp.DomainModel.Product;
 import com.periode4groep2.employeeapp.PersistancyLayer.DAOFactory;
 import com.periode4groep2.employeeapp.PersistancyLayer.MySQLDAOFactory;
@@ -58,6 +59,9 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
         setSupportActionBar(toolbar);
 
         orderListView = (ListView) findViewById(R.id.listview_show_orders);
+        order = new Order(1, "rick", false, 0.00, "2017-4-4");
+        order.addOrderItem(new OrderItem(1,4));
+
         test = (TextView) findViewById(R.id.totalTagTextView);
         test2 = (TextView) findViewById(R.id.totalPriceTagTextView);
         mLoyaltyCardReader = new LoyaltyCardReader(this);
@@ -123,20 +127,24 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
             @Override
             public void run() {
                 test.setText(account);
+                try{
+                    int orderID = Integer.parseInt(account);
+                    for (int i = 0; i < orders.size(); i++) {
+                        if(orders.get(i).getOrderID() == orderID){
+                            order = orders.get(i);
+
+                            receivedOrderAdapter.clear();
+                            receivedOrderAdapter.notifyDataSetChanged();
+                            Log.i(TAG, order.getOrderItems().toString());
+                        }
+                    }
+                } catch (NumberFormatException e){
+                    Log.i(TAG, e.getMessage());
+                }
             }
         });
 
-        try{
-            int orderID = Integer.parseInt(account);
-            for (int i = 0; i < orders.size(); i++) {
-                if(orders.get(i).getOrderID() == orderID){
-                    order = orders.get(i);
-                    populateOrder(order);
-                }
-            }
-        } catch (NumberFormatException e){
-            Log.i(TAG, e.getMessage());
-        }
+
     }
 
     @Override
@@ -148,14 +156,9 @@ public class HandleOrderActivity extends AppCompatActivity implements LoyaltyCar
     @Override
     public void productSetAvailable(ArrayList<Product> products) {
         productlist = products;
-    }
-
-    public void populateOrder(Order order){
-        if(receivedOrderAdapter != null){
-            receivedOrderAdapter.clear();
-        }
         receivedOrderAdapter = new ReceivedOrderAdapter(this, order.getOrderItems(), productlist);
         orderListView.setAdapter(receivedOrderAdapter);
-        receivedOrderAdapter.notifyDataSetChanged();
+
     }
+
 }

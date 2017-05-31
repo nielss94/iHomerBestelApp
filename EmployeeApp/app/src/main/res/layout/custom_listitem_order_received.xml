@@ -23,7 +23,6 @@
                 android:id="@+id/productNameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="dummy_data"
                 android:layout_weight="1"
                 android:textAlignment="textStart"/>
 
