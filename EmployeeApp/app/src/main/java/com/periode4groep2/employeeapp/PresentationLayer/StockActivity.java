@@ -25,7 +25,7 @@ import com.periode4groep2.employeeapp.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class Stock extends AppCompatActivity implements View.OnClickListener, ProductSetAvailable, OrderSetAvailable {
+public abstract class StockActivity extends AppCompatActivity implements View.OnClickListener, ProductSetAvailable, OrderSetAvailable {
 
     private final String TAG = getClass().getSimpleName();
     private Account account;
