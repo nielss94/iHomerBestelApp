@@ -16,12 +16,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
         android:layout_weight="1">
 
         <EditText
             android:id="@+id/searchOrderEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorOrange"
             android:hint="@string/search_order_edit_text_hint"
             />
 
@@ -29,6 +32,9 @@
             android:id="@+id/searchOrderButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:backgroundTint="@color/colorOrange"
+            android:text="@string/search_order_history_button"
             />
 
     </LinearLayout>
@@ -37,7 +43,7 @@
             android:id="@+id/searchedOrdersListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="11">
         </ListView>
 
 

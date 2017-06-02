@@ -53,6 +53,9 @@
     <string name="search_order_edit_text_hint">
         Voer emailadres van klant in...
     </string>
+    <string name="search_order_history_button">
+        Zoek
+    </string>
 
     <!-- Strings voor OrderActivity -->
     <string name="total_textview">
