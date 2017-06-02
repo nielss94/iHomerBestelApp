@@ -41,12 +41,14 @@
         </service>
         <activity android:name=".PresentationLayer.HomeScreenActivity"
                   android:launchMode="singleTask" />
-        <activity android:name=".PresentationLayer.BalanceActivity"/>
+        <activity android:name=".PresentationLayer.BalanceActivity"
+                  android:launchMode="singleTask"/>
         <activity android:name=".PresentationLayer.SettingsActivity" />
         <activity android:name=".PresentationLayer.OrderActivity" />
         <activity android:name=".PresentationLayer.OrderHistoryActivity" />
         <activity android:name=".PresentationLayer.CustomListItemOrderHistory" />
-        <activity android:name=".PresentationLayer.ScanActivity" />
+        <activity android:name=".PresentationLayer.ScanActivity"
+                  android:launchMode="singleTask"/>
         <activity android:name=".PresentationLayer.HandledOrderHistoryDetailActivity"/>
         <activity android:name=".PresentationLayer.UnhandledOrderHistoryDetailActivity" />
         <activity android:name=".PresentationLayer.CustomListItemOrderHistoryDetail" />

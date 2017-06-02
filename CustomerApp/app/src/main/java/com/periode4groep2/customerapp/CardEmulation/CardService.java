@@ -1,8 +1,15 @@
 package com.periode4groep2.customerapp.CardEmulation;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.nfc.cardemulation.HostApduService;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.periode4groep2.customerapp.PresentationLayer.HomeScreenActivity;
+
 import java.util.Arrays;
 
 /**
@@ -30,28 +37,17 @@ public class CardService extends HostApduService {
      * @param reason Either DEACTIVATION_LINK_LOSS or DEACTIVATION_DESELECTED
      */
     @Override
-    public void onDeactivated(int reason) { }
+    public void onDeactivated(int reason) {
+        //Make the app do something when the user dont have HCE
+        PackageManager HCECheck = this.getPackageManager();
+        
+        if(!HCECheck.hasSystemFeature(PackageManager.FEATURE_NFC_HOST_CARD_EMULATION)) {
+            Toast.makeText(this, "Uw device heeft geen NFC, bekijk uw instellingen om NFC aan te zetten", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Uw device is succesvol gescanned", Toast.LENGTH_SHORT).show();
+        }
+    }
 
-    /**
-     * This method will be called when a command APDU has been received from a remote device. A
-     * response APDU can be provided directly by returning a byte-array in this method. In general
-     * response APDUs must be sent as quickly as possible, given the fact that the user is likely
-     * holding his device over an NFC reader when this method is called.
-     *
-     * <p class="note">If there are multiple services that have registered for the same AIDs in
-     * their meta-data entry, you will only get called if the user has explicitly selected your
-     * service, either as a default or just for the next tap.
-     *
-     * <p class="note">This method is running on the main thread of your application. If you
-     * cannot return a response APDU immediately, return null and use the {@link
-     * #sendResponseApdu(byte[])} method later.
-     *
-     * @param commandApdu The APDU that received from the remote device
-     * @param extras A bundle containing extra data. May be null.
-     * @return a byte-array containing the response APDU, or null if no response APDU can be sent
-     * at this point.
-     */
-    // BEGIN_INCLUDE(processCommandApdu)
     @Override
     public byte[] processCommandApdu(byte[] commandApdu, Bundle extras) {
         Log.i(TAG, "Received APDU: " + ByteArrayToHexString(commandApdu));
@@ -61,6 +57,15 @@ public class CardService extends HostApduService {
             String account = AccountStorage.GetAccount(this);
             byte[] accountBytes = account.getBytes();
             Log.i(TAG, "Sending account number: " + account);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(CardService.this, HomeScreenActivity.class);
+                    startActivity(intent);
+                }
+            }, 5000);
+
             return ConcatArrays(accountBytes, SELECT_OK_SW);
         } else {
             return UNKNOWN_CMD_SW;

@@ -53,7 +53,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
 
         checkicon = (ImageView)findViewById(R.id.scan_icon);
 
-        balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
+        balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100));
     }
 
     public void onResume(){

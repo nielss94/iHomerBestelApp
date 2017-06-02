@@ -36,7 +36,7 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
     public static int READER_FLAGS =
             NfcAdapter.FLAG_READER_NFC_A | NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK;
     public LoyaltyCardReader mLoyaltyCardReader;
-    private TextView test, test2;
+    private TextView test, totalprice;
     private Button acceptOrderButton, addProducts;
     private DAOFactory factory;
     private OrderDAO orderDAO;
@@ -51,7 +51,7 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
     private ArrayList<Product> productlist = new ArrayList<>();
     private ReceivedOrderAdapter receivedOrderAdapter;
     private ArrayList<OrderItem> orderItemList = new ArrayList<>();
-
+    //93451
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +65,7 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
         order = new Order(1, "rick", false, 0.00, "2017-4-4");
         orderItemList = order.getOrderItems();
 
-        test = (TextView) findViewById(R.id.totalTagTextView);
-        test2 = (TextView) findViewById(R.id.totalPriceTagTextView);
+        totalprice = (TextView) findViewById(R.id.totalPriceTagTextView);
         mLoyaltyCardReader = new LoyaltyCardReader(this);
 
         // Disable Android Beam and register our card reader callback
@@ -121,7 +120,6 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                test.setText(account);
                 currentOrderID = Integer.parseInt(account);
                 getOrderData();
             }
@@ -160,7 +158,9 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
                         orderItemList.add(orders.get(i).getOrderItems().get(j));
                     }
                     Log.i(TAG, orders.get(i).toString());
-                    //.clear();
+                    Double totalPrice = order.getTotalPrice();
+                    String totalPriceFormat = "€" + String.format("%.2f", totalPrice);
+                    totalprice.setText(totalPriceFormat);
                     receivedOrderAdapter.notifyDataSetChanged();
                     Log.i(TAG, "pipo: " + order.getOrderItems().toString());
                 }
@@ -177,6 +177,7 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
                 orderDAO.handleOrder(account, order);
                 order = null;
                 receivedOrderAdapter.clear();
+                totalprice.setText("");
             }
         } else if(v.equals(addProducts)){
             Intent intent = new Intent(this, AddExtraProducts.class);
