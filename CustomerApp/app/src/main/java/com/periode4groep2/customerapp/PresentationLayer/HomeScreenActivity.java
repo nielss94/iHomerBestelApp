@@ -98,6 +98,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+
     @Override
     public void orderSetAvailable(ArrayList<Order> orders) {
         for (int i = 0; i < orders.size(); i++) {
@@ -140,4 +141,6 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
     public void productSetAvailable(ArrayList<Product> products) {
         this.products = products;
     }
+
 }
+

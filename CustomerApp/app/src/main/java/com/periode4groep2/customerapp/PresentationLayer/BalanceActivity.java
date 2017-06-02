@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -69,7 +70,7 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
             if(!input.isEmpty()){
                 currentEntryValue = Double.parseDouble(input);
                 if (currentBalanceValue == 150){
-                    Toast.makeText(this, "U heeft het maximale bedrag", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.max_amount_toast, Toast.LENGTH_SHORT).show();
                 }
                 else if ( currentBalanceValue + currentEntryValue > 150.00 || currentEntryValue >= 150.00 ) {
                     createMaxDialog();

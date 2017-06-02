@@ -76,6 +76,9 @@
     <string name="amount_added_toast">
          euro aan uw account toegevoegd
     </string>
+    <string name="max_amount_toast">
+         U heeft het maximale bedrag van €150 op uw account staan.
+    </string>
     <string name="you_have_toast">
         U heeft
     </string>
