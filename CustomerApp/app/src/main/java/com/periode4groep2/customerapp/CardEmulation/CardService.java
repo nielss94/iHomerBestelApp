@@ -62,6 +62,7 @@ public class CardService extends HostApduService {
                 @Override
                 public void run() {
                     Intent intent = new Intent(CardService.this, HomeScreenActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
             }, 5000);
