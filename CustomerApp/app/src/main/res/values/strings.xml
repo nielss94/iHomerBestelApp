@@ -213,6 +213,7 @@
 
     <!-- Strings voor de toolbar -->
     <string name="Home_Screen_toolbar">Menu</string>
+    <string name="Balance_toolbar">Saldo</string>
     <string name="Order_toolbar">Bestellen</string>
     <string name="Order_Detail_toolbar">Huidige Bestelling</string>
     <string name="Scan_toolbar">Betalen</string>
