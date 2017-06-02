@@ -41,6 +41,10 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_balance);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
+        myToolbar.setTitle(R.string.Balance_toolbar);
+        setSupportActionBar(myToolbar);
+
         factory = new MySQLDAOFactory();
         accountDAO = factory.createAccountDAO();
 
