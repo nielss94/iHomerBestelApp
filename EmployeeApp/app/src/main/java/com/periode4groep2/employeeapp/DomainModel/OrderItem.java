@@ -11,6 +11,7 @@ public class OrderItem implements Serializable{
     private int productID;
     private int quantity;
 
+
     public OrderItem(int productID, int quantity) {
         this.productID = productID;
         this.quantity = quantity;

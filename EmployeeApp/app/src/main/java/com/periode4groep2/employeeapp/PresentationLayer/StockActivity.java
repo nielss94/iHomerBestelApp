@@ -5,19 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
 
 
 import com.periode4groep2.employeeapp.DomainModel.Account;
-import com.periode4groep2.employeeapp.DomainModel.Order;
 import com.periode4groep2.employeeapp.DomainModel.OrderItem;
 import com.periode4groep2.employeeapp.DomainModel.Product;
 import com.periode4groep2.employeeapp.PersistancyLayer.DAOFactory;
 import com.periode4groep2.employeeapp.PersistancyLayer.MySQLDAOFactory;
 import com.periode4groep2.employeeapp.PersistancyLayer.OrderDAO;
-import com.periode4groep2.employeeapp.PersistancyLayer.OrderSetAvailable;
 import com.periode4groep2.employeeapp.PersistancyLayer.ProductDAO;
 import com.periode4groep2.employeeapp.PersistancyLayer.ProductSetAvailable;
 import com.periode4groep2.employeeapp.R;
@@ -25,7 +22,7 @@ import com.periode4groep2.employeeapp.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class StockActivity extends AppCompatActivity implements View.OnClickListener, ProductSetAvailable, OrderSetAvailable {
+public class StockActivity extends AppCompatActivity implements ProductSetAvailable{
 
     private final String TAG = getClass().getSimpleName();
     private Account account;
@@ -35,37 +32,29 @@ public abstract class StockActivity extends AppCompatActivity implements View.On
     private HashMap<String, ArrayList<Product>> listHash = new HashMap<>();
     private DAOFactory factory;
     private ProductDAO productDAO;
-    private OrderDAO orderDAO;
     private ArrayList<Product> products = new ArrayList<>();
     private Product product;
-    private Button balanceButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stock_layout);
 
-
-
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();
         productDAO.selectData(this);
-        orderDAO = factory.createOrderDAO();
 
-        orderDAO.selectData(this);
-
-
-
-        balanceButton = (Button) findViewById(R.id.buttonBalance);
-        balanceButton.setOnClickListener(this);
         account = (Account) getIntent().getSerializableExtra("account");
-        balanceButton.setText("€" + String.format("%.2f", account.getBalance() / 100) + "");
-
-
         listView = (ExpandableListView) findViewById(R.id.expandableListId);
+    }
 
-
-
+    public void productSetAvailable(final ArrayList<Product> prod) {
+        products = prod;
+        for (int i = 0; i < products.size(); i++) {
+            Log.i(TAG, products.get(i).toString());
+        }
+        initData();
+        listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash);
         listView.setAdapter(listAdapter);
         listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
@@ -73,23 +62,16 @@ public abstract class StockActivity extends AppCompatActivity implements View.On
 
                 Product product = (Product) listView.getExpandableListAdapter().getChild(groupPosition, childPosition);
 
-                Log.i(TAG, "Click on item " + product.getName() + " " + product.getPrice());
-                OrderItem oi = new OrderItem(product.getProductID(), 1);
-
-
-
+                Log.i(TAG, "Click on item " + product.getName());
+                productDAO.changeStock(account,product);
+                if(product.isInStock()){
+                    product.setInStock(false);
+                }else{
+                    product.setInStock(true);
+                }
                 return true;
             }
         });
-
-    }
-
-    public void productSetAvailable(ArrayList<Product> prod) {
-        products = prod;
-        for (int i = 0; i < products.size(); i++) {
-            Log.i(TAG, products.get(i).toString());
-        }
-        initData();
     }
 
 
@@ -113,5 +95,6 @@ public abstract class StockActivity extends AppCompatActivity implements View.On
         }
 
     }
+
 }
 

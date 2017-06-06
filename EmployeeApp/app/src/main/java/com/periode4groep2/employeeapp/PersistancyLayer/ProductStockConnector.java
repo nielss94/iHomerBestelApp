@@ -42,7 +42,7 @@ public class ProductStockConnector extends AsyncTask<Void, Void, Void> {
             URL url = new URL(http);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);
-            urlConnection.setRequestMethod("DELETE");
+            urlConnection.setRequestMethod("PUT");
             urlConnection.setRequestProperty("Content-Type","application/json");
             urlConnection.connect();
             //Create JSONObject here
@@ -55,7 +55,7 @@ public class ProductStockConnector extends AsyncTask<Void, Void, Void> {
             }else{
                 jsonParam.put("set", true);
             }
-
+            Log.i(TAG,product.isInStock()+"");
             Log.i(TAG,jsonParam.toString());
 
             OutputStreamWriter out = new   OutputStreamWriter(urlConnection.getOutputStream());

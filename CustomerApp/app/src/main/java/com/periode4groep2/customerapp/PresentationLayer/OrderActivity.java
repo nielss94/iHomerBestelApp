@@ -105,9 +105,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listHash, this);
         listView.setAdapter(listAdapter);
-
-
-
     }
 
 
