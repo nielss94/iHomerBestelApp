@@ -14,4 +14,5 @@ public interface AccountDAO {
 
     void selectData(MyAccountAvailable context, String email, String password);
     void updateBalance(Account account, double amount);
+    void getAccountBalance(AccountBalanceAvailable context, Account account);
 }

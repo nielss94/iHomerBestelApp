@@ -68,7 +68,6 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(addBalanceIntent);
         } else if(v.equals(menuButton)){
             Intent menu = new Intent(this, HomeScreenActivity.class);
-            menu.setFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
             startActivity(menu);
         }
     }

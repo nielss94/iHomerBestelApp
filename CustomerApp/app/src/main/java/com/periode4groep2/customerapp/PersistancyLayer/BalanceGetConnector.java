@@ -7,12 +7,9 @@ package com.periode4groep2.customerapp.PersistancyLayer;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
-import com.periode4groep2.customerapp.PresentationLayer.MainActivity;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,14 +22,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
+public class BalanceGetConnector extends AsyncTask<String, Void, String> {
 
 
     private final String TAG = getClass().getSimpleName();
-    private AccountAvailable listener;
+    private BalanceAvailable listener;
     private Handler handler = new Handler();
 
-    public MySQLAccountAPIConnector(AccountAvailable listener) {
+    public BalanceGetConnector(BalanceAvailable listener) {
         this.listener = listener;
     }
 
@@ -85,35 +82,19 @@ public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
+        try {
+            //Top level object
+            JSONObject jsonObject = new JSONObject(result);
 
-        handler.post(updateBalance);
-        if(result.equalsIgnoreCase("Account not found"))
-        {
-            Log.i(TAG,"ACCOUNT NOT FOUND!");
-            listener.accountNotAvailable();
-        }
-        else {
-            try {
-                //Top level object
-                JSONObject jsonObject = new JSONObject(result);
-                Account acc = new Account(
-                        jsonObject.optString("Email"),
-                        jsonObject.optString("IBAN"),
-                        jsonObject.optDouble("Balance"),
-                        jsonObject.optString("FirstName"),
-                        jsonObject.optString("LastName"),
-                        jsonObject.optString("Password"),
-                        jsonObject.optString("DateOfBirth"),
-                        (jsonObject.optInt("isemployee") == 1) ? true : false
-                );
-              listener.accountAvailable(acc);
+            Double balance = jsonObject.optDouble("Balance");
+            listener.balanceAvailable(balance);
 
-            } catch (JSONException ex) {
-                Log.e(TAG, "onPostExecute JSONException " + ex.getLocalizedMessage());
+        } catch (JSONException ex) {
+            Log.e(TAG, "onPostExecute JSONException " + ex.getLocalizedMessage());
 
-            }
         }
     }
+
     //Convert InputStream to String
     private String getStringFromInputStream(InputStream inputStream) {
 
@@ -143,16 +124,8 @@ public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
     }
 
     //Callback interface
-    public interface AccountAvailable {
+    public interface BalanceAvailable {
 
-        void accountAvailable(Account account);
-        void accountNotAvailable();
+        void balanceAvailable(Double balance);
     }
-
-    Runnable updateBalance = new Runnable() {
-        @Override
-        public void run() {
-            handler.postDelayed(this, 1000);
-        }
-    };
 }
