@@ -58,14 +58,14 @@ public class CardService extends HostApduService {
             byte[] accountBytes = account.getBytes();
             Log.i(TAG, "Sending account number: " + account);
 
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent(CardService.this, HomeScreenActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                }
-            }, 5000);
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    Intent intent = new Intent(CardService.this, HomeScreenActivity.class);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                    startActivity(intent);
+//                }
+//            }, 5000);
 
             return ConcatArrays(accountBytes, SELECT_OK_SW);
         } else {
