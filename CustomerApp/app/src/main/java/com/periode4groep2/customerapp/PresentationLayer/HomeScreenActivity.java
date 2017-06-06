@@ -76,11 +76,12 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         balanceLayoutButton.setOnClickListener(this);
         myOrdersLayoutButton.setOnClickListener(this);
         balanceButton.setOnClickListener(this);
-
-
-
+        
         account = (Account)getIntent().getSerializableExtra("account");
-        balanceButton.setText("€" + String.format("%.2f", account.getBalance() / 100) + "");
+        balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
+        Log.i("balance: ", account.getBalance() + "");
+        // Wanneer je na het veranderen van het saldo terug komt op dit scherm, wordt de balance verkeerd
+        // weergegeven (factor 100 te klein). Na opnieuw inloggen klopt de balance wel.
     }
 
     @Override

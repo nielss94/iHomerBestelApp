@@ -75,12 +75,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         editor.putString("Email", account.getEmail());
         editor.commit();
-        Log.i("", sharedPreferences.getString("Email","emaliltjw"));
         Intent intent = new Intent(this, HomeScreenActivity.class);
         intent.putExtra("account", account);
         startActivity(intent);
         Toast.makeText(this, R.string.successful_log_in_toast, Toast.LENGTH_SHORT).show();
-
-
     }
 }

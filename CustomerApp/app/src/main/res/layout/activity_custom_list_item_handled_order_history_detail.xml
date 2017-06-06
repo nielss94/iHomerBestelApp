@@ -16,17 +16,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="7.5dp"
-            android:layout_marginBottom="7.5dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp">
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="7.5dp"
+            android:layout_marginBottom="7.5dp">
 
             <TextView
                 android:id="@+id/productNameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/test_product"
-                android:layout_weight="0.5"
+                android:layout_weight="3"
                 android:textAlignment="textStart"/>
 
             <TextView
@@ -34,8 +34,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="99"
-                android:layout_weight="4"
+                android:layout_weight="8"
                 android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/productPriceTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="€ 2.50"
+                android:layout_weight="7"
+                android:gravity="right"/>
 
         </LinearLayout>
 

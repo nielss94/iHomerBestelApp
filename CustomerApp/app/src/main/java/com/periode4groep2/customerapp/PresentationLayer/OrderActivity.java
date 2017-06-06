@@ -3,13 +3,17 @@ package com.periode4groep2.customerapp.PresentationLayer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ListPopupWindow;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +52,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     private Order newOrder;
     private ImageButton popUpButton;
     private TextView orderItemCount;
+    private ListPopupWindow menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +85,10 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         popUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopupMenu menu = new PopupMenu(OrderActivity.this, v);
+                menu.show();
 
+                /*PopupMenu menu = new PopupMenu(OrderActivity.this, v);
+                menu.inflate(R.menu.popup_menu);
                 for (int i = 0; i < products.size(); i++) {
                     for (int j = 0; j < newOrder.getOrderItems().size(); j++) {
                         if (products.get(i).getProductID() == newOrder.getOrderItems().get(j).getProductID()) {
@@ -91,7 +98,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                         }
                     }
                 }
-                menu.show();
+                menu.show();*/
             }
         });
         listView = (ExpandableListView) findViewById(R.id.expandableListId);
@@ -100,8 +107,9 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         listView.setAdapter(listAdapter);
 
 
-        newOrder = new Order(1, account.getEmail(), false, 0.00, "2017-05-17");
+
     }
+
 
     public void productSetAvailable(ArrayList<Product> prod) {
         products = prod;
@@ -109,6 +117,11 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             Log.i(TAG, products.get(i).toString());
         }
         initData();
+        newOrder = new Order(1, account.getEmail(), false, 0.00, "2017-05-17"); menu = new ListPopupWindow(OrderActivity.this);
+        menu.setAdapter(new PopupMenuAdapter(OrderActivity.this, newOrder.getOrderItems(), products));
+        menu.setAnchorView(popUpButton);
+        menu.setWidth(900);
+        menu.setHeight(1000);
     }
 
 
@@ -193,17 +206,17 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             productIDsInOrderItems.add(newOrder.getOrderItems().get(i).getProductID());
         }
 
-        if(!productIDsInOrderItems.contains(orderItem.getProductID())){
-            newOrder.getOrderItems().add(orderItem);
-        }
-        else{
-            for (int i = 0; i < newOrder.getOrderItems().size(); i++) {
-                if(newOrder.getOrderItems().get(i).getProductID() == orderItem.getProductID()){
-                    newOrder.getOrderItems().get(i).setQuantity(newOrder.getOrderItems().get(i).getQuantity() + orderItem.getQuantity());
-                    break;
+
+        for (int i = 0; i < newOrder.getOrderItems().size(); i++) {
+            if(newOrder.getOrderItems().get(i).getProductID() == orderItem.getProductID()){
+                newOrder.getOrderItems().get(i).setQuantity(newOrder.getOrderItems().get(i).getQuantity() + orderItem.getQuantity());
+                if(newOrder.getOrderItems().get(i).getQuantity() == 0){
+                    newOrder.getOrderItems().remove(i);
                 }
+                break;
             }
         }
+
 
         Log.i(TAG,newOrder.getOrderItems().toString());
     }

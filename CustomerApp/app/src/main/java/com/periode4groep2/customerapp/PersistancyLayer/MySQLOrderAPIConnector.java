@@ -103,6 +103,7 @@ public class MySQLOrderAPIConnector extends AsyncTask<String, Void, String> {
                         orderItem.optInt("ProductID"),
                         orderItem.optInt("Quantity")
                     );
+                    oi.setPrice(orderItem.optDouble("Cost") / 100);
                     o.addOrderItem(oi);
                 }
 

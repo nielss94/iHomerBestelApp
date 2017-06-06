@@ -3,7 +3,10 @@
 
     <!-- Strings voor MainActivity -->
     <string name="order_app_logo">
-        Bestelapp
+        Kassa-app
+    </string>
+    <string name="employee_main_title">
+        Medewerker App
     </string>
     <string name="email">
         E-mail:
@@ -38,6 +41,9 @@
     <!-- Strings voor HomeScreenActivity -->
     <string name="stock_button">
         Assortiment aanpassen
+    </string>
+    <string name="employee_home_title">
+        Menu
     </string>
     <string name="search_order_button">
         Bestellingen zoeken

@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText email, password;
     private Account account;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         password = (EditText)findViewById(R.id.passwordInputId);
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
+        toolbar.setTitle(R.string.employee_main_title);
         setSupportActionBar(toolbar);
     }
 

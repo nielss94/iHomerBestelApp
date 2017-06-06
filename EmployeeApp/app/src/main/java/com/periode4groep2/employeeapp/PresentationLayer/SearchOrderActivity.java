@@ -1,26 +1,38 @@
 package com.periode4groep2.employeeapp.PresentationLayer;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import com.periode4groep2.employeeapp.DomainModel.Account;
 import com.periode4groep2.employeeapp.DomainModel.Order;
+import com.periode4groep2.employeeapp.DomainModel.Product;
+import com.periode4groep2.employeeapp.PersistancyLayer.DAOFactory;
+import com.periode4groep2.employeeapp.PersistancyLayer.MySQLDAOFactory;
+import com.periode4groep2.employeeapp.PersistancyLayer.OrderDAO;
+import com.periode4groep2.employeeapp.PersistancyLayer.OrderSetAvailable;
+import com.periode4groep2.employeeapp.PersistancyLayer.ProductDAO;
+import com.periode4groep2.employeeapp.PersistancyLayer.ProductSetAvailable;
 import com.periode4groep2.employeeapp.R;
 
 import java.util.ArrayList;
 
-public class SearchOrderActivity extends AppCompatActivity implements View.OnClickListener{
+public class SearchOrderActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener, OrderSetAvailable, ProductSetAvailable{
     //implements View.OnClickListener, OrderSetAvailable
     private final String TAG = getClass().getSimpleName();
 
-    private ArrayList<Order> orderArrayList;
+    private ArrayList<Product> products = new ArrayList<>();
+    private ArrayList<Order> orders = new ArrayList<>();
+    private DAOFactory factory;
+    private ProductDAO productDAO;
+    private OrderDAO orderDAO;
     private Account account;
-    private Order order;
 
+    private SearchOrderHistoryAdapter searchOrderHistoryAdapter;
     private EditText searchOrderEditText;
     private Button searchOrderButton;
     private ListView searchOrderListView;
@@ -32,6 +44,13 @@ public class SearchOrderActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_order);
 
+        factory = new MySQLDAOFactory();
+        productDAO = factory.createProductDAO();
+        orderDAO = factory.createOrderDAO();
+
+        orderDAO.selectData(this);
+        productDAO.selectData(this);
+
         account = (Account)getIntent().getSerializableExtra("account");
 
         searchOrderEditText = (EditText)findViewById(R.id.searchOrderEditText);
@@ -39,7 +58,7 @@ public class SearchOrderActivity extends AppCompatActivity implements View.OnCli
         searchOrderButton = (Button)findViewById(R.id.searchOrderButton);
 
         searchOrderButton.setOnClickListener(this);
-        searchOrderListView.setOnClickListener(this);
+        searchOrderListView.setOnItemClickListener(this);
 
     }
     @Override
@@ -47,9 +66,30 @@ public class SearchOrderActivity extends AppCompatActivity implements View.OnCli
         if(v.equals(searchOrderButton)){
             String entry_str = searchOrderEditText.getText().toString();
             //Do something to send string via API.
-
-        } else if (v.equals(searchOrderListView)){
-
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Order o = (Order) searchOrderListView.getItemAtPosition(position);
+
+    }
+
+    @Override
+    public void orderSetAvailable(ArrayList<Order> orders) {
+        for (int i = 0; i < orders.size(); i++) {
+            if(orders.get(i).getEmail().equalsIgnoreCase(account.getEmail())) {
+                this.orders.add(orders.get(i));
+            }
+        }
+        searchOrderListView = (ListView) findViewById(R.id.searchOrdersListView);
+        searchOrderHistoryAdapter = new SearchOrderHistoryAdapter(this, this.orders);
+        searchOrderListView.setAdapter(searchOrderHistoryAdapter);
+        searchOrderListView.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void productSetAvailable(ArrayList<Product> products) {
+        this.products = products;
     }
 }
