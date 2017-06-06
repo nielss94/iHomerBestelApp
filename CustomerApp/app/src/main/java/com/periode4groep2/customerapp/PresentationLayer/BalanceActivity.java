@@ -65,6 +65,14 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, HomeScreenActivity.class);
+        intent.putExtra("account", account);
+        startActivity(intent);
+    }
+
+    @Override
     public void onClick(View v) {
         if ( v.equals(addBalance) ) {
 
@@ -150,10 +158,10 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
 
-                currentBalanceValue = 0;
-                account.setBalance(currentBalanceValue);
+                double refundAll = 0;
+                account.setBalance(refundAll);
                 accountDAO.updateBalance(account, -(currentBalanceValue * 100));
-                currentBalanceTextView.setText("€" + String.format("%.2f", currentBalanceValue));
+                currentBalanceTextView.setText("€" + String.format("%.2f", refundAll));
                 dialogInterface.dismiss();
             }
         });

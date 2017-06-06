@@ -74,12 +74,6 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        Log.i("kaas", "Kaas");
-//        balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
-//    }
 
     @Override
     public void onClick(View v) {
@@ -95,6 +89,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
             Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
             addBalanceIntent.putExtra("account", account);
             startActivity(addBalanceIntent);
+            finish();
         } else if (v.equals(myOrdersLayoutButton)){
             Intent myOrdersIntent = new Intent(this, OrderHistoryActivity.class);
             myOrdersIntent.putExtra("account", account);
@@ -103,6 +98,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
             Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
             addBalanceIntent.putExtra("account", account);
             startActivity(addBalanceIntent);
+            finish();
         }
     }
 
