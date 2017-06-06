@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.periode4groep2.employeeapp.DomainModel.OrderItem;
 import com.periode4groep2.employeeapp.DomainModel.Product;
 import com.periode4groep2.employeeapp.R;
 
