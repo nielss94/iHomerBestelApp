@@ -41,14 +41,14 @@ public class StockItemAdapter extends ArrayAdapter<Product> {
             if(productList.get(i).getProductID() == product.getProductID())
             {
                 productName.setText(productList.get(i).getName());
-                Double price = productList.get(i).getPrice() * product.getQuantity();
-                String goodPrice = String.format("€%10.2f", price);
-                productPrice.setText(goodPrice);
+                //Double price = productList.get(i).getPrice() * product.getQuantity();
+                //String goodPrice = String.format("€%10.2f", price);
+                //productPrice.setText(goodPrice);
                 break;
             }
         }
 
-        productQuantity.setText(singleOrderItem.getQuantity()+"");
+        //productQuantity.setText(singleOrderItem.getQuantity()+"");
 
         return customView;
     }

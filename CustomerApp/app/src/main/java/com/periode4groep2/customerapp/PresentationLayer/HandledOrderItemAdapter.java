@@ -37,16 +37,16 @@ public class HandledOrderItemAdapter extends ArrayAdapter<OrderItem> {
         OrderItem singleOrderItem = getItem(position);
         TextView productName = (TextView)customView.findViewById(R.id.productNameTextView);
         TextView productQuantity = (TextView)customView.findViewById(R.id.productQuantityTextView);
-        //TextView productPrice = (TextView)customView.findViewById(R.id.productPriceTextView);
+        TextView productPrice = (TextView)customView.findViewById(R.id.productPriceTextView);
 
         for (int i = 0; i < productList.size(); i++) {
             if(productList.get(i).getProductID() == singleOrderItem.getProductID())
             {
                 productName.setText(productList.get(i).getName());
-                //productPrice.setText("€ " + productList.get(i).getPrice());
                 break;
             }
         }
+        productPrice.setText(String.format("€%10.2f", singleOrderItem.getPrice()));
 
         productQuantity.setText(singleOrderItem.getQuantity()+"");
 
