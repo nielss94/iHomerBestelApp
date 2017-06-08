@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,10 +13,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.DomainModel.Order;
 import com.periode4groep2.customerapp.DomainModel.Product;
+import com.periode4groep2.customerapp.PersistancyLayer.AccountBalanceAvailable;
+import com.periode4groep2.customerapp.PersistancyLayer.AccountDAO;
 import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
 import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
 import com.periode4groep2.customerapp.PersistancyLayer.OrderDAO;
@@ -26,7 +30,7 @@ import com.periode4groep2.customerapp.R;
 
 import java.util.ArrayList;
 
-public class HomeScreenActivity extends AppCompatActivity implements View.OnClickListener, ProductSetAvailable, OrderSetAvailable {
+public class HomeScreenActivity extends AppCompatActivity implements View.OnClickListener, ProductSetAvailable, OrderSetAvailable, AccountBalanceAvailable {
     private LinearLayout orderLayoutButton, settingsLayoutButton,
                   balanceLayoutButton, myOrdersLayoutButton;
 
@@ -35,11 +39,13 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
     private DAOFactory factory;
     private ProductDAO productDAO;
     private OrderDAO orderDAO;
+    private AccountDAO accountDAO;
     private Account account;
     private Order unhandledOrder;
     private Button balanceButton;
     private ImageButton unhandledOrderButton;
     private AnimationDrawable unhandledOrderAnimation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();
         orderDAO = factory.createOrderDAO();
+        accountDAO = factory.createAccountDAO();
 
         orderDAO.selectData(this);
         productDAO.selectData(this);
@@ -77,17 +84,26 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         // weergegeven (factor 100 te klein). Na opnieuw inloggen klopt de balance wel.
     }
 
+    @Override
+    protected void onStart(){
+        super.onStart();
+        if(!getIntent().getClass().getSimpleName().equalsIgnoreCase("MainActivity")){
+            accountDAO.getAccountBalance(this,account);
+        }
 
+    }
     @Override
     public void onClick(View v) {
         if(v.equals(orderLayoutButton)){
             Intent orderIntent = new Intent(this, OrderActivity.class);
             orderIntent.putExtra("account", account);
             startActivity(orderIntent);
-        }else if(v.equals(settingsLayoutButton)){
+            finish();
+        } else if(v.equals(settingsLayoutButton)){
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             settingsIntent.putExtra("account", account);
             startActivity(settingsIntent);
+            finish();
         } else if(v.equals(balanceLayoutButton)){
             Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
             addBalanceIntent.putExtra("account", account);
@@ -97,6 +113,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
             Intent myOrdersIntent = new Intent(this, OrderHistoryActivity.class);
             myOrdersIntent.putExtra("account", account);
             startActivity(myOrdersIntent);
+            finish();
         } else if (v.equals(balanceButton)){
             Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
             addBalanceIntent.putExtra("account", account);
@@ -149,5 +166,10 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         this.products = products;
     }
 
+    @Override
+    public void accountBalanceAvailable(Double balance) {
+        account.setBalance(balance);
+        balanceButton.setText("€" + String.format("%.2f", account.getBalance() / 100) + "");
+    }
 }
 

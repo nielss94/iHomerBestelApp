@@ -5,6 +5,7 @@ package com.periode4groep2.customerapp.PersistancyLayer;
  */
 
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
 
     private final String TAG = getClass().getSimpleName();
     private AccountAvailable listener;
+    private Handler handler = new Handler();
 
     public MySQLAccountAPIConnector(AccountAvailable listener) {
         this.listener = listener;
@@ -84,7 +86,7 @@ public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
 
-
+        handler.post(updateBalance);
         if(result.equalsIgnoreCase("Account not found"))
         {
             Log.i(TAG,"ACCOUNT NOT FOUND!");
@@ -94,8 +96,6 @@ public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
             try {
                 //Top level object
                 JSONObject jsonObject = new JSONObject(result);
-
-
                 Account acc = new Account(
                         jsonObject.optString("Email"),
                         jsonObject.optString("IBAN"),
@@ -106,7 +106,7 @@ public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
                         jsonObject.optString("DateOfBirth"),
                         (jsonObject.optInt("isemployee") == 1) ? true : false
                 );
-                listener.accountAvailable(acc);
+              listener.accountAvailable(acc);
 
             } catch (JSONException ex) {
                 Log.e(TAG, "onPostExecute JSONException " + ex.getLocalizedMessage());
@@ -148,4 +148,11 @@ public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
         void accountAvailable(Account account);
         void accountNotAvailable();
     }
+
+    Runnable updateBalance = new Runnable() {
+        @Override
+        public void run() {
+            handler.postDelayed(this, 1000);
+        }
+    };
 }

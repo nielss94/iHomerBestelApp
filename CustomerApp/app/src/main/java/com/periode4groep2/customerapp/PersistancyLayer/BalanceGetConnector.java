@@ -1,11 +1,15 @@
-package com.periode4groep2.employeeapp.PersistancyLayer;
+package com.periode4groep2.customerapp.PersistancyLayer;
+
+/**
+ * Created by Niels on 5/8/2017.
+ */
 
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.util.Log;
 
-import com.periode4groep2.employeeapp.DomainModel.Product;
+import com.periode4groep2.customerapp.DomainModel.Account;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,16 +22,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-/**
- * Created by Niels on 5/9/2017.
- */
+public class BalanceGetConnector extends AsyncTask<String, Void, String> {
 
-public class MySQLProductAPIConnector extends AsyncTask<String, Void, String> {
 
     private final String TAG = getClass().getSimpleName();
-    private ProductAvailable listener;
+    private BalanceAvailable listener;
+    private Handler handler = new Handler();
 
-    public MySQLProductAPIConnector(ProductAvailable listener) {
+    public BalanceGetConnector(BalanceAvailable listener) {
         this.listener = listener;
     }
 
@@ -38,13 +40,13 @@ public class MySQLProductAPIConnector extends AsyncTask<String, Void, String> {
         int responseCode = -1;
 
         //URL we get from .execute()
-        String productsUrl = params[0];
+        String accountUrl = params[0];
 
         String result = "";
 
         try {
             //Make URL object
-            URL url = new URL(productsUrl);
+            URL url = new URL(accountUrl);
             //Open connection on URL
             URLConnection urlConnection = url.openConnection();
 
@@ -63,10 +65,12 @@ public class MySQLProductAPIConnector extends AsyncTask<String, Void, String> {
 
             // Check if connection is made using a response code
             responseCode = httpConnection.getResponseCode();
+            Log.i(TAG,responseCode + "");
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 inputStream = httpConnection.getInputStream();
                 result = getStringFromInputStream(inputStream);
-            } else {
+            } else if(responseCode == 404 || responseCode == 403){
+                result = "Account not found";
             }
         } catch (MalformedURLException e) {
             return null;
@@ -80,34 +84,17 @@ public class MySQLProductAPIConnector extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         try {
             //Top level object
-            JSONArray jsonArray = new JSONArray(result);
+            JSONObject jsonObject = new JSONObject(result);
 
-            for (int i = 0; i < jsonArray.length(); i++) {
-
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                Product p = new Product
-                (
-                    jsonObject.optInt("ProductID"),
-                    jsonObject.optString("Category"),
-                    jsonObject.optString("Name"),
-                    (jsonObject.optInt("InStock") == 0) ? true : false,
-                    (jsonObject.optDouble("Price") / 100)
-                );
-                if(i == jsonArray.length() - 1){
-                    listener.productAvailable(p,true);
-                }
-                else{
-                    listener.productAvailable(p, false);
-                }
-            }
+            Double balance = jsonObject.optDouble("Balance");
+            listener.balanceAvailable(balance);
 
         } catch (JSONException ex) {
             Log.e(TAG, "onPostExecute JSONException " + ex.getLocalizedMessage());
 
         }
-
     }
+
     //Convert InputStream to String
     private String getStringFromInputStream(InputStream inputStream) {
 
@@ -137,8 +124,8 @@ public class MySQLProductAPIConnector extends AsyncTask<String, Void, String> {
     }
 
     //Callback interface
-    public interface ProductAvailable {
+    public interface BalanceAvailable {
 
-        void productAvailable(Product product, boolean done);
+        void balanceAvailable(Double balance);
     }
 }

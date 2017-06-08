@@ -1,5 +1,7 @@
 package com.periode4groep2.customerapp.DomainModel;
 
+import android.os.Handler;
+
 import java.io.Serializable;
 
 /**
@@ -20,6 +22,7 @@ public class Account implements Serializable {
     private String dateOfBirth;
     private boolean isEmployee;
     private String phoneNumber;
+    //private Handler handler = new Handler();
 
     public Account(String email, String IBAN, Double balance, String firstName, String lastName, String password, String dateOfBirth, boolean isEmployee) {
         this.email = email;

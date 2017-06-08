@@ -29,12 +29,12 @@ import java.util.ArrayList;
  * Created by Niels on 5/5/2017.
  */
 
-public class MySQLAccountDAO implements AccountDAO, MySQLAccountAPIConnector.AccountAvailable {
+public class MySQLAccountDAO implements AccountDAO, MySQLAccountAPIConnector.AccountAvailable, BalanceGetConnector.BalanceAvailable {
 
     private final String TAG = getClass().getSimpleName();
 
     private MyAccountAvailable context;
-
+    private AccountBalanceAvailable balanceContext;
     @Override
     public void selectData(MyAccountAvailable c, String email, String password) {
         context = c;
@@ -45,9 +45,21 @@ public class MySQLAccountDAO implements AccountDAO, MySQLAccountAPIConnector.Acc
 
     }
 
+
+
     @Override
     public void updateBalance(Account account, double amount) {
         new BalanceUpdateConnector(account,amount).execute();
+    }
+
+    @Override
+    public void getAccountBalance(AccountBalanceAvailable context, Account account) {
+        String[] urls = {
+                "https://ihomerapi.herokuapp.com/API/getAccount?email="+account.getEmail()+"&password="+account.getPassword()
+        };
+        new BalanceGetConnector(this).execute(urls);
+        balanceContext = context;
+
     }
 
 
@@ -60,5 +72,10 @@ public class MySQLAccountDAO implements AccountDAO, MySQLAccountAPIConnector.Acc
     @Override
     public void accountNotAvailable() {
         context.myAccountNotAvailable();
+    }
+
+    @Override
+    public void balanceAvailable(Double balance) {
+        balanceContext.accountBalanceAvailable(balance);
     }
 }

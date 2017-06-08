@@ -20,6 +20,7 @@ public class OrderItem implements Serializable{
         this.price = price;
     }
 
+
     public OrderItem(int productID, int quantity) {
         this.productID = productID;
         this.quantity = quantity;
