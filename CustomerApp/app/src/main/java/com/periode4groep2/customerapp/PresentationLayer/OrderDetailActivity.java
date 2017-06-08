@@ -34,6 +34,7 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
     private Account account;
     private Order order;
     private ArrayList<Product> products = new ArrayList<>();
+    private static final String Account = "account";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
         Bundle b = this.getIntent().getExtras();
         products = b.getParcelableArrayList("products");
         Log.i(TAG,products.get(0).getName() +"");
-        account = (Account)getIntent().getSerializableExtra("account");
+        account = (Account)getIntent().getSerializableExtra(Account);
         order = (Order)getIntent().getSerializableExtra("order");
 
         orderItemListView = (ListView)findViewById(R.id.orderItemListView);
@@ -74,12 +75,12 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
             startActivity(intent);
         } else if(v.equals(scanOrderButton)){
             Intent intent = new Intent(this, ScanActivity.class);
-            intent.putExtra("account", account);
+            intent.putExtra(Account, account);
             intent.putExtra("order", order);
             startActivity(intent);
         } else if (v.equals(balanceButton)){
             Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
-            addBalanceIntent.putExtra("account", account);
+            addBalanceIntent.putExtra(Account, account);
             startActivity(addBalanceIntent);
         }
     }

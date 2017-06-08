@@ -32,6 +32,7 @@ public class HandledOrderHistoryDetailActivity extends AppCompatActivity impleme
     private ArrayList<Product> productList = new ArrayList<>();
     private ListView orderListView;
     private HandledOrderItemAdapter handledOrderItemAdapter;
+    private static final String Account = "account";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class HandledOrderHistoryDetailActivity extends AppCompatActivity impleme
         productDAO.selectData(this);
         orderDAO = factory.createOrderDAO();
         order = (Order) getIntent().getSerializableExtra("order");
-        account = (Account) getIntent().getSerializableExtra("account");
+        account = (Account) getIntent().getSerializableExtra(Account);
 
         orderButton = (Button) findViewById(R.id.orderAgainButton);
         balanceButton = (Button)findViewById(R.id.buttonBalance);
@@ -65,7 +66,7 @@ public class HandledOrderHistoryDetailActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View v) {
                 Intent addBalanceIntent = new Intent(getApplicationContext(), BalanceActivity.class);
-                addBalanceIntent.putExtra("account", account);
+                addBalanceIntent.putExtra(Account, account);
                 startActivity(addBalanceIntent);
             }
         });
@@ -78,7 +79,7 @@ public class HandledOrderHistoryDetailActivity extends AppCompatActivity impleme
             public void onClick(View v) {
                 orderDAO.insertData(account,order);
                 Intent scanIntent = new Intent(getApplicationContext(), ScanActivity.class);
-                scanIntent.putExtra("account", account);
+                scanIntent.putExtra(Account, account);
                 scanIntent.putExtra("order", order);
                 startActivity(scanIntent);
             }

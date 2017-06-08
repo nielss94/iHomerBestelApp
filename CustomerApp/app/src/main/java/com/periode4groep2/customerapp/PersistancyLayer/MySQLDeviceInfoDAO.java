@@ -16,6 +16,6 @@ public class MySQLDeviceInfoDAO implements DeviceInfoDAO {
 
     @Override
     public void updateData(DeviceInfo deviceInfo) {
-
+        // Kan handig zijn voor de toekomst
     }
 }
