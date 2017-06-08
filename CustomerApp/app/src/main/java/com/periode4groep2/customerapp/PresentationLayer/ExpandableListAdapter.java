@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.periode4groep2.customerapp.DomainModel.OrderItem;
 import com.periode4groep2.customerapp.DomainModel.Product;
@@ -103,6 +105,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         Button imgDecrease = (Button)convertView.findViewById(R.id.listItemDecrease);
         final TextView txtListQuantity = (TextView)convertView.findViewById(R.id.listItemQuantity);
 
+        LinearLayout parentItem = (LinearLayout)txtListChild.getParent();
+        if(childProduct.isInStock() == false){
+            parentItem.setBackgroundColor(parentItem.getResources().getColor(R.color.colorGrayWhite));
+        }else{
+            parentItem.setBackgroundColor(parentItem.getResources().getColor(R.color.colorBackground));
+        }
+
         txtListChild.setText(childProduct.getName());
         txtListPrice.setText("€" + childProduct.getPrice());
         Boolean notInOrderItems = true;
@@ -122,23 +131,32 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int amount = Integer.parseInt(txtListQuantity.getText().toString());
-                txtListQuantity.setText((amount + 1) + "");
-                OrderItem oi = new OrderItem(childProduct.getProductID(), 1);
-                addOrderitem(oi);
-                listener.onOrderChanged(childProduct, 1);
+                if(!childProduct.isInStock()){
+                    Toast.makeText(context, "Dit product is op het moment niet beschikbaar.", Toast.LENGTH_SHORT).show();
+                }else{
+                    int amount = Integer.parseInt(txtListQuantity.getText().toString());
+                    txtListQuantity.setText((amount + 1) + "");
+                    OrderItem oi = new OrderItem(childProduct.getProductID(), 1);
+                    addOrderitem(oi);
+                    listener.onOrderChanged(childProduct, 1);
+                }
+
             }
         });
 
         imgDecrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int amount = Integer.parseInt(txtListQuantity.getText().toString());
-                if(amount > 0){
-                    txtListQuantity.setText((amount - 1) + "");
-                    OrderItem oi = new OrderItem(childProduct.getProductID(), -1);
-                    addOrderitem(oi);
-                    listener.onOrderChanged(childProduct, -1);
+                if(!childProduct.isInStock()){
+                    Toast.makeText(context, "Dit product is op het moment niet beschikbaar.", Toast.LENGTH_SHORT).show();
+                }else {
+                    int amount = Integer.parseInt(txtListQuantity.getText().toString());
+                    if (amount > 0) {
+                        txtListQuantity.setText((amount - 1) + "");
+                        OrderItem oi = new OrderItem(childProduct.getProductID(), -1);
+                        addOrderitem(oi);
+                        listener.onOrderChanged(childProduct, -1);
+                    }
                 }
             }
         });

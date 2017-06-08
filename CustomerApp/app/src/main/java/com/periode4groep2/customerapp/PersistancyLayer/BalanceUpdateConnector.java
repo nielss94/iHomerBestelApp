@@ -67,11 +67,8 @@ public class BalanceUpdateConnector extends AsyncTask<Void, Void, Void> {
             }else{
                 System.out.println(urlConnection.getResponseMessage());
             }
-        } catch (MalformedURLException e) {
-            Log.e(TAG, e.getMessage());
-        } catch (IOException e) {
-            Log.e(TAG, e.getMessage());
-        } catch (JSONException e) {
+        }
+        catch (IOException|JSONException e) {
             Log.e(TAG, e.getMessage());
         }finally{
             if(urlConnection!=null)

@@ -91,7 +91,7 @@ public class MySQLProductAPIConnector extends AsyncTask<String, Void, String> {
                     jsonObject.optInt("ProductID"),
                     jsonObject.optString("Category"),
                     jsonObject.optString("Name"),
-                    (jsonObject.optInt("InStock") == 0) ? true : false,
+                    (jsonObject.optInt("InStock") == 0) ? false : true,
                     (jsonObject.optDouble("Price") / 100)
                 );
                 if(i == jsonArray.length() - 1){

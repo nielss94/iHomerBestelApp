@@ -38,7 +38,8 @@
         <activity android:name=".PresentationLayer.HomeScreenActivity" />
         <activity android:name=".PresentationLayer.SearchOrderActivity" />
         <activity android:name=".PresentationLayer.StockActivity" />
-        <activity android:name=".PresentationLayer.CustomListItemOrderHistorySearch"></activity>
+        <activity android:name=".PresentationLayer.CustomListItemOrderHistorySearch" />
+        <activity android:name=".PresentationLayer.AddExtraProducts"></activity>
     </application>
 
 </manifest>

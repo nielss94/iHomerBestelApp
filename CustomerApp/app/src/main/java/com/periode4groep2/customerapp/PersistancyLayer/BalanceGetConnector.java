@@ -8,8 +8,6 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.util.Log;
 
-import com.periode4groep2.customerapp.DomainModel.Account;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,7 +25,6 @@ public class BalanceGetConnector extends AsyncTask<String, Void, String> {
 
     private final String TAG = getClass().getSimpleName();
     private BalanceAvailable listener;
-    private Handler handler = new Handler();
 
     public BalanceGetConnector(BalanceAvailable listener) {
         this.listener = listener;
@@ -98,28 +95,29 @@ public class BalanceGetConnector extends AsyncTask<String, Void, String> {
     //Convert InputStream to String
     private String getStringFromInputStream(InputStream inputStream) {
 
-        BufferedReader br = null;
+//        BufferedReader br = null;
         StringBuilder sb = new StringBuilder();
 
         String line;
-        try {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))){
 
-            br = new BufferedReader(new InputStreamReader(inputStream));
+//            br = new BufferedReader(new InputStreamReader(inputStream));
             while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
+//        finally {
+//            if (br != null) {
+//                try {
+//                    br.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
         return sb.toString();
     }
 
