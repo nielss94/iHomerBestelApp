@@ -10,6 +10,15 @@ public class OrderItem implements Serializable{
 
     private int productID;
     private int quantity;
+    private Double price;
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 
 
     public OrderItem(int productID, int quantity) {

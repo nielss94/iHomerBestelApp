@@ -57,7 +57,7 @@
 
     <!-- Strings voor SearchOrderActivity-->
     <string name="search_order_edit_text_hint">
-        Voer emailadres van klant in...
+        E-mailadres...
     </string>
     <string name="search_order_history_button">
         Zoek
@@ -81,6 +81,7 @@
     <string name="Scan_toolbar">Betalen</string>
     <string name="Order_History_toolbar">Mijn Bestellingen</string>
     <string name="Settings_toolbar">Instellingen</string>
+    <string name="search_order_toolbar">Zoek naar bestelling</string>
     <string name="Unhandled_Order_toolbar">Open Bestelling</string>
 
 </resources>

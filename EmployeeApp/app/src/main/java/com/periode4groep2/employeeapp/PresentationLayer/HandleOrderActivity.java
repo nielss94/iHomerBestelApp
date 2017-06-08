@@ -1,10 +1,9 @@
 package com.periode4groep2.employeeapp.PresentationLayer;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.nfc.NfcAdapter;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -180,6 +179,9 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
                 totalprice.setText("");
             }
         } else if(v.equals(addProducts)){
+//            Intent intent = new Intent(this, AddExtraProducts.class);
+//            startActivity(intent);
+
             //Intent intent = new Intent(this, AddExtraProducts.class);
             //startActivity(intent);
         }
