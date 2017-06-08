@@ -54,6 +54,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     private TextView orderItemCount;
     private ListPopupWindow menu;
     private static final String ACCOUNT = "account";
+    private Boolean menuOpen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,20 +87,13 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         popUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                menu.show();
-
-                /*PopupMenu menu = new PopupMenu(OrderActivity.this, v);
-                menu.inflate(R.menu.popup_menu);
-                for (int i = 0; i < products.size(); i++) {
-                    for (int j = 0; j < newOrder.getOrderItems().size(); j++) {
-                        if (products.get(i).getProductID() == newOrder.getOrderItems().get(j).getProductID()) {
-
-                            Log.i(TAG, "New menu item pls");
-                            menu.getMenu().add(products.get(i).getName() + " " + newOrder.getOrderItems().get(j).getQuantity());
-                        }
-                    }
+                if(menuOpen){
+                    menu.dismiss();
+                    menuOpen = false;
+                }else{
+                    menu.show();
+                    menuOpen = true;
                 }
-                menu.show();*/
             }
         });
         listView = (ExpandableListView) findViewById(R.id.expandableListId);
