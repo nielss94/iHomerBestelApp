@@ -18,6 +18,7 @@ public class MySQLOrderDAO implements OrderDAO, MySQLOrderAPIConnector.OrderAvai
 
     @Override
     public void selectData(OrderSetAvailable c) {
+        orders.clear();
         context = c;
         String[] urls = {
                 "http://ihomerapi.herokuapp.com/api/getOrders"

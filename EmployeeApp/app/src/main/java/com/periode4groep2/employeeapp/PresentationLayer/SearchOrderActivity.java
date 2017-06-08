@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.periode4groep2.employeeapp.DomainModel.Account;
 import com.periode4groep2.employeeapp.DomainModel.Order;
@@ -100,6 +102,10 @@ public class SearchOrderActivity extends AppCompatActivity implements View.OnCli
             if(orders.get(i).getEmail().equalsIgnoreCase(searchEntry)) {
                 this.orders.add(orders.get(i));
             }
+        }
+        Log.i(TAG, this.orders.size() +"");
+        if (this.orders.size() == 0) {
+            Toast.makeText(this, "E-mailadres niet gevonden, probeer het opnieuw.", Toast.LENGTH_SHORT).show();
         }
         searchOrderListView = (ListView) findViewById(R.id.searchOrdersListView);
         searchOrderHistoryAdapter = new SearchOrderHistoryAdapter(this, this.orders);
