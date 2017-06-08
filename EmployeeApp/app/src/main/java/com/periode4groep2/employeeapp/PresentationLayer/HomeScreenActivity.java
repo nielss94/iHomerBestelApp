@@ -47,7 +47,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
             startActivity(i);
         }else if(v.equals(searchOrdersView)){
             Intent i = new Intent(this, SearchOrderActivity.class);
-            //i.putExtra("account", account);
+            i.putExtra("account", account);
             startActivity(i);
         }else if(v.equals(stockView)){
 //            Intent i = new Intent(this, StockActivity.class);

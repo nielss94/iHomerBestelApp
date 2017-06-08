@@ -1,7 +1,9 @@
 package com.periode4groep2.employeeapp.PresentationLayer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -36,6 +38,7 @@ public class SearchOrderActivity extends AppCompatActivity implements View.OnCli
     private EditText searchOrderEditText;
     private Button searchOrderButton;
     private ListView searchOrderListView;
+    private Toolbar toolbar;
 
 
 
@@ -44,17 +47,20 @@ public class SearchOrderActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_order);
 
+        toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
+        toolbar.setTitle(R.string.search_order_toolbar);
+        setSupportActionBar(toolbar);
+
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();
         orderDAO = factory.createOrderDAO();
 
-        orderDAO.selectData(this);
         productDAO.selectData(this);
 
         account = (Account)getIntent().getSerializableExtra("account");
 
         searchOrderEditText = (EditText)findViewById(R.id.searchOrderEditText);
-        searchOrderListView = (ListView)findViewById(R.id.searchedOrdersListView);
+        searchOrderListView = (ListView)findViewById(R.id.searchOrdersListView);
         searchOrderButton = (Button)findViewById(R.id.searchOrderButton);
 
         searchOrderButton.setOnClickListener(this);
@@ -64,21 +70,34 @@ public class SearchOrderActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v){
         if(v.equals(searchOrderButton)){
-            String entry_str = searchOrderEditText.getText().toString();
-            //Do something to send string via API.
+            orderDAO.selectData(this);
         }
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Order o = (Order) searchOrderListView.getItemAtPosition(position);
+        if (o.isHandled()) {
+            Intent orderHistoryDetail = new Intent(this, SearchHandledOrderHistoryDetailActivity.class);
+            orderHistoryDetail.putExtra("order", (Order) searchOrderListView.getItemAtPosition(position));
+            orderHistoryDetail.putExtra("account", account);
 
+            startActivity(orderHistoryDetail);
+        } else {
+            Intent orderHistoryDetail = new Intent(this, SearchUnhandledOrderHistoryDetailActivity.class);
+            orderHistoryDetail.putExtra("order", (Order) searchOrderListView.getItemAtPosition(position));
+            orderHistoryDetail.putExtra("account", account);
+
+            startActivity(orderHistoryDetail);
+        }
     }
 
     @Override
     public void orderSetAvailable(ArrayList<Order> orders) {
+        this.orders.clear();
+        String searchEntry = searchOrderEditText.getText().toString();
         for (int i = 0; i < orders.size(); i++) {
-            if(orders.get(i).getEmail().equalsIgnoreCase(account.getEmail())) {
+            if(orders.get(i).getEmail().equalsIgnoreCase(searchEntry)) {
                 this.orders.add(orders.get(i));
             }
         }

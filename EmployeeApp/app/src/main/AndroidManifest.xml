@@ -31,6 +31,10 @@
                 android:resource="@xml/nfc_tech_filter" />
         </activity>
         <activity android:name=".PresentationLayer.HandleOrderActivity" />
+        <activity android:name=".PresentationLayer.SearchHandledOrderHistoryDetailActivity" />
+        <activity android:name=".PresentationLayer.SearchUnhandledOrderHistoryDetailActivity" />
+
+
         <activity android:name=".PresentationLayer.HomeScreenActivity" />
         <activity android:name=".PresentationLayer.SearchOrderActivity" />
         <activity android:name=".PresentationLayer.CustomListItemOrderHistorySearch"></activity>
