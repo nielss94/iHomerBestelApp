@@ -9,7 +9,16 @@ import android.widget.Button;
 
 public class ProductButton extends android.support.v7.widget.AppCompatButton {
 
+    private int productID;
     public ProductButton(Context context) {
         super(context);
+    }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 }
