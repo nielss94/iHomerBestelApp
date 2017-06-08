@@ -27,7 +27,7 @@ public class MySQLProductDAO implements ProductDAO, MySQLProductAPIConnector.Pro
 
     @Override
     public void updateData(Product product) {
-
+        // Kan handig zijn voor de toekomst
     }
 
     @Override

@@ -32,7 +32,7 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
     // Recommend NfcAdapter flags for reading from other Android devices. Indicates that this
     // activity is interested in NFC-A devices (including other Android devices), and that the
     // system should not check for the presence of NDEF-formatted data (e.g. Android Beam).
-    public static int READER_FLAGS =
+    public static final int READER_FLAGS =
             NfcAdapter.FLAG_READER_NFC_A | NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK;
     public LoyaltyCardReader mLoyaltyCardReader;
     private TextView test, totalprice;

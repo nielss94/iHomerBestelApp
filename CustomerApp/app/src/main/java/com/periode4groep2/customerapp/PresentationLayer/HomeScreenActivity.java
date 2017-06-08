@@ -45,6 +45,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
     private Button balanceButton;
     private ImageButton unhandledOrderButton;
     private AnimationDrawable unhandledOrderAnimation;
+    private static final String ACCOUNT = "account";
 
 
     @Override
@@ -77,7 +78,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         myOrdersLayoutButton.setOnClickListener(this);
         balanceButton.setOnClickListener(this);
 
-        account = (Account)getIntent().getSerializableExtra("account");
+        account = (Account)getIntent().getSerializableExtra(ACCOUNT);
         balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
         Log.i("balance: ", account.getBalance() + "");
         // Wanneer je na het veranderen van het saldo terug komt op dit scherm, wordt de balance verkeerd
@@ -96,27 +97,27 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         if(v.equals(orderLayoutButton)){
             Intent orderIntent = new Intent(this, OrderActivity.class);
-            orderIntent.putExtra("account", account);
+            orderIntent.putExtra(ACCOUNT, account);
             startActivity(orderIntent);
 
         } else if(v.equals(settingsLayoutButton)){
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
-            settingsIntent.putExtra("account", account);
+            settingsIntent.putExtra(ACCOUNT, account);
             startActivity(settingsIntent);
 
         } else if(v.equals(balanceLayoutButton)){
             Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
-            addBalanceIntent.putExtra("account", account);
+            addBalanceIntent.putExtra(ACCOUNT, account);
             startActivity(addBalanceIntent);
             finish();
         } else if (v.equals(myOrdersLayoutButton)){
             Intent myOrdersIntent = new Intent(this, OrderHistoryActivity.class);
-            myOrdersIntent.putExtra("account", account);
+            myOrdersIntent.putExtra(ACCOUNT, account);
             startActivity(myOrdersIntent);
 
         } else if (v.equals(balanceButton)){
             Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
-            addBalanceIntent.putExtra("account", account);
+            addBalanceIntent.putExtra(ACCOUNT, account);
             startActivity(addBalanceIntent);
             finish();
         }
@@ -146,7 +147,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(HomeScreenActivity.this, UnhandledOrderHistoryDetailActivity.class);
-                    i.putExtra("account", account);
+                    i.putExtra(ACCOUNT, account);
                     i.putExtra("order", unhandledOrder);
                     startActivity(i);
                 }

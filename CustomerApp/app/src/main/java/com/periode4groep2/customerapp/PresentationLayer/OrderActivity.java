@@ -53,6 +53,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     private ImageButton popUpButton;
     private TextView orderItemCount;
     private ListPopupWindow menu;
+    private static final String ACCOUNT = "account";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +79,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
         balanceButton = (Button) findViewById(R.id.buttonBalance);
         balanceButton.setOnClickListener(this);
-        account = (Account) getIntent().getSerializableExtra("account");
+        account = (Account) getIntent().getSerializableExtra(ACCOUNT);
         balanceButton.setText("€" + String.format("%.2f", account.getBalance() / 100) + "");
 
         popUpButton = (ImageButton) findViewById(R.id.popUpButton);
@@ -146,7 +147,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         if (v.equals(balanceButton)) {
             Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
-            addBalanceIntent.putExtra("account", account);
+            addBalanceIntent.putExtra(ACCOUNT, account);
             startActivity(addBalanceIntent);
         } else if (v.equals(basket)) {
             Boolean canCreateOrder = true;
@@ -159,7 +160,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             if (canCreateOrder) {
                 orderDAO.insertData(account, newOrder);
                 Intent intent = new Intent(this, OrderDetailActivity.class);
-                intent.putExtra("account", account);
+                intent.putExtra(ACCOUNT, account);
                 intent.putExtra("order", newOrder);
                 Bundle b = new Bundle();
                 b.putParcelableArrayList("products", products);

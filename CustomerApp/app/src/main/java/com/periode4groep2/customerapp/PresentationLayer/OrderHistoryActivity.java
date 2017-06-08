@@ -34,6 +34,7 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
     private ListView orderHistoryListView;
     private OrderHistoryAdapter historyAdapter;
     private Button balanceButton;
+    private static final String ACCOUNT = "account";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
 
         balanceButton = (Button)findViewById(R.id.buttonBalance);
         balanceButton.setOnClickListener(this);
-        account = (Account) getIntent().getSerializableExtra("account");
+        account = (Account) getIntent().getSerializableExtra(ACCOUNT);
         balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
 
         orderDAO.selectData(this);
@@ -80,7 +81,7 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
     public void onClick(View v) {
         if(v == balanceButton){
             Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
-            addBalanceIntent.putExtra("account", account);
+            addBalanceIntent.putExtra(ACCOUNT, account);
             startActivity(addBalanceIntent);
         }
     }
@@ -91,13 +92,13 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
         if (o.isHandled()) {
             Intent orderHistoryDetail = new Intent(this, HandledOrderHistoryDetailActivity.class);
             orderHistoryDetail.putExtra("order", (Order) orderHistoryListView.getItemAtPosition(position));
-            orderHistoryDetail.putExtra("account", account);
+            orderHistoryDetail.putExtra(ACCOUNT, account);
 
             startActivity(orderHistoryDetail);
         } else {
             Intent orderHistoryDetail = new Intent(this, UnhandledOrderHistoryDetailActivity.class);
             orderHistoryDetail.putExtra("order", (Order) orderHistoryListView.getItemAtPosition(position));
-            orderHistoryDetail.putExtra("account", account);
+            orderHistoryDetail.putExtra(ACCOUNT, account);
 
             startActivity(orderHistoryDetail);
         }
