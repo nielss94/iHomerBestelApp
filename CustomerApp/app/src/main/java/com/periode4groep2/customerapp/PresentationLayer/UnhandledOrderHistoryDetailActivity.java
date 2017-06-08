@@ -33,7 +33,7 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
     private ListView orderListView;
     private UnhandledOrderItemAdapter unhandledOrderItemAdapter;
     private Button balanceButton;
-    private static final String Account = "account";
+    private static final String ACCOUNT = "account";
 
 
     @Override
@@ -52,19 +52,19 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
 
 
         order = (Order)getIntent().getSerializableExtra("order");
-        account = (Account)getIntent().getSerializableExtra(Account);
+        account = (Account)getIntent().getSerializableExtra(ACCOUNT);
         balanceButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent addBalanceIntent = new Intent(getApplicationContext(), BalanceActivity.class);
-                addBalanceIntent.putExtra(Account, account);
+                addBalanceIntent.putExtra(ACCOUNT, account);
                 startActivity(addBalanceIntent);
             }
         });
         orderButton = (Button)findViewById(R.id.payButton);
 
-        account = (Account)getIntent().getSerializableExtra(Account);
+        account = (Account)getIntent().getSerializableExtra(ACCOUNT);
         balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
 
         TextView totalPrice = (TextView) findViewById(R.id.totalPrice);
@@ -78,7 +78,7 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
             @Override
             public void onClick(View v) {
                 Intent scanIntent = new Intent(getApplicationContext(), ScanActivity.class);
-                scanIntent.putExtra(Account, account);
+                scanIntent.putExtra(ACCOUNT, account);
                 scanIntent.putExtra("order", order);
                 startActivity(scanIntent);
             }
