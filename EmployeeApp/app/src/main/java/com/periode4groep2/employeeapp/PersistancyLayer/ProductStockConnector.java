@@ -51,11 +51,10 @@ public class ProductStockConnector extends AsyncTask<Void, Void, Void> {
             jsonParam.put("password", account.getPassword());
             jsonParam.put("productid", product.getProductID());
             if(product.isInStock()){
-                jsonParam.put("set", false);
-            }else{
                 jsonParam.put("set", true);
+            }else{
+                jsonParam.put("set", false);
             }
-            Log.i(TAG,product.isInStock()+"");
             Log.i(TAG,jsonParam.toString());
 
             OutputStreamWriter out = new   OutputStreamWriter(urlConnection.getOutputStream());

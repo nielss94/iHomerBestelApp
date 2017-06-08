@@ -18,8 +18,7 @@
             android:layout_height="150dp"
             android:layout_gravity="top|left"
             android:background="#ff9600"
-            android:text="Snacks"
-            android:margin="5dp">
+            android:text="Snacks">
         </Button>
 
     </LinearLayout>

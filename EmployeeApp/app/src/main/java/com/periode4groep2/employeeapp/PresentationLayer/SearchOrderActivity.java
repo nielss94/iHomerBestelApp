@@ -54,7 +54,7 @@ public class SearchOrderActivity extends AppCompatActivity implements View.OnCli
         account = (Account)getIntent().getSerializableExtra("account");
 
         searchOrderEditText = (EditText)findViewById(R.id.searchOrderEditText);
-        searchOrderListView = (ListView)findViewById(R.id.searchedOrdersListView);
+        //searchOrderListView = (ListView)findViewById(R.id.searchedOrdersListView);
         searchOrderButton = (Button)findViewById(R.id.searchOrderButton);
 
         searchOrderButton.setOnClickListener(this);

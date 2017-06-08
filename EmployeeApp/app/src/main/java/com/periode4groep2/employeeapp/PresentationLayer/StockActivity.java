@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-
+import android.widget.LinearLayout;
 
 
 import com.periode4groep2.employeeapp.DomainModel.Account;
@@ -33,7 +33,6 @@ public class StockActivity extends AppCompatActivity implements ProductSetAvaila
     private DAOFactory factory;
     private ProductDAO productDAO;
     private ArrayList<Product> products = new ArrayList<>();
-    private Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +62,14 @@ public class StockActivity extends AppCompatActivity implements ProductSetAvaila
                 Product product = (Product) listView.getExpandableListAdapter().getChild(groupPosition, childPosition);
 
                 Log.i(TAG, "Click on item " + product.getName());
-                productDAO.changeStock(account,product);
+                Log.i(TAG,product.isInStock()+"");
                 if(product.isInStock()){
+                    v.setBackgroundColor(getResources().getColor(R.color.colorGrayWhite));
+                    productDAO.changeStock(account,product);
                     product.setInStock(false);
                 }else{
+                    v.setBackgroundColor(getResources().getColor(R.color.colorBackground));
+                    productDAO.changeStock(account,product);
                     product.setInStock(true);
                 }
                 return true;
@@ -76,12 +79,13 @@ public class StockActivity extends AppCompatActivity implements ProductSetAvaila
 
 
     private void initData() {
+
+        Product product;
         for (int i = 0; i < products.size(); i++) {
             product = products.get(i);
 
             if (!listDataHeader.contains(product.getCategory())) {
                 listDataHeader.add(product.getCategory());
-                Log.i(TAG, product.getCategory() + " added to categories");
             }
         }
         for (int j = 0; j < listDataHeader.size(); j++) {

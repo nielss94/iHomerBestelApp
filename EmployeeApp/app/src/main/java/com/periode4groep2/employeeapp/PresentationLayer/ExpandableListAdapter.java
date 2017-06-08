@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.periode4groep2.employeeapp.DomainModel.OrderItem;
@@ -98,6 +99,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
         txtListChild.setText(childProduct.getName());
+        Log.i(TAG, childProduct.isInStock()+"");
+        LinearLayout parentItem = (LinearLayout)txtListChild.getParent();
+        if(childProduct.isInStock() == false){
+            parentItem.setBackgroundColor(parentItem.getResources().getColor(R.color.colorGrayWhite));
+        }else{
+            parentItem.setBackgroundColor(parentItem.getResources().getColor(R.color.colorBackground));
+        }
+
 
         return convertView;
     }
