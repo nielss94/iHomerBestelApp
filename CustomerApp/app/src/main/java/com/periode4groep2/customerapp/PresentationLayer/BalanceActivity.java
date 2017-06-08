@@ -34,6 +34,7 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
     private AccountDAO accountDAO;
     private final double maxBalance = 150;
     private double currentBalanceValue;
+    private double epsilon = 0.00001;
 
 
     @Override
@@ -81,7 +82,9 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
 
             if(!input.isEmpty()){
                 currentEntryValue = Double.parseDouble(input);
-                if (currentBalanceValue == 150){
+                // Controleer of het verschil tussen de twee waarden kleiner is dan x
+                // equality tests mogen niet met floating points
+                if (Math.abs(currentBalanceValue - 150) < epsilon){
                     Toast.makeText(this, R.string.max_amount_toast, Toast.LENGTH_SHORT).show();
                 }
                 else if ( currentBalanceValue + currentEntryValue > 150.00 || currentEntryValue >= 150.00 ) {
@@ -92,7 +95,7 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
                 }
                 mutateBalance.setText("");
             }
-            else if ( input.isEmpty() || currentEntryValue == 0) {
+            else if ( input.isEmpty() || (Math.abs(currentEntryValue - 0) < epsilon)) {
                 Toast.makeText(this, R.string.no_amount_entered_toast, Toast.LENGTH_SHORT).show();
             }
 
@@ -104,7 +107,7 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
 
             if (!input.isEmpty()) {
                 currentEntryValue = Double.parseDouble(input);
-                if (currentEntryValue == 0) {
+                if (Math.abs(currentEntryValue - 0) < epsilon) {
                     Toast.makeText(this, R.string.not_possible_to_add_nothing_toast, Toast.LENGTH_SHORT).show();
                 }
                 if (currentEntryValue > currentBalanceValue) {
