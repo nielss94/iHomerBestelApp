@@ -14,6 +14,8 @@ import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.DomainModel.Order;
 import com.periode4groep2.customerapp.DomainModel.Product;
 import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
+import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
+import com.periode4groep2.customerapp.PersistancyLayer.OrderDAO;
 import com.periode4groep2.customerapp.PersistancyLayer.ProductSetAvailable;
 import com.periode4groep2.customerapp.R;
 
@@ -31,6 +33,8 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
     private Button cancelOrderButton;
     private Button scanOrderButton;
     private Button balanceButton;
+    private DAOFactory factory;
+    private OrderDAO orderDAO;
     private Account account;
     private Order order;
     private ArrayList<Product> products = new ArrayList<>();
@@ -44,11 +48,14 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
         myToolbar.setTitle(R.string.Order_Detail_toolbar);
         setSupportActionBar(myToolbar);
 
+        factory = new MySQLDAOFactory();
+        orderDAO = factory.createOrderDAO();
+
         Bundle b = this.getIntent().getExtras();
         products = b.getParcelableArrayList("products");
-        Log.i(TAG,products.get(0).getName() +"");
         account = (Account)getIntent().getSerializableExtra("account");
         order = (Order)getIntent().getSerializableExtra("order");
+
 
         orderItemListView = (ListView)findViewById(R.id.orderItemListView);
         unhandledOrderItemAdapter = new UnhandledOrderItemAdapter(this, order.getOrderItems(), products);
@@ -70,6 +77,7 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v){
         if(v.equals(cancelOrderButton)){
+            orderDAO.deleteOrder(account, order);
             Intent intent = new Intent(this, HomeScreenActivity.class);
             startActivity(intent);
         } else if(v.equals(scanOrderButton)){

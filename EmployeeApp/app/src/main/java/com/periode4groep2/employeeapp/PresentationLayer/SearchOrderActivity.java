@@ -2,11 +2,8 @@ package com.periode4groep2.employeeapp.PresentationLayer;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-<<<<<<< HEAD
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-=======
->>>>>>> origin/master
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -54,13 +51,12 @@ public class SearchOrderActivity extends AppCompatActivity implements View.OnCli
         productDAO = factory.createProductDAO();
         orderDAO = factory.createOrderDAO();
 
-        orderDAO.selectData(this);
         productDAO.selectData(this);
 
         account = (Account)getIntent().getSerializableExtra("account");
 
         searchOrderEditText = (EditText)findViewById(R.id.searchOrderEditText);
-        //searchOrderListView = (ListView)findViewById(R.id.searchedOrdersListView);
+        searchOrderListView = (ListView)findViewById(R.id.searchOrdersListView);
         searchOrderButton = (Button)findViewById(R.id.searchOrderButton);
 
         searchOrderButton.setOnClickListener(this);
@@ -70,8 +66,7 @@ public class SearchOrderActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v){
         if(v.equals(searchOrderButton)){
-            String entry_str = searchOrderEditText.getText().toString();
-            //Do something to send string via API.
+            orderDAO.selectData(this);
         }
     }
 
@@ -83,8 +78,10 @@ public class SearchOrderActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void orderSetAvailable(ArrayList<Order> orders) {
+        String searchQuery = searchOrderEditText.getText().toString();
+        this.orders.clear();
         for (int i = 0; i < orders.size(); i++) {
-            if(orders.get(i).getEmail().equalsIgnoreCase(account.getEmail())) {
+            if(orders.get(i).getEmail().equalsIgnoreCase(searchQuery)) {
                 this.orders.add(orders.get(i));
             }
         }

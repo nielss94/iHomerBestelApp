@@ -13,4 +13,5 @@ public interface OrderDAO {
 
     void insertData(Account account, Order order);
     void handleOrder(Account account, Order order);
+    void deleteOrder(Account account, Order order);
 }
