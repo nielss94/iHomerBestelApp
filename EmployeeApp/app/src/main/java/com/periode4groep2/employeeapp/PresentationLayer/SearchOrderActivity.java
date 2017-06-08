@@ -2,11 +2,10 @@ package com.periode4groep2.employeeapp.PresentationLayer;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-<<<<<<< HEAD
+
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-=======
->>>>>>> origin/master
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
