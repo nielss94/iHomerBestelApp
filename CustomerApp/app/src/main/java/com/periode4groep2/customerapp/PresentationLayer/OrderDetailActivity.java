@@ -16,13 +16,14 @@ import com.periode4groep2.customerapp.DomainModel.Product;
 import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
 import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
 import com.periode4groep2.customerapp.PersistancyLayer.OrderDAO;
+import com.periode4groep2.customerapp.PersistancyLayer.OrderSetAvailable;
 import com.periode4groep2.customerapp.PersistancyLayer.ProductSetAvailable;
 import com.periode4groep2.customerapp.R;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class OrderDetailActivity extends AppCompatActivity implements View.OnClickListener {
+public class OrderDetailActivity extends AppCompatActivity implements View.OnClickListener, OrderSetAvailable {
     //Logging tag
     private final String TAG = this.getClass().getSimpleName();
     //controller elements
@@ -54,15 +55,13 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
         Bundle b = this.getIntent().getExtras();
         products = b.getParcelableArrayList("products");
         account = (Account)getIntent().getSerializableExtra("account");
-        order = (Order)getIntent().getSerializableExtra("order");
+        //order = (Order)getIntent().getSerializableExtra("order");
 
-
+        orderDAO.selectData(this);
         orderItemListView = (ListView)findViewById(R.id.orderItemListView);
-        unhandledOrderItemAdapter = new UnhandledOrderItemAdapter(this, order.getOrderItems(), products);
-        orderItemListView.setAdapter(unhandledOrderItemAdapter);
+
         totalTagTextView = (TextView)findViewById(R.id.totalTagTextView);
         totalPriceTextView = (TextView)findViewById(R.id.totalPriceTagTextView);
-        totalPriceTextView.setText("€"+String.format("%.2f" ,order.getTotalPrice()));
 
         cancelOrderButton = (Button)findViewById(R.id.cancelOrderButton);
         scanOrderButton = (Button)findViewById(R.id.scanOrderButton);
@@ -90,5 +89,19 @@ public class OrderDetailActivity extends AppCompatActivity implements View.OnCli
             addBalanceIntent.putExtra("account", account);
             startActivity(addBalanceIntent);
         }
+    }
+
+    @Override
+    public void orderSetAvailable(ArrayList<Order> orders) {
+        for (int i = 0; i < orders.size(); i++) {
+            if(orders.get(i).getEmail().equals(account.getEmail()) && (!orders.get(i).isHandled())){
+                order = orders.get(i);
+                break;
+            }
+        }
+        unhandledOrderItemAdapter = new UnhandledOrderItemAdapter(this, order.getOrderItems(), products);
+        orderItemListView.setAdapter(unhandledOrderItemAdapter);
+        unhandledOrderItemAdapter.notifyDataSetChanged();
+        totalPriceTextView.setText("€"+String.format("%.2f" ,order.getTotalPrice()));
     }
 }

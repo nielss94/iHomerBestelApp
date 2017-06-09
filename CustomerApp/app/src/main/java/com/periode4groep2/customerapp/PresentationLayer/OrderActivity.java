@@ -102,7 +102,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         listView.setAdapter(listAdapter);
     }
 
-
     public void productSetAvailable(ArrayList<Product> prod) {
         products = prod;
         for (int i = 0; i < products.size(); i++) {
@@ -115,7 +114,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         menu.setWidth(900);
         menu.setHeight(1000);
     }
-
 
     private void initData() {
         for (int i = 0; i < products.size(); i++) {
@@ -155,7 +153,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 orderDAO.insertData(account, newOrder);
                 Intent intent = new Intent(this, OrderDetailActivity.class);
                 intent.putExtra(ACCOUNT, account);
-                intent.putExtra("order", newOrder);
+                //intent.putExtra("order", newOrder);
                 Bundle b = new Bundle();
                 b.putParcelableArrayList("products", products);
                 intent.putExtras(b);
@@ -208,8 +206,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 break;
             }
         }
-
-
         Log.i(TAG,newOrder.getOrderItems().toString());
     }
     @Override

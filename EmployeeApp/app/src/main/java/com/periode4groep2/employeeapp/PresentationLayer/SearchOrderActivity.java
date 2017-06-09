@@ -1,5 +1,6 @@
 package com.periode4groep2.employeeapp.PresentationLayer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -73,7 +74,15 @@ public class SearchOrderActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Order o = (Order) searchOrderListView.getItemAtPosition(position);
-
+        if(o.isHandled()){
+            Intent i = new Intent(this, SearchHandledOrderHistoryDetailActivity.class);
+            i.putExtra("order", o);
+            startActivity(i);
+        }else{
+            Intent i = new Intent(this, SearchUnhandledOrderHistoryDetailActivity.class);
+            i.putExtra("order", o);
+            startActivity(i);
+        }
     }
 
     @Override
