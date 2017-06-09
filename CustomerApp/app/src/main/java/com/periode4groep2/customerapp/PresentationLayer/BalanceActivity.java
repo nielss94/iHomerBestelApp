@@ -186,7 +186,7 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         builder.setCancelable(false);
         final String getBalance = mutateBalance.getText().toString();
 
-        builder.setMessage("Weet u zeker dat u " + getBalance.trim() + " euro wil toevoegen?");
+        builder.setMessage(R.string.are_you_sure_dialog_message + getBalance.trim() + R.string.add_balance_message);
         builder.setPositiveButton(getResources().getString(R.string.balance_dialog_positive_button), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
@@ -217,7 +217,7 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
         final String getBalance = mutateBalance.getText().toString();
-        builder.setMessage("Weet u zeker dat u " + getBalance + " euro van uw account wil terugstorten?");
+        builder.setMessage(R.string.are_you_sure_dialog_message + getBalance + " euro van uw account wil terugstorten?");
         builder.setPositiveButton(getResources().getString(R.string.balance_dialog_positive_button), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {

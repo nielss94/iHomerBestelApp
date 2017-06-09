@@ -1,27 +1,27 @@
 <resources>
     <!-- Global strings -->
-    <string name="app_name">BestelApp</string>
+    <string name="app_name">CustomerApp</string>
     <string name="test_product">
         Dummy data test
     </string>
 
     <!-- Strings voor HomeScreenActivity -->
     <string name="order_button">
-        Bestellen
+        Order
     </string>
     <string name="settings_button">
-        Instellingen
+        Settings
     </string>
     <string name="balance_button">
-        Saldo
+        Balance
     </string>
     <string name="my_orders_button">
-        Mijn bestellingen
+        My Orders
     </string>
 
     <!-- Strings voor MainActivity -->
     <string name="order_app_logo">
-        Bestelapp
+        CustomerApp
     </string>
     <string name="email">
         E-mail:
@@ -30,124 +30,125 @@
         example123@mail.com
     </string>
     <string name="password">
-        Wachtwoord:
+        Password:
     </string>
     <string name="hint_enter_password">
         ***********
     </string>
     <string name="log_in_button">
-        Inloggen
+        Log In
     </string>
     <string name="successful_log_in_toast">
-        Succesvol ingelogd.
+        successfully logged in.
     </string>
     <string name="account_not_found_toast">
-        Account niet gevonden.
+        Account not found.
     </string>
 
     <!-- Strings voor BalanceActivity-->
     <string name="current_balance_textview">
-        Huidig saldo:
+        Current balance:
     </string>
     <string name="current_balance_view">
         €0,00
     </string>
     <string name="add_balance">
-        Voer een bedrag in:
+        Enter an amount:
     </string>
     <string name="desired_balance">
         €0,00
     </string>
     <string name="add_balance_button">
-        Toevoegen
+        Add
     </string>
 
     <!-- Strings BalanceDialogFragment -->
     <string name="max_balance_dialog_message">
-        Het is niet mogelijk om meer dan €150 op uw account te hebben.
-    Saldo aanvullen tot €150?
+        It is not possible to have a balance higher than €150. Do you want to add your balance
+        to €150?
     </string>
     <string name="no_amount_entered_toast">
-        U heeft geen bedrag ingevoerd.
+        You did not enter a value.
     </string>
     <string name="not_possible_to_add_nothing_toast">
-        Het is niet mogelijk om €0,00 terug te storten op uw rekening.
+        It is not possible to refund €0,00 from your account.
     </string>
     <string name="max_amount_toast">
-         U heeft het maximale bedrag van €150 op uw account staan.
+        Your current account balance is maxed out.
     </string>
     <string name="refund_balance_dialog_message">
-        Wilt u het gehele bedrag terug storten?
+        Do you want to refund your entire balance?
     </string>
     <string name="balance_dialog_positive_button">
-        Ja
+        Yes
     </string>
     <string name="are_you_sure_dialog_message">
-        Weet u zeker dat u
+        Are you sure you want to add
     </string>
     <string name="add_balance_message">
-        euro wil toevoegen?
+         euros to your account?
     </string>
     <string name="refund_from_account_message">
         euro van uw account wil terugstorten?
     </string>
     <string name="balance_dialog_negative_button">
-        Nee
+        No
     </string>
 
     <!-- Strings voor SettingsActivity-->
-    <string name="Dutch">
-        Nederlands
-    </string>
-    <string name="English">
-        English
-    </string>
+    <string-array name="language_array_spinner_entries">
+        <item>Nederlands</item>
+        <item>English</item>
+        <item>Deutsch</item>
+        <item>Français</item>
+        <item>Fries</item>
+    </string-array>
     <string name="personal_data_textview">
-        Persoonlijke gegevens
+        Personal information
     </string>
     <string name="email_textview">
         Email:
     </string>
     <string name="firstname_textview">
-        Voornaam:
+        First name:
     </string>
     <string name="lastname_textview">
-        Achternaam:
+        Last name:
     </string>
     <string name="age_textview">
-        Leeftijd:
+        Age:
     </string>
     <string name="iban_textview">
-        Rekeningnummer:
+        Bank account number:
     </string>
     <string name="language_textview">
-        Taal:
+        Language:
     </string>
     <string name="save_settings_button">
-        Wijzigingen opslaan
+        Save changes
     </string>
     <string name="save_settings_toast">
-        Wijzigingen succesvol opgeslagen
+        Successfully saved changes
     </string>
 
     <!--Strings voor OrderDetailActivity-->
     <string name="total_tag_textview">
-        Totaal:
+        Total:
     </string>
     <string name="TEST_total_price_textview">
         €0,00
     </string>
     <string name="cancel_order_button">
-        Bestelling annuleren
+        Cancel order
     </string>
     <string name="scan_order_button">
-        Bestellen
+        Order
     </string>
     <string name="price_textview">
-        Prijs:
+        Price:
     </string>
     <string name="quantity_textview">
-        Aantal:
+        Amount:
     </string>
     <string name="product_textview">
         Product:
@@ -155,26 +156,26 @@
 
     <!-- Strings voor OrderHistoryActivity-->
     <string name="date_of_the_order_textview">
-        Datum:
+        Date:
     </string>
     <string name="price_of_the_order_textview">
-        Prijs:
+        Price:
     </string>
 
     <!-- Strings voor WalletActivity-->
     <string name="go_to_add_balance_button">
-        Saldo toevoegen
+        Add balance
     </string>
     <string name="go_to_refun_balance_button">
-        Saldo terugstorten
+        Refund balance
     </string>
 
     <!--Strings voor add balance activity-->
     <string name="current_balance_header">
-        Huidig saldo:
+        Current balance:
     </string>\
     <string name="refund_button_text">
-        Terugstorten
+        Refund
     </string>
 
     <!-- Strings voor ScanActivity -->
@@ -184,13 +185,13 @@
 
     <!-- Strings voor OrderActivity -->
     <string name="total_textview">
-        Totaal:
+        Total:
     </string>
     <string name="total_price_textview">
         €0,00
     </string>
     <string name="order_activity_orderButton">
-        Bestellen
+        Order
     </string>
 
     <!-- Strings voor de aid_list -->
@@ -206,25 +207,27 @@
         Menu
     </string>
     <string name="Balance_toolbar">
-        Saldo
+        Balance
     </string>
     <string name="Order_toolbar">
-        Bestellen
+        Order
     </string>
     <string name="Order_Detail_toolbar">
-        Huidige Bestelling
+        Current order
     </string>
     <string name="Scan_toolbar">
-        Betalen
+        Payment
     </string>
     <string name="Order_History_toolbar">
-        Mijn Bestellingen
+        My orders
     </string>
     <string name="Settings_toolbar">
-        Instellingen
+        Settings
     </string>
     <string name="Unhandled_Order_toolbar">
-        Open Bestelling
+        Unhandled order
     </string>
 
 </resources>
+
+
