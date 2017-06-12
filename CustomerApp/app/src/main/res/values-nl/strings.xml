@@ -200,6 +200,32 @@
         Bestellen
     </string>
 
+    <!-- Strings voor UnhandledOrderHistoryDetailActivity -->
+    <string name ="unhandled_order_header">
+        Bestelling 15-05-2017
+    </string>
+    <string name ="unhandled_order_time_header">
+        Tijd
+    </string>
+    <string name ="unhandled_order_time_display">
+        22:31
+    </string>
+    <string name ="unhandled_order_paystatus_header">
+        Betaald:
+    </string>
+    <string name ="">
+
+    </string>
+    <string name ="">
+
+    </string>
+    <string name ="">
+
+    </string>
+    <string name ="">
+
+    </string>
+
     <!-- Strings voor de aid_list -->
     <string name="service_name">
         CardEmulation

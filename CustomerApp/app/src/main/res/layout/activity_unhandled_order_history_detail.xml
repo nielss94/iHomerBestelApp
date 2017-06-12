@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="Bestelling 15-05-2017"
+            android:text="@string/unhandled_order_header"
             android:textColor="@color/colorOrange"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="15dp"
-                android:text="Tijd: "
+                android:text="@string/unhandled_order_time_header"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="22:31"
+                android:text="@string/unhandled_order_time_display"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:text="Betaald: "
+                android:text="@string/unhandled_order_paystatus_header"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_marginRight="10dp"
-                android:text="Nee"
+                android:text="@string/"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
