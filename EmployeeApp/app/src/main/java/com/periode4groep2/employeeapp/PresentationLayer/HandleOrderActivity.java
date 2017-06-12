@@ -181,7 +181,9 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
             }
         } else if(v.equals(addProducts)){
             Intent addProduct = new Intent(this, AddExtraProducts.class);
+            addProduct.putExtra("order", order);
             startActivity(addProduct);
+            finish();
         }
     }
 }

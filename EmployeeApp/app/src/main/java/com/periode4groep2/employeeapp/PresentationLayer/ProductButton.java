@@ -10,6 +10,16 @@ import android.widget.Button;
 public class ProductButton extends android.support.v7.widget.AppCompatButton {
 
     private int productID;
+    private boolean instock;
+
+    public boolean isInstock() {
+        return instock;
+    }
+
+    public void setInstock(boolean instock) {
+        this.instock = instock;
+    }
+
     public ProductButton(Context context) {
         super(context);
     }
