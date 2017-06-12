@@ -55,6 +55,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    public void onBackPressed() {
+
+    }
+
+    @Override
     public void onClick(View v) {
         //Check if email/password is empty
         accountDAO.selectData(this,email.getText().toString(),password.getText().toString());

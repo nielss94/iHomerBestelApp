@@ -97,12 +97,11 @@
 
     <!-- Strings voor SettingsActivity-->
     <string-array name="language_array_spinner_entries">
+        <item>Choose Language...</item>
         <item>Nederlands</item>
         <item>English</item>
-        <item>Deutsch</item>
-        <item>Français</item>
-        <item>Fries</item>
     </string-array>
+
     <string name="personal_data_textview">
         Personal information
     </string>
@@ -124,11 +123,17 @@
     <string name="language_textview">
         Language:
     </string>
-    <string name="save_settings_button">
-        Save changes
+    <string name="menu_button">
+        Menu
     </string>
     <string name="save_settings_toast">
         Successfully saved changes
+    </string>
+    <string name="dialog_message">
+        Log in again to apply the changes to the language settings.
+    </string>
+    <string name="dialog_button">
+        Log in
     </string>
 
     <!--Strings voor OrderDetailActivity-->

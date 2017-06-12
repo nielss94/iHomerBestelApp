@@ -1,16 +1,24 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import java.util.Calendar;
+import java.util.Locale;
+
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.R;
@@ -19,6 +27,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     Account account;
     private Button saveSettings, balanceButton;
     private TextView textviewEmail, textviewFirstName, textviewLastName, textviewBirthDate, textviewIBAN;
+    private Spinner spinner;
+    Locale myLocale;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -50,13 +60,36 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         textviewIBAN.setText(account.getIBAN());
 
         calculateAge();
+
+        spinner = (Spinner) findViewById(R.id.language_spinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                if (pos == 0) {
+
+                } else if (pos == 1) {
+                    setLocale("nl");
+
+                } else if (pos == 2){
+                    setLocale("en");
+
+                }
+
+            }
+
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+        });
     }
+
 
     @Override
     public void onClick(View v) {
         if(v.equals(saveSettings)) {
-            this.finish();
-            Toast.makeText(this, R.string.save_settings_toast, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent (this, HomeScreenActivity.class);
+            intent.putExtra("account", account);
+            startActivity(intent);
         } else if(v.equals(balanceButton)){
             Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
             addBalanceIntent.putExtra("account", account);
@@ -88,4 +121,36 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
             textviewBirthDate.setText(age + "");
         }
     }
-}
+
+    public void setLocale(String lang) {
+
+        myLocale = new Locale(lang);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+        logIn();
+    }
+
+    public void logIn(){
+
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(false);
+
+            builder.setMessage(R.string.dialog_message);
+            builder.setPositiveButton(getResources().getString(R.string.dialog_button), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int which) {
+
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    dialogInterface.dismiss();
+                }
+            });
+
+            final AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+    }
+

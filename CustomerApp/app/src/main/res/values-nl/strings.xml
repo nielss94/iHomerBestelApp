@@ -96,12 +96,13 @@
     </string>
 
     <!-- Strings voor SettingsActivity-->
-    <string name="Dutch">
-        Nederlands
-    </string>
-    <string name="English">
-        English
-    </string>
+
+    <string-array name="language_array_spinner_entries">
+        <item>Kies taal...</item>
+        <item>Nederlands</item>
+        <item>English</item>
+    </string-array>
+
     <string name="personal_data_textview">
         Persoonlijke gegevens
     </string>
@@ -123,11 +124,17 @@
     <string name="language_textview">
         Taal:
     </string>
-    <string name="save_settings_button">
-        Wijzigingen opslaan
+    <string name="menu_button">
+        Menu
     </string>
     <string name="save_settings_toast">
         Wijzigingen succesvol opgeslagen
+    </string>
+    <string name="dialog_message">
+        Log opnieuw in om de gewenste taal in te stellen.
+    </string>
+    <string name="dialog_button">
+        Log in
     </string>
 
     <!--Strings voor OrderDetailActivity-->
