@@ -64,7 +64,7 @@ public class StockActivity extends AppCompatActivity implements ProductSetAvaila
                 Log.i(TAG, "Click on item " + product.getName());
                 Log.i(TAG,product.isInStock()+"");
                 if(product.isInStock()){
-                    v.setBackgroundColor(getResources().getColor(R.color.colorGrayWhite));
+                    v.setBackgroundColor(getResources().getColor(R.color.colorDarkRed));
                     listAdapter.notifyDataSetChanged();
                     productDAO.changeStock(account,product);
                     product.setInStock(false);

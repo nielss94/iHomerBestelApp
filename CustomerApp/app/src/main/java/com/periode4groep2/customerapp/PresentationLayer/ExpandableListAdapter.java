@@ -107,7 +107,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         LinearLayout parentItem = (LinearLayout)txtListChild.getParent();
         if(childProduct.isInStock() == false){
-            parentItem.setBackgroundColor(parentItem.getResources().getColor(R.color.colorGrayWhite));
+            parentItem.setBackgroundColor(parentItem.getResources().getColor(R.color.colorDarkRed));
         }else{
             parentItem.setBackgroundColor(parentItem.getResources().getColor(R.color.colorBackground));
         }
