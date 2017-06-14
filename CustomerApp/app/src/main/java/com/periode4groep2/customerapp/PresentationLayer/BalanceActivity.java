@@ -58,7 +58,7 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         refundBalance.setOnClickListener(this);
 
         currentBalanceValue = account.getBalance() / 100;
-<<<<<<< HEAD
+
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_home);
@@ -73,9 +73,6 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
             }
         });
-
-=======
->>>>>>> origin/master
     }
 
     @Override
