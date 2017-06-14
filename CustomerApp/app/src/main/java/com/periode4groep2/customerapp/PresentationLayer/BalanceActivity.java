@@ -47,7 +47,9 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         currentBalanceTextView = (TextView) findViewById(R.id.currentBalance);
 
         account = (Account) getIntent().getSerializableExtra("account");
+
         currentBalanceTextView.setText("€" + String.format("%.2f", account.getBalance() / 100) + "");
+
 
         addBalance = (Button) findViewById(R.id.addBalanceID);
         addBalance.setOnClickListener(this);
@@ -56,6 +58,7 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         refundBalance.setOnClickListener(this);
 
         currentBalanceValue = account.getBalance() / 100;
+<<<<<<< HEAD
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_home);
@@ -71,6 +74,8 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
+=======
+>>>>>>> origin/master
     }
 
     @Override
@@ -147,9 +152,6 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
                         currentBalanceTextView.setText("€" + String.format("%.2f", currentBalanceValue));
                         dialogInterface.dismiss();
 
-                        Intent intent = getIntent();
-                        finish();
-                        startActivity(intent);
                     }
                 });
 
@@ -178,9 +180,6 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
                 accountDAO.updateBalance(account, -(currentBalanceValue * 100));
                 currentBalanceTextView.setText("€" + String.format("%.2f", refundAll));
                 dialogInterface.dismiss();
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
             }
         });
 
@@ -213,9 +212,6 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
                 account.setBalance(currentBalanceValue);
                 accountDAO.updateBalance(account,currentEntryValue * 100);
                 dialogInterface.dismiss();
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
             }
         });
 
@@ -247,9 +243,6 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
                 account.setBalance(currentBalanceValue);
                 accountDAO.updateBalance(account,-(currentEntryValue* 100));
                 dialogInterface.dismiss();
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
             }
         });
 
