@@ -2,6 +2,7 @@ package com.periode4groep2.customerapp.PresentationLayer;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +19,8 @@ import com.periode4groep2.customerapp.PersistancyLayer.MyAccountAvailable;
 import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
 import com.periode4groep2.customerapp.R;
 
+import java.util.Locale;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, MyAccountAvailable {
     private Button loginButton;
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private AccountDAO accountDAO;
     private EditText email, password;
     private Account account;
+    private String languageToLoad;
 
 
     SharedPreferences sharedPreferences;
@@ -50,8 +54,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
         setSupportActionBar(toolbar);
 
-        editor.clear();
+        editor.remove("Email");
 
+        languageToLoad = sharedPreferences.getString("LANGUAGE", null);
+
+        if (languageToLoad == null){
+            languageToLoad = "nl";
+            languageChanged();
+        } else if (languageToLoad != null){
+            languageChanged();
+        }
     }
 
     @Override
@@ -84,5 +96,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.putExtra("account", account);
         startActivity(intent);
         Toast.makeText(this, R.string.successful_log_in_toast, Toast.LENGTH_SHORT).show();
+    }
+
+    public void languageChanged(){
+        Configuration mainConfig = new Configuration(getResources().getConfiguration());
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        mainConfig.setLocale(locale);
+        getResources().updateConfiguration(mainConfig, null);
     }
 }

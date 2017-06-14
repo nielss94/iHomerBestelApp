@@ -82,14 +82,17 @@
     <string name="balance_dialog_positive_button">
         Ja
     </string>
-    <string name="are_you_sure_dialog_message">
-        Weet u zeker dat u
+    <string name="are_you_sure_dialog_message1">
+        Weet u zeker dat u\u0020
+    </string>
+    <string name="are_you_sure_dialog_message2">
+        Weet u zeker dat u\u0020
     </string>
     <string name="add_balance_message">
-        euro wil toevoegen?
+        \u0020euro wil toevoegen?
     </string>
     <string name="refund_from_account_message">
-        euro van uw account wil terugstorten?
+        \u0020euro van uw account wil terugstorten?
     </string>
     <string name="balance_dialog_negative_button">
         Nee

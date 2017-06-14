@@ -3,17 +3,14 @@ package com.periode4groep2.customerapp.PresentationLayer;
 import android.content.DialogInterface;
 import android.content.Intent;
 import java.util.Calendar;
-import java.util.Locale;
 
-import android.content.res.Configuration;
-import android.content.res.Resources;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -28,13 +25,18 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     private Button saveSettings, balanceButton;
     private TextView textviewEmail, textviewFirstName, textviewLastName, textviewBirthDate, textviewIBAN;
     private Spinner spinner;
-    Locale myLocale;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
         myToolbar.setTitle(R.string.Settings_toolbar);
@@ -65,20 +67,19 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
-                if (pos == 0) {
+                if (pos == 0){
 
-                } else if (pos == 1) {
-                    setLocale("nl");
-
+                } else if (pos == 1){
+                    editor.putString("LANGUAGE", "nl");
+                    editor.commit();
+                    logIn();
                 } else if (pos == 2){
-                    setLocale("en");
-
+                    editor.putString("LANGUAGE", "en");
+                    editor.commit();
+                    logIn();
                 }
-
             }
-
             public void onNothingSelected(AdapterView<?> arg0) {
-
             }
         });
     }
@@ -120,17 +121,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         } else {
             textviewBirthDate.setText(age + "");
         }
-    }
-
-    public void setLocale(String lang) {
-
-        myLocale = new Locale(lang);
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-        conf.locale = myLocale;
-        res.updateConfiguration(conf, dm);
-        logIn();
     }
 
     public void logIn(){
