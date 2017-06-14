@@ -2,12 +2,12 @@ package com.periode4groep2.customerapp.PresentationLayer;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import java.util.Calendar;
-
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,9 +20,12 @@ import android.widget.TextView;
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.R;
 
+import java.util.Calendar;
+
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener{
     Account account;
     private Button saveSettings, balanceButton;
+    private Toolbar toolbar;
     private TextView textviewEmail, textviewFirstName, textviewLastName, textviewBirthDate, textviewIBAN;
     private Spinner spinner;
 
@@ -38,9 +41,19 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
-        myToolbar.setTitle(R.string.Settings_toolbar);
-        setSupportActionBar(myToolbar);
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_home);
+        toolbar.setNavigationIcon(homeButton);
+        toolbar.setTitle(R.string.Balance_toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, HomeScreenActivity.class);
+                intent.putExtra("account", account);
+                startActivity(intent);
+            }
+        });
 
         saveSettings = (Button) findViewById(R.id.saveSettingsID);
         balanceButton = (Button) findViewById(R.id.buttonBalance);

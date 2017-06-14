@@ -3,10 +3,11 @@ package com.periode4groep2.customerapp.PresentationLayer;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,7 +53,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         password = (EditText)findViewById(R.id.passwordInputId);
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
+        Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_home);
+        toolbar.setNavigationIcon(homeButton);
+        toolbar.setTitle(R.string.Home_Screen_toolbar);
         setSupportActionBar(toolbar);
+
+
 
         editor.remove("Email");
 

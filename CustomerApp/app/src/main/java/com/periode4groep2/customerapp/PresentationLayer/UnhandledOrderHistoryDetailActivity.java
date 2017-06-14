@@ -1,7 +1,9 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -14,7 +16,6 @@ import com.periode4groep2.customerapp.DomainModel.Order;
 import com.periode4groep2.customerapp.DomainModel.Product;
 import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
 import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
-import com.periode4groep2.customerapp.PersistancyLayer.OrderDAO;
 import com.periode4groep2.customerapp.PersistancyLayer.ProductDAO;
 import com.periode4groep2.customerapp.PersistancyLayer.ProductSetAvailable;
 import com.periode4groep2.customerapp.R;
@@ -27,6 +28,7 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
     private Button orderButton;
     private Order order;
     private Account account;
+    private Toolbar toolbar;
     private DAOFactory factory;
     private ProductDAO productDAO;
     private ArrayList<Product> productList = new ArrayList<>();
@@ -41,9 +43,6 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unhandled_order_history_detail);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
-        myToolbar.setTitle(R.string.Unhandled_Order_toolbar);
-        setSupportActionBar(myToolbar);
 
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();
@@ -81,6 +80,20 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
                 scanIntent.putExtra(ACCOUNT, account);
                 scanIntent.putExtra("order", order);
                 startActivity(scanIntent);
+            }
+        });
+
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_home);
+        toolbar.setNavigationIcon(homeButton);
+        toolbar.setTitle(R.string.Balance_toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UnhandledOrderHistoryDetailActivity.this, HomeScreenActivity.class);
+                intent.putExtra("account", account);
+                startActivity(intent);
             }
         });
     }

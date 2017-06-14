@@ -1,16 +1,13 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,14 +20,13 @@ import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
 import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
 import com.periode4groep2.customerapp.R;
 
-import static android.R.id.input;
-
 public class BalanceActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText mutateBalance;
     private Button addBalance;
     private Button refundBalance;
     private TextView currentBalanceTextView;
     private Account account;
+    private Toolbar toolbar;
     private DAOFactory factory;
     private AccountDAO accountDAO;
     private final double maxBalance = 150;
@@ -43,9 +39,6 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_balance);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
-        myToolbar.setTitle(R.string.Balance_toolbar);
-        setSupportActionBar(myToolbar);
 
         factory = new MySQLDAOFactory();
         accountDAO = factory.createAccountDAO();
@@ -63,6 +56,20 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         refundBalance.setOnClickListener(this);
 
         currentBalanceValue = account.getBalance() / 100;
+
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_home);
+        toolbar.setNavigationIcon(homeButton);
+        toolbar.setTitle(R.string.Balance_toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BalanceActivity.this, HomeScreenActivity.class);
+                intent.putExtra("account", account);
+                startActivity(intent);
+            }
+        });
 
     }
 
