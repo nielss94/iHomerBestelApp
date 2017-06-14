@@ -106,7 +106,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             settingsIntent.putExtra(ACCOUNT, account);
             startActivity(settingsIntent);
-
+            finish();
         } else if(v.equals(balanceLayoutButton)){
             Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
             addBalanceIntent.putExtra(ACCOUNT, account);

@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Account account;
     private String currentLanguage;
 
-
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
@@ -57,8 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toolbar.setNavigationIcon(homeButton);
         toolbar.setTitle(R.string.Home_Screen_toolbar);
         setSupportActionBar(toolbar);
-
-
 
         editor.remove("Email");
 

@@ -24,7 +24,7 @@ import java.util.Calendar;
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener{
     Account account;
-    private Button saveSettings, balanceButton;
+    private Button balanceButton;
     private Toolbar toolbar;
     private TextView textviewEmail, textviewFirstName, textviewLastName, textviewBirthDate, textviewIBAN;
     private Spinner spinner;
@@ -55,10 +55,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
-        saveSettings = (Button) findViewById(R.id.saveSettingsID);
         balanceButton = (Button) findViewById(R.id.buttonBalance);
 
-        saveSettings.setOnClickListener(this);
         balanceButton.setOnClickListener(this);
 
         account = (Account)getIntent().getSerializableExtra("account");
@@ -97,14 +95,17 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(SettingsActivity.this, HomeScreenActivity.class);
+        intent.putExtra("account", account);
+        startActivity(intent);
+    }
 
     @Override
     public void onClick(View v) {
-        if(v.equals(saveSettings)) {
-            Intent intent = new Intent (this, HomeScreenActivity.class);
-            intent.putExtra("account", account);
-            startActivity(intent);
-        } else if(v.equals(balanceButton)){
+        if(v.equals(balanceButton)){
             Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
             addBalanceIntent.putExtra("account", account);
             startActivity(addBalanceIntent);
