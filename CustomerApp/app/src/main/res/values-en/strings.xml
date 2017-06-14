@@ -202,6 +202,27 @@
         Order
     </string>
 
+    <!-- Strings voor UnhandledOrderHistoryDetailActivity -->
+    <string name ="unhandled_order_header">
+        Order 15-05-2017
+    </string>
+    <string name ="unhandled_order_time_header">
+        Time:\u0020
+    </string>
+    <string name ="unhandled_order_time_display">
+        22:31
+    </string>
+    <string name="unhandled_order_price">
+        Price:\u0020
+    </string>
+    <string name="unhandled_order_total">
+        Total:\u0020
+    </string>
+    <string name="unhandled_order_button">
+        Pay now
+    </string>
+
+
     <!-- Strings voor de aid_list -->
     <string name="service_name">
         CardEmulation
