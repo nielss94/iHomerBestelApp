@@ -1,8 +1,10 @@
 package com.periode4groep2.employeeapp.PresentationLayer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,6 +28,7 @@ public class SearchHandledOrderHistoryDetailActivity extends AppCompatActivity i
     private DAOFactory factory;
     private ProductDAO productDAO;
     private OrderDAO orderDAO;
+    private Toolbar myToolbar;
     private ArrayList<Product> productList = new ArrayList<>();
     private ListView orderListView;
     private SearchHandledOrderItemAdapter handledOrderItemAdapter;
@@ -38,6 +41,14 @@ public class SearchHandledOrderHistoryDetailActivity extends AppCompatActivity i
         Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
         myToolbar.setTitle("Handled Bestelling");
         setSupportActionBar(myToolbar);
+        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SearchHandledOrderHistoryDetailActivity.this, HomeScreenActivity.class);
+                intent.putExtra("account", account);
+                startActivity(intent);
+            }
+        });
 
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();

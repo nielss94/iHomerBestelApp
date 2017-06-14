@@ -35,7 +35,6 @@ public class SearchOrderActivity extends AppCompatActivity implements View.OnCli
     private ArrayList<Order> orders = new ArrayList<>();
     private DAOFactory factory;
     private ProductDAO productDAO;
-    private Toolbar toolbar;
     private OrderDAO orderDAO;
     private Account account;
     private Toolbar toolbar;
@@ -48,10 +47,6 @@ public class SearchOrderActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_order);
-
-        toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
-        toolbar.setTitle("Bestelling zoeken");
-        setSupportActionBar(toolbar);
 
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();

@@ -41,14 +41,6 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         toolbar.setNavigationIcon(homeButton);
         toolbar.setTitle(R.string.employee_home_title);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeScreenActivity.this, HomeScreenActivity.class);
-                intent.putExtra("account", account);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
