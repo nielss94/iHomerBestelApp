@@ -1,8 +1,12 @@
 package com.periode4groep2.employeeapp.PresentationLayer;
 
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,8 +39,18 @@ public class SearchUnhandledOrderHistoryDetailActivity extends AppCompatActivity
         setContentView(R.layout.activity_search_unhandled_order_history_detail);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
+        Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_homebutton);
+        myToolbar.setNavigationIcon(homeButton);
         myToolbar.setTitle(R.string.Unhandled_Order_toolbar);
         setSupportActionBar(myToolbar);
+        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SearchUnhandledOrderHistoryDetailActivity.this, HomeScreenActivity.class);
+                intent.putExtra("account", account);
+                startActivity(intent);
+            }
+        });
 
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();

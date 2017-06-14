@@ -83,5 +83,6 @@
     <string name="Settings_toolbar">Instellingen</string>
     <string name="search_order_toolbar">Zoek naar bestelling</string>
     <string name="Unhandled_Order_toolbar">Open Bestelling</string>
+    <string name="employee_stock_activity">Assortiment aanpassen</string>
 
 </resources>

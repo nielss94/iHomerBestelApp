@@ -1,20 +1,19 @@
 package com.periode4groep2.employeeapp.PresentationLayer;
 
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.LinearLayout;
-
 
 import com.periode4groep2.employeeapp.DomainModel.Account;
-import com.periode4groep2.employeeapp.DomainModel.OrderItem;
 import com.periode4groep2.employeeapp.DomainModel.Product;
 import com.periode4groep2.employeeapp.PersistancyLayer.DAOFactory;
 import com.periode4groep2.employeeapp.PersistancyLayer.MySQLDAOFactory;
-import com.periode4groep2.employeeapp.PersistancyLayer.OrderDAO;
 import com.periode4groep2.employeeapp.PersistancyLayer.ProductDAO;
 import com.periode4groep2.employeeapp.PersistancyLayer.ProductSetAvailable;
 import com.periode4groep2.employeeapp.R;
@@ -22,7 +21,7 @@ import com.periode4groep2.employeeapp.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class StockActivity extends AppCompatActivity implements ProductSetAvailable{
+public class StockActivity extends AppCompatActivity implements View.OnClickListener, ProductSetAvailable{
 
     private final String TAG = getClass().getSimpleName();
     private Account account;
@@ -31,6 +30,7 @@ public class StockActivity extends AppCompatActivity implements ProductSetAvaila
     private ArrayList<String> listDataHeader = new ArrayList<>();
     private HashMap<String, ArrayList<Product>> listHash = new HashMap<>();
     private DAOFactory factory;
+    private Toolbar toolbar;
     private ProductDAO productDAO;
     private ArrayList<Product> products = new ArrayList<>();
 
@@ -43,6 +43,20 @@ public class StockActivity extends AppCompatActivity implements ProductSetAvaila
         productDAO = factory.createProductDAO();
         productDAO.selectData(this);
 
+        toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
+        Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_homebutton);
+        toolbar.setNavigationIcon(homeButton);
+
+        toolbar.setTitle(R.string.employee_stock_activity);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StockActivity.this, HomeScreenActivity.class);
+                intent.putExtra("account", account);
+                startActivity(intent);
+            }
+        });
         account = (Account) getIntent().getSerializableExtra("account");
         listView = (ExpandableListView) findViewById(R.id.expandableListId);
     }
@@ -102,5 +116,9 @@ public class StockActivity extends AppCompatActivity implements ProductSetAvaila
 
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }
 
