@@ -61,7 +61,7 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         refundBalance = (Button) findViewById(R.id.refundBalanceButton);
         refundBalance.setOnClickListener(this);
 
-        currentBalanceValue = Double.parseDouble(currentBalanceTextView.getText().toString().replaceAll("€", "0"));
+        currentBalanceValue = account.getBalance() / 100;
 
     }
 

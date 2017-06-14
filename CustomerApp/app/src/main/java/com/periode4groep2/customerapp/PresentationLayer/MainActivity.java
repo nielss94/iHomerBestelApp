@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private AccountDAO accountDAO;
     private EditText email, password;
     private Account account;
-    private String languageToLoad;
+    private String currentLanguage;
 
 
     SharedPreferences sharedPreferences;
@@ -56,12 +56,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         editor.remove("Email");
 
-        languageToLoad = sharedPreferences.getString("LANGUAGE", null);
+        currentLanguage = sharedPreferences.getString("LANGUAGE", null);
 
-        if (languageToLoad == null){
-            languageToLoad = "nl";
+        if (currentLanguage == null){
+            currentLanguage = "nl";
             languageChanged();
-        } else if (languageToLoad != null){
+        } else if (currentLanguage != null){
             languageChanged();
         }
     }
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void languageChanged(){
         Configuration mainConfig = new Configuration(getResources().getConfiguration());
-        Locale locale = new Locale(languageToLoad);
+        Locale locale = new Locale(currentLanguage);
         Locale.setDefault(locale);
         mainConfig.setLocale(locale);
         getResources().updateConfiguration(mainConfig, null);
