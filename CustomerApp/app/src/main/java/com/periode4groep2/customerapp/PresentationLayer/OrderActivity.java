@@ -63,7 +63,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_home);
         toolbar.setNavigationIcon(homeButton);
-        toolbar.setTitle(R.string.Balance_toolbar);
+        toolbar.setTitle(R.string.Order_toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

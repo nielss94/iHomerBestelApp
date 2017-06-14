@@ -44,7 +44,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_home);
         toolbar.setNavigationIcon(homeButton);
-        toolbar.setTitle(R.string.Balance_toolbar);
+        toolbar.setTitle(R.string.Settings_toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

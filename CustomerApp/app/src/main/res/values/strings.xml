@@ -257,5 +257,11 @@
     <string name="Unhandled_Order_toolbar">
         Open Bestelling
     </string>
+    <string name="handled_Order_toolbar">
+        Voltooide Bestelling
+    </string>
+    <string name="customer_app_toolbar">
+        CustomerApp
+    </string>
 
 </resources>

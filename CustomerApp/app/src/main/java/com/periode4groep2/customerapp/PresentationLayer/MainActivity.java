@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
         Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_home);
         toolbar.setNavigationIcon(homeButton);
-        toolbar.setTitle(R.string.Home_Screen_toolbar);
+        toolbar.setTitle(R.string.customer_app_toolbar);
         setSupportActionBar(toolbar);
 
         editor.remove("Email");
