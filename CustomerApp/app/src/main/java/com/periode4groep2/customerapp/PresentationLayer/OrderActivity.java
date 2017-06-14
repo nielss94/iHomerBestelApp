@@ -145,9 +145,15 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             Boolean canCreateOrder = true;
             for (int i = 0; i < orders.size(); i++) {
                 if (orders.get(i).isHandled() == false && orders.get(i).getEmail().equals(account.getEmail())) {
-                    canCreateOrder = false;
-                    break;
+                    Toast.makeText(this, "U heeft al een openstaande bestelling.", Toast.LENGTH_LONG).show();
+                    return;
                 }
+            }
+            if(newOrder.getOrderItems().size() < 1){
+                return;
+            }
+            if(newOrder.getTotalPrice() > account.getBalance()){
+                return;
             }
             if (canCreateOrder) {
                 orderDAO.insertData(account, newOrder);
@@ -158,8 +164,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 b.putParcelableArrayList("products", products);
                 intent.putExtras(b);
                 startActivity(intent);
-            } else {
-                Toast.makeText(this, "U heeft al een openstaande bestelling.", Toast.LENGTH_LONG).show();
             }
         }
     }

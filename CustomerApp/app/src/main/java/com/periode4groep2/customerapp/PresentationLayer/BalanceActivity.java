@@ -1,5 +1,6 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
@@ -138,6 +139,10 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
                         accountDAO.updateBalance(account, (amountToMax * 100));
                         currentBalanceTextView.setText("€" + String.format("%.2f", currentBalanceValue));
                         dialogInterface.dismiss();
+
+                        Intent intent = getIntent();
+                        finish();
+                        startActivity(intent);
                     }
                 });
 
@@ -166,6 +171,9 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
                 accountDAO.updateBalance(account, -(currentBalanceValue * 100));
                 currentBalanceTextView.setText("€" + String.format("%.2f", refundAll));
                 dialogInterface.dismiss();
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
             }
         });
 
@@ -198,6 +206,9 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
                 account.setBalance(currentBalanceValue);
                 accountDAO.updateBalance(account,currentEntryValue * 100);
                 dialogInterface.dismiss();
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
             }
         });
 
@@ -229,6 +240,9 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
                 account.setBalance(currentBalanceValue);
                 accountDAO.updateBalance(account,-(currentEntryValue* 100));
                 dialogInterface.dismiss();
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
             }
         });
 
