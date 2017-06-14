@@ -23,8 +23,6 @@ import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
 import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
 import com.periode4groep2.customerapp.R;
 
-import static android.R.id.input;
-
 public class BalanceActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText mutateBalance;
     private Button addBalance;
@@ -54,7 +52,9 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         currentBalanceTextView = (TextView) findViewById(R.id.currentBalance);
 
         account = (Account) getIntent().getSerializableExtra("account");
+
         currentBalanceTextView.setText("€" + String.format("%.2f", account.getBalance() / 100) + "");
+
 
         addBalance = (Button) findViewById(R.id.addBalanceID);
         addBalance.setOnClickListener(this);
@@ -63,7 +63,6 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         refundBalance.setOnClickListener(this);
 
         currentBalanceValue = account.getBalance() / 100;
-
     }
 
     @Override
@@ -140,9 +139,6 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
                         currentBalanceTextView.setText("€" + String.format("%.2f", currentBalanceValue));
                         dialogInterface.dismiss();
 
-                        Intent intent = getIntent();
-                        finish();
-                        startActivity(intent);
                     }
                 });
 
@@ -171,9 +167,6 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
                 accountDAO.updateBalance(account, -(currentBalanceValue * 100));
                 currentBalanceTextView.setText("€" + String.format("%.2f", refundAll));
                 dialogInterface.dismiss();
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
             }
         });
 
@@ -206,9 +199,6 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
                 account.setBalance(currentBalanceValue);
                 accountDAO.updateBalance(account,currentEntryValue * 100);
                 dialogInterface.dismiss();
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
             }
         });
 
@@ -240,9 +230,6 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
                 account.setBalance(currentBalanceValue);
                 accountDAO.updateBalance(account,-(currentEntryValue* 100));
                 dialogInterface.dismiss();
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
             }
         });
 

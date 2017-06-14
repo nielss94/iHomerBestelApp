@@ -62,7 +62,6 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         orderDAO = factory.createOrderDAO();
         accountDAO = factory.createAccountDAO();
 
-        orderDAO.selectData(this);
         productDAO.selectData(this);
 
         orderLayoutButton = (LinearLayout) findViewById(R.id.OrderID);
@@ -91,7 +90,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         if(!getIntent().getClass().getSimpleName().equalsIgnoreCase("MainActivity")){
             accountDAO.getAccountBalance(this,account);
         }
-
+        orderDAO.selectData(this);
     }
     @Override
     public void onClick(View v) {
@@ -126,6 +125,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void orderSetAvailable(ArrayList<Order> orders) {
+        this.orders.clear();
         for (int i = 0; i < orders.size(); i++) {
             if(orders.get(i).getEmail().equalsIgnoreCase(account.getEmail())) {
                 this.orders.add(orders.get(i));
