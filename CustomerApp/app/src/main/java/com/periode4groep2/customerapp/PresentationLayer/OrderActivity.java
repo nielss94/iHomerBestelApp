@@ -184,7 +184,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
         }
-
         Log.i(TAG,newOrder.getOrderItems().toString());
     }
     public void removeOrderitem(double newPrice, OrderItem orderItem) {

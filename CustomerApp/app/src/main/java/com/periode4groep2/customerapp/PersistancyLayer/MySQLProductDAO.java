@@ -22,7 +22,6 @@ public class MySQLProductDAO implements ProductDAO, MySQLProductAPIConnector.Pro
         };
 
         mySQLProductAPIConnector.execute(urls);
-
     }
 
     @Override

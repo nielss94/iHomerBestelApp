@@ -26,7 +26,7 @@ import com.periode4groep2.employeeapp.R;
 import java.util.ArrayList;
 
 public class SearchOrderActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener, OrderSetAvailable, ProductSetAvailable{
-    //implements View.OnClickListener, OrderSetAvailable
+
     private final String TAG = getClass().getSimpleName();
 
     private ArrayList<Product> products = new ArrayList<>();
@@ -35,18 +35,20 @@ public class SearchOrderActivity extends AppCompatActivity implements View.OnCli
     private ProductDAO productDAO;
     private OrderDAO orderDAO;
     private Account account;
-
+    private Toolbar toolbar;
     private SearchOrderHistoryAdapter searchOrderHistoryAdapter;
     private EditText searchOrderEditText;
     private Button searchOrderButton;
     private ListView searchOrderListView;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_order);
+
+        toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
+        toolbar.setTitle("Bestelling zoeken");
+        setSupportActionBar(toolbar);
 
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();
