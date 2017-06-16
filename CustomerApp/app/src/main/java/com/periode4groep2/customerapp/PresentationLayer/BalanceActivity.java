@@ -2,7 +2,9 @@ package com.periode4groep2.customerapp.PresentationLayer;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -37,19 +39,19 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_balance);
 
-//        toolbar = (Toolbar) findViewById(R.id.tool_bar);
-//        Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_home);
-//        toolbar.setNavigationIcon(homeButton);
-//        toolbar.setTitle(R.string.Balance_toolbar);
-//        setSupportActionBar(toolbar);
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(BalanceActivity.this, HomeScreenActivity.class);
-//                intent.putExtra("account", account);
-//                startActivity(intent);
-//            }
-//        });
+        toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
+        Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_home);
+        toolbar.setNavigationIcon(homeButton);
+        toolbar.setTitle(R.string.Balance_toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BalanceActivity.this, HomeScreenActivity.class);
+                intent.putExtra("account", account);
+                startActivity(intent);
+            }
+        });
 
         factory = new MySQLDAOFactory();
         accountDAO = factory.createAccountDAO();
