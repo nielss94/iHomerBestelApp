@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -33,11 +34,8 @@ public class AddExtraProducts extends AppCompatActivity implements ProductSetAva
     private ProductDAO productDAO;
     private ArrayList<Product> products = new ArrayList<>();
     private Order order;
-<<<<<<< HEAD
     private Account account;
-=======
     private Toolbar toolbar;
->>>>>>> origin/master
     private Button saveOrderButton;
     private ArrayList<OrderItem> orderItemsToAdd = new ArrayList<>();
 
