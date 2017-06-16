@@ -84,6 +84,22 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
     }
 
     @Override
+    protected void onStart(){
+        super.onStart();
+
+        Order order = (Order)getIntent().getSerializableExtra("order");
+
+        if(order != null){
+            this.order = order;
+            Log.i(TAG, "oi");
+            Double totalPrice = order.getTotalPrice();
+            String totalPriceFormat = "€" + String.format("%.2f", totalPrice);
+            totalprice.setText(totalPriceFormat);
+        }
+
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
         disableReaderMode();
@@ -124,8 +140,6 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
                 getOrderData();
             }
         });
-
-
     }
 
     @Override
@@ -137,9 +151,14 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void productSetAvailable(ArrayList<Product> products) {
         productlist = products;
-        receivedOrderAdapter = new ReceivedOrderAdapter(this, orderItemList, productlist);
-        orderListView.setAdapter(receivedOrderAdapter);
 
+        if(order.getOrderItems().size() > 0){
+            receivedOrderAdapter = new ReceivedOrderAdapter(this, order.getOrderItems(), productlist);
+            orderListView.setAdapter(receivedOrderAdapter);
+        }else{
+            receivedOrderAdapter = new ReceivedOrderAdapter(this, orderItemList, productlist);
+            orderListView.setAdapter(receivedOrderAdapter);
+        }
     }
     public void getOrderData(){
         orderDAO.selectData(this);
@@ -182,8 +201,8 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
         } else if(v.equals(addProducts)){
             Intent addProduct = new Intent(this, AddExtraProducts.class);
             addProduct.putExtra("order", order);
+            addProduct.putExtra("account", account);
             startActivity(addProduct);
-            finish();
         }
     }
 }
