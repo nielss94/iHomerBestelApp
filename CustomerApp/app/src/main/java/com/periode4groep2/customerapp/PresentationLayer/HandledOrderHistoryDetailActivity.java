@@ -68,6 +68,16 @@ public class HandledOrderHistoryDetailActivity extends AppCompatActivity impleme
         order = (Order) getIntent().getSerializableExtra("order");
         account = (Account) getIntent().getSerializableExtra(ACCOUNT);
 
+        String date = order.getDate();
+        String fullDate = date.substring(0,10);
+        String fullTime = date.substring(11,16);
+
+        TextView orderTitle = (TextView) findViewById(R.id.orderTitle);
+        TextView orderTime = (TextView) findViewById(R.id.orderTime);
+
+        orderTitle.setText("Bestelling " + fullDate);
+        orderTime.setText(fullTime);
+
         orderButton = (Button) findViewById(R.id.orderAgainButton);
         balanceButton = (Button)findViewById(R.id.buttonBalance);
         orderButton.setText("Bestel opnieuw");

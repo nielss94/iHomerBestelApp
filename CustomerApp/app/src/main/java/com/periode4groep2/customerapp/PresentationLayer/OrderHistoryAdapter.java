@@ -36,8 +36,10 @@ public class OrderHistoryAdapter extends ArrayAdapter<Order> {
 
         String date = singleOrder.getDate();
         String fullDate = date.substring(0,10);
+        String fullTime = date.substring(11,16);
+        String finalDate = fullDate + " " + fullTime;
 
-        orderDate.setText(fullDate);
+        orderDate.setText(finalDate);
 
         Double price = singleOrder.getTotalPrice();
         String goodPrice = String.format("€%10.2f", price);

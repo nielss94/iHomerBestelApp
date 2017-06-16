@@ -51,6 +51,17 @@ public class UnhandledOrderHistoryDetailActivity extends AppCompatActivity imple
 
 
         order = (Order)getIntent().getSerializableExtra("order");
+
+        String date = order.getDate();
+        String fullDate = date.substring(0,10);
+        String fullTime = date.substring(11,16);
+
+        TextView orderTitle = (TextView) findViewById(R.id.orderTitle);
+        TextView orderTime = (TextView) findViewById(R.id.orderTime);
+
+        orderTitle.setText("Bestelling " + fullDate);
+        orderTime.setText(fullTime);
+
         account = (Account)getIntent().getSerializableExtra(ACCOUNT);
         balanceButton.setOnClickListener(new View.OnClickListener() {
 
