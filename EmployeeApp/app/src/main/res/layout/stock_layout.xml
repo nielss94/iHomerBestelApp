@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     android:orientation="vertical"
     tools:context="com.periode4groep2.employeeapp.PresentationLayer.StockActivity">
 
@@ -26,5 +27,49 @@
         </ExpandableListView>
 
     </RelativeLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackground"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/stock_add_product"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorOrange"
+                android:text="@string/button_add_product"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:padding="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/stock_delete_product"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorOrange"
+                android:text="@string/button_remove_product"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:padding="10dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

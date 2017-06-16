@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 
 import com.periode4groep2.employeeapp.DomainModel.Account;
@@ -31,6 +32,7 @@ public class StockActivity extends AppCompatActivity implements View.OnClickList
     private HashMap<String, ArrayList<Product>> listHash = new HashMap<>();
     private DAOFactory factory;
     private Toolbar toolbar;
+    private Button addProduct, removeProduct;
     private ProductDAO productDAO;
     private ArrayList<Product> products = new ArrayList<>();
 
@@ -59,6 +61,11 @@ public class StockActivity extends AppCompatActivity implements View.OnClickList
         });
         account = (Account) getIntent().getSerializableExtra("account");
         listView = (ExpandableListView) findViewById(R.id.expandableListId);
+
+        addProduct = (Button) findViewById(R.id.stock_add_product);
+        removeProduct = (Button) findViewById(R.id.stock_delete_product);
+        addProduct.setOnClickListener(this);
+        removeProduct.setOnClickListener(this);
     }
 
     public void productSetAvailable(final ArrayList<Product> prod) {
@@ -119,6 +126,15 @@ public class StockActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
 
+        if (v.equals(addProduct)){
+            Intent intent = new Intent(this, AddStockProduct.class);
+            intent.putExtra("account", account);
+            startActivity(intent);
+        } else if (v.equals(removeProduct)){
+            Intent intent = new Intent(this, RemoveStockProduct.class);
+            intent.putExtra("account", account);
+            startActivity(intent);
+        }
     }
 }
 

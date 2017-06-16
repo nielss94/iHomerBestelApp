@@ -84,5 +84,35 @@
     <string name="search_order_toolbar">Zoek naar bestelling</string>
     <string name="Unhandled_Order_toolbar">Open Bestelling</string>
     <string name="employee_stock_activity">Assortiment aanpassen</string>
+    <string name="employee_add_stock_product_activity">Product toevoegen</string>
+    <string name="employee_remove_stock_product_activity">Product verwijderen</string>
+
+    <!-- Stock activity -->
+    <string name="button_add_product">Product toevoegen</string>
+    <string name="button_remove_product">Product Verwijderen</string>
+
+    <!-- Add Stock -->
+    <string name="add_stock_productId_label">ProductID: </string>
+    <string name="add_stock_productId_hint">ProductID</string>
+
+    <string name="add_stock_category_label">Categorie: </string>
+    <string name="add_stock_category_hint">Categorie</string>
+
+    <string name="add_stock_name_label">Product: </string>
+    <string name="add_stock_name_hint">Product</string>
+
+    <string name="add_stock_instock_label">Op voorraad: </string>
+    <string name="add_stock_instock_hint">Ja / Nee</string>
+
+    <string name="add_stock_price_label">Prijs: </string>
+    <string name="add_stock_price_hint">€0,00</string>
+
+    <string name="add_stock_nameEng_label">Naam(en): </string>
+    <string name="add_stock_nameEng_hint">name</string>
+
+    <string name="add_stock_categoryEng_label">Categorie(en): </string>
+    <string name="add_stock_categoryEng_hint">Category</string>
+
+    <string name="add_stock_button">Toevoegen</string>
 
 </resources>

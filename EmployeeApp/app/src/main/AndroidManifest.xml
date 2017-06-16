@@ -33,13 +33,13 @@
         <activity android:name=".PresentationLayer.HandleOrderActivity" />
         <activity android:name=".PresentationLayer.SearchHandledOrderHistoryDetailActivity" />
         <activity android:name=".PresentationLayer.SearchUnhandledOrderHistoryDetailActivity" />
-
-
         <activity android:name=".PresentationLayer.HomeScreenActivity" />
         <activity android:name=".PresentationLayer.SearchOrderActivity" />
         <activity android:name=".PresentationLayer.StockActivity" />
         <activity android:name=".PresentationLayer.CustomListItemOrderHistorySearch" />
-        <activity android:name=".PresentationLayer.AddExtraProducts"></activity>
+        <activity android:name=".PresentationLayer.AddExtraProducts" />
+        <activity android:name=".PresentationLayer.AddStockProduct" />
+        <activity android:name=".PresentationLayer.RemoveStockProduct"></activity>
     </application>
 
 </manifest>
