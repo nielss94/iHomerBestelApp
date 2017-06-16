@@ -222,8 +222,9 @@
     <string name="unhandled_order_button">
         Nu betalen
     </string>
-
-
+    <string name ="unhandled_order_paystatus_header">
+        Betaald:
+    </string>
     <!-- Strings voor de aid_list -->
     <string name="service_name">
         CardEmulation
