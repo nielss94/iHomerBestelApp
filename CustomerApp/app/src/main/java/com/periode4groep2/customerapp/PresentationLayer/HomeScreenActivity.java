@@ -4,8 +4,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -13,7 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.DomainModel.Order;
@@ -39,6 +39,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
     private DAOFactory factory;
     private ProductDAO productDAO;
     private OrderDAO orderDAO;
+    private Toolbar toolbar;
     private AccountDAO accountDAO;
     private Account account;
     private Order unhandledOrder;
@@ -53,16 +54,17 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
-        myToolbar.setTitle(R.string.Home_Screen_toolbar);
-        setSupportActionBar(myToolbar);
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_home);
+        toolbar.setNavigationIcon(homeButton);
+        toolbar.setTitle(R.string.Home_Screen_toolbar);
+        setSupportActionBar(toolbar);
 
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();
         orderDAO = factory.createOrderDAO();
         accountDAO = factory.createAccountDAO();
 
-        orderDAO.selectData(this);
         productDAO.selectData(this);
 
         orderLayoutButton = (LinearLayout) findViewById(R.id.OrderID);
@@ -81,8 +83,6 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         account = (Account)getIntent().getSerializableExtra(ACCOUNT);
         balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
         Log.i("balance: ", account.getBalance() + "");
-        // Wanneer je na het veranderen van het saldo terug komt op dit scherm, wordt de balance verkeerd
-        // weergegeven (factor 100 te klein). Na opnieuw inloggen klopt de balance wel.
     }
 
     @Override
@@ -91,7 +91,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         if(!getIntent().getClass().getSimpleName().equalsIgnoreCase("MainActivity")){
             accountDAO.getAccountBalance(this,account);
         }
-
+        orderDAO.selectData(this);
     }
     @Override
     public void onClick(View v) {
@@ -104,7 +104,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             settingsIntent.putExtra(ACCOUNT, account);
             startActivity(settingsIntent);
-
+            finish();
         } else if(v.equals(balanceLayoutButton)){
             Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
             addBalanceIntent.putExtra(ACCOUNT, account);
@@ -126,6 +126,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void orderSetAvailable(ArrayList<Order> orders) {
+        this.orders.clear();
         for (int i = 0; i < orders.size(); i++) {
             if(orders.get(i).getEmail().equalsIgnoreCase(account.getEmail())) {
                 this.orders.add(orders.get(i));

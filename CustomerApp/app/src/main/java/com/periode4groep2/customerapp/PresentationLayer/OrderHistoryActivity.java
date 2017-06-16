@@ -1,7 +1,9 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -30,6 +32,7 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
     private DAOFactory factory;
     private ProductDAO productDAO;
     private OrderDAO orderDAO;
+    private Toolbar toolbar;
     private Account account;
     private ListView orderHistoryListView;
     private OrderHistoryAdapter historyAdapter;
@@ -41,9 +44,19 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_history);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
-        myToolbar.setTitle(R.string.Order_History_toolbar);
-        setSupportActionBar(myToolbar);
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_home);
+        toolbar.setNavigationIcon(homeButton);
+        toolbar.setTitle(R.string.Order_History_toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OrderHistoryActivity.this, HomeScreenActivity.class);
+                intent.putExtra("account", account);
+                startActivity(intent);
+            }
+        });
 
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();

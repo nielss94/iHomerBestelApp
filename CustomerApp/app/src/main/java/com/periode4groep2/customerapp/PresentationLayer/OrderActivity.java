@@ -1,19 +1,17 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ListPopupWindow;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +48,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     private Button balanceButton;
     private TextView totalOrderPrice;
     private Order newOrder;
+    private Toolbar toolbar;
     private ImageButton popUpButton;
     private TextView orderItemCount;
     private ListPopupWindow menu;
@@ -61,9 +60,19 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
-        myToolbar.setTitle(R.string.Order_toolbar);
-        setSupportActionBar(myToolbar);
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_home);
+        toolbar.setNavigationIcon(homeButton);
+        toolbar.setTitle(R.string.Order_toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OrderActivity.this, HomeScreenActivity.class);
+                intent.putExtra("account", account);
+                startActivity(intent);
+            }
+        });
 
         factory = new MySQLDAOFactory();
         productDAO = factory.createProductDAO();
@@ -145,9 +154,15 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             Boolean canCreateOrder = true;
             for (int i = 0; i < orders.size(); i++) {
                 if (orders.get(i).isHandled() == false && orders.get(i).getEmail().equals(account.getEmail())) {
-                    canCreateOrder = false;
-                    break;
+                    Toast.makeText(this, "U heeft al een openstaande bestelling.", Toast.LENGTH_LONG).show();
+                    return;
                 }
+            }
+            if(newOrder.getOrderItems().size() < 1){
+                return;
+            }
+            if(newOrder.getTotalPrice() > account.getBalance()){
+                return;
             }
             if (canCreateOrder) {
                 orderDAO.insertData(account, newOrder);
@@ -158,8 +173,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 b.putParcelableArrayList("products", products);
                 intent.putExtras(b);
                 startActivity(intent);
-            } else {
-                Toast.makeText(this, "U heeft al een openstaande bestelling.", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -184,7 +197,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
         }
-
         Log.i(TAG,newOrder.getOrderItems().toString());
     }
     public void removeOrderitem(double newPrice, OrderItem orderItem) {

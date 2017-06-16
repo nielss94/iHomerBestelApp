@@ -1,24 +1,36 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
+import android.content.DialogInterface;
 import android.content.Intent;
-import java.util.Calendar;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.R;
 
+import java.util.Calendar;
+
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener{
     Account account;
-    private Button saveSettings, balanceButton;
+    private Button balanceButton;
+    private Toolbar toolbar;
     private TextView textviewEmail, textviewFirstName, textviewLastName, textviewBirthDate, textviewIBAN;
+    private Spinner spinner;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -26,14 +38,25 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
-        myToolbar.setTitle(R.string.Settings_toolbar);
-        setSupportActionBar(myToolbar);
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
-        saveSettings = (Button) findViewById(R.id.saveSettingsID);
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_home);
+        toolbar.setNavigationIcon(homeButton);
+        toolbar.setTitle(R.string.Settings_toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, HomeScreenActivity.class);
+                intent.putExtra("account", account);
+                startActivity(intent);
+            }
+        });
+
         balanceButton = (Button) findViewById(R.id.buttonBalance);
 
-        saveSettings.setOnClickListener(this);
         balanceButton.setOnClickListener(this);
 
         account = (Account)getIntent().getSerializableExtra("account");
@@ -50,14 +73,39 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         textviewIBAN.setText(account.getIBAN());
 
         calculateAge();
+
+        spinner = (Spinner) findViewById(R.id.language_spinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                if (pos == 0){
+
+                } else if (pos == 1){
+                    editor.putString("LANGUAGE", "nl");
+                    editor.commit();
+                    logIn();
+                } else if (pos == 2){
+                    editor.putString("LANGUAGE", "en");
+                    editor.commit();
+                    logIn();
+                }
+            }
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(SettingsActivity.this, HomeScreenActivity.class);
+        intent.putExtra("account", account);
+        startActivity(intent);
     }
 
     @Override
     public void onClick(View v) {
-        if(v.equals(saveSettings)) {
-            this.finish();
-            Toast.makeText(this, R.string.save_settings_toast, Toast.LENGTH_SHORT).show();
-        } else if(v.equals(balanceButton)){
+        if(v.equals(balanceButton)){
             Intent addBalanceIntent = new Intent(this, BalanceActivity.class);
             addBalanceIntent.putExtra("account", account);
             startActivity(addBalanceIntent);
@@ -88,4 +136,25 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
             textviewBirthDate.setText(age + "");
         }
     }
-}
+
+    public void logIn(){
+
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(false);
+
+            builder.setMessage(R.string.dialog_message);
+            builder.setPositiveButton(getResources().getString(R.string.dialog_button), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int which) {
+
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    dialogInterface.dismiss();
+                }
+            });
+
+            final AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+    }
+
