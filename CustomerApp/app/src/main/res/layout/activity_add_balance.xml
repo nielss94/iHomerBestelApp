@@ -37,7 +37,6 @@
                 android:gravity="center"
                 android:layout_marginTop="3dp"
                 android:text="@string/current_balance_view"
-                android:textColor="@color/colorGrayWhite"
                 android:textSize="48dp" />
 
 

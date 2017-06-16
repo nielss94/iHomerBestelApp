@@ -82,14 +82,17 @@
     <string name="balance_dialog_positive_button">
         Yes
     </string>
-    <string name="are_you_sure_dialog_message">
-        Are you sure you want to add
+    <string name="are_you_sure_dialog_message1">
+        Are you sure you want to add\u0020
+    </string>
+    <string name="are_you_sure_dialog_message2">
+        Are you sure you want to refund\u0020
     </string>
     <string name="add_balance_message">
-         euros to your account?
+        \u0020euros to your account?
     </string>
     <string name="refund_from_account_message">
-        euro van uw account wil terugstorten?
+        \u0020euros from your account?
     </string>
     <string name="balance_dialog_negative_button">
         No
@@ -97,12 +100,11 @@
 
     <!-- Strings voor SettingsActivity-->
     <string-array name="language_array_spinner_entries">
+        <item>Choose Language...</item>
         <item>Nederlands</item>
         <item>English</item>
-        <item>Deutsch</item>
-        <item>Français</item>
-        <item>Fries</item>
     </string-array>
+
     <string name="personal_data_textview">
         Personal information
     </string>
@@ -124,11 +126,17 @@
     <string name="language_textview">
         Language:
     </string>
-    <string name="save_settings_button">
-        Save changes
+    <string name="menu_button">
+        Menu
     </string>
     <string name="save_settings_toast">
         Successfully saved changes
+    </string>
+    <string name="dialog_message">
+        Log in again to apply the changes to the language settings.
+    </string>
+    <string name="dialog_button">
+        Log in
     </string>
 
     <!--Strings voor OrderDetailActivity-->
@@ -193,6 +201,27 @@
     <string name="order_activity_orderButton">
         Order
     </string>
+
+    <!-- Strings voor UnhandledOrderHistoryDetailActivity -->
+    <string name ="unhandled_order_header">
+        Order 15-05-2017
+    </string>
+    <string name ="unhandled_order_time_header">
+        Time:\u0020
+    </string>
+    <string name ="unhandled_order_time_display">
+        22:31
+    </string>
+    <string name="unhandled_order_price">
+        Price:\u0020
+    </string>
+    <string name="unhandled_order_total">
+        Total:\u0020
+    </string>
+    <string name="unhandled_order_button">
+        Pay now
+    </string>
+
 
     <!-- Strings voor de aid_list -->
     <string name="service_name">

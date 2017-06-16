@@ -82,26 +82,30 @@
     <string name="balance_dialog_positive_button">
         Ja
     </string>
-    <string name="are_you_sure_dialog_message">
-        Weet u zeker dat u
+    <string name="are_you_sure_dialog_message1">
+        Weet u zeker dat u\u0020
+    </string>
+    <string name="are_you_sure_dialog_message2">
+        Weet u zeker dat u\u0020
     </string>
     <string name="add_balance_message">
-        euro wil toevoegen?
+        \u0020euro wil toevoegen?
     </string>
     <string name="refund_from_account_message">
-        euro van uw account wil terugstorten?
+        \u0020euro van uw account wil terugstorten?
     </string>
     <string name="balance_dialog_negative_button">
         Nee
     </string>
 
     <!-- Strings voor SettingsActivity-->
-    <string name="Dutch">
-        Nederlands
-    </string>
-    <string name="English">
-        English
-    </string>
+
+    <string-array name="language_array_spinner_entries">
+        <item>Kies taal...</item>
+        <item>Nederlands</item>
+        <item>English</item>
+    </string-array>
+
     <string name="personal_data_textview">
         Persoonlijke gegevens
     </string>
@@ -123,11 +127,17 @@
     <string name="language_textview">
         Taal:
     </string>
-    <string name="save_settings_button">
-        Wijzigingen opslaan
+    <string name="menu_button">
+        Menu
     </string>
     <string name="save_settings_toast">
         Wijzigingen succesvol opgeslagen
+    </string>
+    <string name="dialog_message">
+        Log opnieuw in om de gewenste taal in te stellen.
+    </string>
+    <string name="dialog_button">
+        Log in
     </string>
 
     <!--Strings voor OrderDetailActivity-->
@@ -193,6 +203,27 @@
         Bestellen
     </string>
 
+    <!-- Strings voor UnhandledOrderHistoryDetailActivity -->
+    <string name ="unhandled_order_header">
+        Bestelling 15-05-2017
+    </string>
+    <string name ="unhandled_order_time_header">
+        Tijd:\u0020
+    </string>
+    <string name ="unhandled_order_time_display">
+        22:31
+    </string>
+    <string name="unhandled_order_price">
+        Prijs:\u0020
+    </string>
+    <string name="unhandled_order_total">
+        Totaal:\u0020
+    </string>
+    <string name="unhandled_order_button">
+        Nu betalen
+    </string>
+
+
     <!-- Strings voor de aid_list -->
     <string name="service_name">
         CardEmulation
@@ -225,6 +256,12 @@
     </string>
     <string name="Unhandled_Order_toolbar">
         Open Bestelling
+    </string>
+    <string name="handled_Order_toolbar">
+        Voltooide Bestelling
+    </string>
+    <string name="customer_app_toolbar">
+        CustomerApp
     </string>
 
 </resources>
