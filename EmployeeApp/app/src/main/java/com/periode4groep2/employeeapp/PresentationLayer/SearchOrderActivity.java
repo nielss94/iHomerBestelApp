@@ -1,7 +1,9 @@
 package com.periode4groep2.employeeapp.PresentationLayer;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -26,7 +28,7 @@ import com.periode4groep2.employeeapp.R;
 import java.util.ArrayList;
 
 public class SearchOrderActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener, OrderSetAvailable, ProductSetAvailable{
-    //implements View.OnClickListener, OrderSetAvailable
+
     private final String TAG = getClass().getSimpleName();
 
     private ArrayList<Product> products = new ArrayList<>();
@@ -35,13 +37,11 @@ public class SearchOrderActivity extends AppCompatActivity implements View.OnCli
     private ProductDAO productDAO;
     private OrderDAO orderDAO;
     private Account account;
-
+    private Toolbar toolbar;
     private SearchOrderHistoryAdapter searchOrderHistoryAdapter;
     private EditText searchOrderEditText;
     private Button searchOrderButton;
     private ListView searchOrderListView;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,20 @@ public class SearchOrderActivity extends AppCompatActivity implements View.OnCli
         searchOrderEditText = (EditText)findViewById(R.id.searchOrderEditText);
         searchOrderListView = (ListView)findViewById(R.id.searchOrdersListView);
         searchOrderButton = (Button)findViewById(R.id.searchOrderButton);
+
+        toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
+        Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_homebutton);
+        toolbar.setNavigationIcon(homeButton);
+        toolbar.setTitle(R.string.search_order_toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SearchOrderActivity.this, HomeScreenActivity.class);
+                intent.putExtra("account", account);
+                startActivity(intent);
+            }
+        });
 
         searchOrderButton.setOnClickListener(this);
         searchOrderListView.setOnItemClickListener(this);

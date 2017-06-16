@@ -14,6 +14,8 @@ public class Product implements Parcelable {
     private String name;
     private boolean inStock;
     private Double price;
+    private String nameEng;
+    private String categoryEng;
 
     public Product(int productID, String category, String name, boolean inStock, Double price) {
         this.productID = productID;
@@ -29,6 +31,8 @@ public class Product implements Parcelable {
         name = in.readString();
         price = in.readDouble();
         inStock = in.readByte() != 0;
+        nameEng = in.readString();
+        categoryEng = in.readString();
     }
 
     public static final Creator<Product> CREATOR = new Creator<Product>() {
@@ -42,6 +46,22 @@ public class Product implements Parcelable {
             return new Product[size];
         }
     };
+
+    public String getNameEng() {
+        return nameEng;
+    }
+
+    public void setNameEng(String nameEng) {
+        this.nameEng = nameEng;
+    }
+
+    public String getCategoryEng() {
+        return categoryEng;
+    }
+
+    public void setCategoryEng(String categoryEng) {
+        this.categoryEng = categoryEng;
+    }
 
     public int getProductID() {
         return productID;
@@ -91,6 +111,8 @@ public class Product implements Parcelable {
                 ", name='" + name + '\'' +
                 ", inStock=" + inStock +
                 ", price=" + price +
+                ", nameEng='" + nameEng + '\'' +
+                ", categoryEng='" + categoryEng + '\'' +
                 '}';
     }
 
@@ -106,5 +128,7 @@ public class Product implements Parcelable {
         dest.writeString(name);
         dest.writeDouble(price);
         dest.writeByte((byte) (inStock ? 1 : 0));
+        dest.writeString(nameEng);
+        dest.writeString(categoryEng);
     }
 }

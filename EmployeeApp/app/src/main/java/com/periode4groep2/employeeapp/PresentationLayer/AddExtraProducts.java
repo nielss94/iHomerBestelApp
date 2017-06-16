@@ -1,9 +1,11 @@
 package com.periode4groep2.employeeapp.PresentationLayer;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -31,7 +33,11 @@ public class AddExtraProducts extends AppCompatActivity implements ProductSetAva
     private ProductDAO productDAO;
     private ArrayList<Product> products = new ArrayList<>();
     private Order order;
+<<<<<<< HEAD
     private Account account;
+=======
+    private Toolbar toolbar;
+>>>>>>> origin/master
     private Button saveOrderButton;
     private ArrayList<OrderItem> orderItemsToAdd = new ArrayList<>();
 
@@ -70,6 +76,19 @@ public class AddExtraProducts extends AppCompatActivity implements ProductSetAva
             button.setText(products.get(i).getName());
 
         }
+
+        toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
+        Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_homebutton);
+        toolbar.setNavigationIcon(homeButton);
+        toolbar.setTitle(R.string.search_order_toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddExtraProducts.this, HomeScreenActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -2,8 +2,10 @@ package com.periode4groep2.employeeapp.PresentationLayer;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -59,7 +61,17 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_handle_order);
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
+        Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_homebutton);
+        toolbar.setNavigationIcon(homeButton);
         setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HandleOrderActivity.this, HomeScreenActivity.class);
+                intent.putExtra("account", account);
+                startActivity(intent);
+            }
+        });
 
         orderListView = (ListView) findViewById(R.id.listview_show_orders);
         order = new Order(1, "rick", false, 0.00, "2017-4-4");

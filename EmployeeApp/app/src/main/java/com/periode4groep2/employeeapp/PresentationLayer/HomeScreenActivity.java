@@ -1,6 +1,8 @@
 package com.periode4groep2.employeeapp.PresentationLayer;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -35,6 +37,8 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         stockView.setOnClickListener(this);
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
+        Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_homebutton);
+        toolbar.setNavigationIcon(homeButton);
         toolbar.setTitle(R.string.employee_home_title);
         setSupportActionBar(toolbar);
     }

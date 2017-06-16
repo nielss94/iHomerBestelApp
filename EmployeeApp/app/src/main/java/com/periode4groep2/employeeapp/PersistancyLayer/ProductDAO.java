@@ -11,4 +11,6 @@ public interface ProductDAO {
 
     void selectData(ProductSetAvailable c);
     void changeStock(Account account, Product product);
+    void addProductToStock(Account account, Product product);
+    void deleteProductFromStock(Account account, Product product);
 }

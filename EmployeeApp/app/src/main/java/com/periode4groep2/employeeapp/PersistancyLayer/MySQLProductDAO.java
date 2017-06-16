@@ -32,6 +32,16 @@ public class MySQLProductDAO implements ProductDAO, MySQLProductAPIConnector.Pro
     }
 
     @Override
+    public void addProductToStock(Account account, Product product) {
+        new ProductCreateConnector(account,product).execute();
+    }
+
+    @Override
+    public void deleteProductFromStock(Account account, Product product) {
+        new ProductDeleteConnector(account,product).execute();
+    }
+
+    @Override
     public void productAvailable(Product product, boolean done) {
         products.add(product);
         if(done)
