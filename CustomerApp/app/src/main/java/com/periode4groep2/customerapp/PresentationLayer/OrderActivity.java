@@ -159,16 +159,18 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
             if(newOrder.getOrderItems().size() < 1){
+                Toast.makeText(this, "U moet tenminste 1 product in uw mandje zitten.", Toast.LENGTH_LONG).show();
                 return;
             }
-            if(newOrder.getTotalPrice() > account.getBalance()){
+            Log.i(TAG, String.valueOf(newOrder.getTotalPrice()) + " " + account.getBalance());
+            if(newOrder.getTotalPrice() > account.getBalance() / 100){
+                Toast.makeText(this, "U heeft niet genoeg saldo.", Toast.LENGTH_LONG).show();
                 return;
             }
             if (canCreateOrder) {
                 orderDAO.insertData(account, newOrder);
                 Intent intent = new Intent(this, OrderDetailActivity.class);
                 intent.putExtra(ACCOUNT, account);
-                //intent.putExtra("order", newOrder);
                 Bundle b = new Bundle();
                 b.putParcelableArrayList("products", products);
                 intent.putExtras(b);

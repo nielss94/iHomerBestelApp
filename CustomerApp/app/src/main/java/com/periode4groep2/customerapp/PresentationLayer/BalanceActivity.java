@@ -63,7 +63,6 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
 
         currentBalanceTextView.setText("€" + String.format("%.2f", account.getBalance() / 100) + "");
 
-
         addBalance = (Button) findViewById(R.id.addBalanceID);
         addBalance.setOnClickListener(this);
 
