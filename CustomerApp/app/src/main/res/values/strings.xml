@@ -166,7 +166,7 @@
         €
     </string>
     <string name="example_balance">
-        52.50
+        52,50
     </string>
     <string name="example_refund_text">
         Enter refund-value here
