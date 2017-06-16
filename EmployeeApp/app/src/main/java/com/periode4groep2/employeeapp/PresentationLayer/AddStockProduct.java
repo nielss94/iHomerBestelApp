@@ -12,7 +12,10 @@ import android.widget.EditText;
 
 import com.periode4groep2.employeeapp.DomainModel.Account;
 import com.periode4groep2.employeeapp.DomainModel.Product;
+import com.periode4groep2.employeeapp.PersistancyLayer.DAOFactory;
+import com.periode4groep2.employeeapp.PersistancyLayer.MySQLDAOFactory;
 import com.periode4groep2.employeeapp.PersistancyLayer.MySQLProductDAO;
+import com.periode4groep2.employeeapp.PersistancyLayer.ProductDAO;
 import com.periode4groep2.employeeapp.R;
 
 public class AddStockProduct extends AppCompatActivity implements View.OnClickListener{
@@ -22,13 +25,15 @@ public class AddStockProduct extends AppCompatActivity implements View.OnClickLi
     private EditText category, name, price, nameEng, categoryEng;
     private Product product;
     private Button button;
-    private MySQLProductDAO productDAO;
+    private DAOFactory factory;
+    private ProductDAO productDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_stock_product);
-
+        factory = new MySQLDAOFactory();
+        productDAO = factory.createProductDAO();
         account = (Account) getIntent().getSerializableExtra("account");
 
         category = (EditText) findViewById(R.id.stock_add_product_category);
