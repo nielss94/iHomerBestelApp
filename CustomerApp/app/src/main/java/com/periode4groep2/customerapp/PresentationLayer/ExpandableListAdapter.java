@@ -113,7 +113,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         txtListChild.setText(childProduct.getName());
-        txtListPrice.setText("€" + childProduct.getPrice());
+        txtListPrice.setText(String.format("€%.2f",childProduct.getPrice()));
         Boolean notInOrderItems = true;
         for (int i = 0; i < orderItems.size(); i++) {
             if(childProduct.getProductID() == orderItems.get(i).getProductID()){
