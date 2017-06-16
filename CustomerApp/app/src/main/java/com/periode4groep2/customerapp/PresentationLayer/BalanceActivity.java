@@ -1,15 +1,13 @@
 package com.periode4groep2.customerapp.PresentationLayer;
 
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,14 +20,13 @@ import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
 import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
 import com.periode4groep2.customerapp.R;
 
-import static android.R.id.input;
-
 public class BalanceActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText mutateBalance;
     private Button addBalance;
     private Button refundBalance;
     private TextView currentBalanceTextView;
     private Account account;
+    private Toolbar toolbar;
     private DAOFactory factory;
     private AccountDAO accountDAO;
     private final double maxBalance = 150;
@@ -42,9 +39,19 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_balance);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
-        myToolbar.setTitle(R.string.Balance_toolbar);
-        setSupportActionBar(myToolbar);
+        toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
+        Drawable homeButton = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_home);
+        toolbar.setNavigationIcon(homeButton);
+        toolbar.setTitle(R.string.Balance_toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BalanceActivity.this, HomeScreenActivity.class);
+                intent.putExtra("account", account);
+                startActivity(intent);
+            }
+        });
 
         factory = new MySQLDAOFactory();
         accountDAO = factory.createAccountDAO();
@@ -53,7 +60,9 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         currentBalanceTextView = (TextView) findViewById(R.id.currentBalance);
 
         account = (Account) getIntent().getSerializableExtra("account");
+
         currentBalanceTextView.setText("€" + String.format("%.2f", account.getBalance() / 100) + "");
+
 
         addBalance = (Button) findViewById(R.id.addBalanceID);
         addBalance.setOnClickListener(this);
@@ -61,8 +70,7 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         refundBalance = (Button) findViewById(R.id.refundBalanceButton);
         refundBalance.setOnClickListener(this);
 
-        currentBalanceValue = Double.parseDouble(currentBalanceTextView.getText().toString().replaceAll("€", "0"));
-
+        currentBalanceValue = account.getBalance() / 100;
     }
 
     @Override
@@ -138,6 +146,7 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
                         accountDAO.updateBalance(account, (amountToMax * 100));
                         currentBalanceTextView.setText("€" + String.format("%.2f", currentBalanceValue));
                         dialogInterface.dismiss();
+
                     }
                 });
 
@@ -186,7 +195,7 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         builder.setCancelable(false);
         final String getBalance = mutateBalance.getText().toString();
 
-        builder.setMessage(R.string.are_you_sure_dialog_message + getBalance.trim() + R.string.add_balance_message);
+        builder.setMessage(getResources().getString(R.string.are_you_sure_dialog_message1) + getBalance.trim() + getResources().getString(R.string.add_balance_message));
         builder.setPositiveButton(getResources().getString(R.string.balance_dialog_positive_button), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
@@ -217,7 +226,7 @@ public class BalanceActivity extends AppCompatActivity implements View.OnClickLi
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
         final String getBalance = mutateBalance.getText().toString();
-        builder.setMessage(R.string.are_you_sure_dialog_message + getBalance + " euro van uw account wil terugstorten?");
+        builder.setMessage(getResources().getString(R.string.are_you_sure_dialog_message2) + getBalance + getResources().getString(R.string.refund_from_account_message));
         builder.setPositiveButton(getResources().getString(R.string.balance_dialog_positive_button), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
