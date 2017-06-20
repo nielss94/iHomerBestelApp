@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
     tools:context="com.periode4groep2.employeeapp.PresentationLayer.RemoveStockProduct">
 
     <include
@@ -10,4 +12,11 @@
         layout="@layout/tool_bar_no_button">
     </include>
 
+
+    <ListView
+        android:id="@+id/listViewDelete"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
 </LinearLayout>

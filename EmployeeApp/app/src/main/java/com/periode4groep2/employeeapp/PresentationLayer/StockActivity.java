@@ -133,6 +133,7 @@ public class StockActivity extends AppCompatActivity implements View.OnClickList
         } else if (v.equals(removeProduct)){
             Intent intent = new Intent(this, RemoveStockProduct.class);
             intent.putExtra("account", account);
+            intent.putExtra("products", products);
             startActivity(intent);
         }
     }
