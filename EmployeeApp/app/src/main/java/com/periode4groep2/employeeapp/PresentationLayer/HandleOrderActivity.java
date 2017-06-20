@@ -104,11 +104,8 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
         if(order != null){
             this.order = order;
             Log.i(TAG, "oi");
-            Double totalPrice = order.getTotalPrice();
-            String totalPriceFormat = "€" + String.format("%.2f", totalPrice);
-            totalprice.setText(totalPriceFormat);
+            populateOrderList(currentOrderID);
         }
-
     }
 
     @Override

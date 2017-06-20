@@ -38,6 +38,7 @@ public class AddExtraProducts extends AppCompatActivity implements ProductSetAva
     private Toolbar toolbar;
     private Button saveOrderButton;
     private ArrayList<OrderItem> orderItemsToAdd = new ArrayList<>();
+    private ArrayList<OrderItem> extraProducts = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,7 +151,8 @@ public class AddExtraProducts extends AppCompatActivity implements ProductSetAva
 
                         OrderItem oi = new OrderItem(pb.getProduct().getProductID(), 1);
                         addOrderitem(pb.getProduct().getPrice(), oi);
-
+                        extraProducts.add(oi);
+                        order.addOrderItem(oi);
                         Log.i("poep", order.getOrderItems() + "");
                         }
                     }
