@@ -1,6 +1,12 @@
 package com.periode4groep2.employeeapp.PresentationLayer;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.text.style.BackgroundColorSpan;
+import android.widget.Button;
+import android.widget.LinearLayout;
+
 import com.periode4groep2.employeeapp.DomainModel.Product;
 import com.periode4groep2.employeeapp.R;
 
@@ -10,10 +16,13 @@ import com.periode4groep2.employeeapp.R;
 
 public class ProductButton extends android.support.v7.widget.AppCompatButton {
     private Product product;
+    private LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
     public ProductButton(Context context) {
         super(context);
-        //setBackgroundResource();
+        params.setMargins(0, 0 , 0, 25);
+        setLayoutParams(params);
+        setBackground(getResources().getDrawable(R.drawable.button_border));
     }
 
     public Product getProduct() {
@@ -23,4 +32,5 @@ public class ProductButton extends android.support.v7.widget.AppCompatButton {
     public void setProduct(Product product) {
         this.product = product;
     }
+
 }
