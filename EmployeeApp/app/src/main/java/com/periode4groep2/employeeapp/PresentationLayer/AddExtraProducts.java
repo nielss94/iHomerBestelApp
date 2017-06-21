@@ -1,6 +1,9 @@
 package com.periode4groep2.employeeapp.PresentationLayer;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -8,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -38,7 +42,6 @@ public class AddExtraProducts extends AppCompatActivity implements ProductSetAva
     private Toolbar toolbar;
     private Button saveOrderButton;
     private ArrayList<OrderItem> orderItemsToAdd = new ArrayList<>();
-    private ArrayList<OrderItem> extraProducts = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +72,9 @@ public class AddExtraProducts extends AppCompatActivity implements ProductSetAva
         layoutBread.setOrientation(LinearLayout.VERTICAL);
         layoutWater.setOrientation(LinearLayout.VERTICAL);
 
-
         for (int i = 0; i < products.size(); i++) {
             ProductButton button = new ProductButton(this);
             button.setText(products.get(i).getName());
-
         }
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar_no_button);
@@ -94,45 +95,43 @@ public class AddExtraProducts extends AppCompatActivity implements ProductSetAva
     public void productSetAvailable(ArrayList<Product> prod) {
         products = prod;
         for (int i = 0; i < products.size() ; i++) {
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(0, 0 , 0, 25);
             ProductButton button = new ProductButton(this);
             button.setProduct(products.get(i));
+            button.setLayoutParams(params);
+            button.setBackground(getResources().getDrawable(R.drawable.button_border));
             button.setText(button.getProduct().getName());
             productButtons.add(button);
 
                 if (products.get(i).getCategory().equals("Frisdrank")) {
                     if(!button.getProduct().isInStock()){
-                        button.setClickable(false);
-                        button.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                        button.setBackground(getResources().getDrawable(R.drawable.button_out_of_stock));
                     }
                     layoutSoda.addView(button);
                 } else if (products.get(i).getCategory().equals("Fast food")) {
                     if(!button.getProduct().isInStock()){
-                        button.setClickable(false);
-                        button.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                        button.setBackground(getResources().getDrawable(R.drawable.button_out_of_stock));
                     }
                     layoutFastFood.addView(button);
                 } else if (products.get(i).getCategory().equals("Water")) {
                     if(!button.getProduct().isInStock()){
-                        button.setClickable(false);
-                        button.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                        button.setBackground(getResources().getDrawable(R.drawable.button_out_of_stock));
                     }
                     layoutWater.addView(button);
                 } else if (products.get(i).getCategory().equals("Brood")) {
                     if(!button.getProduct().isInStock()){
-                        button.setClickable(false);
-                        button.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                        button.setBackground(getResources().getDrawable(R.drawable.button_out_of_stock));
                     }
                     layoutBread.addView(button);
                 } else if (products.get(i).getCategory().equals("Alcohol")) {
                     if(!button.getProduct().isInStock()){
-                        button.setClickable(false);
-                        button.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                        button.setBackground(getResources().getDrawable(R.drawable.button_out_of_stock));
                     }
                     layoutAlchohol.addView(button);
                 } else if (products.get(i).getCategory().equals("Snacks")) {
                     if(!button.getProduct().isInStock()){
-                        button.setClickable(false);
-                        button.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                        button.setBackground(getResources().getDrawable(R.drawable.button_out_of_stock));
                     }
                     layoutSnacks.addView(button);
             }
@@ -151,8 +150,6 @@ public class AddExtraProducts extends AppCompatActivity implements ProductSetAva
 
                         OrderItem oi = new OrderItem(pb.getProduct().getProductID(), 1);
                         addOrderitem(pb.getProduct().getPrice(), oi);
-                        extraProducts.add(oi);
-                        order.addOrderItem(oi);
                         Log.i("poep", order.getOrderItems() + "");
                         }
                     }

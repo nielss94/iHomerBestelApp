@@ -92,7 +92,7 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
         orderDAO = factory.createOrderDAO();
         acceptOrderButton.setOnClickListener(this);
         addProducts.setOnClickListener(this);
-
+        acceptOrderButton.setClickable(false);
     }
 
     @Override
@@ -202,6 +202,7 @@ public class HandleOrderActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         if(v.equals(acceptOrderButton)){
             if(order != null){
+                acceptOrderButton.setClickable(true);
                 orderDAO.handleOrder(account, order);
                 order = null;
                 receivedOrderAdapter.clear();
