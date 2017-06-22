@@ -52,18 +52,18 @@ public class AddExtraProducts extends AppCompatActivity implements ProductSetAva
         productDAO = factory.createProductDAO();
         productDAO.selectData(this);
 
-        order = (Order)getIntent().getSerializableExtra("order");
-        account = (Account)getIntent().getSerializableExtra("account");
+        order = (Order) getIntent().getSerializableExtra("order");
+        account = (Account) getIntent().getSerializableExtra("account");
 
-        saveOrderButton = (Button)findViewById(R.id.backButton);
+        saveOrderButton = (Button) findViewById(R.id.backButton);
         saveOrderButton.setOnClickListener(this);
 
         layoutSoda = (LinearLayout) findViewById(R.id.layout_buttonspawnerSoda);
-        layoutAlchohol = (LinearLayout)findViewById(R.id.layout_buttonspawnerAlchohol);
-        layoutSnacks = (LinearLayout)findViewById(R.id.layout_buttonspawnerSnacks);
-        layoutFastFood = (LinearLayout)findViewById(R.id.layout_buttonspawnerFastFood);
-        layoutBread = (LinearLayout)findViewById(R.id.layout_buttonspawnerBread);
-        layoutWater = (LinearLayout)findViewById(R.id.layout_buttonspawnerWater);
+        layoutAlchohol = (LinearLayout) findViewById(R.id.layout_buttonspawnerAlchohol);
+        layoutSnacks = (LinearLayout) findViewById(R.id.layout_buttonspawnerSnacks);
+        layoutFastFood = (LinearLayout) findViewById(R.id.layout_buttonspawnerFastFood);
+        layoutBread = (LinearLayout) findViewById(R.id.layout_buttonspawnerBread);
+        layoutWater = (LinearLayout) findViewById(R.id.layout_buttonspawnerWater);
 
         layoutSoda.setOrientation(LinearLayout.VERTICAL);
         layoutAlchohol.setOrientation(LinearLayout.VERTICAL);
@@ -94,50 +94,49 @@ public class AddExtraProducts extends AppCompatActivity implements ProductSetAva
     @Override
     public void productSetAvailable(ArrayList<Product> prod) {
         products = prod;
-        for (int i = 0; i < products.size() ; i++) {
+        for (int i = 0; i < products.size(); i++) {
             ProductButton button = new ProductButton(this);
             button.setProduct(products.get(i));
             button.setText(button.getProduct().getName());
             productButtons.add(button);
 
-            if (!button.getProduct().isInStock()){
+            if (!button.getProduct().isInStock()) {
                 button.setBackground(getResources().getDrawable(R.drawable.button_out_of_stock));
             } else {
                 button.setBackground(getResources().getDrawable(R.drawable.button_border));
             }
 
-                if (products.get(i).getCategory().equals("Frisdrank")) {
-                    layoutSoda.addView(button);
-                } else if (products.get(i).getCategory().equals("Fast food")) {
-                    layoutFastFood.addView(button);
-                } else if (products.get(i).getCategory().equals("Water")) {
-                    layoutWater.addView(button);
-                } else if (products.get(i).getCategory().equals("Brood")) {
-                    layoutBread.addView(button);
-                } else if (products.get(i).getCategory().equals("Alcohol")) {
-                    layoutAlchohol.addView(button);
-                } else if (products.get(i).getCategory().equals("Snacks")) {
-                    layoutSnacks.addView(button);
-                }
+            if (products.get(i).getCategory().equals("Frisdrank")) {
+                layoutSoda.addView(button);
+            } else if (products.get(i).getCategory().equals("Fast food")) {
+                layoutFastFood.addView(button);
+            } else if (products.get(i).getCategory().equals("Water")) {
+                layoutWater.addView(button);
+            } else if (products.get(i).getCategory().equals("Brood")) {
+                layoutBread.addView(button);
+            } else if (products.get(i).getCategory().equals("Alcohol")) {
+                layoutAlchohol.addView(button);
+            } else if (products.get(i).getCategory().equals("Snacks")) {
+                layoutSnacks.addView(button);
             }
+        }
         for (int i = 0; i < productButtons.size(); i++) {
             final ProductButton pb = productButtons.get(i);
             final String orderString = "U heeft een " + pb.getText() + " besteld";
 
             productButtons.get(i).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (!pb.getProduct().isInStock()) {
-                        Toast.makeText(AddExtraProducts.this, "Dit product is momenteel niet beschikbaar", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(AddExtraProducts.this, orderString, Toast.LENGTH_SHORT).show();
+                                                         @Override
+                                                         public void onClick(View v) {
+                                                             if (!pb.getProduct().isInStock()) {
+                                                                 Toast.makeText(AddExtraProducts.this, "Dit product is momenteel niet beschikbaar", Toast.LENGTH_SHORT).show();
+                                                             } else {
+                                                                 Toast.makeText(AddExtraProducts.this, orderString, Toast.LENGTH_SHORT).show();
 
-                        OrderItem oi = new OrderItem(pb.getProduct().getProductID(), 1);
-                        addOrderitem(pb.getProduct().getPrice(), oi);
-                        Log.i("poep", order.getOrderItems() + "");
-                        }
-                    }
-                }
+                                                                 OrderItem oi = new OrderItem(pb.getProduct().getProductID(), 1);
+                                                                 addOrderitem(pb.getProduct().getPrice(), oi);
+                                                             }
+                                                         }
+                                                     }
             );
         }
     }
@@ -150,12 +149,11 @@ public class AddExtraProducts extends AppCompatActivity implements ProductSetAva
             productIDsInOrderItems.add(order.getOrderItems().get(i).getProductID());
         }
 
-        if(!productIDsInOrderItems.contains(orderItem.getProductID())){
+        if (!productIDsInOrderItems.contains(orderItem.getProductID())) {
             order.getOrderItems().add(orderItem);
-        }
-        else{
+        } else {
             for (int i = 0; i < order.getOrderItems().size(); i++) {
-                if(order.getOrderItems().get(i).getProductID() == orderItem.getProductID()){
+                if (order.getOrderItems().get(i).getProductID() == orderItem.getProductID()) {
                     order.getOrderItems().get(i).setQuantity(order.getOrderItems().get(i).getQuantity() + orderItem.getQuantity());
                     break;
                 }
@@ -168,12 +166,11 @@ public class AddExtraProducts extends AppCompatActivity implements ProductSetAva
             productIDsInOrderItemsToAdd.add(orderItemsToAdd.get(i).getProductID());
         }
 
-        if(!productIDsInOrderItemsToAdd.contains(orderItem.getProductID())){
+        if (!productIDsInOrderItemsToAdd.contains(orderItem.getProductID())) {
             orderItemsToAdd.add(orderItem);
-        }
-        else{
+        } else {
             for (int i = 0; i < orderItemsToAdd.size(); i++) {
-                if(orderItemsToAdd.get(i).getProductID() == orderItem.getProductID()){
+                if (orderItemsToAdd.get(i).getProductID() == orderItem.getProductID()) {
                     orderItemsToAdd.get(i).setQuantity(orderItemsToAdd.get(i).getQuantity() + orderItem.getQuantity());
                     break;
                 }
@@ -189,7 +186,7 @@ public class AddExtraProducts extends AppCompatActivity implements ProductSetAva
         Intent backToOrder = new Intent(AddExtraProducts.this, HandleOrderActivity.class);
         backToOrder.putExtra("order", order);
         backToOrder.putExtra("account", account);
-        orderDAO.addToOrder(account,order,orderItemsToAdd);
+        orderDAO.addToOrder(account, order, orderItemsToAdd);
         Toast.makeText(this, "Producten succesvol toegevoegd aan de order", Toast.LENGTH_SHORT).show();
         startActivity(backToOrder);
     }

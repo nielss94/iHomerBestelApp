@@ -101,7 +101,7 @@ public class MySQLAccountAPIConnector extends AsyncTask<String, Void, String> {
                         jsonObject.optString("LastName"),
                         jsonObject.optString("Password"),
                         jsonObject.optString("DateOfBirth"),
-                        (jsonObject.optInt("isemployee") == 1) ? true : false
+                        (jsonObject.optInt("isemployee") == 1)
                 );
                 Log.i(TAG, ""+acc.isEmployee());
                 listener.accountAvailable(acc);

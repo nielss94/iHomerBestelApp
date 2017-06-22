@@ -20,7 +20,7 @@ public class ProductButton extends android.support.v7.widget.AppCompatButton {
 
     public ProductButton(Context context) {
         super(context);
-        params.setMargins(0, 0 , 0, 25);
+        params.setMargins(0, 0, 0, 25);
         setLayoutParams(params);
         setBackground(getResources().getDrawable(R.drawable.button_border));
     }

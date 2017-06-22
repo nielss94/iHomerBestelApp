@@ -34,7 +34,7 @@ public class LoyaltyCardReader implements NfcAdapter.ReaderCallback {
     private WeakReference<AccountCallback> mAccountCallback;
 
     public interface AccountCallback {
-        public void onAccountReceived(String account);
+        void onAccountReceived(String account);
     }
 
     public LoyaltyCardReader(AccountCallback accountCallback) {

@@ -64,23 +64,8 @@
     </string>
 
     <!-- Strings voor OrderActivity -->
-    <string name="total_textview">
-        Totaal:
-    </string>
-    <string name="total_price_textview">
-        €0,00
-    </string>
-    <string name="order_activity_orderButton">
-        Bestellen
-    </string>
 
     <!-- Strings voor de toolbar -->
-    <string name="Home_Screen_toolbar">Menu</string>
-    <string name="order_toolbar">Bestellen</string>
-    <string name="Order_Detail_toolbar">Huidige Bestelling</string>
-    <string name="Scan_toolbar">Betalen</string>
-    <string name="Order_History_toolbar">Mijn Bestellingen</string>
-    <string name="Settings_toolbar">Instellingen</string>
     <string name="search_order_toolbar">Zoek naar bestelling</string>
     <string name="Unhandled_Order_toolbar">Open Bestelling</string>
     <string name="employee_stock_activity">Assortiment aanpassen</string>
@@ -92,17 +77,12 @@
     <string name="button_remove_product">Product Verwijderen</string>
 
     <!-- Add Stock -->
-    <string name="add_stock_productId_label">ProductID: </string>
-    <string name="add_stock_productId_hint">ProductID</string>
 
     <string name="add_stock_category_label">Categorie: </string>
     <string name="add_stock_category_hint">Categorie</string>
 
     <string name="add_stock_name_label">Product: </string>
     <string name="add_stock_name_hint">Product</string>
-
-    <string name="add_stock_instock_label">Op voorraad: </string>
-    <string name="add_stock_instock_hint">Ja / Nee</string>
 
     <string name="add_stock_price_label">Prijs: </string>
     <string name="add_stock_price_hint">€0,00</string>
