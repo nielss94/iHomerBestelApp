@@ -55,7 +55,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2"
-        android:gravity="center"
         android:orientation="horizontal">
 
 
@@ -64,30 +63,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="right"
             android:text="@string/total_tag_textview" />
 
         <TextView
             android:id="@+id/totalPriceTagTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="right"
             android:text="@string/TEST_total_price_textview" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/bottomSectionDiv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginBottom="15dp"
         android:layout_gravity="center">
 
 
         <LinearLayout
             android:id="@+id/buttonContainer"
             android:layout_width="wrap_content"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
