@@ -21,7 +21,7 @@ public class MySQLOrderDAO implements OrderDAO, MySQLOrderAPIConnector.OrderAvai
         orders.clear();
         context = c;
         String[] urls = {
-                "http://ihomerapi.herokuapp.com/api/getOrders"
+                "http://ihomerapi.herokuapp.com/api/getOrders?sorted=true"
         };
 
         new MySQLOrderAPIConnector(this).execute(urls);

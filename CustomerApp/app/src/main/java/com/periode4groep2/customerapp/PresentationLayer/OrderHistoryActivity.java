@@ -13,21 +13,18 @@ import android.widget.ListView;
 
 import com.periode4groep2.customerapp.DomainModel.Account;
 import com.periode4groep2.customerapp.DomainModel.Order;
-import com.periode4groep2.customerapp.DomainModel.Product;
 import com.periode4groep2.customerapp.PersistancyLayer.DAOFactory;
 import com.periode4groep2.customerapp.PersistancyLayer.MySQLDAOFactory;
 import com.periode4groep2.customerapp.PersistancyLayer.OrderDAO;
 import com.periode4groep2.customerapp.PersistancyLayer.OrderSetAvailable;
 import com.periode4groep2.customerapp.PersistancyLayer.ProductDAO;
-import com.periode4groep2.customerapp.PersistancyLayer.ProductSetAvailable;
 import com.periode4groep2.customerapp.R;
 
 import java.util.ArrayList;
 
-public class OrderHistoryActivity extends AppCompatActivity implements ProductSetAvailable, OrderSetAvailable, AdapterView.OnItemClickListener, View.OnClickListener {
+public class OrderHistoryActivity extends AppCompatActivity implements OrderSetAvailable, AdapterView.OnItemClickListener, View.OnClickListener {
 
     private final String TAG = getClass().getSimpleName();
-    private ArrayList<Product> products = new ArrayList<>();
     private ArrayList<Order> orders = new ArrayList<>();
     private DAOFactory factory;
     private ProductDAO productDAO;
@@ -68,12 +65,6 @@ public class OrderHistoryActivity extends AppCompatActivity implements ProductSe
         balanceButton.setText("€" + String.format("%.2f", account.getBalance()/100) + "");
 
         orderDAO.selectData(this);
-        productDAO.selectData(this);
-    }
-
-    @Override
-    public void productSetAvailable(ArrayList<Product> products) {
-        this.products = products;
     }
 
     @Override
